@@ -1,0 +1,212 @@
+// import libraries
+import React from 'react';
+import { connect } from 'react-redux';
+import Router from 'next/router';
+
+// import local libraries
+import securePage from '../hocs/page';
+import api from '../api';
+import { clearCart } from '../actions/cart';
+
+// import components
+import Layout from '../components/common/Layout';
+import InputText from '../components/general/InputText';
+import ButtonApp from '../components/general/ButtonApp';
+import MenuCalendar from '../components/menu/MenuCalendar';
+import MenuItem from '../components/menu/MenuItem';
+import CartDetail from '../components/checkout/CartDetail';
+import CreditCardForm from '../components/common/CreditCardForm';
+import AddressForm from '../components/user/AddressForm';
+import AddressList from '../components/user/AddressList';
+import ModalAddress from '../components/general/ModalAddress';
+import ModalCreditCard from '../components/general/ModalCreditCard';
+import Confirmation from '../components/checkout/Confirmation';
+import LoadingSpinner from '../components/common/LoadingSpinner';
+
+class Checkout extends React.Component {
+  static async getInitialProps(context) {
+    return {};
+  }
+
+  state = {
+    step: 1,
+    address: [],
+    creditCards: null,
+    addressFormHidden: true,
+    showModalCreditCard: false,
+    confirmation: false,
+    creditCardId: 0,
+    userAddressId: 0,
+    subtotal: 0,
+    total: 0,
+    errors: {},
+    loadingPage: true,
+    showAddress: false,
+  }
+
+  componentDidMount() {
+    this.initialFetch();
+  }
+
+  async initialFetch() {
+    const [addresses, creditCards] = await Promise.all([
+      api.user.getAddress(),
+      api.creditCard.getAll(),
+    ]);
+    this.setState({ address: addresses, creditCards, loadingPage: false }, () => {
+      if(addresses.length > 0) {
+        this.setState({ userAddressId: addresses[0].id });
+      }
+    });
+  }
+
+  afterAddressSave = (address) => {
+    this.setState({ step: 2, userAddressId: address.id });
+  }
+
+  afterSelectAddress = (address) => {
+    this.setState({ userAddressId: address.id });
+  }
+
+  nextStep = () => {
+    this.setState({ step: 2 });
+  }
+
+  showAddressModal = (e) => {
+    e.preventDefault();
+    this.setState({ showAddress: true });
+  }
+
+  showCreditCardModal = () => {
+    this.setState({ showModalCreditCard: !this.state.showModalCreditCard });
+  }
+
+  responseModal = async () => {
+    const address = await api.user.getAddress();
+    this.setState({ showAddress: false, address });
+  }
+
+  sendOrder = async () => {
+    const { userAddressId, creditCardId } = this.state;
+    const { data } = this.props.cart;
+    const order = {
+      userAddressId,
+      creditCardId,
+      orderDetails: data,
+    }
+    const response = await api.orders.create(order);
+    if(response.ok) {
+      this.setState({ confirmation: true }, () => {
+        this.props.clearCart();
+      });
+    }
+
+    // Verificar que el cargo se haya generado correctamente
+    // Mensaje de confirmación
+    // Eliminar el estado de REDUX
+  }
+
+  confirm = () => {
+    this.setState({ confirmation: false }, () => {
+      Router.push('/menu');
+    })
+  }
+
+  onChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
+  render() {
+    const { step, address, addressFormHidden, userAddressId, creditCards, loadingPage } = this.state;
+
+    return (
+      <Layout {...this.props}>
+
+        { loadingPage ? <LoadingSpinner /> :
+          <div>
+            <ModalAddress show={this.state.showAddress} responseModal={this.responseModal} />
+            <ModalCreditCard show={this.state.showModalCreditCard} onToggle={this.showCreditCardModal} />
+            <Confirmation show={this.state.confirmation} confirm={this.confirm} />
+            <div className="container">
+              <div className="checkout">
+                <div className="address">
+                  {/* Address */}
+                  <div className="container-step container-box">
+                    <div className="title">Dirección</div>
+                    <div className="form">
+                      { address.length > 0 &&
+                        <AddressList address={address} select={this.afterSelectAddress} itemSelected={userAddressId} />
+                      }
+                      <br />
+                      <a href="#" className="btn-link" onClick={this.showAddressModal}>Agregar nueva dirección</a>
+                    </div>
+                  </div>
+
+                  {/* PAYMENT */}
+                  <div className="container-step container-box">
+                    <div className="title">Metodo de pago</div>
+                    <div className="form">
+                      <select className="form-control input-lg" name="creditCardId" onChange={this.onChange}>
+                        <option>Seleccionar método de pago</option>
+                        { creditCards && creditCards.map((item) => (
+                          <option value={item.id} key={item.id}>{item.last4} - {item.brand}</option>
+                        )) }
+                      </select>
+                      <br />
+                      <a href="#" onClick={this.showCreditCardModal} className="btn-link">Agregar otro método de pago</a>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <CartDetail sendOrder={this.sendOrder} disabled={!this.state.creditCardId || !this.state.userAddressId}/>
+            </div>
+          </div>
+        }
+        <style jsx>{`
+          .checkout {
+            margin: 20px 0px;
+            width: calc(100% - 350px) !important;
+          }
+
+          .fluid-container {
+            padding-left: 1.8rem;
+            padding-right: 1.8rem;
+          }
+
+          .title {
+            font-size: 16px;
+            font-weight: bold;
+            padding: 10px 0;
+          }
+
+          .container-box {
+            border-radius: 3px;
+            background-color: #fff;
+            border: 1px solid #e8ebe9;
+            margin-top: 15px;
+            padding: 15px 40px;
+          }
+
+          .btn-link {
+            margin-top: 20px;
+            padding: 20px 0;
+            font-size: 16px;
+            font-weight: bold;
+            color: #B9B9AF;
+          }
+
+        `}</style>
+      </Layout>
+    )
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {
+    cart: state.cart,
+  }
+}
+
+export default securePage(connect(mapStateToProps, { clearCart })(Checkout));

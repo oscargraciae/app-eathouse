@@ -1,0 +1,83 @@
+import axios from 'axios';
+// import fetch from 'isomorphic-unfetch';
+
+const baseUrl = 'http://localhost:3001';
+// const baseUrl = 'http://127.0.0.1:3000';
+// const baseUrl = 'https://api.gigbox.mx';
+axios.defaults.baseURL = 'http://localhost:3001/api/v1';
+
+const api = {
+  user: {
+    async authentication(email, password) {
+      const response = await axios.post(`${baseUrl}/api/v1/users/login`, { email, password });
+      return response.data;
+    },
+
+    async create(userData) {
+      const response = await axios.post(`${baseUrl}/api/v1/users/signup`, userData);
+      return response.data;
+    },
+    async get(id) {
+      const response = await axios.get(`/users/${id}`);
+      return response.data;
+    },
+    async createAddress(data) {
+      const response = await axios.post(`/users/address`, data);
+      return response.data;
+    },
+    async getAddress() {
+      const response = await axios.get(`/address`);
+      return response.data;
+    },
+  },
+  creditCard: {
+    async create(data) {
+      const response = await axios.post(`/credit-cards`, data);
+      return response.data;
+    },
+    async getAll() {
+      const response = await axios.get(`/credit-cards`);
+      return response.data;
+    }
+  },
+  suscriptions: {
+    async get(id) {
+      const response = await axios.get(`/suscriptions/${id}`);
+      return response.data;
+    }
+  },
+  dish: {
+    async getAll() {
+      const response = await axios.get(`/dishes`);
+      return response.data;
+    },
+    async get(id) {
+      const response = await axios.get(`/dishes/${id}`);
+      return response.data;
+    }
+  },
+  orders: {
+    async create(order) {
+      // order = {
+      //   addressId: 0,
+      //   creditCardId: 0,
+      //   orderDetail: [
+      //     { 
+      //       quantity: 0,
+      //       dishId: 0,
+      //       deliveryDate,
+      //     }
+      //   ]
+      // }
+      const response = await axios.post('/orders', order);
+      return response.data;
+    },
+    async estimateOrder(order) {
+      // Calcula el costo de la orden
+      const response = await axios.post('/orders/estimate-order', order);
+      return response.data;
+    }
+  }
+};
+
+export default api;
