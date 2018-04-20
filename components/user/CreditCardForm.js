@@ -49,6 +49,7 @@ class CreditCardForm extends React.Component {
         const response = await api.creditCard.create({ token: token.id });
         if(this.props.onToggleModal) {
           this.props.onToggleModal();
+          this.props.afterSave();
         }
         this.setState({ isLoading: false });
       }, (error) => { // Error

@@ -7,10 +7,6 @@ import CreditCardForm from '../user/CreditCardForm';
 
 class ModalCreditCard extends React.Component {
 
-  afterSave = () => {
-    console.log("Guardando tarjeta");
-  }
-
   render() {
     return (
       <div>
@@ -18,7 +14,7 @@ class ModalCreditCard extends React.Component {
           <Modal.Body className="modal-credit-card">
             <h3 className="text-center">Agrega una tarjeta de crédito/débito</h3>
             <br />
-            <CreditCardForm afterSave={this.afterSave} onToggleModal={this.props.onToggle} />
+            <CreditCardForm afterSave={this.props.afterSave} onToggleModal={this.props.onToggle} />
           </Modal.Body>
         </Modal>
         <style jsx>{`

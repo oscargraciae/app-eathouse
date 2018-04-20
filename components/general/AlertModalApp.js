@@ -3,24 +3,22 @@ import { Modal } from 'react-bootstrap';
 
 import ButtonApp from '../general/ButtonBlock';
 
-function Confirmation(props) {
+export default (props) => {
   return (
     <Modal show={props.show}>
       <Modal.Body className="modal-confirmation">
         <div className="header-confirmation">
-          <h3 className="text-center">ORDEN CONFIRMADA</h3>
+          <h3 className="text-center">{props.title}</h3>
           <br />
-          <i className="far fa-check-circle fa-7x"></i>
+          <i className="fas fa-exclamation-triangle fa-7x"></i>
         </div>
         <div className="body-confirmation">
-          <div className="orden-confirm-body">Gracias por tu orden Oscar, vamos a preparar tu pedido con mucho <i className="fas fa-heart fa-sm red"></i></div>
-          {/* <div className="orden-confirm-title">Número de orden: <div className="orden-confirm-detail"> #2387</div></div> */}
-
+          <div className="orden-confirm-body">{props.description}</div>
           <br />
           <ButtonApp
             text="Aceptar"
             buttonStyle="btn btn-primary btn-large btn-block"
-            click={props.confirm}
+            click={props.onClick}
           />
         </div>
       </Modal.Body>
@@ -34,7 +32,7 @@ function Confirmation(props) {
         }
 
         .header-confirmation {
-          background: #3BCF75;
+          background: #CA3B27;
           padding: 40px 20px;
           color: #FFF;
           margin-bottom: 20px;
@@ -82,5 +80,3 @@ function Confirmation(props) {
     </Modal>
   )
 }
-
-export default Confirmation;

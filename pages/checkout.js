@@ -22,6 +22,7 @@ import ModalAddress from '../components/general/ModalAddress';
 import ModalCreditCard from '../components/general/ModalCreditCard';
 import Confirmation from '../components/checkout/Confirmation';
 import LoadingSpinner from '../components/common/LoadingSpinner';
+import AlertModalApp from '../components/general/AlertModalApp';
 
 class Checkout extends React.Component {
   static async getInitialProps(context) {
@@ -42,6 +43,8 @@ class Checkout extends React.Component {
     errors: {},
     loadingPage: true,
     showAddress: false,
+    paymentError: null,
+    alertShow: false,
   }
 
   componentDidMount() {
@@ -99,17 +102,28 @@ class Checkout extends React.Component {
       this.setState({ confirmation: true }, () => {
         this.props.clearCart();
       });
+    } else {
+      const { details } = response.err;
+      console.log("Respuesta de error payment--->",  details[0].message);
+      this.setState({ paymentError:  details[0].message, alertShow: true });
     }
-
-    // Verificar que el cargo se haya generado correctamente
-    // Mensaje de confirmación
-    // Eliminar el estado de REDUX
   }
 
   confirm = () => {
     this.setState({ confirmation: false }, () => {
       Router.push('/menu');
     })
+  }
+
+  afterSave = async () => {
+    const creditCards = await api.creditCard.getAll();
+    this.setState({ creditCards }, () => {
+      this.setState({ creditCardId: creditCards[0].id });
+    });
+  }
+
+  alertClick = () => {
+    this.setState({ alertShow: false });
   }
 
   onChange = (e) => {
@@ -125,8 +139,9 @@ class Checkout extends React.Component {
         { loadingPage ? <LoadingSpinner /> :
           <div>
             <ModalAddress show={this.state.showAddress} responseModal={this.responseModal} />
-            <ModalCreditCard show={this.state.showModalCreditCard} onToggle={this.showCreditCardModal} />
+            <ModalCreditCard show={this.state.showModalCreditCard} onToggle={this.showCreditCardModal} afterSave={this.afterSave} />
             <Confirmation show={this.state.confirmation} confirm={this.confirm} />
+            { this.state.paymentError && <AlertModalApp show={this.state.alertShow} title="Oops! :(" description={this.state.paymentError} onClick={this.alertClick} /> }
             <div className="container">
               <div className="checkout">
                 <div className="address">
@@ -146,7 +161,7 @@ class Checkout extends React.Component {
                   <div className="container-step container-box">
                     <div className="title">Metodo de pago</div>
                     <div className="form">
-                      <select className="form-control input-lg" name="creditCardId" onChange={this.onChange}>
+                      <select className="form-control input-lg" name="creditCardId" onChange={this.onChange} value={this.state.creditCardId}>
                         <option>Seleccionar método de pago</option>
                         { creditCards && creditCards.map((item) => (
                           <option value={item.id} key={item.id}>{item.last4} - {item.brand}</option>

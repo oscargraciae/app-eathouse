@@ -63369,7 +63369,7 @@ var _default = function _default(data) {
 
 /***/ }),
 
-/***/ 3:
+/***/ 4:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__("./pages/menu.js");
@@ -63377,7 +63377,7 @@ module.exports = __webpack_require__("./pages/menu.js");
 
 /***/ })
 
-},[3])
+},[4])
           return { page: comp.default }
         })
       ;
