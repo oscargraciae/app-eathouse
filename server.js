@@ -62,6 +62,13 @@ app.prepare()
     return app.render(req, res, '/service', { id: req.params.id });
   });
   
+  server.get('/orders', (req, res) => {
+    return app.render(req, res, '/orders');
+  });
+
+  server.get('/schedules', (req, res) => {
+    return app.render(req, res, '/schedules');
+  });
 
   
   server.get('*', (req, res) => {

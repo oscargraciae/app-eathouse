@@ -57,24 +57,21 @@ const api = {
     }
   },
   orders: {
+    async getAll() {
+      const response = await axios.get(`/orders`);
+      return response.data;
+    },
     async create(order) {
-      // order = {
-      //   addressId: 0,
-      //   creditCardId: 0,
-      //   orderDetail: [
-      //     { 
-      //       quantity: 0,
-      //       dishId: 0,
-      //       deliveryDate,
-      //     }
-      //   ]
-      // }
       const response = await axios.post('/orders', order);
       return response.data;
     },
     async estimateOrder(order) {
       // Calcula el costo de la orden
       const response = await axios.post('/orders/estimate-order', order);
+      return response.data;
+    },
+    async getDetail(id) {
+      const response = await axios.get(`/orders/order-detail/${id}`);
       return response.data;
     }
   }

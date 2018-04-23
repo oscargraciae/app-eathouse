@@ -40,6 +40,14 @@ export default ({ children, loggedUser, isAuthenticated, title = 'eathouse', use
           padding-top: 50px;
         }
 
+        .container-box {
+          border-radius: 3px;
+          background-color: #fff;
+          border: 1px solid #e8ebe9;
+          margin-top: 15px;
+          padding: 15px 40px;
+        }
+
         .modal-credit-card {
           min-height: 490px;
         }

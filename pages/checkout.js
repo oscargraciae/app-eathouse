@@ -45,6 +45,7 @@ class Checkout extends React.Component {
     showAddress: false,
     paymentError: null,
     alertShow: false,
+    isSendingOrder: false,
   }
 
   componentDidMount() {
@@ -90,6 +91,7 @@ class Checkout extends React.Component {
   }
 
   sendOrder = async () => {
+    this.setState({ isSendingOrder: true });
     const { userAddressId, creditCardId } = this.state;
     const { data } = this.props.cart;
     const order = {
@@ -99,13 +101,13 @@ class Checkout extends React.Component {
     }
     const response = await api.orders.create(order);
     if(response.ok) {
-      this.setState({ confirmation: true }, () => {
+      this.setState({ confirmation: true, isSendingOrder: false }, () => {
         this.props.clearCart();
       });
     } else {
       const { details } = response.err;
       console.log("Respuesta de error payment--->",  details[0].message);
-      this.setState({ paymentError:  details[0].message, alertShow: true });
+      this.setState({ paymentError:  details[0].message, alertShow: true, isSendingOrder: false });
     }
   }
 
@@ -175,7 +177,7 @@ class Checkout extends React.Component {
                 </div>
               </div>
 
-              <CartDetail sendOrder={this.sendOrder} disabled={!this.state.creditCardId || !this.state.userAddressId}/>
+              <CartDetail sendOrder={this.sendOrder} disabled={!this.state.creditCardId || !this.state.userAddressId} loading={this.state.isSendingOrder}/>
             </div>
           </div>
         }

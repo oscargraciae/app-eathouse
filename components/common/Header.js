@@ -36,9 +36,9 @@ const menuGuest = () => {
 const menuAuth = (props) => {
   return (
     <ul className="nav navbar-nav navbar-right">
-      { props.user.userAddress.length > 0 &&
+      { props.user.user_address.length > 0 &&
         <li>
-          <a><i className="fas fa-map-marker-alt" /> {props.user.userAddress[0].addressMap.substr(0, 30)}...</a>
+          <a><i className="fas fa-map-marker-alt" /> {props.user.user_address[0].addressMap.substr(0, 30)}...</a>
         </li>
       }
       <li className="dropdown">
@@ -67,10 +67,21 @@ const menuAuth = (props) => {
             <a
               data-toggle="collapse"
               data-target=".navbar-collapse.in"
+              href={`/orders`}
+              className="btn_nav nav-lbl-principal"
+            >
+              Mis ordenes
+            </a>
+          </li>
+          <li role="separator" className="divider" />
+          <li>
+            <a
+              data-toggle="collapse"
+              data-target=".navbar-collapse.in"
               href={`/services/new`}
               className="btn_nav nav-lbl-principal"
             >
-              Mis pedidos
+              Mi agenda
             </a>
           </li>
           <li role="separator" className="divider" />
