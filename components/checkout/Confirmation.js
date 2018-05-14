@@ -13,7 +13,7 @@ function Confirmation(props) {
           <i className="far fa-check-circle fa-7x"></i>
         </div>
         <div className="body-confirmation">
-          <div className="orden-confirm-body">Gracias por tu orden Oscar, vamos a preparar tu pedido con mucho <i className="fas fa-heart fa-sm red"></i></div>
+          <div className="orden-confirm-body">Gracias por tu orden, vamos a preparar tus platillos con mucho <i className="fas fa-heart fa-sm red"></i></div>
           {/* <div className="orden-confirm-title">Número de orden: <div className="orden-confirm-detail"> #2387</div></div> */}
 
           <br />

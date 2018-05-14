@@ -35,7 +35,7 @@ function clearItems() {
   }
 }
 
-export const addToCart = (dish, quantity) => {
+export const addToCart = (dish, quantity, deliveryDate) => {
   return (dispatch, getState) => {
     const { data } = getState().cart;
     let isExist = false;
@@ -48,8 +48,8 @@ export const addToCart = (dish, quantity) => {
       }
     });
 
-    const { id, name, price } = dish;
-    const item = { id, name, price, quantity, total: (Number(price) * quantity), availableOn: '04-10-2018' };
+    const { id, name, price, image } = dish;
+    const item = { id, name, price, image, quantity, total: (Number(price) * quantity), availableOn: '04-10-2018', deliveryDate };
 
     if(isExist) {
       if(quantity === 0) {

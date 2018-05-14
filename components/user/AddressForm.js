@@ -1,14 +1,19 @@
 // import libraries
 import React from 'react';
 import Geosuggest from 'react-geosuggest';
+import dynamic from 'next/dynamic';
 
 // import local libraries
 import validation from '../../validations/address';
 import api from '../../api';
+import { isPointAvailable } from '../../utils/geospatial';
 
 // import components
 import InputText from '../general/InputTextIdSmall';
 import ButtonBlock from '../general/ButtonBlock';
+import { flattenSelections } from 'apollo-utilities';
+// import MapZone from '../map/MapZone';
+const MapZone = dynamic(import('../map/MapZone'));
 
 class AddressForm extends React.Component {
 
@@ -26,10 +31,10 @@ class AddressForm extends React.Component {
       lat: 0,
       lng: 0,
       userId: 0,
-
+      addressNotAvailable: false,
       address: '',
       latLng: null,
-
+      userLocation: null,
       isLoading: false,
       errors: {},
     }
@@ -69,10 +74,15 @@ class AddressForm extends React.Component {
   }
 
   onSuggestSelect = (suggest) => {
+    console.log("Datos mapa-->", suggest);
     if(suggest) {
-      this.setState({ address: suggest.description, latLng: suggest.location, lat: suggest.location.lat, lng: suggest.location.lng, addressMap: suggest.label }, () => {
-        this.fillInAddress(suggest.gmaps);
-      });
+      if(isPointAvailable([suggest.location.lng, suggest.location.lat])) {
+        this.setState({ address: suggest.description, latLng: suggest.location, lat: suggest.location.lat, lng: suggest.location.lng, addressMap: suggest.label, addressNotAvailable: false }, () => {
+          this.fillInAddress(suggest.gmaps);
+        });
+      } else {
+        this.setState({ addressNotAvailable: true, userLocation: [suggest.location.lng, suggest.location.lat], address: '' });
+      }
     }
   }
 
@@ -190,6 +200,13 @@ class AddressForm extends React.Component {
             </div>
           }
 
+          { this.state.addressNotAvailable &&
+            <div>
+              <p>Por el moment no tenemos covertura en en tu zona.</p>
+              <MapZone userLocation={this.state.userLocation}/>
+            </div>
+          }
+          
         </form>
         <style>{`
           label {

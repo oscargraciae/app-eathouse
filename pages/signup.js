@@ -11,6 +11,8 @@ import withData from '../apollo/withData';
 import validation from '../validations/signup';
 import { getTokenFromCookie, getTokenFromLocalStorage } from '../utils/auth';
 import redirect from '../utils/redirect';
+import api from '../api';
+import { setToken } from '../utils/auth';
 
 class Signup extends React.Component {
   static getInitialProps(context) {
@@ -40,14 +42,18 @@ class Signup extends React.Component {
     this.setState({ isLoading: true });
 
     if(this.isValid()) {
-      const response = await this.props.mutate({
-        variables: this.state,
-      });
-      
-      const { ok, errors } = response.data.createUser;
-      
+      const response = await api.user.create(this.state);
+      console.log("Response--->", response);
+      const { ok, user } = response;
+
       if(ok) {
-        Router.push('/suscriptions');
+        const { email, password } = this.state;
+        const response = await api.user.authentication(email, password);
+        console.log("AUTH RESPONSE---->", response);
+        if(response.ok) {
+          setToken(response.user.token);
+        }
+        Router.push('/menu');
       } else {
         const err = [];
         errors.forEach(({ path, message }) => {
@@ -213,18 +219,4 @@ class Signup extends React.Component {
   }
 }
 
-const registerMutation = gql`
-  mutation($firstName: String!, $lastName: String!, $email: String!, $password: String!) {
-    createUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password) {
-      ok
-      errors {
-        path
-        message
-      }
-    }
-  }
-`
-const GraphqlSignup = compose(graphql(registerMutation))(Signup);
-
-
-export default withData(GraphqlSignup);
+export default Signup;

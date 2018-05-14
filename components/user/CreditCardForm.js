@@ -101,7 +101,6 @@ class CreditCardForm extends React.Component {
                 />
               </div>
             </div>
-
             <div className="row">
               <div className="col-md-12">
                 <label>Número de tarjeta</label>

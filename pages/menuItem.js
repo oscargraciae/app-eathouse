@@ -72,7 +72,7 @@ class MenuItemDetail extends React.Component {
           <div className="menu">
             <div className="row">
               <div className="col-md-6">
-                <div className="detail-photo" style={{ backgroundImage: "url(/static/menu9.jpeg)" }} />
+                <div className="detail-photo" style={{ backgroundImage: `url(${dish.image})` }} />
               </div>
               <div className="col-md-6">
                 <div className="detail-info">
@@ -83,7 +83,7 @@ class MenuItemDetail extends React.Component {
                   <div className="container-box detail-description">
                     <div className="tabs">
                       <div className={option === 1 ? "tabOption selected": "tabOption"} onClick={() => this.setState({ option: 1 })}>Detalle</div>
-                      <div className={option === 2 ? "tabOption selected": "tabOption"} onClick={() => this.setState({ option: 2 })}>Ingredientes</div>
+                      {/* <div className={option === 2 ? "tabOption selected": "tabOption"} onClick={() => this.setState({ option: 2 })}>Ingredientes</div> */}
                     </div>
 
                     <div className="container-info">

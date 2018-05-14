@@ -211,7 +211,7 @@ class Checkout extends React.Component {
             padding: 20px 0;
             font-size: 16px;
             font-weight: bold;
-            color: #B9B9AF;
+            color: #3BCF75;
           }
 
         `}</style>

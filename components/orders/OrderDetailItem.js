@@ -1,18 +1,18 @@
 import React from 'react';
 
 import { moneyThousand } from '../../utils/formatNumber';
-import { formatDate } from '../../utils/formatDate';
+import { formatDateString } from '../../utils/formatDate';
 
 function OrderDetailItem(props) {
   return (
     <li className="item">
-      <div className="item-photo" style={{ backgroundImage: "url(/static/menu9.jpeg)" }} />
+      <div className="item-photo" style={{ backgroundImage: `url(${props.dish.image})` }} />
       <div className="item-details">
         <div className="item-name">
           {props.dish.name}
         </div>
         <div className="item-date">
-          Entrega: Martes 24 de Abril
+          Entrega: {formatDateString(props.deliveryDate, "DD MMMM YYYY")}
         </div>
         <div className="item-quntity">
           {/* <span className="lbl-quantity">Cant. 10 </span> */}

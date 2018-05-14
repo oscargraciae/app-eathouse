@@ -3,13 +3,12 @@ import PropTypes from 'prop-types';
 
 import NumberFormat from 'react-number-format';
 
-function TextFieldGroup({ name, value, label, error, onChange, onValueChange, format }) {
+function InputTextFormat({ name, value, label, error, onValueChange, format }) {
   return (
     <div className="controls controls-small">
       <NumberFormat
         value={value}
         onValueChange={onValueChange}
-        onChange={onChange}
         name={name}
         placeholder={label}
         className="input control-input"
@@ -88,7 +87,7 @@ function TextFieldGroup({ name, value, label, error, onChange, onValueChange, fo
   );
 }
 
-TextFieldGroup.propTypes = {
+InputTextFormat.propTypes = {
   name: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
@@ -98,9 +97,9 @@ TextFieldGroup.propTypes = {
   onChange: PropTypes.func.isRequired,
 };
 
-TextFieldGroup.defaultProps = {
+InputTextFormat.defaultProps = {
   type: 'text',
   focus: false,
 };
 
-export default TextFieldGroup;
+export default InputTextFormat;

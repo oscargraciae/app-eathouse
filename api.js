@@ -73,6 +73,10 @@ const api = {
     async getDetail(id) {
       const response = await axios.get(`/orders/order-detail/${id}`);
       return response.data;
+    },
+    async getSchedules() {
+      const response = await axios.get('/orders/schedules');
+      return response.data;
     }
   }
 };

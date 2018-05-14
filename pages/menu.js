@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import securePage from '../hocs/page';
 import api from '../api';
 import { addToCart } from '../actions/cart';
+import { formatDateString } from '../utils/formatDate';
 // import { connect } from 'react-'
 
 import Layout from '../components/common/Layout';
@@ -22,8 +23,25 @@ class Menu extends React.Component {
     };
   }
 
+  state = {
+    deliveryDate: '',
+  }
+
+  componentDidMount() {
+    const newDate =  formatDateString(new Date(Date.now()), 'YYYY/MM/DD');
+    this.setState({ deliveryDate: newDate });
+  }
+
+  changeDay = (deliveryDate) => {
+    console.log("Fecha seleccionada!!--->", deliveryDate);
+    const newDate =  formatDateString(deliveryDate, 'YYYY/MM/DD');
+    this.setState({ deliveryDate: newDate });
+
+  }
+
   addCart = (dish, quantity) => {
-    this.props.addToCart(dish, quantity);
+    const { deliveryDate } = this.state;
+    this.props.addToCart(dish, quantity, deliveryDate);
   }
 
   render() {
@@ -31,7 +49,7 @@ class Menu extends React.Component {
     return (
       <Layout {...this.props}>
         <div>
-          <MenuCalendar />
+          <MenuCalendar changeDay={this.changeDay} />
           <div className="fluid-container">
             <div className="menu">
               <div className="row">

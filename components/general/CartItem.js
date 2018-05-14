@@ -1,19 +1,21 @@
 import React from 'react';
 
+import { formatDateString } from '../../utils/formatDate';
+
 function CartItem(props) {
   return (
     <li className="item">
-      <div className="item-photo" style={{ backgroundImage: "url(/static/menu9.jpeg)" }} />
+      <div className="item-photo" style={{ backgroundImage: `url(${props.image})` }} />
       <div className="item-details">
         <div className="item-name">
           {props.name}
         </div>
-        <div className="item-date">
-          Entrega: Martes 24 de Abril
+        <div className="lbl-subtotal">
+          Entrega: { formatDateString(props.deliveryDate, "DD MMMM YYYY") }
         </div>
-        <div className="item-quntity">
+        <div className="item-date">
           {/* <span className="lbl-quantity">Cant. 10 </span> */}
-          <span className="lbl-subtotal">({props.quantity}) ${props.total}</span>
+          <span className="">({props.quantity}) ${props.total}</span>
         </div>
       </div>
 

@@ -5,7 +5,7 @@ import decode from 'jwt-decode';
 // import components
 import Header from './Header';
 import Footer from './Footer';
-import ModalAddress from '../general/ModalAddress';
+import ModalGeneralAddress from '../general/ModalGeneralAddress';
 
 export default ({ children, loggedUser, isAuthenticated, title = 'eathouse', user }) => { 
   return (
@@ -15,6 +15,7 @@ export default ({ children, loggedUser, isAuthenticated, title = 'eathouse', use
         <meta charSet='utf-8' />
         <meta name='viewport' content='initial-scale=1.0, width=device-width' />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+        <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.css' rel='stylesheet' />
 
         {/* <script src="https://use.fontawesome.com/f24acb12d1.js" /> */}
         <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
@@ -24,8 +25,7 @@ export default ({ children, loggedUser, isAuthenticated, title = 'eathouse', use
         <script type="text/javascript" src="https://cdn.conekta.io/js/latest/conekta.js"></script>
       </Head>
       <Header loggedUser={loggedUser} isAuthenticated={isAuthenticated} user={user} />
-      {/* { !user.withAddress && <ModalAddress show={} />} */}
-      { isAuthenticated && <ModalAddress show={!user.withAddress} /> }  
+      { isAuthenticated && <ModalGeneralAddress show={!user.withAddress} /> }  
       <div className="container-margin-top">
         { children }
       </div>

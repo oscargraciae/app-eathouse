@@ -38,14 +38,16 @@ function Cart(props) {
           }
         </div>
       </div>
-      <div className="sidecart-footer">
-        <dl className="estimated-total">
-          <div className="line-item">
-            <dt className="lbl-total">Total</dt><dd className="lbl-total">${moneyThousand(total)}</dd>
-          </div>        
-        </dl>
-        <a href="/checkout" className="btn btn-primary btn-large btn-block">Comprar</a>
-      </div>
+      { props.cart.data.length > 0 &&
+        <div className="sidecart-footer">
+          <dl className="estimated-total">
+            <div className="line-item">
+              <dt className="lbl-total">Total</dt><dd className="lbl-total">${moneyThousand(total)}</dd>
+            </div>        
+          </dl>
+          <a href="/checkout" className="btn btn-primary btn-large btn-block">Comprar</a>
+        </div>
+      }
       <style jsx>{`
         .menu {
           margin: 20px 0px;

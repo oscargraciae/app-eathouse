@@ -52,7 +52,7 @@ const menuAuth = (props) => {
           Cuenta <span className="caret" />
         </a>
         <ul className="dropdown-menu">
-          <li>
+          {/* <li>
             <a
               data-toggle="collapse"
               data-target=".navbar-collapse.in"
@@ -62,7 +62,7 @@ const menuAuth = (props) => {
               Mi cuenta
             </a>
           </li>
-          <li role="separator" className="divider" />
+          <li role="separator" className="divider" /> */}
           <li>
             <a
               data-toggle="collapse"
@@ -78,7 +78,7 @@ const menuAuth = (props) => {
             <a
               data-toggle="collapse"
               data-target=".navbar-collapse.in"
-              href={`/services/new`}
+              href={`/schedules`}
               className="btn_nav nav-lbl-principal"
             >
               Mi agenda

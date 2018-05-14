@@ -6,6 +6,7 @@ function ItemCalendar(props) {
   let selectedDay =  moment(props.selectedDate, "MM-DD-YYYY", "es").locale("mx").format('DD');
   const day = date.day();
 
+  let completeDate = date.format('DD/MM/YYYY');
   let weekDayName = date.format('ddd');
   let weekDayNumber = date.format('DD');
 
@@ -19,7 +20,7 @@ function ItemCalendar(props) {
   // console.log(selectedDay, weekDayNumber);
   return (
     <div className={(day === 6 || day === 0) ? 'disabled' : ''}>
-      <div className={selectedDay === weekDayNumber ? 'dayItem selected' : 'dayItem'}>
+      <div className={selectedDay === weekDayNumber ? 'dayItem selected' : 'dayItem'} onClick={() => props.changeDate(props.date)}>
         <span className="dayName">{weekDayName}</span>
         <span>{weekDayNumber}</span>
       </div>

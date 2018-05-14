@@ -90,7 +90,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "0bb2b50ea175ba472175"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "d4d1e1c366c933a47a49"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -755,7 +755,7 @@
 /******/ 		if (__webpack_require__.nc) {
 /******/ 			script.setAttribute("nonce", __webpack_require__.nc);
 /******/ 		}
-/******/ 		script.src = __webpack_require__.p + "" + ({"0":"main.js","1":"bundles/pages/_error.js","2":"commons","4":"bundles/pages/menu.js","7":"bundles/pages/checkout.js"}[chunkId]||chunkId) + "-" + {"0":"3eae8f0b9aaf82e89f2a","1":"dbedf8264eff5ac2eab4","2":"112a70b41bfbcd7c6dde","4":"daddaf51d6e5e95f616a","7":"b79b861562b344b0ec6c"}[chunkId] + ".js";
+/******/ 		script.src = __webpack_require__.p + "" + ({"0":"main.js","1":"bundles/pages/_error.js","2":"commons","4":"bundles/pages/menu.js","5":"bundles/pages/prueba.js","6":"bundles/pages/checkout.js","7":"chunks/components_MapaPrueba_b3381251237241195341b39d92c86dbb","9":"chunks/components_map_MapZone_49a06d2b3ff73dc2fdb3ce0b400916f7","10":"bundles/pages/index.js"}[chunkId]||chunkId) + "-" + {"0":"3eae8f0b9aaf82e89f2a","1":"dbedf8264eff5ac2eab4","2":"112a70b41bfbcd7c6dde","4":"b2d233ca0e8ff5bd7252","5":"a73ccbc10626b3964857","6":"0c951bf6220fad391e82","7":"ba65757367ab339459f6","9":"ae1a736acb8c0d0d82ab","10":"ccff4d61c1bd0872925e"}[chunkId] + ".js";
 /******/ 		var timeout = setTimeout(onScriptComplete, 120000);
 /******/ 		script.onerror = script.onload = onScriptComplete;
 /******/ 		function onScriptComplete() {

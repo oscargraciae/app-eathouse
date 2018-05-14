@@ -70,6 +70,10 @@ app.prepare()
     return app.render(req, res, '/schedules');
   });
 
+  server.get('/prueba', (req, res) => {
+    return app.render(req, res, '/prueba');
+  });
+
   
   server.get('*', (req, res) => {
     return handle(req, res);
