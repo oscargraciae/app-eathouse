@@ -2,7 +2,7 @@ module.exports =
 
         __NEXT_REGISTER_PAGE('/menu', function() {
           var comp = 
-      webpackJsonp([4],{
+      webpackJsonp([6],{
 
 /***/ "./actions/cart.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -13,7 +13,7 @@ module.exports =
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return REMOVE_ITEM; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CLEAR_ITEMS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return addToCart; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return clearCart; });
+/* unused harmony export clearCart */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment__ = __webpack_require__("./node_modules/moment/moment.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_moment__);
 (function () {
@@ -150,7 +150,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 var baseUrl = 'http://localhost:3001';
 // const baseUrl = 'http://127.0.0.1:3000';
 // const baseUrl = 'https://api.gigbox.mx';
-__WEBPACK_IMPORTED_MODULE_1_axios___default.a.defaults.baseURL = 'http://localhost:3001/api/v1';
+// axios.defaults.baseURL = 'http://localhost:3001/api/v1';
+
+__WEBPACK_IMPORTED_MODULE_1_axios___default.a.defaults.baseURL = 'http://www.api.eathouse.mx/api/v1';
 
 var api = {
   user: {
@@ -2494,7 +2496,7 @@ var ModalAddress = function (_React$Component) {
 var _default = ModalAddress;
 
 
-/* harmony default export */ __webpack_exports__["a"] = (_default);
+/* unused harmony default export */ var _unused_webpack_default_export = (_default);
 ;
 
 (function () {
@@ -3301,7 +3303,7 @@ var MapZone = __WEBPACK_IMPORTED_MODULE_3_next_dynamic___default()(new (__webpac
     return resolve(weakModule);
   } catch (err) {}
 
-  __webpack_require__.e/* require.ensure */(9).then((function (require) {
+  __webpack_require__.e/* require.ensure */(4).then((function (require) {
     try {
       var m = __webpack_require__("./components/map/MapZone.js");
 
@@ -65357,7 +65359,7 @@ var _default = Object(__WEBPACK_IMPORTED_MODULE_0_redux__["createStore"])(__WEBP
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(module, process) {/* unused harmony export setToken */
+/* WEBPACK VAR INJECTION */(function(module, process) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return setToken; });
 /* unused harmony export unsetToken */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return getTokenFromCookie; });
 /* unused harmony export getUserFromLocalStorage */
@@ -65721,7 +65723,7 @@ var _default = function _default(data) {
 
 /***/ }),
 
-/***/ 2:
+/***/ 3:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__("./pages/menu.js");
@@ -65729,7 +65731,7 @@ module.exports = __webpack_require__("./pages/menu.js");
 
 /***/ })
 
-},[2])
+},[3])
           return { page: comp.default }
         })
       ;

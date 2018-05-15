@@ -6,7 +6,7 @@ module.exports =
 /******/ 	// object to store loaded chunks
 /******/ 	// "0" means "already loaded"
 /******/ 	var installedChunks = {
-/******/ 		2: 0
+/******/ 		4: 0
 /******/ 	};
 /******/
 /******/ 	// The require function
@@ -44,7 +44,7 @@ module.exports =
 /******/ 	__webpack_require__.e = function requireEnsure(chunkId) {
 /******/ 		// "0" is the signal for "already loaded"
 /******/ 		if(installedChunks[chunkId] !== 0) {
-/******/ 			var chunk = require("/Users/oscargracia/Documents/proyectos/eathouse/app-eathouse/.next/dist/" + ({"7":"chunks/components_map_MapZone_49a06d2b3ff73dc2fdb3ce0b400916f7"}[chunkId]||chunkId) + "-" + {"7":"4ac46e569dd0c48c16ef"}[chunkId] + ".js");
+/******/ 			var chunk = require("/Users/oscargracia/Documents/proyectos/eathouse/app-eathouse/.next/dist/" + ({"2":"chunks/components_map_MapZone_49a06d2b3ff73dc2fdb3ce0b400916f7"}[chunkId]||chunkId) + "-" + {"2":"d94f57439eaffbe48b0a"}[chunkId] + ".js");
 /******/ 			var moreModules = chunk.modules, chunkIds = chunk.ids;
 /******/ 			for(var moduleId in moreModules) {
 /******/ 				modules[moduleId] = moreModules[moduleId];
@@ -95,7 +95,7 @@ module.exports =
 /******/ 	};
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -109,7 +109,7 @@ module.exports =
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return REMOVE_ITEM; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CLEAR_ITEMS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return addToCart; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return clearCart; });
+/* unused harmony export clearCart */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment__ = __webpack_require__("moment");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_moment__);
 var SET_ITEM = 'SET_ITEM';
@@ -208,7 +208,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 var baseUrl = 'http://localhost:3001';
 // const baseUrl = 'http://127.0.0.1:3000';
 // const baseUrl = 'https://api.gigbox.mx';
-__WEBPACK_IMPORTED_MODULE_1_axios___default.a.defaults.baseURL = 'http://localhost:3001/api/v1';
+// axios.defaults.baseURL = 'http://localhost:3001/api/v1';
+
+__WEBPACK_IMPORTED_MODULE_1_axios___default.a.defaults.baseURL = 'http://www.api.eathouse.mx/api/v1';
 
 var api = {
   user: {
@@ -2311,7 +2313,7 @@ var ModalAddress = function (_React$Component) {
   return ModalAddress;
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["a"] = (ModalAddress);
+/* unused harmony default export */ var _unused_webpack_default_export = (ModalAddress);
 
 /***/ }),
 
@@ -2974,7 +2976,7 @@ var MapZone = __WEBPACK_IMPORTED_MODULE_3_next_dynamic___default()(new (__webpac
     return resolve(weakModule);
   } catch (err) {}
 
-  __webpack_require__.e/* require.ensure */(7).then((function (require) {
+  __webpack_require__.e/* require.ensure */(2).then((function (require) {
     try {
       var m = __webpack_require__("./components/map/MapZone.js");
 
@@ -3930,7 +3932,7 @@ var middlewares = [__WEBPACK_IMPORTED_MODULE_1_redux_promise_middleware___defaul
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* unused harmony export setToken */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return setToken; });
 /* unused harmony export unsetToken */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return getTokenFromCookie; });
 /* unused harmony export getUserFromLocalStorage */
@@ -4144,7 +4146,7 @@ function isPointAvailable(coor) {
 
 /***/ }),
 
-/***/ 2:
+/***/ 3:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__("./pages/menu.js");

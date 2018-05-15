@@ -49,41 +49,36 @@ class Index extends React.Component {
         <ModalMapZone show={this.state.isShowModalZone} onHide={this.onModalClose} />
         <main>
           {/* Hero */}
-          <section className="Hero">
+          <section className="Hero onlyMobile">
             <div className="container">
               <div className="Hero-Box">
                 <h1>Saludable y delicioso directo a tu casa u oficina.</h1>
                 <h2>Ordena para hoy o programa tú semana.</h2>
                 <div className="signupForm">
-                  {/* <a href="/signup" className="btn btn-primary btn-large btn-block">Registrate</a> */}
                   <a href="/signup" className="btn btn-primary btn-large btn-block">¡Ordena ya!</a>
                   <a className="lnk-default" onClick={() => this.setState({ isShowModalZone: true })}>Ver zonas de entrega disponibles</a>
-                  {/* <form>
-                    <InputText
-                      value={this.state.email}
-                      onChange={this.onChange}
-                      type="email"
-                      name="email"
-                      label="Correo electrónico"
-                      focus={true}
-                    />
-                    <ButtonBlock
-                      text="Registrate"
-                      buttonStyle="btn btn-primary btn-large btn-block"
-                      click={this.handlerLogin}
-                      loading={this.state.isLoading}
-                    />
-                  </form> */}
-                  {/* <hr/>
-                  <ButtonBlock
-                    text="Ingresar con Facebook"
-                    buttonStyle="btn btn-facebook btn-large btn-block"
-                    click={this.handlerLogin}
-                    loading={this.state.isLoading}
-                  /> */}
                 </div>
               </div>
             </div>
+          </section>
+
+          <section className="Hero-mobile onlyWeb">
+            <div className="container">
+              <div className="Hero-Box">
+                <h1>Saludable y delicioso directo a tu casa u oficina.</h1>
+                <h2>Ordena para hoy o programa tú semana.</h2>
+                <div className="signupForm">
+                  <a href="/signup" className="btn-app">
+                    <img src="/static/google-play-badge.png" className="android" />
+                  </a>
+                  <a href="/signup" className="btn-app">
+                    <img src="/static/app_store_badge.svg" className="ios" />
+                  </a>
+                  <a className="lnk-default" onClick={() => this.setState({ isShowModalZone: true })}>Ver zonas de entrega disponibles</a>
+                </div>
+              </div>
+            </div>
+            <div className="HeroMobile-image"></div>
           </section>
 
           {/* HOW IT WORKS */}
@@ -103,7 +98,7 @@ class Index extends React.Component {
                       </div>
                       <div className="col-md-4 how-works-steps">
                         <p className="how-works-title">Disfruta tu comida</p>
-                        <p className="how-works-description">Tu orden será entregada directamente a la puerta de tu casa u oficina.</p>
+                        <p className="how-works-description">Tu orden será entregada a la puerta de tu casa u oficina entre 12:30 pm y la 1:30 pm</p>
                       </div>
                       {/* <div className="col-md-3 how-works-steps">
                         <img src="static/cutlery.png" width="60" />
@@ -294,6 +289,81 @@ class Index extends React.Component {
               padding: 10px 0px;
               text-decoration: underline;
               cursor: pointer;
+            }
+
+            .Hero-mobile {
+              display: none;
+            }
+
+            @media (max-width: 600px) { 
+              .onlyMobile {
+                display: none;
+              }
+
+              .Hero-mobile {
+                display: block;
+              }
+
+              .HeroMobile-image {
+                background: url(static/hero-edit-2.jpg) -300px;
+                height: 250px;
+                background-size: cover;
+                background-repeat: no-repeat;
+                margin-top: 300px
+              }
+
+              .Hero-Box > h1 {
+                font-size: 28px;
+              }
+
+              .Hero-Box > h2 {
+                font-size: 21px;
+              }
+
+              .Hero-mobile .Hero-Box {
+                position: absolute;
+                top: 60px;
+                margin-right: auto;
+                margin-left: auto;
+                padding: 0px;
+                max-width: 470px;
+                left: 10px;
+              }
+
+              .btn-app > .android {
+                float: left;
+                /* width: 201px; */
+                width: 170px;
+                margin: 0;
+                padding: 0;
+                position: relative;
+                left: -4px;
+              }
+
+              .btn-app > .ios {
+                float: left;
+                /* width: 178px; */
+                width: 160px;
+                position: relative;
+                left: 8px;
+                top: 10px;
+              }
+
+              .lnk-default {
+                padding: 30px 0px;
+              }
+
+              .why-container {
+                padding: 40px 10px;
+              }
+              
+              .why-container h2 {
+                font-size: 26px;
+              }
+
+              .why-container p {
+                font-size: 21px;
+              }
             }
             
           `}</style>
