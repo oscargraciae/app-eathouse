@@ -179,7 +179,7 @@ class CreditCardForm extends React.Component {
             </div>
           </div>
         </form>
-        <style>{`
+        <style jsx global>{`
           label {
             font-size: 12px;
           }

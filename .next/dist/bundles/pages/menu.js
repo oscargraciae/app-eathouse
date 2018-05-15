@@ -6,7 +6,7 @@ module.exports =
 /******/ 	// object to store loaded chunks
 /******/ 	// "0" means "already loaded"
 /******/ 	var installedChunks = {
-/******/ 		4: 0
+/******/ 		5: 0
 /******/ 	};
 /******/
 /******/ 	// The require function
@@ -95,7 +95,7 @@ module.exports =
 /******/ 	};
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -109,7 +109,7 @@ module.exports =
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return REMOVE_ITEM; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CLEAR_ITEMS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return addToCart; });
-/* unused harmony export clearCart */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return clearCart; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment__ = __webpack_require__("moment");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_moment__);
 var SET_ITEM = 'SET_ITEM';
@@ -222,7 +222,7 @@ var api = {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post(baseUrl + '/api/v1/users/login', { email: email, password: password });
+                return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('/users/login', { email: email, password: password });
 
               case 2:
                 response = _context.sent;
@@ -250,7 +250,7 @@ var api = {
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
-                return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post(baseUrl + '/api/v1/users/signup', userData);
+                return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('/users/signup', userData);
 
               case 2:
                 response = _context2.sent;
@@ -2313,7 +2313,7 @@ var ModalAddress = function (_React$Component) {
   return ModalAddress;
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
 
-/* unused harmony default export */ var _unused_webpack_default_export = (ModalAddress);
+/* harmony default export */ __webpack_exports__["a"] = (ModalAddress);
 
 /***/ }),
 
@@ -3932,7 +3932,7 @@ var middlewares = [__WEBPACK_IMPORTED_MODULE_1_redux_promise_middleware___defaul
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return setToken; });
+/* unused harmony export setToken */
 /* unused harmony export unsetToken */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return getTokenFromCookie; });
 /* unused harmony export getUserFromLocalStorage */
@@ -4146,7 +4146,7 @@ function isPointAvailable(coor) {
 
 /***/ }),
 
-/***/ 3:
+/***/ 4:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__("./pages/menu.js");

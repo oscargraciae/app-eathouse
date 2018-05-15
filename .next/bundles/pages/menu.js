@@ -2,7 +2,7 @@ module.exports =
 
         __NEXT_REGISTER_PAGE('/menu', function() {
           var comp = 
-      webpackJsonp([6],{
+      webpackJsonp([7],{
 
 /***/ "./actions/cart.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -13,7 +13,7 @@ module.exports =
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return REMOVE_ITEM; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CLEAR_ITEMS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return addToCart; });
-/* unused harmony export clearCart */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return clearCart; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment__ = __webpack_require__("./node_modules/moment/moment.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_moment__);
 (function () {
@@ -164,7 +164,7 @@ var api = {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post(baseUrl + '/api/v1/users/login', { email: email, password: password });
+                return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('/users/login', { email: email, password: password });
 
               case 2:
                 response = _context.sent;
@@ -192,7 +192,7 @@ var api = {
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
-                return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post(baseUrl + '/api/v1/users/signup', userData);
+                return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('/users/signup', userData);
 
               case 2:
                 response = _context2.sent;
@@ -2496,7 +2496,7 @@ var ModalAddress = function (_React$Component) {
 var _default = ModalAddress;
 
 
-/* unused harmony default export */ var _unused_webpack_default_export = (_default);
+/* harmony default export */ __webpack_exports__["a"] = (_default);
 ;
 
 (function () {
@@ -65359,7 +65359,7 @@ var _default = Object(__WEBPACK_IMPORTED_MODULE_0_redux__["createStore"])(__WEBP
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(module, process) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return setToken; });
+/* WEBPACK VAR INJECTION */(function(module, process) {/* unused harmony export setToken */
 /* unused harmony export unsetToken */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return getTokenFromCookie; });
 /* unused harmony export getUserFromLocalStorage */
@@ -65723,7 +65723,7 @@ var _default = function _default(data) {
 
 /***/ }),
 
-/***/ 3:
+/***/ 4:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__("./pages/menu.js");
@@ -65731,7 +65731,7 @@ module.exports = __webpack_require__("./pages/menu.js");
 
 /***/ })
 
-},[3])
+},[4])
           return { page: comp.default }
         })
       ;

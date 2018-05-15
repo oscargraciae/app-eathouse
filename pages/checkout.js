@@ -147,7 +147,6 @@ class Checkout extends React.Component {
             <div className="container">
               <div className="checkout">
                 <div className="address">
-                  {/* Address */}
                   <div className="container-step container-box">
                     <div className="title">Dirección</div>
                     <div className="form">
@@ -159,7 +158,6 @@ class Checkout extends React.Component {
                     </div>
                   </div>
 
-                  {/* PAYMENT */}
                   <div className="container-step container-box">
                     <div className="title">Metodo de pago</div>
                     <div className="form">
