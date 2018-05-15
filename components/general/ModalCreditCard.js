@@ -17,9 +17,6 @@ class ModalCreditCard extends React.Component {
             <CreditCardForm afterSave={this.props.afterSave} onToggleModal={this.props.onToggle} />
           </Modal.Body>
         </Modal>
-        <style jsx>{`
-         
-        `}</style>
       </div>
     )
   }

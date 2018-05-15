@@ -208,7 +208,7 @@ class AddressForm extends React.Component {
           }
           
         </form>
-        <style>{`
+        <style jsx>{`
           label {
             font-size: 12px;
           }

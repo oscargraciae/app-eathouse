@@ -25,7 +25,7 @@ function Confirmation(props) {
         </div>
       </Modal.Body>
 
-      <style>{`
+      <style jsx global>{`
         .modal-confirmation {
           text-align: center;
           font-family: "BentonSans",Helvetica,Arial,sans-serif;
