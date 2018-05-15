@@ -11,12 +11,12 @@ axios.defaults.baseURL = 'http://www.api.eathouse.mx/api/v1';
 const api = {
   user: {
     async authentication(email, password) {
-      const response = await axios.post(`${baseUrl}/api/v1/users/login`, { email, password });
+      const response = await axios.post(`/users/login`, { email, password });
       return response.data;
     },
 
     async create(userData) {
-      const response = await axios.post(`${baseUrl}/api/v1/users/signup`, userData);
+      const response = await axios.post(`/users/signup`, userData);
       return response.data;
     },
     async get(id) {
