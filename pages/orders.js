@@ -33,7 +33,6 @@ class Orders extends React.Component {
   }
 
   onToggleModalDetail = () => {
-    console.log("Cerrando modal----");
     this.setState({ openModalDetail: !this.state.openModalDetail });
   }
 

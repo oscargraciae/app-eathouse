@@ -70,7 +70,7 @@ const menuAuth = (props) => {
               href={`/orders`}
               className="btn_nav nav-lbl-principal"
             >
-              Mis ordenes
+              Mis compras
             </a>
           </li>
           <li role="separator" className="divider" />
@@ -81,7 +81,7 @@ const menuAuth = (props) => {
               href={`/schedules`}
               className="btn_nav nav-lbl-principal"
             >
-              Mi agenda
+              Calendario
             </a>
           </li>
           <li role="separator" className="divider" />
@@ -109,7 +109,7 @@ export default function Header(props) {
             <div className="navbar-header">
               <button
                 type="button"
-                className="navbar-toggle"
+                className="navbar-toggle onlyMobile"
                 data-toggle="collapse"
                 data-target=".navbar-collapse"
               >
@@ -187,6 +187,10 @@ export default function Header(props) {
 
             .navbar-default .navbar-toggle {
               border: none;
+            }
+            
+            .onlyMobile {
+              display: none;
             }
 
           }

@@ -119,6 +119,7 @@ class Checkout extends React.Component {
 
   afterSave = async () => {
     const creditCards = await api.creditCard.getAll();
+    console.log("Tarjetas guardadas---->", creditCards);
     this.setState({ creditCards }, () => {
       this.setState({ creditCardId: creditCards[0].id });
     });
@@ -132,6 +133,10 @@ class Checkout extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  onModalClose = () => {
+    this.setState({ showAddress: false });
+  }
+
   render() {
     const { step, address, addressFormHidden, userAddressId, creditCards, loadingPage } = this.state;
 
@@ -140,7 +145,7 @@ class Checkout extends React.Component {
 
         { loadingPage ? <LoadingSpinner /> :
           <div>
-            <ModalAddress show={this.state.showAddress} responseModal={this.responseModal} />
+            <ModalAddress show={this.state.showAddress} responseModal={this.responseModal} onHide={this.onModalClose} />
             <ModalCreditCard show={this.state.showModalCreditCard} onToggle={this.showCreditCardModal} afterSave={this.afterSave} />
             <Confirmation show={this.state.confirmation} confirm={this.confirm} />
             { this.state.paymentError && <AlertModalApp show={this.state.alertShow} title="Oops! :(" description={this.state.paymentError} onClick={this.alertClick} /> }

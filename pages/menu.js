@@ -55,7 +55,7 @@ class Menu extends React.Component {
               <div className="row">
                 { dishes.map((item) => {
                   return (
-                    <MenuItem {...item} addCart={this.addCart} key={item.id} />
+                    <MenuItem {...item} addCart={this.addCart} deliveryDate={this.state.deliveryDate} key={item.id} />
                   )
                 }) }
               </div>

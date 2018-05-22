@@ -18,10 +18,11 @@ class ModalAddress extends React.Component {
   render() {
     return (
       <div>
-        <Modal show={this.props.show}>
+        <Modal show={this.props.show} onHide={this.props.onHide}>
+          <Modal.Header closeButton>
+          <h4 className="text-left">Ingresa tu nueva dirección</h4>
+          </Modal.Header>
           <Modal.Body>
-            <h3 className="text-center">¡Ingresa tu dirección y empieza a ordenar!</h3>
-            <br />
             <AddressForm afterSave={this.afterSave} />
           </Modal.Body>
         </Modal>

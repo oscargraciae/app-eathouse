@@ -202,7 +202,7 @@ class AddressForm extends React.Component {
 
           { this.state.addressNotAvailable &&
             <div>
-              <p>Por el moment no tenemos covertura en en tu zona.</p>
+              <p><strong>Aún no realizamos entregas en tu dirección.</strong></p>
               <MapZone userLocation={this.state.userLocation}/>
             </div>
           }

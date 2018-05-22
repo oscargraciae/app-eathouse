@@ -6,17 +6,17 @@ import { toMoney, thousandSpace } from '../../utils/formatNumber';
 class MenuItem extends React.Component {
   
   addItem = () => {
-    const productToCart = this.props.cart.data.filter((item) => item.id === this.props.id)[0];
+    const productToCart = this.props.cart.data.filter((item) => item.id === this.props.id && item.deliveryDate === this.props.deliveryDate)[0];
     this.props.addCart(this.props, productToCart.quantity + 1);
   }
 
   removeItem = () => {
-    const productToCart = this.props.cart.data.filter((item) => item.id === this.props.id)[0];
+    const productToCart = this.props.cart.data.filter((item) => item.id === this.props.id && item.deliveryDate === this.props.deliveryDate)[0];
     this.props.addCart(this.props, productToCart.quantity - 1);
   }
 
   render() {
-    const productToCart = this.props.cart.data.filter((item) => item.id === this.props.id)[0];
+    const productToCart = this.props.cart.data.filter((item) => item.id === this.props.id && item.deliveryDate === this.props.deliveryDate )[0];
     return (
       <div className="col-md-3 menu-item">
         <div className="menu-item-photo" style={{ backgroundImage: `url(${this.props.image})` }} />

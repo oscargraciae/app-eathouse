@@ -94,7 +94,6 @@ InputTextFormat.propTypes = {
   error: PropTypes.string,
   focus: PropTypes.bool,
   type: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
 };
 
 InputTextFormat.defaultProps = {

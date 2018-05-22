@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { moneyThousand } from '../../utils/formatNumber';
-import { formatDateString } from '../../utils/formatDate';
+import { formatDateString, formatNormal } from '../../utils/formatDate';
 
 function OrderDetailItem(props) {
   return (
@@ -12,7 +12,8 @@ function OrderDetailItem(props) {
           {props.dish.name}
         </div>
         <div className="item-date">
-          Entrega: {formatDateString(props.deliveryDate, "DD MMMM YYYY")}
+          {/* Entrega: {formatDateString(props.deliveryDate, "DD MMMM YYYY")} */}
+          Entrega: {formatNormal(props.deliveryDate)}
         </div>
         <div className="item-quntity">
           {/* <span className="lbl-quantity">Cant. 10 </span> */}

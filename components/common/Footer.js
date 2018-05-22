@@ -65,7 +65,7 @@ export default () => {
           border-top: 1px solid #EEE;
           background: #FFF;
           color: #42413E;
-          margin-top: 10px;
+          margin-top: 0px;
         }
 
         .footer-title {

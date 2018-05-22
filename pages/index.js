@@ -68,10 +68,10 @@ class Index extends React.Component {
                 <h1>Saludable y delicioso directo a tu casa u oficina.</h1>
                 <h2>Ordena para hoy o programa tú semana.</h2>
                 <div className="signupForm">
-                  <a href="/signup" className="btn-app">
+                  <a href="/" className="btn-app">
                     <img src="/static/google-play-badge.png" className="android" />
                   </a>
-                  <a href="/signup" className="btn-app">
+                  <a href="/" className="btn-app">
                     <img src="/static/app_store_badge.svg" className="ios" />
                   </a>
                   <a className="lnk-default" onClick={() => this.setState({ isShowModalZone: true })}>Ver zonas de entrega disponibles</a>
@@ -100,11 +100,6 @@ class Index extends React.Component {
                         <p className="how-works-title">Disfruta tu comida</p>
                         <p className="how-works-description">Tu orden será entregada a la puerta de tu casa u oficina entre 12:30 pm y la 1:30 pm</p>
                       </div>
-                      {/* <div className="col-md-3 how-works-steps">
-                        <img src="static/cutlery.png" width="60" />
-                        <p className="how-works-title">Nosotros cocinamos</p>
-                        <p>Buen provecho y a comer cuando estes listo.</p>
-                      </div> */}
                     </div>
                   </div>
                 </div>
@@ -123,35 +118,6 @@ class Index extends React.Component {
               </div>
           </section>
 
-          {/* MENU */}
-          {/* <section className="how-it-works">
-            <div className="container">
-                <div className="row ">
-                  <div className="col-md-12">
-                    <h2>Algunos de nuestros platillos</h2>
-                    <div className="row">
-                      <div className="col-md-3 how-works-steps">
-                        <img src="static/01.png" width="200" />
-                        <p className="how-works-title">Moroccan Vegan Grain Bowl</p>
-                      </div>
-                      <div className="col-md-3 how-works-steps">
-                        <img src="static/03.png" width="200" />
-                        <p className="how-works-title">Grilled Pesto Salmon Quinoa Bowl</p>
-                      </div>
-                      <div className="col-md-3 how-works-steps">
-                        <img src="static/04.png" width="200" />
-                        <p className="how-works-title">Honey Lime Chicken</p>
-                      </div>
-                      <div className="col-md-3 how-works-steps">
-                        <img src="static/05.png" width="200" />
-                        <p className="how-works-title">Argentinian Grilled Steak</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-          </section> */}
-
           <section className="how-it-works">
             <div className="container">
                 <div className="row ">
@@ -169,8 +135,23 @@ class Index extends React.Component {
               </div>
           </section>
 
-          <section>
+          <section className="container-apps">
             {/* DESCARGAR APP */}
+            <div className="row info-phones">
+              <div className="col-md-4">
+                <h3>Descarga eathouse en tu celular</h3>
+                <p>Descargue nuestra aplicación móvil para hacer tu orden más fácil y más rápido.</p>
+                <a href="/signup" className="btn-app">
+                  <img src="/static/google-play-badge.png" className="android-phone" />
+                </a>
+                <a href="/signup" className="btn-app">
+                  <img src="/static/app_store_badge.svg" className="ios-phone" />
+                </a>
+              </div>
+              <div className="col-md-3">
+                <img src="static/eathouse-phone.png" height="400" />
+              </div>
+            </div>
           </section>
 
           <style jsx>{`
@@ -265,7 +246,7 @@ class Index extends React.Component {
               padding: 40px 130px;
               color: white !important;
               height: 400px;
-              margin: 40px 0px;
+              /* margin: 40px 0px; */
 
               align-items: center;
               display: flex;
@@ -293,6 +274,35 @@ class Index extends React.Component {
 
             .Hero-mobile {
               display: none;
+            }
+
+            .android-phone {
+              float: left;
+              width: 170px;
+              margin: 0;
+              padding: 0;
+              position: relative;
+              left: -4px;
+            }
+
+            .ios-phone {
+              float: left;
+              /* width: 178px; */
+              width: 160px;
+              position: relative;
+              left: 8px;
+              top: 10px;
+            }
+
+            .info-phones {
+              align-items: center;
+              justify-content: center;
+              flex: 1;
+              display: flex;
+            }
+
+            .container-apps {
+              background: white;
             }
 
             @media (max-width: 600px) { 
@@ -363,6 +373,11 @@ class Index extends React.Component {
 
               .why-container p {
                 font-size: 21px;
+              }
+
+              .info-phones {
+                flex-direction: column;
+                padding: 20px;
               }
             }
             

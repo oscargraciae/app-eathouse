@@ -44,7 +44,6 @@ class MapZone extends React.Component {
         }
       })
 
-      console.log("Parametros de usuario--->", this.props.userLocation);
       if(this.props.userLocation) {
         map.addLayer({
           id: "points",

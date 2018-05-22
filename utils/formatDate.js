@@ -13,3 +13,12 @@ export function formatDateString(value, format) {
   let dateFormat = date.format(format);
   return dateFormat;
 }
+
+
+export function formatNormal(value, format) {
+  let newDate = new Date(value);
+  var date = momentTz.tz(newDate, "America/Monterrey");
+  let dateFormat = date.format(format);
+  return dateFormat;
+}
+
