@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import securePage from '../hocs/page';
 import api from '../api';
 import { addToCart } from '../actions/cart';
-import { formatDateString } from '../utils/formatDate';
+import { formatDateString, getDateSumDays } from '../utils/formatDate';
 // import { connect } from 'react-'
 
 import Layout from '../components/common/Layout';
@@ -28,12 +28,18 @@ class Menu extends React.Component {
   }
 
   componentDidMount() {
-    const newDate =  formatDateString(new Date(Date.now()), 'YYYY/MM/DD');
-    this.setState({ deliveryDate: newDate });
+    const currentTime = formatDateString(new Date(Date.now()), 'HH:mm');
+
+    if(currentTime > "10:00") {
+      const newDate = getDateSumDays(new Date(Date.now()), 'YYYY/MM/DD', 1);
+      this.setState({ deliveryDate: newDate });
+    } else {
+      const newDate = formatDateString(new Date(Date.now()), 'YYYY/MM/DD');
+      this.setState({ deliveryDate: newDate });
+    }
   }
 
   changeDay = (deliveryDate) => {
-    console.log("Fecha seleccionada!!--->", deliveryDate);
     const newDate =  formatDateString(deliveryDate, 'YYYY/MM/DD');
     this.setState({ deliveryDate: newDate });
 

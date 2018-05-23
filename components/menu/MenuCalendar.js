@@ -20,14 +20,6 @@ class MenuCalendar extends React.Component {
 
   componentWillMount() {
     let curr = new Date;
-    
-    // let currentDay = curr.getDate();
-    // let first = curr.getDate() - curr.getDay();
-    // let last = first + 6;
-
-    // let firstday = new Date(curr.setDate(first)).toUTCString();
-    // let lastday = new Date(curr.setDate(last)).toUTCString();
-
     let dates = [];
     let day = 0;
     while (day <= 12) {
@@ -48,7 +40,6 @@ class MenuCalendar extends React.Component {
 
   render() {
     const { datesWeek, selectedDate } = this.state;
-    console.log("Selected Date--->", selectedDate);
     return (
       <div>
         <div className="menuCalendar">

@@ -9,6 +9,18 @@ function ItemCalendar(props) {
   let completeDate = date.format('DD/MM/YYYY');
   let weekDayName = date.format('ddd');
   let weekDayNumber = date.format('DD');
+  let dayTime = date.format('HH:mm');
+
+  let currentDate = moment(new Date(Date.now()), "MM-DD-YYYY", "es").locale("mx");
+
+  
+
+  let invalidCurrentDate = false;
+  if(currentDate.format('DD') === weekDayNumber) {
+    if(dayTime > "10:00") {
+      invalidCurrentDate = true;
+    }
+  }
 
   // console.log("dia de la semana :"+date.day());
   // console.log("mes:"+date.month());
@@ -19,7 +31,7 @@ function ItemCalendar(props) {
   // console.log("Día de la semana", weekDayName, weekDayNumber);
   // console.log(selectedDay, weekDayNumber);
   return (
-    <div className={(day === 6 || day === 0) ? 'disabled' : ''}>
+    <div className={((day === 6 || day === 0) || invalidCurrentDate) ? 'disabled' : ''}>
       <div className={selectedDay === weekDayNumber ? 'dayItem selected' : 'dayItem'} onClick={() => props.changeDate(props.date)}>
         <span className="dayName">{weekDayName}</span>
         <span>{weekDayNumber}</span>
