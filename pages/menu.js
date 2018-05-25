@@ -25,6 +25,7 @@ class Menu extends React.Component {
 
   state = {
     deliveryDate: '',
+    isTime: false,
   }
 
   componentDidMount() {
@@ -32,10 +33,10 @@ class Menu extends React.Component {
 
     if(currentTime > "10:00") {
       const newDate = getDateSumDays(new Date(Date.now()), 'YYYY/MM/DD', 1);
-      this.setState({ deliveryDate: newDate });
+      this.setState({ deliveryDate: newDate, isTime: false });
     } else {
       const newDate = formatDateString(new Date(Date.now()), 'YYYY/MM/DD');
-      this.setState({ deliveryDate: newDate });
+      this.setState({ deliveryDate: newDate, isTime: true });
     }
   }
 
@@ -55,9 +56,14 @@ class Menu extends React.Component {
     return (
       <Layout {...this.props}>
         <div>
-          <MenuCalendar changeDay={this.changeDay} />
+          { this.state.deliveryDate && <MenuCalendar changeDay={this.changeDay} deliveryDate={this.state.deliveryDate} /> }
           <div className="fluid-container">
             <div className="menu">
+              { !this.state.isTime &&
+                <div className="alert alert-success">
+                  <p>Todos los pedidos que son para hoy te tienen que ordenar antes de las 11:00am. No olvides programa tus platillos para la semana.</p>
+                </div>
+              }
               <div className="row">
                 { dishes.map((item) => {
                   return (

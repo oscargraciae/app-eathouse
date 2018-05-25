@@ -9,12 +9,14 @@ import ItemCalendar from '../menu-calendar/ItemCalendar';
 
 class MenuCalendar extends React.Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
+    console.log("Fecha delivery-->", props.deliveryDate);
     this.state = {
       datesWeek: [],
-      selectedDate: new Date(Date.now()),
+      // selectedDate: new Date(Date.now()),
+      selectedDate: new Date(props.deliveryDate),
     }
   }
 
