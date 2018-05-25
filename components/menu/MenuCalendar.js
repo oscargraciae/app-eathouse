@@ -44,6 +44,7 @@ class MenuCalendar extends React.Component {
     const { datesWeek, selectedDate } = this.state;
     return (
       <div>
+        <div className="titleCalendar">Selecciona el día de entrega</div>
         <div className="menuCalendar">
           <div className="menuDays">
             { datesWeek.map((item, key) => {
@@ -68,6 +69,20 @@ class MenuCalendar extends React.Component {
 
           .menuDays {
             display: flex;
+          }
+
+          .titleCalendar {
+            background: #FFF;
+            margin-right: 250px;
+            padding-top: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            color: #515252;
+            font-size: 14px;
+            text-transform: uppercase;
+            font-weight: 600;
           }
 
         `}</style>
