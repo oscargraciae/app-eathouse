@@ -94,7 +94,7 @@ class Index extends React.Component {
                       </div>
                       <div className="col-md-4 how-works-steps">
                         <p className="how-works-title">Ordena o programa tus platillos</p>
-                        <p className="how-works-description">Ordena tus platillos o programa por adelantado para la semana.</p>
+                        <p className="how-works-description">Ordena tus platillos o programa por adelantado para la semana. Disponible de Lunes a Viernes.</p>
                       </div>
                       <div className="col-md-4 how-works-steps">
                         <p className="how-works-title">Disfruta tu comida</p>

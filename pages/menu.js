@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import moment from 'moment';
 
 import securePage from '../hocs/page';
 import api from '../api';
@@ -32,7 +33,14 @@ class Menu extends React.Component {
     const currentTime = formatDateString(new Date(Date.now()), 'HH:mm');
 
     if(currentTime > "10:00") {
-      const newDate = getDateSumDays(new Date(Date.now()), 'YYYY/MM/DD', 1);
+      let newDate = getDateSumDays(new Date(Date.now()), 'YYYY/MM/DD', 1);
+      let date = moment(new Date(newDate), "MM-DD-YYYY", "es").locale("mx");
+      if(date.day() === 6) {
+        newDate = getDateSumDays(new Date(Date.now()), 'YYYY/MM/DD', 3);
+      } else if(date.day() === 0) {
+        newDate = getDateSumDays(new Date(Date.now()), 'YYYY/MM/DD', 2);
+      }
+
       this.setState({ deliveryDate: newDate, isTime: false });
     } else {
       const newDate = formatDateString(new Date(Date.now()), 'YYYY/MM/DD');
@@ -61,7 +69,7 @@ class Menu extends React.Component {
             <div className="menu">
               { !this.state.isTime &&
                 <div className="alert alert-success">
-                  <p>Todos los pedidos que son para hoy te tienen que ordenar antes de las 11:00am. No olvides programa tus platillos para la semana.</p>
+                  <p>Todos los pedidos que son para el día de hoy se tienen que ordenar antes de las 11:00am. No olvides programa tus platillos para la semana.</p>
                 </div>
               }
               <div className="row">

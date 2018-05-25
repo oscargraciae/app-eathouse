@@ -8,6 +8,7 @@ class Dish extends React.Component {
     return (
       <div className="col-md-3 menu-item">
         <div className="menu-item-photo" style={{ backgroundImage: `url(${this.props.image})` }} />
+        <div className="flag">${this.props.price}</div>
         <div className="menu-item-details">
           <div className="menu-item-description">
             <a className="menu-item-name-link" href={`/menu/item/${this.props.id}`}>
@@ -52,6 +53,26 @@ class Dish extends React.Component {
             border-bottom-right-radius: 3px;
   
             padding-top: 10px;
+          }
+
+          .flag {
+            display: inline-block;
+            padding: 5px 25px;
+            text-aling: center;
+            top: 20px;
+            left: 10px;
+            position: absolute;
+            text-align: center;
+            vertical-align: middle;
+            line-height: 1;
+            color: #fff;
+            background: #3BCF75;
+
+            font-weight: 400;
+            -webkit-box-shadow: 0 5px 30px 0 rgba(0,0,0,.1);
+            -moz-box-shadow: 0 5px 30px 0 rgba(0,0,0,.1);
+            box-shadow: 0 5px 30px 0 rgba(0,0,0,.1);
+            font-size: 21px;
           }
   
           .menu-item-description {

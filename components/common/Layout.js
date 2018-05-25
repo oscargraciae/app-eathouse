@@ -129,6 +129,10 @@ export default ({ children, loggedUser, isAuthenticated, title = 'eathouse', use
         .btn-facebook:hover, .btn-facebook:focus{
           background: #3B5999;
         }
+
+        .lbl-danger {
+          color: #B31E0B;
+        }
       `}</style>
     </div>
   )

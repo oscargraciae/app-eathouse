@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 // import local libraries
 import { moneyThousand } from '../../utils/formatNumber';
+import { clearCart } from '../../actions/cart';
 
 // import components
 import ButtonBlock from './ButtonBlock';
@@ -29,6 +30,9 @@ function Cart(props) {
               )
             }) }
           </ul>
+          { props.cart.data.length > 0 && 
+            <a href="#" className="lbl-danger" onClick={() => props.clearCart()}>Limpiar carrito</a>
+          }
 
           { props.cart.data.length === 0 && 
             <div className="empty-cart">
@@ -186,4 +190,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(Cart);
+export default connect(mapStateToProps, { clearCart })(Cart);
