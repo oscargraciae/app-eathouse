@@ -14,6 +14,7 @@ export default ({ children, loggedUser, isAuthenticated, title = 'eathouse', use
         <title>{ title }</title>
         <meta charSet='utf-8' />
         <meta name='viewport' content='initial-scale=1.0, width=device-width' />
+        <meta name='google-site-verification' content='M6vcqaYYRkLZlKWOvTNC6Q7HMwZXk9wlPW5ya6jQ3es' />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
         <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.css' rel='stylesheet' />
 
