@@ -51,7 +51,7 @@ class Orders extends React.Component {
       <Layout {...this.props}>
         { orderDetail && <ModalDetail show={openModalDetail} order={orderDetail} onToggle={this.onToggleModalDetail} /> }
         <div className="container">
-          <h2>Mis ordenes</h2>
+          <h2>Mis compras</h2>
           <div className="container-box">
             { orders ? <TableOrders data={orders} detailClick={this.detailClick} /> : <LoadingSpinner /> }
           </div>

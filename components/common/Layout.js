@@ -41,6 +41,12 @@ export default ({ children, loggedUser, isAuthenticated, title = 'eathouse', use
           padding-top: 50px;
         }
 
+        .fluid-container {
+          margin-left: auto;
+          margin-right: auto;
+          max-width: 1230px;
+        }
+
         .container-box {
           border-radius: 3px;
           background-color: #fff;

@@ -111,7 +111,7 @@ class Index extends React.Component {
             <div className="container">
                 <div className="row ">
                   <div className="col-md-12">
-                    <h2>¿Que es eathouse?</h2>
+                    <h2>¿Qué es eathouse?</h2>
                     <p>En eathouse preparamos comidas ricas, saludables, con costos accesibles y entregadas directamente a la puerta de tu casa u oficina. Come como si estuvieras en casa. Agenda tus comidas para mañana o para el resto de la semana.</p>
                   </div>
                 </div>

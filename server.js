@@ -74,6 +74,10 @@ app.prepare()
     return app.render(req, res, '/prueba');
   });
 
+  server.get('/faq', (req, res) => {
+    return app.render(req, res, '/faq');
+  });
+
   
   server.get('*', (req, res) => {
     return handle(req, res);

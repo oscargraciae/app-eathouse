@@ -97,6 +97,9 @@ const menuAuth = (props) => {
           </li>
         </ul>
       </li>
+      <li>
+        <a className="btn-link" href="/menu"><span className="btn btn-primary btn-block">Menu</span></a>
+      </li>
     </ul>
   )
 }
@@ -105,7 +108,7 @@ export default function Header(props) {
   return (
     <header>
         <nav className="navbar navbar-default">
-          <div className="container-fluid">
+          <div className="fluid-container">
             <div className="navbar-header">
               <button
                 type="button"
@@ -153,6 +156,10 @@ export default function Header(props) {
             background: #FFF;
             border: 1px solid #e8ebe9;
             margin-bottom: 0px;
+          }
+
+          .btn-link {
+            padding: 9px !important;
           }
 
           #nprogress {

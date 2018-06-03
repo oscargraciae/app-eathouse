@@ -69,7 +69,7 @@ class Menu extends React.Component {
             <div className="menu">
               { !this.state.isTime &&
                 <div className="alert alert-success">
-                  <p>Todos los pedidos que son para el día de hoy se tienen que ordenar antes de las 11:00am. No olvides programa tus platillos para la semana.</p>
+                  <p>Todos los pedidos que son para el día de hoy se tienen que ordenar antes de las 11:00am. No olvides programar tus platillos para la semana.</p>
                 </div>
               }
               <div className="row">

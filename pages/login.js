@@ -78,7 +78,7 @@ class Login extends React.Component {
         <div className="container">
           <div className="container-login">
             <h1>Iniciar sesión</h1>
-            <p>¿Todavía no tienes cuenta? <a className="lbl-principal" href="signup">Registrate</a></p>
+            <p>¿Todavía no tienes cuenta? <a className="lbl-principal" href="signup">Regístrate</a></p>
             <form className="signupForm" onSubmit={this.onSubmit}>
               { this.state.messageError && <div className="alert alert-danger">{ this.state.messageError }</div> }
               <InputText
