@@ -5,14 +5,22 @@ const baseUrl = 'http://localhost:3001';
 // const baseUrl = 'http://127.0.0.1:3000';
 // const baseUrl = 'https://api.gigbox.mx';
 
-// axios.defaults.baseURL = 'http://localhost:3001/api/v1';
-axios.defaults.baseURL = 'https://api.eathouse.mx/api/v1';
+axios.defaults.baseURL = 'http://localhost:3001/api/v1';
+// axios.defaults.baseURL = 'https://api.eathouse.mx/api/v1';
 
 const api = {
   user: {
     async authentication(email, password) {
-      const response = await axios.post(`/users/login`, { email, password });
-      return response.data;
+      try {
+        const response = await axios.post(`/users/login`, { email, password });
+        console.log("Respuesta---->", response);
+        return response.data;
+      } catch (error) {
+        console.log("Error--->", error);
+        return {
+          ok: false,
+        }
+      }
     },
 
     async create(userData) {

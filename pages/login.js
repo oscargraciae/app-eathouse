@@ -6,6 +6,7 @@ import Router from 'next/router';
 import Layout from '../components/common/Layout';
 import InputText from '../components/general/InputText';
 import ButtonBlock from '../components/general/ButtonBlock';
+import AlertBox from '../components/general/AlertBox';
 
 // import local libaries
 import validation from '../validations/login';
@@ -44,14 +45,11 @@ class Login extends React.Component {
       const response = await api.user.authentication(email, password);
       console.log("Response--->", response);
       const { ok, user } = response;
-      
       if(ok) {
         setToken(user.token);
         Router.push('/menu');
       } else {
-        const err = [];
-        errors.forEach(({ path, message }) => err.push(message));
-        this.setState({ errorsServer: err });
+        this.setState({ errorsServer: 'Verifica tu correo electrónico y contraseña' });
       }
     }
 
@@ -79,6 +77,7 @@ class Login extends React.Component {
           <div className="container-login">
             <h1>Iniciar sesión</h1>
             <p>¿Todavía no tienes cuenta? <a className="lbl-principal" href="signup">Regístrate</a></p>
+            { errorsServer && <AlertBox message={this.state.errorsServer} /> }
             <form className="signupForm" onSubmit={this.onSubmit}>
               { this.state.messageError && <div className="alert alert-danger">{ this.state.messageError }</div> }
               <InputText
@@ -105,15 +104,6 @@ class Login extends React.Component {
                 buttonStyle="btn btn-primary btn-large btn-block"
                 loading={this.state.isLoading}
               />
-              { errorsServer && 
-                <div className="alert alert-danger">
-                {errorsServer.map((item, key) => {
-                  return (
-                    <div key={key}>{item}</div>
-                  )
-                })}
-              </div>
-              }
               <div className="controls-small">
                 <p className="lbl-terms">
                   <span> Al registrarte, confirmas que aceptas los <a className="lbl-principal" href="/app/terms_of_service"> Términos y condiciones </a> y la <a className="lbl-principal" href="/app/privacy-policy"> Política de privacidad</a>.</span>

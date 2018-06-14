@@ -6,11 +6,8 @@ import securePage from '../hocs/page';
 import api from '../api';
 import { addToCart } from '../actions/cart';
 import { formatDateString, getDateSumDays } from '../utils/formatDate';
-// import { connect } from 'react-'
 
 import Layout from '../components/common/Layout';
-import InputText from '../components/general/InputText';
-import ButtonBlock from '../components/general/ButtonBlock';
 import MenuCalendar from '../components/menu/MenuCalendar';
 import MenuItem from '../components/menu/MenuItem';
 import Cart from '../components/general/Cart';
