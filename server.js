@@ -78,6 +78,10 @@ app.prepare()
     return app.render(req, res, '/faq');
   });
 
+  server.get('/map-available', (req, res) => {
+    return app.render(req, res, '/mapAvailable');
+  });
+
   
   server.get('*', (req, res) => {
     return handle(req, res);
