@@ -29,7 +29,7 @@ class Menu extends React.Component {
   componentDidMount() {
     const currentTime = formatDateString(new Date(Date.now()), 'HH:mm');
 
-    if(currentTime > "10:00") {
+    if(currentTime > "11:00") {
       let newDate = getDateSumDays(new Date(Date.now()), 'YYYY/MM/DD', 1);
       let date = moment(new Date(newDate), "MM-DD-YYYY", "es").locale("mx");
       if(date.day() === 6) {

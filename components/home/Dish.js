@@ -11,9 +11,12 @@ class Dish extends React.Component {
         <div className="flag">${this.props.price}</div>
         <div className="menu-item-details">
           <div className="menu-item-description">
-            <a className="menu-item-name-link" href={`/menu/item/${this.props.id}`}>
+            <div className="menu-item-name-link">
               <span className="text">{this.props.name}</span>
-            </a>
+            </div>
+            {/* <a className="menu-item-name-link" href={`/menu/item/${this.props.id}`}>
+              <span className="text">{this.props.name}</span>
+            </a> */}
           </div>
         </div>
   
@@ -29,7 +32,6 @@ class Dish extends React.Component {
             border-top: 1px solid #e8ebe9;
             border-right: 1px solid #e8ebe9;
             overflow: hidden;
-            cursor: pointer;
             display: block;
             padding-top: 100%;
             height: 0;
@@ -92,7 +94,6 @@ class Dish extends React.Component {
             color: #515252;
             overflow: visible;
             text-overflow: ellipsis;
-            cursor: pointer;
             display: block;
             padding: 10px 0;
           }

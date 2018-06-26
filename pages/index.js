@@ -68,11 +68,11 @@ class Index extends React.Component {
                 <h1>Saludable y delicioso directo a tu casa u oficina.</h1>
                 <h2>Ordena para hoy o programa tú semana.</h2>
                 <div className="signupForm">
-                  <a href="/" className="btn-app">
+                  <a href="https://play.google.com/store/apps/details?id=com.eathouse" className="btn-app">
                     <img src="/static/google-play-badge.png" className="android" />
                   </a>
                   <a href="/" className="btn-app">
-                    <img src="/static/app_store_badge.svg" className="ios" />
+                    <img src="https://play.google.com/store/apps/details?id=com.eathouse" className="ios" />
                   </a>
                   <a className="lnk-default" onClick={() => this.setState({ isShowModalZone: true })}>Ver zonas de entrega disponibles</a>
                 </div>
@@ -86,7 +86,7 @@ class Index extends React.Component {
             <div className="container">
                 <div className="row ">
                   <div className="col-md-12">
-                    <h2>Como funciona</h2>
+                    <h2>CÓMO FUNCIONA</h2>
                     <div className="row">
                       <div className="col-md-4 how-works-steps">
                         <p className="how-works-title">Elige tu comida</p>
@@ -141,10 +141,10 @@ class Index extends React.Component {
               <div className="col-md-4">
                 <h3>Descarga eathouse en tu celular</h3>
                 <p>Descargue nuestra aplicación móvil para hacer tu orden más fácil y más rápido.</p>
-                <a href="/signup" className="btn-app">
+                <a href="https://play.google.com/store/apps/details?id=com.eathouse" className="btn-app">
                   <img src="/static/google-play-badge.png" className="android-phone" />
                 </a>
-                <a href="/signup" className="btn-app">
+                <a href="https://play.google.com/store/apps/details?id=com.eathouse" className="btn-app">
                   <img src="/static/app_store_badge.svg" className="ios-phone" />
                 </a>
               </div>
@@ -155,12 +155,16 @@ class Index extends React.Component {
           </section>
 
           <style jsx>{`
+            body {
+              background: white;
+            }
             .Hero {
               background: url('static/hero-edit-2.jpg');
               /* background: white; */
               height: 445px;
               /* border-bottom: 10px solid #FF7901; */
               background-size: cover;
+              margin-bottom: 100px;
             }
 
             .Hero-Box {
@@ -178,6 +182,8 @@ class Index extends React.Component {
 
             .Hero-Box > h1 {
               font-weight: 500;
+              text-transform: uppercase;
+              line-height: 1.37;
             }
 
             .Hero-Box > h2 {
@@ -199,9 +205,10 @@ class Index extends React.Component {
             }
 
             .how-it-works h2 {
-              font-size: 36px;
+              font-size: 32px;
               margin-bottom: 40px;
               font-weight: 500;
+              text-transform: uppercase;
             }
 
             .how-works-steps {

@@ -9,15 +9,15 @@ export default () => {
               <h4 className="footer-title">EMPRESA</h4>
               <ul>
                 <li className="footernav-item"><a href="/faq">Preguntas frecuentes</a></li>
-                {/* <li className="footernav-item"><a href="https://gigbox.mx/app/ayuda-clientes">Ayuda a clientes</a></li> */}
-                <li className="footernav-item">
-                  <a href="https://gigbox.mx/app/privacy-policy">Política de privacidad</a>
-                </li>
-                <li className="footernav-item">
-                  <a href="https://gigbox.mx/app/terms_of_service"> Términos y condiciones</a>
-                </li>
+                {/* <li className="footernav-item"><a href="https://eathouse.mx/app/ayuda-clientes">Ayuda a clientes</a></li> */}
                 {/* <li className="footernav-item">
-                  <a target="_blank" rel="noopener noreferrer" href="http://blog.gigbox.mx/"> Blog</a>
+                  <a href="https://eathouse.mx/app/privacy-policy">Política de privacidad</a>
+                </li>
+                <li className="footernav-item">
+                  <a href="https://eathouse.mx/app/terms_of_service"> Términos y condiciones</a>
+                </li> */}
+                {/* <li className="footernav-item">
+                  <a target="_blank" rel="noopener noreferrer" href="http://blog.eathouse.mx/"> Blog</a>
                 </li> */}
               </ul>
             </div>
@@ -26,7 +26,7 @@ export default () => {
               <h4 className="footer-title">CONTACTANOS</h4>
               <ul>
                 <li className="footernav-item">
-                  <a href="mailto:ayuda@gigbox.mx"> ayuda@eathouse.mx</a>
+                  <a href="mailto:ayuda@eathouse.mx"> ayuda@eathouse.mx</a>
                 </li>
                 <li className="footernav-item"><a target="_blank" rel="noopener noreferrer" href="https://www.messenger.com/t/eathousemx/"> Deja tu Mensaje en Facebook</a></li>
                 {/* <li className="footernav-item">
@@ -40,8 +40,8 @@ export default () => {
               <ul>
                 <li className="footernav-item"><a className="social-button" target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/eathousemx"><i className="fab fa-facebook-f fa-lg" /></a></li>
                 <li className="footernav-item"><a className="social-button" target="_blank" rel="noopener noreferrer" href="https://twitter.com/eathousemx"><i className="fab fa-twitter fa-lg" /></a></li>
-                {/* <li className="footernav-item"><a className="social-button" target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/gigboxmx/"> <i className="fab fa-instagram fa-lg" /></a></li> */}
-                {/* <li className="footernav-item"><a className="social-button" target="_blank" rel="noopener noreferrer" href="https://gigbox.mx/blog">Blog</a></li> */}
+                {/* <li className="footernav-item"><a className="social-button" target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/eathousemx/"> <i className="fab fa-instagram fa-lg" /></a></li> */}
+                {/* <li className="footernav-item"><a className="social-button" target="_blank" rel="noopener noreferrer" href="https://eathouse.mx/blog">Blog</a></li> */}
               </ul>
             </div>
 
@@ -50,7 +50,7 @@ export default () => {
           <div className="row">
             <div className="footernav col-md-8">
               <hr />
-              <img alt="Gigbox Footer" src="/static/logo-eathouse.png" width="100" />
+              <img alt="eathouse Footer" src="/static/logo-eathouse.png" width="100" />
               <p>
                 Hecho con <i className="fa fa-heart lbl-danger" /> en Monterrey (Mexico)
                 <br /><span>© eathouse. Todos los derechos reservados</span>

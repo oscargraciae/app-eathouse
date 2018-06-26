@@ -100,7 +100,7 @@ class Login extends React.Component {
                 <a onClick={this.props.clickRemember}>¿Olvidaste tu contraseña?</a>
               </div>
               <ButtonBlock
-                text="¡Registrarme!"
+                text="Entrar"
                 buttonStyle="btn btn-primary btn-large btn-block"
                 loading={this.state.isLoading}
               />
