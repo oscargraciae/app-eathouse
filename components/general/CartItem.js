@@ -10,12 +10,12 @@ function CartItem(props) {
         <div className="item-name">
           {props.name}
         </div>
-        <div className="lbl-subtotal">
-          Entrega: { formatDateString(props.deliveryDate, "DD MMMM YYYY") }
-        </div>
         <div className="item-date">
           {/* <span className="lbl-quantity">Cant. 10 </span> */}
           <span className="">({props.quantity}) ${props.total}</span>
+        </div>
+        <div className="lbl-subtotal">
+          Entrega: { formatDateString(props.deliveryDate, "DD MMMM YYYY") }
         </div>
       </div>
 
@@ -72,7 +72,7 @@ function CartItem(props) {
 
         .lbl-subtotal {
           color: #3BCF75;
-          font-size: 14px;
+          font-size: 16px;
         }
       `}</style>
     </li>

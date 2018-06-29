@@ -36,11 +36,11 @@ const menuGuest = () => {
 const menuAuth = (props) => {
   return (
     <ul className="nav navbar-nav navbar-right">
-      { props.user.user_address.length > 0 &&
+      {/* { props.user.user_address.length > 0 &&
         <li>
           <a><i className="fas fa-map-marker-alt" /> {props.user.user_address[0].addressMap.substr(0, 30)}...</a>
         </li>
-      }
+      } */}
       <li className="dropdown">
         <a
           className="dropdown-toggle"

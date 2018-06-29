@@ -28,6 +28,8 @@ class AddressForm extends React.Component {
       state: '',
       addressMap: '',
       description: '',
+      phone: '',
+      notes: '',
       lat: 0,
       lng: 0,
       userId: 0,
@@ -134,7 +136,7 @@ class AddressForm extends React.Component {
                     onChange={this.onChange}
                     type="text"
                     name="street"
-                    id="street_number"
+                    id=""
                     label=""
                   />
                 </div>
@@ -146,7 +148,7 @@ class AddressForm extends React.Component {
                     onChange={this.onChange}
                     type="text"
                     name="area"
-                    id="route"
+                    id=""
                     label=""
                   />
                 </div> 
@@ -155,6 +157,7 @@ class AddressForm extends React.Component {
               <div className="row">
                 <div className="col-md-6">
                   <input type="hidden" name="state" id="administrative_area_level_1" value={this.state.state} />
+                  <input type="hidden" name="zipcode" id="postal_code" value={this.state.zipcode} />
                 </div>
                 <div className="col-md-6">
                   <input type="hidden" name="city" id="locality" value={this.state.city} />
@@ -163,26 +166,27 @@ class AddressForm extends React.Component {
 
               <div className="row">
                 <div className="col-md-6">
-                  <label>Codigo Postal</label>
+                  <label>Teléfono</label>
                   <InputText
-                    error={errors.zipcode}
-                    value={this.state.zipcode}
+                    error={errors.phone}
+                    value={this.state.phone}
                     onChange={this.onChange}
                     type="text"
-                    name="zipcode"
-                    id="postal_code"
+                    name="phone"
+                    id=""
                     label=""
                   />
+                  <p className="lbl-notes">Utilizado solo para notificarte algo sobre tu pedido.</p>
                 </div>
                 <div className="col-md-6">
-                  <label>Agregar Notas (Opcional)</label>
+                  <label>Datos adicionales (Opcional)</label>
                   <InputText
-                    error={errors.description}
-                    value={this.state.description}
+                    error={errors.notes}
+                    value={this.state.notes}
                     onChange={this.onChange}
                     type="text"
-                    name="description"
-                    id="postal_code"
+                    name="notes"
+                    id=""
                     label=""
                   />
                 </div>
@@ -288,6 +292,11 @@ class AddressForm extends React.Component {
             border-top: 1px solid #e6e6e6;
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
             border-radius: 0 0 2px 2px;
+          }
+
+          .lbl-notes {
+            font-size: 11px;
+            color: #79776B;
           }
 
           .loadingSpinner {

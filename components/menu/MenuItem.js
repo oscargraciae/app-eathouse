@@ -22,9 +22,9 @@ class MenuItem extends React.Component {
         <div className="menu-item-photo" style={{ backgroundImage: `url(${this.props.image})` }} />
         <div className="menu-item-details">
           <div className="menu-item-description">
-            <a className="menu-item-name-link" href={`/menu/item/${this.props.id}`}>
+            <div className="menu-item-name-link">
               <span className="text">{this.props.name}</span>
-            </a>
+            </div>
           </div>
           <div className="menu-item-actions">
             <div className="menu-item-price">
@@ -48,7 +48,6 @@ class MenuItem extends React.Component {
             border-top: 1px solid #e8ebe9;
             border-right: 1px solid #e8ebe9;
             overflow: hidden;
-            cursor: pointer;
             display: block;
             padding-top: 100%;
             height: 0;
@@ -94,7 +93,6 @@ class MenuItem extends React.Component {
             color: #515252;
             overflow: visible;
             text-overflow: ellipsis;
-            cursor: pointer;
             display: block;
             padding: 10px 0;
           }
@@ -207,7 +205,7 @@ class MenuItem extends React.Component {
           }
   
           .col-md-3 {
-            padding: 10px;
+            padding: 5px;
           }
         `}</style>
       </div>

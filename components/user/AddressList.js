@@ -30,9 +30,9 @@ class AddressList extends React.Component {
             return (
               <div className={item.id === this.state.selectItemId ? 'row address-item address-item-select' : 'row address-item'} key={item.id} onClick={() => this.selectItem(item)}>
                 <div className="col-md-12 address-content">
-                  {/* <div className={item.id === this.state.selectItemId ? 'address-status check' : 'address-status'}>
+                  <div className={item.id === this.state.selectItemId ? 'address-status check' : 'address-status nocheck'}>
                     <i className="far fa-check-circle fa-lg" />
-                  </div> */}
+                  </div>
                   <div className="address-body">
                     <div className="title-address">{item.addressMap}</div>
                     <div>{item.area}, {item.street}, {item.zipcode}</div>
@@ -57,6 +57,10 @@ class AddressList extends React.Component {
             color: #3BCF75;
           }
 
+          .nocheck {
+            color: #DDD;
+          }
+
           .address-status {
             padding-right: 15px;
           }
@@ -69,20 +73,21 @@ class AddressList extends React.Component {
 
           .address-item {
             background: #FFF;
-            border: 2px solid #EEE;
-            margin: 5px 0;
+            border-bottom: 1px solid #EEE;
+            margin: 0px 0;
             padding: 13px 5px;
             color: #79776B;
             cursor: pointer;
             border-radius: 3px;
           }
 
-          // .address-item:hover {
-          //   border: 2px solid #FF7901;
-          // }
+          .address-item:hover {
+            /* border: 2px solid #FF7901; */
+            background: #F7F7F7;
+          }
 
           .address-item-select {
-            border: 2px solid #3BCF75;
+            /* border: 2px solid #3BCF75; */
           }
         `}</style>
       </div>

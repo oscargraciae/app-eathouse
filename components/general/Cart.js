@@ -46,8 +46,14 @@ function Cart(props) {
         <div className="sidecart-footer">
           <dl className="estimated-total">
             <div className="line-item">
+              <dt className="lbl-total">Subtotal</dt><dd className="lbl-total">${moneyThousand(total)}</dd>
+            </div>
+            <div className="line-item">
+              <dt className="lbl-total">Gastos de envío</dt><dd className="lbl-total">$0.00</dd>
+            </div>
+            <div className="line-item">
               <dt className="lbl-total">Total</dt><dd className="lbl-total">${moneyThousand(total)}</dd>
-            </div>        
+            </div>
           </dl>
           <a href="/checkout" className="btn btn-primary btn-large btn-block">Comprar</a>
         </div>
@@ -155,10 +161,12 @@ function Cart(props) {
           -webkit-justify-content: space-between;
           justify-content: space-between;
           margin-bottom: 12px;
+
+          font-size: 16px;
         }
 
         .lbl-total {
-          font-size: 21px;
+          font-size: 14px;
         }
 
         .items {

@@ -164,7 +164,7 @@ class Index extends React.Component {
               height: 445px;
               /* border-bottom: 10px solid #FF7901; */
               background-size: cover;
-              margin-bottom: 100px;
+              /* margin-bottom: 100px; */
             }
 
             .Hero-Box {

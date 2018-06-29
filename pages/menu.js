@@ -66,7 +66,8 @@ class Menu extends React.Component {
             <div className="menu">
               { !this.state.isTime &&
                 <div className="alert alert-success">
-                  <p>Todos los pedidos que son para el día de hoy se tienen que ordenar antes de las 11:00am. No olvides programar tus platillos para la semana.</p>
+                  <p><strong>Aviso</strong></p>
+                  <p>Los pedidos que son para el día de hoy se tienen que ordenar antes de las 11:00am. No olvides programar tus platillos para la semana.</p>
                 </div>
               }
               <div className="row">
@@ -91,6 +92,8 @@ class Menu extends React.Component {
             padding-left: 1.8rem;
             padding-right: 1.8rem;
           }
+
+          
 
         `}</style>
       </Layout>

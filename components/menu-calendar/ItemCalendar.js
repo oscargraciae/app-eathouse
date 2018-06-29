@@ -34,7 +34,7 @@ function ItemCalendar(props) {
     <div className={((day === 6 || day === 0) || invalidCurrentDate) ? 'disabled' : ''}>
       <div className={selectedDay === weekDayNumber ? 'dayItem selected' : 'dayItem'} onClick={() => props.changeDate(props.date)}>
         <span className="dayName">{weekDayName}</span>
-        <span>{weekDayNumber}</span>
+        <span className="dayNumber">{weekDayNumber}</span>
       </div>
         <style jsx>{`
           .dayItem {
@@ -43,7 +43,6 @@ function ItemCalendar(props) {
             flex-direction: column;
             align-items: center;
             font-family: "BentonSans", Helvetica, Arial, sans-serif;
-            font-weight: 400;
             color: #79776B;
           }
 
@@ -55,12 +54,22 @@ function ItemCalendar(props) {
           .dayName {
             font-size: 12px;
             text-transform: uppercase;
-            font-weight: 600;
+            font-weight: 300;
+            padding-bottom: 5px;
+          }
+
+          .dayNumber {
+            font-size: 16px;
+            text-transform: uppercase;
           }
 
           .selected {
-            border-bottom: 2px solid #3BCF75;
-            color: #3BCF75;
+            /* border-bottom: 2px solid #3BCF75; */
+            /* color: #3BCF75; */
+
+            background: #3BCF75;
+            color: #FFF;
+            border-radius: 5px;
           }
 
           .disabled {

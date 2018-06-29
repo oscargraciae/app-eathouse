@@ -152,6 +152,7 @@ class Checkout extends React.Component {
             <div className="container">
               <div className="checkout">
                 <div className="address">
+                  
                   <div className="container-step container-box">
                     <div className="title">Dirección</div>
                     <div className="form">
@@ -159,7 +160,7 @@ class Checkout extends React.Component {
                         <AddressList address={address} select={this.afterSelectAddress} itemSelected={userAddressId} />
                       }
                       <br />
-                      <a href="#" className="btn-link" onClick={this.showAddressModal}>Agregar nueva dirección</a>
+                      <a href="#" className="btn-link" onClick={this.showAddressModal}>+ Agregar nueva dirección</a>
                     </div>
                   </div>
 
@@ -173,8 +174,14 @@ class Checkout extends React.Component {
                         )) }
                       </select>
                       <br />
-                      <a href="#" onClick={this.showCreditCardModal} className="btn-link">Agregar otro método de pago</a>
+                      <a href="#" onClick={this.showCreditCardModal} className="btn-link">+ Agregar otro método de pago</a>
                     </div>
+                  </div>
+
+                  <div className="container-step container-box">
+                    <div className="title">Horario de entrega</div>
+                    <div className="lbl-deliveryTime">12:30pm - 1:30pm</div>
+                    <p className="lbl-notes">*Actualmente solo contamos con este horario de entrega</p>
                   </div>
 
                 </div>
@@ -205,16 +212,28 @@ class Checkout extends React.Component {
             border-radius: 3px;
             background-color: #fff;
             border: 1px solid #e8ebe9;
-            margin-top: 15px;
-            padding: 15px 40px;
+            margin-top: 8px;
+            padding: 10px 40px;
           }
 
           .btn-link {
-            margin-top: 20px;
             padding: 20px 0;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: bold;
             color: #3BCF75;
+
+            display: inline-block;
+          }
+
+          .lbl-deliveryTime {
+            font-weight: bold;
+            font-size: 18px;
+          }
+
+          .lbl-notes {
+            margin-top: 20px;
+            font-size: 11px;
+            color: #79776B;
           }
 
         `}</style>

@@ -34,8 +34,7 @@ export default ({ children, loggedUser, isAuthenticated, title = 'eathouse', use
       <style jsx global>{`
         body {
           color: #42413E;
-          /* background: #FAFAFA; */
-          background: #FFF;
+          background: #FAFAFA;
         }
 
         .container-margin-top {
