@@ -4,6 +4,7 @@ import React from 'react';
 // import local libraries
 import api from '../../api';
 import validation from '../../validations/credit-card';
+import { CONEKTA_KEY } from '../../config/consts';
 
 // import components
 import InputText from '../general/InputText';
@@ -33,7 +34,8 @@ class CreditCardForm extends React.Component {
     e.preventDefault();
     if(this.isValid()) {
       this.setState({ isLoading: true });
-      Conekta.setPublicKey("key_JEnHKPz6vGyz5rmzC75F6hg");
+      // Conekta.setPublicKey("key_JEnHKPz6vGyz5rmzC75F6hg");
+      Conekta.setPublicKey(CONEKTA_KEY);
       const { name, creditCardNumber, monthEx, yearEx, cvv } = this.state;
       const tokenParams = {
         "card": {
