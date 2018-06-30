@@ -71,9 +71,9 @@ class Index extends React.Component {
                   <a href="https://play.google.com/store/apps/details?id=com.eathouse" className="btn-app">
                     <img src="/static/google-play-badge.png" className="android" />
                   </a>
-                  <a href="/" className="btn-app">
+                  {/* <a href="/" className="btn-app">
                     <img src="https://play.google.com/store/apps/details?id=com.eathouse" className="ios" />
-                  </a>
+                  </a> */}
                   <a className="lnk-default" onClick={() => this.setState({ isShowModalZone: true })}>Ver zonas de entrega disponibles</a>
                 </div>
               </div>
@@ -144,9 +144,9 @@ class Index extends React.Component {
                 <a href="https://play.google.com/store/apps/details?id=com.eathouse" className="btn-app">
                   <img src="/static/google-play-badge.png" className="android-phone" />
                 </a>
-                <a href="https://play.google.com/store/apps/details?id=com.eathouse" className="btn-app">
+                {/* <a href="https://play.google.com/store/apps/details?id=com.eathouse" className="btn-app">
                   <img src="/static/app_store_badge.svg" className="ios-phone" />
-                </a>
+                </a> */}
               </div>
               <div className="col-md-3">
                 <img src="static/eathouse-phone.png" height="400" />
