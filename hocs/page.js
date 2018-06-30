@@ -10,6 +10,7 @@ import { getTokenFromCookie, getTokenFromLocalStorage } from '../utils/auth';
 import redirect from '../utils/redirect';
 import store from '../redux/store';
 import api from '../api';
+import { initGA, logPageView } from '../config/analytics';
 
 // import components
 import ModalAddress from '../components/general/ModalAddress'
@@ -47,7 +48,14 @@ export default Page => class DefaultPage extends React.Component {
     }
   }
 
+
   componentDidMount() {
+    if (!window.GA_INITIALIZED) {
+      initGA();
+      window.GA_INITIALIZED = true;
+    }
+    logPageView();
+    
     const expireTransform = createExpirationTransform({
       expireKey: 'persistExpiresAt',
       defaultState: {
