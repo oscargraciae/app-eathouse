@@ -25,6 +25,9 @@ class MenuItem extends React.Component {
             <div className="menu-item-name-link">
               <span className="text">{this.props.name}</span>
             </div>
+            <div className="menu-item-featured">
+              <p>{this.props.description}</p>
+            </div>
           </div>
           <div className="menu-item-actions">
             <div className="menu-item-price">
@@ -77,8 +80,19 @@ class MenuItem extends React.Component {
           }
   
           .menu-item-description {
-            height: 100px;
+            height: 110px;
           }
+
+          .menu-item-featured {
+            margin-left: 16px;
+            font-family: "BentonSans", Helvetica, Arial, sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            letter-spacing: 0.2px;
+            color: #79776B;
+            font-size: 12px;
+            line-height: 1.75em;
+        }
   
           .menu-item-name-link {
             font-family: "BentonSans", Helvetica, Arial, sans-serif;
@@ -95,6 +109,7 @@ class MenuItem extends React.Component {
             text-overflow: ellipsis;
             display: block;
             padding: 10px 0;
+            height: 60px;
           }
   
           .menu-item-actions {

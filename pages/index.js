@@ -81,6 +81,17 @@ class Index extends React.Component {
             <div className="HeroMobile-image"></div>
           </section>
 
+          <section className="how-it-works">
+            <div className="container">
+                <div className="row ">
+                  <div className="col-md-12">
+                    <div className="about-us-title">Somos el primer <strong>restaurante online</strong>, con <strong>nuestra propio menú y nuestro propio servicio</strong> en Nuevo León</div>
+                    {/* <p className="about-us-subtitle">Nuestro principal objetivo es llenarte el estomago y brindarte una buena experiencia.</p> */}
+                  </div>
+                </div>
+              </div>
+          </section>
+
           {/* HOW IT WORKS */}
           <section className="how-it-works">
             <div className="container">
@@ -132,6 +143,11 @@ class Index extends React.Component {
                     </div>
                   </div>
                 </div>
+
+                <div className="signupForm">
+                  <a href="/signup" className="btn btn-primary btn-large">Ver menu</a>
+                  <a className="lnk-default" onClick={() => this.setState({ isShowModalZone: true })}>Ver zonas de entrega disponibles</a>
+                </div>
               </div>
           </section>
 
@@ -178,6 +194,19 @@ class Index extends React.Component {
               max-width: 470px;
               /* box-shadow: 0 2px 10px 5px rgba(0,0,0,0.2); */
               left: 35px;
+            }
+
+            .about-us-title {
+              font-size: 32px;
+              margin-bottom: 40px;
+              font-weight: 500;
+              text-transform: uppercase;
+              padding: 0px 200px;
+              padding-top: 80px;
+            }
+
+            .about-us-title > strong {
+              color: #FF7901;
             }
 
             .Hero-Box > h1 {
@@ -312,7 +341,7 @@ class Index extends React.Component {
               background: white;
             }
 
-            @media (max-width: 600px) { 
+            @media (max-width: 600px) {
               .onlyMobile {
                 display: none;
               }
@@ -345,6 +374,14 @@ class Index extends React.Component {
                 padding: 0px;
                 max-width: 470px;
                 left: 10px;
+              }
+
+              .about-us-title {
+                font-size: 26px;
+                margin-bottom: 0px;
+                font-weight: 500;
+                text-transform: uppercase;
+                padding: 0px;
               }
 
               .btn-app > .android {

@@ -6,6 +6,7 @@ import Router from 'next/router'
 import Layout from '../components/common/Layout';
 import InputText from '../components/general/InputText';
 import ButtonBlock from '../components/general/ButtonBlock';
+import AlertBox from '../components/general/AlertBox';
 
 import withData from '../apollo/withData';
 import validation from '../validations/signup';
@@ -55,12 +56,7 @@ class Signup extends React.Component {
         }
         Router.push('/menu');
       } else {
-        const err = [];
-        errors.forEach(({ path, message }) => {
-          err.push(message);
-        });
-  
-        this.setState({ errorsServer: err });
+        this.setState({ errorsServer: response.errors });
       }
     }
 
@@ -87,6 +83,7 @@ class Signup extends React.Component {
           <div className="container-login">
             <h1>Registrarse</h1>
             <p>¿Ya tienes una cuenta? <a className="lbl-principal" href="login">Iniciar sesión</a></p>
+            { errorsServer && <AlertBox message={this.state.errorsServer} /> }
             <form className="signupForm" onSubmit={this.onSubmit}>
               { this.state.messageError && <div className="alert alert-danger">{ this.state.messageError }</div> }
               <InputText
@@ -127,15 +124,6 @@ class Signup extends React.Component {
                 buttonStyle="btn btn-primary btn-large btn-block"
                 loading={this.state.isLoading}
               />
-              { errorsServer && 
-                <div className="alert alert-danger">
-                {errorsServer.map((item, key) => {
-                  return (
-                    <div key={key}>{item}</div>
-                  )
-                })}
-              </div>
-              }
               <div className="controls-small">
                 <p className="lbl-terms">
                   <span> Al registrarte, confirmas que aceptas los <a className="lbl-principal" href="/app/terms_of_service"> Términos y condiciones </a> y la <a className="lbl-principal" href="/app/privacy-policy"> Política de privacidad</a>.</span>

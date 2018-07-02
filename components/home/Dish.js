@@ -78,7 +78,7 @@ class Dish extends React.Component {
           }
   
           .menu-item-description {
-            height: 100px;
+            height: 30px;
           }
   
           .menu-item-name-link {
