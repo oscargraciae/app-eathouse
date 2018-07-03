@@ -42,7 +42,7 @@ export default ({ children, loggedUser, isAuthenticated, title = 'eathouse', use
 
         .container-margin-top {
           /* padding-top: 50px; */
-          padding-top: 120px;
+          padding-top: 110px;
         }
 
         .fluid-container {

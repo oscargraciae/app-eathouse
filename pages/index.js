@@ -144,7 +144,7 @@ class Index extends React.Component {
                   </div>
                 </div>
 
-                <div className="signupForm">
+                <div className="signupForm onlyMobile">
                   <a href="/signup" className="btn btn-primary btn-large">Ver menu</a>
                   <a className="lnk-default" onClick={() => this.setState({ isShowModalZone: true })}>Ver zonas de entrega disponibles</a>
                 </div>
@@ -368,7 +368,7 @@ class Index extends React.Component {
 
               .Hero-mobile .Hero-Box {
                 position: absolute;
-                top: 60px;
+                top: 80px;
                 margin-right: auto;
                 margin-left: auto;
                 padding: 0px;
