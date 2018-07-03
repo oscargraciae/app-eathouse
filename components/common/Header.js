@@ -108,6 +108,10 @@ export default function Header(props) {
   return (
     <header>
         <nav className="navbar navbar-default">
+          <div className="header-message">
+            Por semana de apertura todos los platillos al 2x1 <br />
+            <small>Compra uno y nosotros te llevamos el otro igual.</small>
+          </div>
           <div className="fluid-container">
             <div className="navbar-header">
               <button
@@ -146,7 +150,15 @@ export default function Header(props) {
             width: 100%;
             z-index: 100;
             box-shadow: initial;
-        }
+          }
+
+          .header-message {
+            background: #FF7901;
+            font-size: 14px;
+            color: #FFF;
+            text-align: center;
+            padding: 8px 0px;
+          }
 
           .navbar-brand {
             height: 40px;

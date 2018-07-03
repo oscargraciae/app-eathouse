@@ -187,6 +187,12 @@ function Cart(props) {
           margin-bottom: 20px;
         }
 
+        @media (max-width: 600px) {
+          .sidecart {
+            display: none;
+          }
+        }
+
       `}</style>
     </div>
   )

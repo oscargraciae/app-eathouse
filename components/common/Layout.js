@@ -25,6 +25,7 @@ export default ({ children, loggedUser, isAuthenticated, title = 'eathouse', use
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" />
         <script type="text/javascript" src="https://cdn.conekta.io/js/latest/conekta.js"></script>
       </Head>
+      
       <Header loggedUser={loggedUser} isAuthenticated={isAuthenticated} user={user} />
       { isAuthenticated && <ModalGeneralAddress show={!user.withAddress} /> }  
       <div className="container-margin-top">
@@ -37,8 +38,11 @@ export default ({ children, loggedUser, isAuthenticated, title = 'eathouse', use
           background: #FAFAFA;
         }
 
+        
+
         .container-margin-top {
-          padding-top: 50px;
+          /* padding-top: 50px; */
+          padding-top: 120px;
         }
 
         .fluid-container {

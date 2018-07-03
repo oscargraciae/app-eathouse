@@ -85,6 +85,18 @@ class MenuCalendar extends React.Component {
             font-weight: 600;
           }
 
+          @media (max-width: 600px) {
+            .titleCalendar {
+              margin-right: 0px;
+            }
+
+            .menuCalendar {
+              margin-right: 0px;
+              overflow: auto;
+              justify-content: end;
+            }
+          }
+
         `}</style>
       </div>
     )

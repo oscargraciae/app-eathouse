@@ -186,8 +186,9 @@ class Checkout extends React.Component {
 
                 </div>
               </div>
-
-              <CartDetail sendOrder={this.sendOrder} disabled={!this.state.creditCardId || !this.state.userAddressId} loading={this.state.isSendingOrder}/>
+              <div className="cartDetail">
+                <CartDetail sendOrder={this.sendOrder} disabled={!this.state.creditCardId || !this.state.userAddressId} loading={this.state.isSendingOrder}/>
+              </div>
             </div>
           </div>
         }
@@ -234,6 +235,21 @@ class Checkout extends React.Component {
             margin-top: 20px;
             font-size: 11px;
             color: #79776B;
+          }
+
+          @media (max-width: 600px) {
+            .checkout {
+              margin: 20px 0px;
+              width: 100% !important;
+            }
+
+            .cartDetail {
+              display: none;
+            }
+
+            .container-box {
+              padding: 10px 10px;
+            }
           }
 
         `}</style>

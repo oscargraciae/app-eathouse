@@ -93,7 +93,12 @@ class Menu extends React.Component {
             padding-right: 1.8rem;
           }
 
-          
+          @media (max-width: 600px) {
+            .menu {
+              margin: 20px 0px;
+              width: 100% !important;
+            }
+          }
 
         `}</style>
       </Layout>
