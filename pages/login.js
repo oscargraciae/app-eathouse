@@ -7,6 +7,7 @@ import Layout from '../components/common/Layout';
 import InputText from '../components/general/InputText';
 import ButtonBlock from '../components/general/ButtonBlock';
 import AlertBox from '../components/general/AlertBox';
+import RememberPassword from '../components/login/RememberPassword';
 
 // import local libaries
 import validation from '../validations/login';
@@ -14,6 +15,7 @@ import { setToken } from '../utils/auth';
 import { getTokenFromCookie, getTokenFromLocalStorage } from '../utils/auth';
 import redirect from '../utils/redirect';
 import api from '../api';
+import defaultPage from '../hocs/defaultPage';
 
 class Login extends React.Component {
   static getInitialProps(context) {
@@ -33,6 +35,7 @@ class Login extends React.Component {
       errors: {},
       errorsServer: null,
       isLoading: false,
+      isRememberPassword: false,
     }
   }
 
@@ -70,10 +73,11 @@ class Login extends React.Component {
   }
 
   render() {
-    const { errors, errorsServer } = this.state;
+    const { errors, errorsServer, isRememberPassword } = this.state;
     return (
       <Layout>
         <div className="container">
+          { !isRememberPassword ?
           <div className="container-login">
             <h1>Iniciar sesión</h1>
             <p>¿Todavía no tienes cuenta? <a className="lbl-principal" href="signup">Regístrate</a></p>
@@ -97,7 +101,7 @@ class Login extends React.Component {
                 label="Contraseña"
               />
               <div className="lblRemember">
-                <a onClick={this.props.clickRemember}>¿Olvidaste tu contraseña?</a>
+                <a href="#" onClick={() => this.setState({ isRememberPassword: true }) }>¿Olvidaste tu contraseña?</a>
               </div>
               <ButtonBlock
                 text="Entrar"
@@ -110,7 +114,9 @@ class Login extends React.Component {
                 </p>
               </div>
             </form>
-          </div>
+          </div> :
+           <RememberPassword />
+        }
         </div>
 
         <style jsx>{`
@@ -196,4 +202,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default defaultPage(Login);

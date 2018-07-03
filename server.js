@@ -26,6 +26,10 @@ app.prepare()
     return app.render(req, res, '/login');
   });
 
+  server.get('/password-reset', (req, res) => {
+    return app.render(req, res, '/passwordReset');
+  });
+
   server.get('/logout', (req, res) => {
     return app.render(req, res, '/logout');
   });

@@ -39,6 +39,18 @@ const api = {
       const response = await axios.get(`/address`);
       return response.data;
     },
+    async sendMailPassword(data) {
+      const response = await axios.post(`/users/send-password-email`, data);
+      return response.data;
+    },
+    async validationToken(emailToken, id) {
+      const response = await axios.get(`/password?t=${emailToken}&id=${id}`);
+      return response.data;
+    },
+    async changePassword(id, data) {
+      const response = await axios.post(`/password/${id}`, data);
+      return response.data;
+    }
   },
   creditCard: {
     async create(data) {
