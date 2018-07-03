@@ -90,11 +90,11 @@ class AddressForm extends React.Component {
 
   fillInAddress = (place) => {
     var componentForm = {
-      street_number: 'short_name',
-      route: 'long_name',
+      // street_number: 'short_name',
+      // route: 'long_name',
       locality: 'long_name',
       administrative_area_level_1: 'long_name',
-      postal_code: 'short_name'
+      // postal_code: 'short_name'
     };
 
     for (var i = 0; i < place.address_components.length; i++) {
@@ -157,7 +157,7 @@ class AddressForm extends React.Component {
               <div className="row">
                 <div className="col-md-6">
                   <input type="hidden" name="state" id="administrative_area_level_1" value={this.state.state} />
-                  <input type="hidden" name="zipcode" id="postal_code" value={this.state.zipcode} />
+                  {/* <input type="hidden" name="zipcode" id="postal_code" value={this.state.zipcode} /> */}
                 </div>
                 <div className="col-md-6">
                   <input type="hidden" name="city" id="locality" value={this.state.city} />
