@@ -52,7 +52,7 @@ class Index extends React.Component {
           <section className="Hero onlyMobile">
             <div className="container">
               <div className="Hero-Box">
-                <h1>Saludable y delicioso directo a tu casa u oficina.</h1>
+                <h1>Saludable y delicioso directo a tu casa u oficina. <small>Envío Gratis.</small></h1>
                 <h2>Ordena para hoy o programa tú semana.</h2>
                 <div className="signupForm">
                   <a href="/signup" className="btn btn-primary btn-large btn-block">¡Ordena ya!</a>
@@ -65,7 +65,7 @@ class Index extends React.Component {
           <section className="Hero-mobile onlyWeb">
             <div className="container">
               <div className="Hero-Box">
-                <h1>Saludable y delicioso directo a tu casa u oficina.</h1>
+                <h1>Saludable y delicioso directo a tu casa u oficina. <small>Envío Gratis.</small></h1>
                 <h2>Ordena para hoy o programa tú semana.</h2>
                 <div className="signupForm">
                   <a href="https://play.google.com/store/apps/details?id=com.eathouse" className="btn-app">
@@ -213,6 +213,10 @@ class Index extends React.Component {
               font-weight: 500;
               text-transform: uppercase;
               line-height: 1.37;
+            }
+
+            .Hero-Box > h1 > small{
+              color: #3BCF75;
             }
 
             .Hero-Box > h2 {
