@@ -52,7 +52,7 @@ class Index extends React.Component {
           <section className="Hero onlyMobile">
             <div className="container">
               <div className="Hero-Box">
-                <h1>Saludable y delicioso directo a tu casa u oficina. <small>Envío Gratis.</small></h1>
+                <h1>Saludable y delicioso directo a tu casa u oficina. <br /><small>Envío Gratis.</small></h1>
                 <h2>Ordena para hoy o programa tú semana.</h2>
                 <div className="signupForm">
                   <a href="/signup" className="btn btn-primary btn-large btn-block">¡Ordena ya!</a>
@@ -65,16 +65,18 @@ class Index extends React.Component {
           <section className="Hero-mobile onlyWeb">
             <div className="container">
               <div className="Hero-Box">
-                <h1>Saludable y delicioso directo a tu casa u oficina. <small>Envío Gratis.</small></h1>
-                <h2>Ordena para hoy o programa tú semana.</h2>
+                <h1>Saludable y delicioso directo a tu casa u oficina. <br /><small>Envío Gratis.</small></h1>
+                {/* <h2>Ordena para hoy o programa tú semana.</h2> */}
                 <div className="signupForm">
-                  <a href="https://play.google.com/store/apps/details?id=com.eathouse" className="btn-app">
+                  <a href="/signup" className="btn btn-primary btn-large btn-block">Descarga eathouse Gratis</a>
+                  <div className="lbll-default">*Versión para Android</div>
+                  {/* <a href="https://play.google.com/store/apps/details?id=com.eathouse" className="btn-app">
                     <img src="/static/google-play-badge.png" className="android" />
-                  </a>
+                  </a> */}
                   {/* <a href="/" className="btn-app">
                     <img src="https://play.google.com/store/apps/details?id=com.eathouse" className="ios" />
                   </a> */}
-                  <a className="lnk-default" onClick={() => this.setState({ isShowModalZone: true })}>Ver zonas de entrega disponibles</a>
+                  {/* <a className="lnk-default" onClick={() => this.setState({ isShowModalZone: true })}>Ver zonas de entrega disponibles</a> */}
                 </div>
               </div>
             </div>
@@ -157,7 +159,7 @@ class Index extends React.Component {
               <div className="col-md-4">
                 <h3>Descarga eathouse en tu celular</h3>
                 <p>Descargue nuestra aplicación móvil para hacer tu orden más fácil y más rápido.</p>
-                <a href="https://play.google.com/store/apps/details?id=com.eathouse" className="btn-app">
+                <a target="_blank" href="https://play.google.com/store/apps/details?id=com.eathouse" className="btn-app">
                   <img src="/static/google-play-badge.png" className="android-phone" />
                 </a>
                 {/* <a href="https://play.google.com/store/apps/details?id=com.eathouse" className="btn-app">
@@ -211,8 +213,9 @@ class Index extends React.Component {
 
             .Hero-Box > h1 {
               font-weight: 500;
-              text-transform: uppercase;
+              /* text-transform: uppercase; */
               line-height: 1.37;
+              font-size: 32px;
             }
 
             .Hero-Box > h1 > small{
@@ -312,6 +315,15 @@ class Index extends React.Component {
               cursor: pointer;
             }
 
+            .lbll-default {
+              color: #79776B;
+              font-size: 14px;
+              text-align: left;
+              width: 100%;
+              display: inline-block;
+              padding: 5px 0px;
+            }
+
             .Hero-mobile {
               display: none;
             }
@@ -352,6 +364,7 @@ class Index extends React.Component {
 
               .Hero-mobile {
                 display: block;
+                background: #FFF;
               }
 
               .HeroMobile-image {
@@ -359,15 +372,16 @@ class Index extends React.Component {
                 height: 250px;
                 background-size: cover;
                 background-repeat: no-repeat;
-                margin-top: 300px
+                margin-top: 220px
               }
 
               .Hero-Box > h1 {
-                font-size: 28px;
+                padding-top: 20px;
+                font-size: 26px;
               }
 
               .Hero-Box > h2 {
-                font-size: 21px;
+                font-size: 18px;
               }
 
               .Hero-mobile .Hero-Box {
@@ -378,6 +392,13 @@ class Index extends React.Component {
                 padding: 0px;
                 max-width: 470px;
                 left: 10px;
+              }
+
+              .how-it-works h2 {
+                font-size: 21px;
+                margin-bottom: 40px;
+                font-weight: 500;
+                text-transform: uppercase;
               }
 
               .about-us-title {
