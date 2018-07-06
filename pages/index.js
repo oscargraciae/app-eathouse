@@ -68,7 +68,7 @@ class Index extends React.Component {
                 <h1>Saludable y delicioso directo a tu casa u oficina. <br /><small>Envío Gratis.</small></h1>
                 {/* <h2>Ordena para hoy o programa tú semana.</h2> */}
                 <div className="signupForm">
-                  <a href="/signup" className="btn btn-primary btn-large btn-block">Descarga eathouse Gratis</a>
+                  <a href="https://play.google.com/store/apps/details?id=com.eathouse" className="btn btn-primary btn-large btn-block">Descarga eathouse Gratis</a>
                   <div className="lbll-default">*Versión para Android</div>
                   {/* <a href="https://play.google.com/store/apps/details?id=com.eathouse" className="btn-app">
                     <img src="/static/google-play-badge.png" className="android" />
