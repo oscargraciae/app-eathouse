@@ -52,7 +52,7 @@ export default () => {
               <hr />
               <img alt="eathouse Footer" src="/static/logo-eathouse.png" width="100" />
               <p>Chambita Labs S.A.P.I de C.V</p>
-              <p>Dr. José Luna Ayala, San Jerónimo, 64634 Monterrey, N.L.</p>
+              <p>Dr. José Luna Ayala, San Jerónimo, 64640 Monterrey, N.L.</p>
               {/* <p>
                 Hecho con <i className="fa fa-heart lbl-danger" /> en Monterrey (Mexico)
                 <br /><span>© eathouse. Todos los derechos reservados</span>
