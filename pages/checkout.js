@@ -12,6 +12,7 @@ import { clearCart } from '../actions/cart';
 import Layout from '../components/common/Layout';
 import InputText from '../components/general/InputText';
 import ButtonApp from '../components/general/ButtonApp';
+import ButtonBlock from '../components/general/ButtonBlock';
 import MenuCalendar from '../components/menu/MenuCalendar';
 import MenuItem from '../components/menu/MenuItem';
 import CartDetail from '../components/checkout/CartDetail';
@@ -186,6 +187,15 @@ class Checkout extends React.Component {
 
                 </div>
               </div>
+              <div className="btnContainerMobile">
+                <ButtonBlock
+                  text="Ordenar"
+                  buttonStyle="btn btn-primary btn-large btn-block"
+                  loading={this.state.isSendingOrder}
+                  disabled={!this.state.creditCardId || !this.state.userAddressId}
+                  click={this.sendOrder}
+                />
+              </div>
               <div className="cartDetail">
                 <CartDetail sendOrder={this.sendOrder} disabled={!this.state.creditCardId || !this.state.userAddressId} loading={this.state.isSendingOrder}/>
               </div>
@@ -237,6 +247,10 @@ class Checkout extends React.Component {
             color: #79776B;
           }
 
+          .btnContainerMobile {
+            display: none;
+          }
+
           @media (max-width: 600px) {
             .checkout {
               margin: 20px 0px;
@@ -249,6 +263,13 @@ class Checkout extends React.Component {
 
             .container-box {
               padding: 10px 10px;
+            }
+
+            .btnContainerMobile {
+              position: sticky;
+              bottom: 0;
+              z-index: 100;
+              display: block;
             }
           }
 
