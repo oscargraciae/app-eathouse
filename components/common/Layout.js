@@ -37,12 +37,9 @@ export default ({ children, loggedUser, isAuthenticated, title = 'eathouse', use
           color: #42413E;
           background: #FAFAFA;
         }
-
         
-
         .container-margin-top {
-          /* padding-top: 50px; */
-          padding-top: 110px;
+          padding-top: 50px;
         }
 
         .fluid-container {

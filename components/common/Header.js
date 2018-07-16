@@ -97,8 +97,8 @@ const menuAuth = (props) => {
           </li>
         </ul>
       </li>
-      <li>
-        <a className="btn-link" href="/menu"><span className="btn btn-primary btn-block">Menu</span></a>
+      <li className="onlyMobile">
+        <a className="btn-link onlyMobile" href="/menu"><span className="btn btn-primary btn-block">Menu</span></a>
       </li>
     </ul>
   )
@@ -108,15 +108,11 @@ export default function Header(props) {
   return (
     <header>
         <nav className="navbar navbar-default">
-          <div className="header-message">
-            Por semana de apertura todos los platillos al 2x1 <br />
-            <small>Compra uno y nosotros te llevamos el otro igual.</small>
-          </div>
           <div className="fluid-container">
             <div className="navbar-header">
               <button
                 type="button"
-                className="navbar-toggle onlyMobile"
+                className="navbar-toggle"
                 data-toggle="collapse"
                 data-target=".navbar-collapse"
               >

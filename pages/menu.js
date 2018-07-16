@@ -1,6 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
+import {
+  BrowserView,
+  MobileView,
+  isBrowser,
+  isMobile
+} from "react-device-detect";
 
 import securePage from '../hocs/page';
 import api from '../api';
@@ -10,6 +16,7 @@ import { formatDateString, getDateSumDays } from '../utils/formatDate';
 import Layout from '../components/common/Layout';
 import MenuCalendar from '../components/menu/MenuCalendar';
 import MenuItem from '../components/menu/MenuItem';
+import MenuIMobileItem from '../components/menu/MenuIMobileItem';
 import Cart from '../components/general/Cart';
 
 class Menu extends React.Component {
@@ -58,6 +65,10 @@ class Menu extends React.Component {
 
   render() {
     const dishes = this.props.dishes;
+    let total = 0;
+    this.props.cart.data.map((item, i) => {
+      total = total + item.total;
+    });
     return (
       <Layout {...this.props}>
         <div>
@@ -77,6 +88,11 @@ class Menu extends React.Component {
                   )
                 }) }
               </div>
+              { total > 0 &&
+                <div className="btnContainerMobile">
+                  <a href="/checkout" className="btn btn-primary btn-large btn-block">VER CARRITO ${total}</a>
+                </div>
+              }
             </div>
             <Cart />
           </div>
@@ -93,11 +109,23 @@ class Menu extends React.Component {
             padding-right: 1.8rem;
           }
 
+          .btnContainerMobile {
+            display: none;
+          }
+
           @media (max-width: 600px) {
             .menu {
               margin: 20px 0px;
               width: 100% !important;
             }
+
+            .btnContainerMobile {
+              position: sticky;
+              bottom: 0;
+              z-index: 100;
+              display: block;
+            }
+
           }
 
         `}</style>
@@ -106,10 +134,10 @@ class Menu extends React.Component {
   }
 }
 
-// const mapStateToProps = (state) => {
-//   return {
-//     cart: state.cart,
-//   }
-// }
+const mapStateToProps = (state) => {
+  return {
+    cart: state.cart,
+  }
+}
 
-export default securePage(connect(null, { addToCart })(Menu));
+export default securePage(connect(mapStateToProps, { addToCart })(Menu));

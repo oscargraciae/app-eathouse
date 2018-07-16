@@ -18,7 +18,7 @@ class MenuItem extends React.Component {
   render() {
     const productToCart = this.props.cart.data.filter((item) => item.id === this.props.id && item.deliveryDate === this.props.deliveryDate )[0];
     return (
-      <div className="col-md-3 col-xs-6 menu-item">
+      <div className="col-xs-6 menu-item">
         <div className="menu-item-photo" style={{ backgroundImage: `url(${this.props.image})` }} />
         <div className="menu-item-details">
           <div className="menu-item-description">
@@ -221,72 +221,6 @@ class MenuItem extends React.Component {
   
           .col-md-3 {
             padding: 5px;
-          }
-
-          @media (max-width: 600px) {
-            .menu-item-name-link {
-              font-size: 12px;
-              line-height: 1.3em;
-              -webkit-letter-spacing: 0;
-              -moz-letter-spacing: 0;
-              -ms-letter-spacing: 0;
-              letter-spacing: 0;
-              color: #515252;
-              overflow: visible;
-              text-overflow: ellipsis;
-              display: block;
-              padding: 0px 0;
-              height: 35px;
-          
-            }
-            .menu-item-featured {
-              font-size: 10px;
-            }
-
-            .menu-item-description {
-              height: 75px;
-            }
-
-            .menu-item-actions {
-              height: 53px;
-              border-top: 1px solid #e8ebe9;
-    
-              display: flex;
-              align-items: center;
-              justify-content: flex-end;
-            }
-    
-            .menu-item-price {
-              font-size: 18px;
-              letter-spacing: 0.2px;
-    
-              color: #79776B;
-              float: left;
-              border-right: 1px solid #e8ebe9;
-              text-align: justify;
-              padding-left: 16px;
-              padding-right: 16px;
-    
-              height: 100%;
-              display: flex;
-              align-items: center;
-            }
-    
-            .menu-item-buttons {
-              margin-right: 12px;
-              font-size: 16px;
-              display: block;
-              float: right; 
-            }
-            
-            .menu-item-price {
-              display: none;
-            }
-
-            .button-add-cart {
-              font-size: 12px;
-              width: 80px;
-            }
           }
         `}</style>
       </div>
