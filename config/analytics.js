@@ -11,6 +11,12 @@ export const logPageView = () => {
   ReactGA.pageview(window.location.pathname);
 };
 
+export const setUser = (user) => {
+  if(user) {
+    ReactGA.set({ userId: user.id });
+  }
+}
+
 export const logEvent = (category = '', action = '') => {
   if (category && action) {
     ReactGA.event({ category, action });

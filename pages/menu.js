@@ -90,7 +90,7 @@ class Menu extends React.Component {
               </div>
               { total > 0 &&
                 <div className="btnContainerMobile">
-                  <a href="/checkout" className="btn btn-primary btn-large btn-block">VER CARRITO ${total}</a>
+                  <a id="btnMobileMenuCart" href="/checkout" className="btn btn-primary btn-large btn-block">VER CARRITO ${total}</a>
                 </div>
               }
             </div>

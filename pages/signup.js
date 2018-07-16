@@ -45,13 +45,11 @@ class Signup extends React.Component {
 
     if(this.isValid()) {
       const response = await api.user.create(this.state);
-      console.log("Response--->", response);
       const { ok, user } = response;
 
       if(ok) {
         const { email, password } = this.state;
         const response = await api.user.authentication(email, password);
-        console.log("AUTH RESPONSE---->", response);
         if(response.ok) {
           setToken(response.user.token);
         }

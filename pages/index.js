@@ -6,6 +6,7 @@ import defaultPage from '../hocs/defaultPage';
 import { getTokenFromCookie, getTokenFromLocalStorage } from '../utils/auth';
 import redirect from '../utils/redirect';
 import api from '../api';
+import { logEvent } from '../config/analytics';
 
 // import components
 import Layout from '../components/common/Layout';
@@ -52,10 +53,11 @@ class Index extends React.Component {
           <section className="Hero onlyMobile">
             <div className="container">
               <div className="Hero-Box">
-                <h1>Saludable y delicioso directo a tu casa u oficina. <br /><small>Envío Gratis.</small></h1>
-                <h2>Ordena para hoy o programa tú semana.</h2>
+                <h1>Comer bien todos los días, ¡es posible!</h1>
+                <h2>Comidas ricas y saludables, entregadas directamente a la puerta de tu oficina. <br /><small>Envío Gratis.</small></h2>
+                {/* <h2>Ordena para hoy o programa tú semana.</h2> */}
                 <div className="signupForm">
-                  <a href="/signup" className="btn btn-primary btn-large btn-block">¡Ordena ya!</a>
+                  <a id="btnOrdeneYa" href="/signup" className="btn btn-primary btn-large btn-block">¡Ordena ya!</a>
                   <a className="lnk-default" onClick={() => this.setState({ isShowModalZone: true })}>Ver zonas de entrega disponibles</a>
                 </div>
               </div>
@@ -65,11 +67,13 @@ class Index extends React.Component {
           <section className="Hero-mobile onlyWeb">
             <div className="container">
               <div className="Hero-Box">
-                <h1>Saludable y delicioso directo a tu casa u oficina. <br /><small>Envío Gratis.</small></h1>
+                <h1>Comer bien todos los días, ¡es posible!</h1>
+                <h2>Comidas ricas y saludables, entregadas directamente a la puerta de tu oficina. <br /><small>Envío Gratis.</small></h2>
+                {/* <h1>Saludable y delicioso directo a tu casa u oficina. <br /><small>Envío Gratis.</small></h1> */}
                 {/* <h2>Ordena para hoy o programa tú semana.</h2> */}
                 <div className="signupForm">
-                  <a href="/signup" className="btn btn-primary btn-large btn-block">¡Ordena ya!</a><br/>
-                  <a href="https://play.google.com/store/apps/details?id=com.eathouse" className="btn btn-default btn-large btn-block">Descarga eathouse Gratis</a>
+                  <a href="/signup" id="btnMobileOrdeneYa" className="btn btn-primary btn-large btn-block">¡Ordena ya!</a><br/>
+                  <a href="https://play.google.com/store/apps/details?id=com.eathouse" className="btn btn-default btn-large btn-block btnDownloadAndroid">Descarga eathouse Gratis</a>
                   <div className="lbll-default">*Versión para Android</div>
                   {/* <a href="https://play.google.com/store/apps/details?id=com.eathouse" className="btn-app">
                     <img src="/static/google-play-badge.png" className="android" />
@@ -148,7 +152,7 @@ class Index extends React.Component {
                 </div>
 
                 <div className="signupForm onlyMobile">
-                  <a href="/signup" className="btn btn-primary btn-large">Ver menu</a>
+                  <a id="btnHomeVerMenu" href="/signup" className="btn btn-primary btn-large">Ver menu</a>
                   <a className="lnk-default" onClick={() => this.setState({ isShowModalZone: true })}>Ver zonas de entrega disponibles</a>
                 </div>
               </div>
@@ -160,7 +164,7 @@ class Index extends React.Component {
               <div className="col-md-4">
                 <h3>Descarga eathouse en tu celular</h3>
                 <p>Descargue nuestra aplicación móvil para hacer tu orden más fácil y más rápido.</p>
-                <a target="_blank" href="https://play.google.com/store/apps/details?id=com.eathouse" className="btn-app">
+                <a target="_blank" href="https://play.google.com/store/apps/details?id=com.eathouse" className="btn-app btnDownloadAndroid">
                   <img src="/static/google-play-badge.png" className="android-phone" />
                 </a>
                 {/* <a href="https://play.google.com/store/apps/details?id=com.eathouse" className="btn-app">
@@ -189,7 +193,8 @@ class Index extends React.Component {
             .Hero-Box {
               position: absolute;
               /* background-color: white; */
-              top: 170px;
+              /* top: 170px; */
+              top: 110px;
               margin-right: auto;
               margin-left: auto;
               padding: 5px 30px 25px 30px;
@@ -214,18 +219,19 @@ class Index extends React.Component {
 
             .Hero-Box > h1 {
               font-weight: 500;
-              /* text-transform: uppercase; */
+              text-transform: uppercase;
               line-height: 1.37;
               font-size: 32px;
             }
 
-            .Hero-Box > h1 > small{
+            .Hero-Box > h2 > small{
               color: #3BCF75;
             }
 
             .Hero-Box > h2 {
               font-weight: 300;
               font-size: 24px;
+              line-height: 32px;
             }
 
             .how-it-works {
@@ -374,7 +380,7 @@ class Index extends React.Component {
                 background-size: cover;
                 background-repeat: no-repeat;
                 /* margin-top: 220px */
-                margin-top: 280px
+                margin-top: 300px
               }
 
               .Hero-Box > h1 {
@@ -387,7 +393,7 @@ class Index extends React.Component {
 
               .Hero-mobile .Hero-Box {
                 position: absolute;
-                top: 80px;
+                top: 50px;
                 margin-right: auto;
                 margin-left: auto;
                 padding: 0px;

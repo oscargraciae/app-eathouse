@@ -6,7 +6,7 @@ import { toMoney, thousandSpace } from '../../utils/formatNumber';
 class Dish extends React.Component {
   render() {
     return (
-      <div className="col-md-3 menu-item">
+      <div className="col-md-3 col-xs-6 menu-item">
         <div className="menu-item-photo" style={{ backgroundImage: `url(${this.props.image})` }} />
         <div className="flag">${this.props.price}</div>
         <div className="menu-item-details">

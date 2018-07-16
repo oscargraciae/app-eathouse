@@ -24,8 +24,24 @@ export default ({ children, loggedUser, isAuthenticated, title = 'eathouse', use
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" />
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" />
         <script type="text/javascript" src="https://cdn.conekta.io/js/latest/conekta.js"></script>
+
+        <script dangerouslySetInnerHTML={{
+          __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer','GTM-TQS3BV7');`,
+        }}>
+        </script>
       </Head>
-      
+      <noscript dangerouslySetInnerHTML={{
+          __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TQS3BV7"
+          height="0" width="0" style={{ display:'none', visibility:'hidden' }}></iframe>`,
+        }}>
+      </noscript>
+      {/* <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TQS3BV7"
+      height="0" width="0" style={{ display:'none', visibility:'hidden' }}></iframe></noscript> */}
+
       <Header loggedUser={loggedUser} isAuthenticated={isAuthenticated} user={user} />
       { isAuthenticated && <ModalGeneralAddress show={!user.withAddress} /> }  
       <div className="container-margin-top">
