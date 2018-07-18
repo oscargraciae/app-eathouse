@@ -57,7 +57,7 @@ class Index extends React.Component {
                 <h2>Comidas ricas y saludables, entregadas directamente a la puerta de tu oficina. <br /><small>Envío Gratis.</small></h2>
                 {/* <h2>Ordena para hoy o programa tú semana.</h2> */}
                 <div className="signupForm">
-                  <a id="btnOrdeneYa" href="/signup" className="btn btn-primary btn-large btn-block">¡Ordena ya!</a>
+                  <a id="btnOrdeneYa" href="/menu-public" className="btn btn-primary btn-large btn-block">¡Ordena ya!</a>
                   <a className="lnk-default" onClick={() => this.setState({ isShowModalZone: true })}>Ver zonas de entrega disponibles</a>
                 </div>
               </div>
@@ -72,7 +72,7 @@ class Index extends React.Component {
                 {/* <h1>Saludable y delicioso directo a tu casa u oficina. <br /><small>Envío Gratis.</small></h1> */}
                 {/* <h2>Ordena para hoy o programa tú semana.</h2> */}
                 <div className="signupForm">
-                  <a href="/signup" id="btnMobileOrdeneYa" className="btn btn-primary btn-large btn-block">¡Ordena ya!</a><br/>
+                  <a href="/menu-public" id="btnMobileOrdeneYa" className="btn btn-primary btn-large btn-block">¡Ordena ya!</a><br/>
                   <a href="https://play.google.com/store/apps/details?id=com.eathouse" className="btn btn-default btn-large btn-block btnDownloadAndroid">Descarga eathouse Gratis</a>
                   <div className="lbll-default">*Versión para Android</div>
                   {/* <a href="https://play.google.com/store/apps/details?id=com.eathouse" className="btn-app">
@@ -152,7 +152,7 @@ class Index extends React.Component {
                 </div>
 
                 <div className="signupForm onlyMobile">
-                  <a id="btnHomeVerMenu" href="/signup" className="btn btn-primary btn-large">Ver menu</a>
+                  <a id="btnHomeVerMenu" href="/menu-public" className="btn btn-primary btn-large">Ver menu</a>
                   <a className="lnk-default" onClick={() => this.setState({ isShowModalZone: true })}>Ver zonas de entrega disponibles</a>
                 </div>
               </div>

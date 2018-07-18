@@ -49,6 +49,10 @@ app.prepare()
   server.get('/menu', (req, res) => {
     return app.render(req, res, '/menu');
   });
+
+  server.get('/menu-public', (req, res) => {
+    return app.render(req, res, '/menuPublic');
+  });
   
   server.get('/menu/item/:id/:deliveryDate', (req, res) => {
     return app.render(req, res, '/menuItem', { id: req.params.id });

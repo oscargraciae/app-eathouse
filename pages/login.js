@@ -50,7 +50,8 @@ class Login extends React.Component {
       const { ok, user } = response;
       if(ok) {
         setToken(user.token);
-        Router.push('/menu');
+        location.href = "/menu";
+        // Router.push('/menu');
       } else {
         this.setState({ errorsServer: 'Verifica tu correo electrónico y contraseña' });
       }
