@@ -151,7 +151,7 @@ class Index extends React.Component {
                   </div>
                 </div>
 
-                <div className="signupForm onlyMobile">
+                <div className="signupForm">
                   <a id="btnHomeVerMenu" href="/menu-public" className="btn btn-primary btn-large">Ver menu</a>
                   <a className="lnk-default" onClick={() => this.setState({ isShowModalZone: true })}>Ver zonas de entrega disponibles</a>
                 </div>
@@ -365,6 +365,10 @@ class Index extends React.Component {
             }
 
             @media (max-width: 600px) {
+
+              #btnHomeVerMenu {
+                margin-top: 40px;
+              }
               .onlyMobile {
                 display: none;
               }
@@ -437,6 +441,7 @@ class Index extends React.Component {
 
               .lnk-default {
                 padding: 30px 0px;
+                display: none;
               }
 
               .why-container {
