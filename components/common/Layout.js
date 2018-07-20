@@ -15,6 +15,24 @@ export default ({ children, loggedUser, isAuthenticated, title = 'eathouse', use
         <meta charSet='utf-8' />
         <meta name='viewport' content='initial-scale=1.0, width=device-width' />
         <meta name='google-site-verification' content='M6vcqaYYRkLZlKWOvTNC6Q7HMwZXk9wlPW5ya6jQ3es' />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta charSet="utf-8" />
+        <meta name="language" content="es" />
+        <meta name="author" content="Eathouse" />
+        <meta name="pagename" content="Eathouse" />
+        <meta content="IE=edge,chrome=1" httpEquiv="X-UA-Compatible" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="COMER BIEN TODOS LOS DÍAS, ¡ES POSIBLE!" />
+        <meta property="og:description" content="Comidas ricas y saludables, entregadas directamente a la puerta de tu oficina." />
+        <meta property="og:image" content="https://s3.us-west-2.amazonaws.com/eathouse/assets/og-page.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:url" content="https://eathouse.mx" />
+        <meta property="og:site_name" content="Eathouse" />
+        <meta property="og:locale" content="es" />
+
+
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
         <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.css' rel='stylesheet' />
 
@@ -33,6 +51,37 @@ export default ({ children, loggedUser, isAuthenticated, title = 'eathouse', use
           })(window,document,'script','dataLayer','GTM-TQS3BV7');`,
         }}>
         </script>
+
+        <script dangerouslySetInnerHTML={{
+          __html: `!function() {
+            var t = window.driftt = window.drift = window.driftt || [];
+            if (!t.init) {
+              if (t.invoked) return void (window.console && console.error && console.error("Drift snippet included twice."));
+              t.invoked = !0, t.methods = [ "identify", "config", "track", "reset", "debug", "show", "ping", "page", "hide", "off", "on" ], 
+              t.factory = function(e) {
+                return function() {
+                  var n = Array.prototype.slice.call(arguments);
+                  return n.unshift(e), t.push(n), t;
+                };
+              }, t.methods.forEach(function(e) {
+                t[e] = t.factory(e);
+              }), t.load = function(t) {
+                var e = 3e5, n = Math.ceil(new Date() / e) * e, o = document.createElement("script");
+                o.type = "text/javascript", o.async = !0, o.crossorigin = "anonymous", o.src = "https://js.driftt.com/include/" + n + "/" + t + ".js";
+                var i = document.getElementsByTagName("script")[0];
+                i.parentNode.insertBefore(o, i);
+              };
+            }
+          }();
+          drift.SNIPPET_VERSION = '0.3.1';
+          drift.load('vmvp65uv9t8h');`,
+        }}>
+        </script>
+
+<script>
+
+</script>
+
       </Head>
       <noscript dangerouslySetInnerHTML={{
           __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TQS3BV7"
@@ -51,7 +100,8 @@ export default ({ children, loggedUser, isAuthenticated, title = 'eathouse', use
       <style jsx global>{`
         body {
           color: #42413E;
-          background: #FAFAFA;
+          /* background: #FAFAFA; */
+          background: #FFF;
         }
         
         .container-margin-top {

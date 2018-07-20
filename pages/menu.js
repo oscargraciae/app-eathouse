@@ -76,9 +76,12 @@ class Menu extends React.Component {
           <div className="fluid-container">
             <div className="menu">
               { !this.state.isTime &&
-                <div className="alert alert-success">
+                // <div className="alert alert-success">
+                <div className="alertMenu">
                   <p><strong>Aviso</strong></p>
-                  <p>Los pedidos que son para el día de hoy se tienen que ordenar antes de las 11:00am. No olvides programar tus platillos para la semana.</p>
+                  {/* <p>Los pedidos que son para el día de hoy se tienen que ordenar antes de las 11:00am. <br/> No olvides programar tus platillos para la semana.</p> */}
+                  {/* <p>Los pedidos que son para el día de hoy se tienen que ordenar antes de las 11:00am o elige el día que quieres que sea entregada.</p> */}
+                  <p>Los pedidos para hoy se cierran a las 11:00am, programa tus platillos para mañana o programa para otro día.</p>
                 </div>
               }
               <div className="row">
@@ -111,6 +114,26 @@ class Menu extends React.Component {
 
           .btnContainerMobile {
             display: none;
+          }
+
+          .alertMenu {
+            font-size: 14px;
+            letter-spacing: 0.14px;
+            font-weight: 400;
+            line-height: normal;
+            color: rgb(143, 149, 163);
+            background-color: rgb(247, 247, 248);
+            min-height: 50px;
+            display: flex;
+            flex-direction: column;
+            -webkit-box-align: center;
+            align-items: center;
+            padding: 16px;
+            text-align: left;
+          }
+
+          .alertMenu > p {
+            width: 100%;
           }
 
           @media (max-width: 600px) {

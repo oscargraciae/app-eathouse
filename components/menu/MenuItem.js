@@ -122,10 +122,10 @@ class MenuItem extends React.Component {
           }
   
           .menu-item-price {
-            font-size: 18px;
+            font-size: 21px;
             letter-spacing: 0.2px;
   
-            color: #79776B;
+            color: #333;
             float: left;
             border-right: 1px solid #e8ebe9;
             text-align: justify;
@@ -260,7 +260,7 @@ class MenuItem extends React.Component {
               font-size: 18px;
               letter-spacing: 0.2px;
     
-              color: #79776B;
+              color: #333;
               float: left;
               border-right: 1px solid #e8ebe9;
               text-align: justify;
