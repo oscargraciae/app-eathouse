@@ -145,7 +145,7 @@ function Cart(props) {
           line-height: 1;
           letter-spacing: 1px;
           color: #42413E;
-          margin-bottom: 20px;
+          margin-bottom: 50px;
         }
 
         .line-item {

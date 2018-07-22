@@ -30,7 +30,7 @@ class Faq extends React.Component {
               <li>
                 <div>
                   <div className="question">¿Hay costo de entrega?</div>
-                  <div className="answer">La entrega es gratuita y lo seguirá siendo.</div>
+                  <div className="answer">La entrega es gratuita.</div>
                 </div>
               </li>
               <li>
@@ -39,12 +39,12 @@ class Faq extends React.Component {
                   <div className="answer">Solo tienes que ordenar tu pedido por medio de nuestra web o la aplicación móvil, seleccionar el día que quieres que sea entregada y listo, tus platillos serán entregados a la puerta de tu casa u oficina listos para comer.</div>
                 </div>
               </li>
-              <li>
+              {/* <li>
                 <div>
                   <div className="question">¿Aceptan efectivo?</div>
                   <div className="answer">No, el efectivo es un medio de pago cada vez menos utilizado y que complica los procesos cuando hay muchas transacciones.</div>
                 </div>
-              </li>
+              </li> */}
               <li>
                 <div>
                   <div className="question">¿Hay un pedido mínimo?</div>
@@ -81,12 +81,12 @@ class Faq extends React.Component {
                   <div className="answer">Muy rara vez llegamos tarde, pero como decimos, somos humanos y estas cosas pasan. Si llegamos tarde te avisaremos con antelación y trataremos de compensarte.</div>
                 </div>
               </li>
-              <li>
+              {/* <li>
                 <div>
                   <div className="question">¿Puedo cancelar una comida?</div>
                   <div className="answer">Puedes hacer cualquier tipo de modificación a tus órdenes hasta las 9:00 pm del día anterior al que las vas a recibir.</div>
                 </div>
-              </li>
+              </li> */}
               
             </ul>
           </div>

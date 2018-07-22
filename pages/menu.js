@@ -31,6 +31,7 @@ class Menu extends React.Component {
   state = {
     deliveryDate: '',
     isTime: false,
+    dateString: '',
   }
 
   componentDidMount() {
@@ -45,10 +46,16 @@ class Menu extends React.Component {
         newDate = getDateSumDays(new Date(Date.now()), 'YYYY/MM/DD', 2);
       }
 
-      this.setState({ deliveryDate: newDate, isTime: false });
+      let dateS = moment(new Date(newDate), "MM-DD-YYYY", "es").locale("mx");
+      const weekDayName = dateS.format('dddd');
+      const weekDayNumber = dateS.format('DD');
+      this.setState({ deliveryDate: newDate, isTime: false, dateString: `${weekDayName} ${weekDayNumber}` });
     } else {
       const newDate = formatDateString(new Date(Date.now()), 'YYYY/MM/DD');
-      this.setState({ deliveryDate: newDate, isTime: true });
+      // const weekDayName = newDate.format('ddd');
+      // const weekDayNumber = newDate.format('DD');
+
+      this.setState({ deliveryDate: newDate, isTime: true, dateString: `${weekDayName} ${weekDayNumber}` });
     }
   }
 
@@ -76,12 +83,14 @@ class Menu extends React.Component {
           <div className="fluid-container">
             <div className="menu">
               { !this.state.isTime &&
-                // <div className="alert alert-success">
-                <div className="alertMenu">
+                <div className="alert alert-success">
+                {/* <div className="alertMenu"> */}
                   <p><strong>Aviso</strong></p>
                   {/* <p>Los pedidos que son para el día de hoy se tienen que ordenar antes de las 11:00am. <br/> No olvides programar tus platillos para la semana.</p> */}
                   {/* <p>Los pedidos que son para el día de hoy se tienen que ordenar antes de las 11:00am o elige el día que quieres que sea entregada.</p> */}
-                  <p>Los pedidos para hoy se cierran a las 11:00am, programa tus platillos para mañana o programa para otro día.</p>
+                  {/* <p>Los pedidos para hoy se cierran a las 11:00am, programa tus platillos para mañana o programa para otro día.</p> */}
+                  <p>Los pedidos para hoy se cierran a las 11:00am, ordena tus platillos para el <strong className="uppercase">{this.state.dateString}</strong> o programa para otro día.</p>
+                  {/* <p>Tu orden será entregada a tu puerta entre 12:30 pm y la 1:30 pm</p> */}
                 </div>
               }
               <div className="row">
@@ -134,6 +143,10 @@ class Menu extends React.Component {
 
           .alertMenu > p {
             width: 100%;
+          }
+
+          .uppercase {
+            text-transform: uppercase;
           }
 
           @media (max-width: 600px) {

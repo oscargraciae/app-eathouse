@@ -77,12 +77,12 @@ class MenuPublic extends React.Component {
           { this.state.deliveryDate && <MenuCalendar changeDay={this.changeDay} deliveryDate={this.state.deliveryDate} /> }
           <div className="fluid-container">
             <div className="menu">
-              { !this.state.isTime &&
+              {/* { !this.state.isTime &&
                 <div className="alert alert-success">
                   <p><strong>Aviso</strong></p>
                   <p>Los pedidos que son para el día de hoy se tienen que ordenar antes de las 11:00am. No olvides programar tus platillos para la semana.</p>
                 </div>
-              }
+              } */}
               <div className="row">
                 { dishes.map((item) => {
                   return (
