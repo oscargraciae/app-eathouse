@@ -55,7 +55,7 @@ class Menu extends React.Component {
       // const weekDayName = newDate.format('ddd');
       // const weekDayNumber = newDate.format('DD');
 
-      this.setState({ deliveryDate: newDate, isTime: true, dateString: `${weekDayName} ${weekDayNumber}` });
+      this.setState({ deliveryDate: newDate, isTime: true });
     }
   }
 
