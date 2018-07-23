@@ -1,6 +1,11 @@
 // import libraries
 import React from 'react';
 import Router from 'next/router';
+import dynamic from 'next/dynamic'
+
+const FacebookLogin = dynamic(import('react-facebook-login'), {
+  ssr: false
+})
 
 // import components
 import Layout from '../components/common/Layout';
@@ -73,6 +78,20 @@ class Login extends React.Component {
     return isValid;
   }
 
+  facebookAuth = () => {
+    console.log("Click en Facebook Auth");
+  }
+
+  async responseFacebook(data) {
+    if(data) {
+      const response = await api.user.authenticationFacebook(data.accessToken);
+        if(response.ok) {
+          setToken(response.user.token);
+        }
+        location.href = "/menu";
+    }
+  }
+
   render() {
     const { errors, errorsServer, isRememberPassword } = this.state;
     return (
@@ -83,6 +102,20 @@ class Login extends React.Component {
             <h1>Iniciar sesión</h1>
             <p>¿Todavía no tienes cuenta? <a className="lbl-principal" href="signup">Regístrate</a></p>
             { errorsServer && <AlertBox message={this.state.errorsServer} /> }
+
+            <FacebookLogin
+              appId="244527906154813"
+              autoLoad={false}
+              fields="name,email,picture"
+              onClick={this.facebookAuth}
+              textButton="     Iniciar sesión con Facebook"
+              icon="fab fa-facebook-f"
+              callback={this.responseFacebook} 
+              cssClass="btn btn-facebook btn-block btn-large" />
+            {/* <hr/> */}
+            <div className="text-above-line">
+              <span>o</span>
+            </div>
             <form className="signupForm" onSubmit={this.onSubmit}>
               { this.state.messageError && <div className="alert alert-danger">{ this.state.messageError }</div> }
               <InputText
@@ -180,6 +213,39 @@ class Login extends React.Component {
           .lblRemember > a {
             color: #757575;
             text-decoration: underline;
+          }
+
+          .text-above-line {
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            display: flex;
+            -ms-flex-wrap: nowrap;
+            flex-wrap: nowrap;
+          }
+
+          .text-above-line:before, .text-with-left-line:before, .text-with-right-line:after {
+            border-top: 1px solid #ddd;
+            content: '';
+            -webkit-box-flex: 1;
+            -ms-flex: 1;
+            flex: 1;
+            display: block;
+          }
+
+          .text-above-line:after, .text-above-line:before, .text-with-left-line:before, .text-with-right-line:after {
+            border-top: 1px solid #ddd;
+            content: '';
+            -webkit-box-flex: 1;
+            -ms-flex: 1;
+            flex: 1;
+          }
+
+          .text-above-line span {
+            color: #999;
+            font-size: 16px;
+            font-weight: 300;
+            margin: 10px;
           }
 
           @media (max-width: 600px) {

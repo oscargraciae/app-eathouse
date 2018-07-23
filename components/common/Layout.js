@@ -174,6 +174,18 @@ export default ({ children, loggedUser, isAuthenticated, title = 'eathouse', use
           background: #cc1433;
         }
 
+        .btn-facebook {
+          color: rgb(255, 255, 255) !important;
+          background: rgb(37, 80, 151) !important;
+          border-color: transparent !important;
+        }
+
+        .btn-facebook:hover, .btn-facebook:focus{
+          color: rgb(255, 255, 255) !important;
+          background: rgb(69, 104, 178) !important;
+          border-color: transparent !important;
+        }
+
         .btn-blue{
           border-color: #3498db;
           background-color: #3498db;

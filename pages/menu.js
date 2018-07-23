@@ -89,7 +89,7 @@ class Menu extends React.Component {
                   {/* <p>Los pedidos que son para el día de hoy se tienen que ordenar antes de las 11:00am. <br/> No olvides programar tus platillos para la semana.</p> */}
                   {/* <p>Los pedidos que son para el día de hoy se tienen que ordenar antes de las 11:00am o elige el día que quieres que sea entregada.</p> */}
                   {/* <p>Los pedidos para hoy se cierran a las 11:00am, programa tus platillos para mañana o programa para otro día.</p> */}
-                  <p>Los pedidos para hoy se cierran a las 11:00am, ordena tus platillos para el <strong className="uppercase">{this.state.dateString}</strong> o programa para otro día.</p>
+                  <p>Los pedidos para entregar hoy se cierran a las 11:00am, ordena tus platillos para el <strong className="uppercase">{this.state.dateString}</strong> o programa para otro día.</p>
                   {/* <p>Tu orden será entregada a tu puerta entre 12:30 pm y la 1:30 pm</p> */}
                 </div>
               }

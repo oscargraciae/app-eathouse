@@ -13,16 +13,23 @@ const api = {
     async authentication(email, password) {
       try {
         const response = await axios.post(`/users/login`, { email, password });
-        console.log("Respuesta---->", response);
         return response.data;
       } catch (error) {
-        console.log("Error--->", error);
         return {
           ok: false,
         }
       }
     },
-
+    async authenticationFacebook(token) {
+      try {
+        const response = await axios.post(`/users/login-facebook`, { access_token: token });
+        return response.data;
+      } catch (error) {
+        return {
+          ok: false,
+        }
+      }
+    },
     async create(userData) {
       const response = await axios.post(`/users/signup`, userData);
       return response.data;

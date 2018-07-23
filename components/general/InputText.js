@@ -18,15 +18,17 @@ function TextFieldGroup({ name, value, label, error, type, onChange, focus, disa
 
       <style jsx>{`
         .input {
-            -moz-border-radius: 2px;
-            -webkit-border-radius: 2px;
-            background-color: #fff;
-            border-radius: 2px;
-            border: 1px solid #c4c4c4;
-            color: #565a5c;
-            padding: 12px 10px;
-            width: 100%;
-            font-size: 14px;
+          -moz-border-radius: 2px;
+          -webkit-border-radius: 2px;
+          background-color: #fff;
+          border-radius: 2px;
+          border: 1px solid #c4c4c4;
+          color: #565a5c;
+          /* padding: 12px 10px; */
+          padding: 8px 12px 9px;
+          border: 0;
+          width: 100%;
+          font-size: 14px;
         }
 
         .control-input{
