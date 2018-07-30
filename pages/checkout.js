@@ -47,6 +47,7 @@ class Checkout extends React.Component {
     paymentError: null,
     alertShow: false,
     isSendingOrder: false,
+    methodPayment: 2,
   }
 
   componentDidMount() {
@@ -167,16 +168,37 @@ class Checkout extends React.Component {
 
                   <div className="container-step container-box">
                     <div className="title">Metodo de pago</div>
-                    <div className="form">
-                      <select className="form-control input-lg" name="creditCardId" onChange={this.onChange} value={this.state.creditCardId}>
-                        <option>Seleccionar método de pago</option>
-                        { creditCards && creditCards.map((item) => (
-                          <option value={item.id} key={item.id}>{item.last4} - {item.brand}</option>
-                        )) }
-                      </select>
-                      <br />
-                      <a href="#" onClick={this.showCreditCardModal} className="btn-link">+ Agregar otro método de pago</a>
-                    </div>
+
+                    {/* <div className="method-controls">
+                      <div className="method-controls-btn" onClick={() => this.setState({ methodPayment: 1 })}>
+                        <i className="fas fa-money-bill-alt fa-lg" />
+                        <span>Efectivo</span>
+                      </div>
+                      <div className="method-controls-btn" onClick={() => this.setState({ methodPayment: 2 })}>
+                        <i className="far fa-credit-card fa-lg" />
+                        <span>Tarjeta de crédito/debito</span>
+                      </div>
+                    </div> */}
+
+                    { this.state.methodPayment === 2 &&
+                      <div className="form">
+                        <select className="form-control input-lg" name="creditCardId" onChange={this.onChange} value={this.state.creditCardId}>
+                          <option>Seleccionar método de pago</option>
+                          { creditCards && creditCards.map((item) => (
+                            <option value={item.id} key={item.id}>{item.last4} - {item.brand}</option>
+                          )) }
+                        </select>
+                        <br />
+                        <a href="#" onClick={this.showCreditCardModal} className="btn-link">+ Agregar otro método de pago</a>
+                      </div>
+                    }
+
+                    { this.state.methodPayment === 1 &&
+                      <div className="form">
+                        <p>Pago en efectivo</p>
+                      </div>
+                    }
+
                   </div>
 
                   <div className="container-step container-box">
@@ -249,6 +271,27 @@ class Checkout extends React.Component {
 
           .btnContainerMobile {
             display: none;
+          }
+
+          .method-controls {
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 20px;
+          }
+
+          .method-controls-btn {
+            padding: 12px 18px;
+            margin-right: 5px;
+            border: 1px solid #838286;
+            border-radius: 3px;
+          }
+
+          .method-controls-btn:hover {
+            cursor: pointer;
+          }
+
+          .method-controls-btn > span {
+            margin-left: 10px !important;
           }
 
           @media (max-width: 600px) {

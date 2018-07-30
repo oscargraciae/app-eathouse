@@ -58,7 +58,7 @@ class Index extends React.Component {
                 {/* <h2>Ordena para hoy o programa tú semana.</h2> */}
                 <div className="signupForm">
                   <a id="btnOrdeneYa" href="/menu-public" className="btn btn-primary btn-large btn-block">¡Ordena ya!</a>
-                  <a className="lnk-default" onClick={() => this.setState({ isShowModalZone: true })}>Ver zonas de entrega disponibles</a>
+                  {/* <a className="lnk-default" onClick={() => this.setState({ isShowModalZone: true })}>Ver zonas de entrega disponibles</a> */}
                 </div>
               </div>
             </div>
@@ -111,8 +111,8 @@ class Index extends React.Component {
                         <p className="how-works-description">Selecciona de una variedad de platillos que tenemos disponibles.</p>
                       </div>
                       <div className="col-md-4 how-works-steps">
-                        <p className="how-works-title">Ordena o programa tus platillos</p>
-                        <p className="how-works-description">Ordena tus platillos o programa por adelantado para la semana. Disponible de Lunes a Viernes.</p>
+                        <p className="how-works-title">Ordena o planifica tus platillos</p>
+                        <p className="how-works-description">Ordena tus platillos antes de las 11:00am o planifica la semana.</p>
                       </div>
                       <div className="col-md-4 how-works-steps">
                         <p className="how-works-title">Disfruta tu comida</p>
@@ -124,17 +124,49 @@ class Index extends React.Component {
               </div>
           </section>
 
-          {/* WHY */}
-          <section className="why-container">
+          <section className="how-it-works">
             <div className="container">
                 <div className="row ">
                   <div className="col-md-12">
-                    <h2>¿Qué es eathouse?</h2>
-                    <p>En eathouse preparamos comidas ricas, saludables, con costos accesibles y entregadas directamente a la puerta de tu casa u oficina. Come como si estuvieras en casa. Agenda tus comidas para mañana o para el resto de la semana.</p>
+                    <h2>¿Por qué usar eathouse?</h2>
+                    <div className="row">
+                      <div className="col-md-3 how-works-steps">
+                        <img src="/static/time-is-money.png" height="120" />
+                        <p className="how-works-title">Ahorrar tiempo</p>
+                        <p className="why-works-description">No pierdas el tiempo buscando comida rápida o cocinando en la noche para el siguiente día, mejor dedica tu tiempo en las cosas que te gusta hacer, nosotros nos encaremos de llevarte comida rica y saludable.</p>
+                      </div>
+                      <div className="col-md-3 how-works-steps">
+                        <img src="/static/get-money.png" height="120" />
+                        <p className="how-works-title">Ahorra dinero</p>
+                        <p className="why-works-description">Gracias a nuestro modelo de negocio ofrecemos costos bajos con una gran calidad en nuestros platillos. Come como si estuvieras en un buen restaurante pero a bajo costo.</p>
+                      </div>
+                      <div className="col-md-3 how-works-steps">
+                        <img src="/static/health.png" height="120" />
+                        <p className="how-works-title">Come saludable</p>
+                        <p className="why-works-description">Nuestros diversos platillos nos permiten cumplir con los diferentes gustos y objetivos de nuestros clientes, siempre utilizando productos de calidad y cocinándolos de la manera más saludable.</p>
+                      </div>
+                      <div className="col-md-3 how-works-steps">
+                        <img src="/static/calendar2.png" height="120" />
+                        <p className="how-works-title">Mejor experiencia</p>
+                        <p className="why-works-description">Ordena para un día o programa tus comidas, de esta forma dejaras de preocuparte que comer cada día y te podrás enfocar en las cosas importantes.</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
           </section>
+
+          {/* WHY */}
+          {/* <section className="why-container">
+            <div className="container">
+                <div className="row ">
+                  <div className="col-md-12">
+                    <h2>¿Qué es eathouse?</h2>
+                    <p>En eathouse preparamos comidas ricas, saludables, con costos accesibles y entregadas directamente a la puerta. Come como si estuvieras en casa.</p>
+                  </div>
+                </div>
+              </div>
+          </section> */}
 
           <section className="how-it-works">
             <div className="container">
@@ -153,7 +185,7 @@ class Index extends React.Component {
 
                 <div className="signupForm">
                   <a id="btnHomeVerMenu" href="/menu-public" className="btn btn-primary btn-large">Ver menu</a>
-                  <a className="lnk-default" onClick={() => this.setState({ isShowModalZone: true })}>Ver zonas de entrega disponibles</a>
+                  {/* <a className="lnk-default" onClick={() => this.setState({ isShowModalZone: true })}>Ver zonas de entrega disponibles</a> */}
                 </div>
               </div>
           </section>
@@ -236,7 +268,7 @@ class Index extends React.Component {
 
             .how-it-works {
               text-align: center;
-              padding: 40px 0;
+              padding: 50px 0;
               background: white;
             }
 
@@ -295,7 +327,8 @@ class Index extends React.Component {
               text-align: center;
               padding: 40px 130px;
               color: white !important;
-              height: 400px;
+              height: 270px;
+              /* height: 400px; */
               /* margin: 40px 0px; */
 
               align-items: center;
@@ -303,7 +336,7 @@ class Index extends React.Component {
             }
 
             .why-container h2 {
-              font-size: 36ipx;
+              font-size: 36px;
               padding: 20px 0px;
             }
 
@@ -362,6 +395,12 @@ class Index extends React.Component {
 
             .container-apps {
               background: white;
+            }
+
+            .why-works-description {
+              font-size: 14px;
+              color: #79776B;
+              line-height: 21px;
             }
 
             @media (max-width: 600px) {
