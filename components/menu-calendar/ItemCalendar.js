@@ -17,7 +17,7 @@ function ItemCalendar(props) {
 
   let invalidCurrentDate = false;
   if(currentDate.format('DD') === weekDayNumber) {
-    if(dayTime > "10:00") {
+    if(dayTime > "11:00") {
       invalidCurrentDate = true;
     }
   }

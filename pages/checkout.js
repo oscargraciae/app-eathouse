@@ -24,6 +24,7 @@ import ModalCreditCard from '../components/general/ModalCreditCard';
 import Confirmation from '../components/checkout/Confirmation';
 import LoadingSpinner from '../components/common/LoadingSpinner';
 import AlertModalApp from '../components/general/AlertModalApp';
+import CartItem from '../components/general/CartItem';
 
 class Checkout extends React.Component {
   static async getInitialProps(context) {
@@ -141,7 +142,7 @@ class Checkout extends React.Component {
 
   render() {
     const { step, address, addressFormHidden, userAddressId, creditCards, loadingPage } = this.state;
-
+    const { user } = this.props;
     return (
       <Layout {...this.props}>
 
@@ -153,8 +154,12 @@ class Checkout extends React.Component {
             { this.state.paymentError && <AlertModalApp show={this.state.alertShow} title="Oops! :(" description={this.state.paymentError} onClick={this.alertClick} /> }
             <div className="container">
               <div className="checkout">
-                <div className="address">
-                  
+              { user.bussinesId && 
+                <div className="sidecart-message">
+                  <span className="message-text">Por formar parte de {user.bussine.name} tienes el 20% de descuento en todas tus ordenes</span>
+                </div>
+              }
+                <div className="address">   
                   <div className="container-step container-box">
                     <div className="title">Dirección</div>
                     <div className="form">
@@ -207,6 +212,22 @@ class Checkout extends React.Component {
                     <p className="lbl-notes">*Actualmente solo contamos con este horario de entrega</p>
                   </div>
 
+                  <div className="container-step container-box onlyMobile">
+                    <div className="title">Resumen de compra</div>
+                    <div className="sidecart-body">
+                      <div className="items-group">
+                        <ul className="items">
+                          { this.props.cart.data.map((item, i) => {
+                            return (
+                              <CartItem key={i} {...item} />
+                            )
+                          }) }
+                          
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
               </div>
               <div className="btnContainerMobile">
@@ -219,7 +240,7 @@ class Checkout extends React.Component {
                 />
               </div>
               <div className="cartDetail">
-                <CartDetail sendOrder={this.sendOrder} disabled={!this.state.creditCardId || !this.state.userAddressId} loading={this.state.isSendingOrder}/>
+                <CartDetail user={this.props.user} sendOrder={this.sendOrder} disabled={!this.state.creditCardId || !this.state.userAddressId} loading={this.state.isSendingOrder}/>
               </div>
             </div>
           </div>
@@ -294,6 +315,26 @@ class Checkout extends React.Component {
             margin-left: 10px !important;
           }
 
+          .sidecart-message {
+            text-align: center;
+            background-color: #fec825;
+            padding: 15px 22px;
+          }
+  
+          .message-text {
+            font-family: "BentonSans", Helvetica, Arial, sans-serif;
+            font-weight: 600;
+            font-style: normal;
+            letter-spacing: 0.5px;
+            font-size: 14px;
+            font-weight: normal;
+            color: #42413E;          
+          }
+
+          .onlyMobile {
+            display: none;
+          }
+
           @media (max-width: 600px) {
             .checkout {
               margin: 20px 0px;
@@ -312,6 +353,16 @@ class Checkout extends React.Component {
               position: sticky;
               bottom: 0;
               z-index: 100;
+              display: block;
+            }
+
+            .items {
+              list-style: none;
+              padding: 0;
+              margin: 0;
+            }
+
+            .onlyMobile {
               display: block;
             }
           }

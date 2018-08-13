@@ -104,7 +104,7 @@ class Index extends React.Component {
             <div className="container">
                 <div className="row ">
                   <div className="col-md-12">
-                    <h2>CÓMO FUNCIONA</h2>
+                    <h2>Cómo funciona</h2>
                     <div className="row">
                       <div className="col-md-4 how-works-steps">
                         <p className="how-works-title">Elige tu comida</p>
@@ -130,23 +130,23 @@ class Index extends React.Component {
                   <div className="col-md-12">
                     <h2>¿Por qué usar eathouse?</h2>
                     <div className="row">
-                      <div className="col-md-3 how-works-steps">
-                        <img src="/static/time-is-money.png" height="120" />
+                      <div className="col-md-3 how-works-steps text-left">
+                        <img src="/static/time-is-money.png" height="90" />
                         <p className="how-works-title">Ahorrar tiempo</p>
                         <p className="why-works-description">No pierdas el tiempo buscando comida rápida o cocinando en la noche para el siguiente día, mejor dedica tu tiempo en las cosas que te gusta hacer, nosotros nos encaremos de llevarte comida rica y saludable.</p>
                       </div>
-                      <div className="col-md-3 how-works-steps">
-                        <img src="/static/get-money.png" height="120" />
+                      <div className="col-md-3 how-works-steps text-left">
+                        <img src="/static/get-money.png" height="90" />
                         <p className="how-works-title">Ahorra dinero</p>
                         <p className="why-works-description">Gracias a nuestro modelo de negocio ofrecemos costos bajos con una gran calidad en nuestros platillos. Come como si estuvieras en un buen restaurante pero a bajo costo.</p>
                       </div>
-                      <div className="col-md-3 how-works-steps">
-                        <img src="/static/health.png" height="120" />
+                      <div className="col-md-3 how-works-steps text-left">
+                        <img src="/static/health.png" height="90" />
                         <p className="how-works-title">Come saludable</p>
                         <p className="why-works-description">Nuestros diversos platillos nos permiten cumplir con los diferentes gustos y objetivos de nuestros clientes, siempre utilizando productos de calidad y cocinándolos de la manera más saludable.</p>
                       </div>
-                      <div className="col-md-3 how-works-steps">
-                        <img src="/static/calendar2.png" height="120" />
+                      <div className="col-md-3 how-works-steps text-left">
+                        <img src="/static/calendar2.png" height="90" />
                         <p className="how-works-title">Mejor experiencia</p>
                         <p className="why-works-description">Ordena para un día o programa tus comidas, de esta forma dejaras de preocuparte que comer cada día y te podrás enfocar en las cosas importantes.</p>
                       </div>
@@ -214,7 +214,7 @@ class Index extends React.Component {
               background: white;
             }
             .Hero {
-              background: url('static/hero-edit-2.jpg');
+              background: url('static/hero-edit-2.jpg') 30px 0px no-repeat;
               /* background: white; */
               height: 445px;
               /* border-bottom: 10px solid #FF7901; */
@@ -231,7 +231,7 @@ class Index extends React.Component {
               margin-left: auto;
               padding: 5px 30px 25px 30px;
               width: 95%;
-              max-width: 470px;
+              max-width: 500px;
               /* box-shadow: 0 2px 10px 5px rgba(0,0,0,0.2); */
               left: 35px;
             }
@@ -253,7 +253,7 @@ class Index extends React.Component {
               font-weight: 500;
               text-transform: uppercase;
               line-height: 1.37;
-              font-size: 32px;
+              font-size: 38px;
             }
 
             .Hero-Box > h2 > small{
@@ -261,9 +261,9 @@ class Index extends React.Component {
             }
 
             .Hero-Box > h2 {
-              font-weight: 300;
-              font-size: 24px;
-              line-height: 32px;
+              font-weight: 400;
+              font-size: 18px;
+              line-height: 30px;
             }
 
             .how-it-works {
@@ -281,9 +281,10 @@ class Index extends React.Component {
 
             .how-it-works h2 {
               font-size: 32px;
+              padding: 15px 0px;
               margin-bottom: 40px;
               font-weight: 500;
-              text-transform: uppercase;
+              /* text-transform: uppercase; */
             }
 
             .how-works-steps {
@@ -292,8 +293,10 @@ class Index extends React.Component {
 
             .how-works-steps .how-works-title {
               font-weight: bold;
-              font-size: 21px;
-              color: #FF7901;
+              font-size: 18px;
+              /* color: #FF7901; */
+              color: #333;
+              padding: 12px 0px;
             }
 
             .how-works-description {

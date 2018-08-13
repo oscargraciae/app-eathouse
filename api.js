@@ -42,6 +42,10 @@ const api = {
       const response = await axios.post(`/users/address`, data);
       return response.data;
     },
+    async createAddressWithBusiness(data) {
+      const response = await axios.post(`/users/link-business`, data);
+      return response.data;
+    },
     async getAddress() {
       const response = await axios.get(`/address`);
       return response.data;
@@ -105,6 +109,12 @@ const api = {
     },
     async getSchedules() {
       const response = await axios.get('/orders/schedules');
+      return response.data;
+    }
+  },
+  business: {
+    async getAll() {
+      const response = await axios.get('/bussines');
       return response.data;
     }
   }

@@ -12,15 +12,29 @@ import CartItem from './CartItem';
 
 function Cart(props) {
   let total = 0;
+  let subtotal = 0;
+  let discount = 0;
   props.cart.data.map((item, i) => {
-    total = total + item.total;
+    subtotal = subtotal + item.total;
   });
+
+  if (props.user.bussinesId) {
+    discount = subtotal * 0.20;
+  }
+  
+  total = subtotal - discount;
 
   return (
     <div className="sidecart">
       <div className="sidecart-header">
         <div className="sidecart-heading">Tu orden</div>
       </div>
+      { props.user.bussinesId &&
+        <div className="sidecart-message">
+          <span className="message-text">Por formar parte de {props.user.bussine.name} tienes el <strong>20%</strong> de descuento en todas tus ordenes</span>
+          {/* <span className="message-text">20% de descuento en todas tus ordenes</span> */}
+        </div>
+      }
       <div className="sidecart-body">
         <div className="items-group">
           <ul className="items">
@@ -46,11 +60,16 @@ function Cart(props) {
         <div className="sidecart-footer">
           <dl className="estimated-total">
             <div className="line-item">
-              <dt className="lbl-total">Subtotal</dt><dd className="lbl-total">${moneyThousand(total)}</dd>
+              <dt className="lbl-subtotal">Subtotal</dt><dd className="lbl-subtotal">${moneyThousand(subtotal)}</dd>
             </div>
             <div className="line-item">
-              <dt className="lbl-total">Gastos de envío</dt><dd className="lbl-total">$0.00</dd>
+              <dt className="lbl-subtotal">Gastos de envío</dt><dd className="lbl-subtotal">GRATIS</dd>
             </div>
+            { props.user.bussinesId &&
+              <div className="line-item">
+                <dt className="lbl-subtotal">Descuento</dt><dd className="lbl-subtotal">-${moneyThousand(discount)}</dd>
+              </div>
+            }
             <div className="line-item">
               <dt className="lbl-total">Total</dt><dd className="lbl-total">${moneyThousand(total)}</dd>
             </div>
@@ -169,6 +188,11 @@ function Cart(props) {
           font-size: 14px;
         }
 
+        .lbl-subtotal {
+          font-size: 12px;
+          font-weight: 300;
+        }
+
         .items {
           list-style: none;
           padding: 0;
@@ -185,6 +209,23 @@ function Cart(props) {
           font-weight: bold;
           font-size: 15px;
           margin-bottom: 20px;
+        }
+
+        .sidecart-message {
+          text-align: center;
+          background-color: #fec825;
+          /* padding: 15px 22px; */
+          padding: 15px 10px;
+        }
+
+        .message-text {
+          font-family: "BentonSans", Helvetica, Arial, sans-serif;
+          font-weight: 600;
+          font-style: normal;
+          letter-spacing: 0.5px;
+          font-size: 14px;
+          font-weight: normal;
+          color: #42413E;          
         }
 
         @media (max-width: 600px) {

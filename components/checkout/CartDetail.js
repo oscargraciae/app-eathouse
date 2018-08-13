@@ -11,9 +11,18 @@ import CartItem from '../general/CartItem';
 
 function CartDetail(props) {
   let total = 0;
+  let subtotal = 0;
+  let discount = 0;
   props.cart.data.map((item, i) => {
-    total = total + item.total;
+    subtotal = subtotal + item.total;
   });
+
+  if (props.user.bussinesId) {
+    discount = subtotal * 0.20;
+  }
+  
+  total = subtotal - discount;
+
   return (
     <div className="sidecart">
       <div className="sidecart-header">
@@ -34,10 +43,13 @@ function CartDetail(props) {
       <div className="sidecart-footer">
         <dl className="estimated-total">
           <div className="line-item">
-            <dt>Subtotal</dt><dd>${moneyThousand(total)}</dd>
+            <dt>Subtotal</dt><dd>${moneyThousand(subtotal)}</dd>
           </div>        
           <div className="line-item">
-            <dt>Gastos de envío</dt><dd>$0.00</dd>
+            <dt>Gastos de envío</dt><dd>GRATIS</dd>
+          </div>
+          <div className="line-item">
+            <dt>Descuento</dt><dd>-${moneyThousand(discount)}</dd>
           </div>
           <div className="line-item">
             <dt>Total</dt><dd>${moneyThousand(total)}</dd>

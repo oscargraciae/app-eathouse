@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 
 // import local libraries
 import validation from '../../validations/address';
+import validationBusiness from '../../validations/address-business';
 import api from '../../api';
 import { isPointAvailable } from '../../utils/geospatial';
 
@@ -39,7 +40,20 @@ class AddressForm extends React.Component {
       userLocation: null,
       isLoading: false,
       errors: {},
+      business: [],
+      businessId: 0,
+      businessView: false,
     }
+  }
+
+  componentDidMount() {
+    this.initialFetch();
+  }
+
+  async initialFetch() {
+    const business = await api.business.getAll();
+    console.log("business--->", business);
+    this.setState({ business });
   }
 
   onSubmit = async (e) => {
@@ -62,12 +76,39 @@ class AddressForm extends React.Component {
     }
   }
 
+  saveBusinessAddress = async (e) => {
+    e.preventDefault();
+
+    if(this.isValidBusiness()) {
+      this.setState({ isLoading: true });
+
+      const response = await api.user.createAddressWithBusiness(this.state);
+      const { ok, address } = response;
+      if(ok) {
+        this.setState({ isLoading: false });
+        if(this.props.afterSave) {
+          this.props.afterSave();
+        }
+        
+      } else {
+        console.log("Ha ocurrido un error");
+      }
+    }
+  }
+
   isValid() {
     const { errors, isValid } = validation(this.state);
     if(!isValid) {
       this.setState({ errors });
     }
+    return isValid;
+  }
 
+  isValidBusiness() {
+    const { errors, isValid } = validationBusiness(this.state);
+    if(!isValid) {
+      this.setState({ errors });
+    }
     return isValid;
   }
 
@@ -76,7 +117,6 @@ class AddressForm extends React.Component {
   }
 
   onSuggestSelect = (suggest) => {
-    console.log("Datos mapa-->", suggest);
     if(suggest) {
       if(isPointAvailable([suggest.location.lng, suggest.location.lat])) {
         this.setState({ address: suggest.description, latLng: suggest.location, lat: suggest.location.lat, lng: suggest.location.lng, addressMap: suggest.label, addressNotAvailable: false }, () => {
@@ -111,6 +151,7 @@ class AddressForm extends React.Component {
     const { errors } = this.state;
     return (
       <div>
+        { !this.state.businessView ? 
         <form className="signupForm" onSubmit={this.onSubmit} autoComplete="off" >
           <div className="row">
             <div className="col-md-12">
@@ -121,6 +162,7 @@ class AddressForm extends React.Component {
                 suggestsClassName="suggest"
                 suggestItemClassName="suggestItem"
                 inputClassName="input control-input" 
+                country="mx"
               />
             </div>
           </div>
@@ -157,7 +199,6 @@ class AddressForm extends React.Component {
               <div className="row">
                 <div className="col-md-6">
                   <input type="hidden" name="state" id="administrative_area_level_1" value={this.state.state} />
-                  {/* <input type="hidden" name="zipcode" id="postal_code" value={this.state.zipcode} /> */}
                 </div>
                 <div className="col-md-6">
                   <input type="hidden" name="city" id="locality" value={this.state.city} />
@@ -211,7 +252,75 @@ class AddressForm extends React.Component {
             </div>
           }
           
+          <a className="#" className="btn-link" onClick={() => this.setState({ businessView: true })}>Servicio a empresas</a>
+        </form> :
+        
+        <form className="signupForm" onSubmit={this.saveBusinessAddress} autoComplete="off" >
+          <div className="row">
+            <div className="col-md-12">
+              <label>Empresa de entrega</label>
+              <select className="form-control" name="businessId" onChange={this.onChange} value={this.state.businessId}>
+                <option>Seleccionar</option>
+                { this.state.business.map((item) => (
+                  <option value={item.id} key={item.id}>{item.name}</option>
+                )) }
+              </select>
+              <br />
+            </div>
+          </div>
+          <div id="rowFormAddress">
+              <div className="row">
+                <div className="col-md-12">
+                  <label>Teléfono</label>
+                  <InputText
+                    error={errors.phone}
+                    value={this.state.phone}
+                    onChange={this.onChange}
+                    type="text"
+                    name="phone"
+                    id=""
+                    label=""
+                  />
+                  <p className="lbl-notes">Utilizado solo para notificarte sobre tu pedido.</p>
+                </div>
+              </div>
+
+              <div className="row">
+                <div className="col-md-12">
+                  <label>Datos adicionales (Opcional)</label>
+                  <InputText
+                    error={errors.notes}
+                    value={this.state.notes}
+                    onChange={this.onChange}
+                    type="text"
+                    name="notes"
+                    id=""
+                    label="Instrucciones de entrega/Dpto./Oficina/Piso"
+                  />
+                </div>
+              </div>
+            
+
+              <div className="row">
+                <div className="col-md-4">
+                  <ButtonBlock
+                    text="Guardar"
+                    buttonStyle="btn btn-primary btn-large btn-block"
+                    loading={this.state.isLoading}
+                  />
+                </div>
+                <div className="col-md-4">
+                  <ButtonBlock
+                    text="Regresar"
+                    buttonStyle="btn btn-default btn-large btn-block"
+                    click={() => this.setState({ businessView: false })}
+                  />
+                </div>
+              </div>
+            </div>          
         </form>
+        }
+
         <style jsx global>{`
           label {
             font-size: 12px;
@@ -302,6 +411,16 @@ class AddressForm extends React.Component {
           .loadingSpinner {
             color: #18bc9c;
             font-size: 30px;
+          }
+
+          .btn-link {
+            padding: 20px 0;
+            font-size: 14px;
+            font-weight: bold;
+            color: #3BCF75;
+            cursor: pointer;
+            display: inline-block;
+            text-decoration: underline;
           }
         `}</style>
       </div>

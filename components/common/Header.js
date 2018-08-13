@@ -81,7 +81,7 @@ const menuAuth = (props) => {
               href={`/schedules`}
               className="btn_nav nav-lbl-principal"
             >
-              Calendario
+              Mi Calendario
             </a>
           </li>
           <li role="separator" className="divider" />

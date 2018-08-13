@@ -80,7 +80,8 @@ class MenuItem extends React.Component {
           }
   
           .menu-item-description {
-            height: 110px;
+            /* height: 110px; */
+            height: 130px;
           }
 
           .menu-item-featured {
@@ -108,8 +109,8 @@ class MenuItem extends React.Component {
             overflow: visible;
             text-overflow: ellipsis;
             display: block;
-            padding: 10px 0;
-            height: 60px;
+            /* padding: 10px 0; */
+            padding: 5px 0;
           }
   
           .menu-item-actions {
@@ -122,10 +123,10 @@ class MenuItem extends React.Component {
           }
   
           .menu-item-price {
-            font-size: 18px;
+            font-size: 21px;
             letter-spacing: 0.2px;
   
-            color: #79776B;
+            color: #333;
             float: left;
             border-right: 1px solid #e8ebe9;
             text-align: justify;
@@ -168,7 +169,8 @@ class MenuItem extends React.Component {
           }
   
           .button-add-cart-small {
-            color: #3BCF75;
+            color: #FF7901;
+            */ color: #3BCF75; */
             background: 0 0;
             line-height: 33px;
             cursor: pointer;
@@ -176,16 +178,17 @@ class MenuItem extends React.Component {
             border-radius: 4px;
             overflow: hidden;
             text-align: center;
-            border: 1px solid #3BCF75;
-            padding: 0 20px;
+            border: 1px solid #FF7901;
+            
             font-size: 14px;
             margin: 13px 0 15px;
-            width: 50;
+            padding: 0 20px;
+            width: 50px;
             z-index: 1;
           }
   
           .button-add-cart-small:hover {
-            background: #3BCF75;
+            background: #FF7901;
             color: white;
           }
 
@@ -194,7 +197,7 @@ class MenuItem extends React.Component {
           }
 
           .button-add-cart {
-            color: #3BCF75;
+            color: #FF7901;
             background: 0 0;
             line-height: 33px;
             cursor: pointer;
@@ -202,16 +205,17 @@ class MenuItem extends React.Component {
             border-radius: 4px;
             overflow: hidden;
             text-align: center;
-            border: 1px solid #3BCF75;
+            border: 1px solid #FF7901;
             padding: 0 20px;
             font-size: 14px;
             margin: 13px 0 15px;
             width: 128px;
             z-index: 1;
+            font-weight: bold;
           }
   
           .button-add-cart:hover {
-            background: #3BCF75;
+            background: #FF7901;
             color: white;
           }
 
@@ -236,7 +240,7 @@ class MenuItem extends React.Component {
               text-overflow: ellipsis;
               display: block;
               padding: 0px 0;
-              height: 35px;
+              /* height: 35px; */
           
             }
             .menu-item-featured {
@@ -244,7 +248,7 @@ class MenuItem extends React.Component {
             }
 
             .menu-item-description {
-              height: 75px;
+              height: 90px;
             }
 
             .menu-item-actions {
@@ -253,22 +257,21 @@ class MenuItem extends React.Component {
     
               display: flex;
               align-items: center;
-              justify-content: flex-end;
+              justify-content: space-between;
             }
     
             .menu-item-price {
-              font-size: 18px;
+              font-size: 16px;
               letter-spacing: 0.2px;
     
-              color: #79776B;
+              color: #333;
               float: left;
               border-right: 1px solid #e8ebe9;
               text-align: justify;
-              padding-left: 16px;
-              padding-right: 16px;
+              padding-left: 12px;
+              padding-right: 12px;
     
               height: 100%;
-              display: flex;
               align-items: center;
             }
     
@@ -279,13 +282,20 @@ class MenuItem extends React.Component {
               float: right; 
             }
             
-            .menu-item-price {
-              display: none;
-            }
-
             .button-add-cart {
               font-size: 12px;
-              width: 80px;
+              width: 90px;
+            }
+
+            .button-add-cart-small {
+              width: 40px;
+              margin: 13px 0 15px;
+              padding: 0 10px;
+              background: #FFF;
+            }
+
+            .lbl-quantity {
+              padding: 3px;
             }
           }
         `}</style>

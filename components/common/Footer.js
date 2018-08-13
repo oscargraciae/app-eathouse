@@ -40,7 +40,7 @@ export default () => {
               <ul>
                 <li className="footernav-item"><a className="social-button" target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/eathousemx"><i className="fab fa-facebook-f fa-lg" /></a></li>
                 <li className="footernav-item"><a className="social-button" target="_blank" rel="noopener noreferrer" href="https://twitter.com/eathousemx"><i className="fab fa-twitter fa-lg" /></a></li>
-                {/* <li className="footernav-item"><a className="social-button" target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/eathousemx/"> <i className="fab fa-instagram fa-lg" /></a></li> */}
+                <li className="footernav-item"><a className="social-button" target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/eathousemx/"> <i className="fab fa-instagram fa-lg" /></a></li>
                 {/* <li className="footernav-item"><a className="social-button" target="_blank" rel="noopener noreferrer" href="https://eathouse.mx/blog">Blog</a></li> */}
               </ul>
             </div>

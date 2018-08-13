@@ -52,7 +52,7 @@ class Schedules extends React.Component {
     return (
       <Layout {...this.props}>
         <div className="container">
-          <h2>Mi agenda</h2>
+          <h2>Mi Calendario</h2>
           { schedules.map((item, index) => {
             return (
               <div className="container-box" key={index}>

@@ -51,9 +51,9 @@ class Menu extends React.Component {
       const weekDayName = dateS.format('dddd');
       const weekDayNumber = dateS.format('DD');
       this.setState({ deliveryDate: newDate, dateString: `${weekDayName} ${weekDayNumber}` });
-      if(currentTime < "14:00") {
-        this.setState({ isLater: true });
-      }
+      // if(currentTime < "14:00") {
+      //   this.setState({ isLater: true });
+      // }
     } else {
       const newDate = formatDateString(new Date(Date.now()), 'YYYY/MM/DD');
       // const weekDayName = newDate.format('ddd');
@@ -77,23 +77,32 @@ class Menu extends React.Component {
   render() {
     const dishes = this.props.dishes;
     let total = 0;
+    let subtotal = 0;
+    let discount = 0;
     this.props.cart.data.map((item, i) => {
-      total = total + item.total;
+      subtotal = subtotal + item.total;
     });
+
+    if (this.props.user.bussinesId) {
+      discount = subtotal * 0.20;
+    }
+
+    total = subtotal - discount;
+
+    console.log("Info de usuario--->", this.props.user);
     return (
       <Layout {...this.props}>
         <div>
+          <div className="alertMenu">
+            { !this.state.isLater ?
+              <p>Ordena tus platillos para el <strong className="uppercase">{this.state.dateString}</strong> o planifica tu semana.</p> :
+              // <p>Los pedidos para entregar hoy se cierran a las 11:00am, ordena tus platillos para el <strong className="uppercase">{this.state.dateString}</strong> o programa para otro día.</p> :
+              <p><strong>¡Todavía estas a tiempo!</strong> Los pedidos para entregar hoy cierran a las 11:00am</p>
+            }
+          </div>
           { this.state.deliveryDate && <MenuCalendar changeDay={this.changeDay} deliveryDate={this.state.deliveryDate} /> }
           <div className="fluid-container">
             <div className="menu">
-              { this.state.isLater &&
-                <div className="alertMenu">
-                {/* <div className="alertMenu"> */}
-                  {/* <p><strong>Aviso</strong></p> */}
-                  <p>Los pedidos para entregar hoy se cierran a las 11:00am, ordena tus platillos para el <strong className="uppercase">{this.state.dateString}</strong> o programa para otro día.</p>
-                  {/* <p>Tu orden será entregada a tu puerta entre 12:30 pm y la 1:30 pm</p> */}
-                </div>
-              }
               <div className="row">
                 { dishes.map((item) => {
                   return (
@@ -103,11 +112,19 @@ class Menu extends React.Component {
               </div>
               { total > 0 &&
                 <div className="btnContainerMobile">
+                  <div className="line-item">
+                    <dt className="lbl-subtotal">Subtotal</dt><dd className="lbl-subtotal">${subtotal}</dd>
+                  </div>
+                  { this.props.user.bussinesId && 
+                    <div className="line-item">
+                      <dt className="lbl-subtotal">Descuento</dt><dd className="lbl-subtotal">${discount}</dd>
+                    </div>
+                  }
                   <a id="btnMobileMenuCart" href="/checkout" className="btn btn-primary btn-large btn-block">VER CARRITO ${total}</a>
                 </div>
               }
             </div>
-            <Cart />
+            <Cart user={this.props.user} />
           </div>
         </div>
 
@@ -124,6 +141,10 @@ class Menu extends React.Component {
 
           .btnContainerMobile {
             display: none;
+            background: #FFF;
+            padding: 10px;
+            border-radius: 3px;
+            border: 1px solid #DDD;
           }
 
           .alertMenu {
@@ -156,6 +177,32 @@ class Menu extends React.Component {
               bottom: 0;
               z-index: 100;
               display: block;
+            }
+
+            .line-item {
+              display: -ms-flexbox;
+              display: -webkit-flex;
+              display: flex;
+              -webkit-flex-direction: row;
+              -ms-flex-direction: row;
+              flex-direction: row;
+              -ms-justify-content: space-between;
+              -ms-flex-pack: justify;
+              -ms-flex-line-pack: center;
+              -webkit-justify-content: space-between;
+              justify-content: space-between;
+              margin-bottom: 12px;
+    
+              font-size: 16px;
+            }
+    
+            .lbl-total {
+              font-size: 14px;
+            }
+    
+            .lbl-subtotal {
+              font-size: 12px;
+              font-weight: 300;
             }
 
           }

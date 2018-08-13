@@ -77,11 +77,6 @@ export default ({ children, loggedUser, isAuthenticated, title = 'eathouse', use
           drift.load('vmvp65uv9t8h');`,
         }}>
         </script>
-
-<script>
-
-</script>
-
       </Head>
       <noscript dangerouslySetInnerHTML={{
           __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TQS3BV7"

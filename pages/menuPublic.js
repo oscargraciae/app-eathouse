@@ -91,7 +91,7 @@ class MenuPublic extends React.Component {
                 }) }
               </div>
             </div>
-            <Cart />
+            {/* <Cart /> */}
           </div>
         </div>
 
