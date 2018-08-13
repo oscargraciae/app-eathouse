@@ -156,7 +156,7 @@ class Checkout extends React.Component {
               <div className="checkout">
               { user.bussinesId && 
                 <div className="sidecart-message">
-                  <span className="message-text">Por formar parte de {user.bussine.name} tienes el 20% de descuento en todas tus ordenes</span>
+                  <span className="message-text">Por formar parte de {user.bussine.name} tienes el <strong>20%</strong> de descuento en todos tus pedidos</span>
                 </div>
               }
                 <div className="address">   

@@ -55,6 +55,7 @@ function CartDetail(props) {
             <dt>Total</dt><dd>${moneyThousand(total)}</dd>
           </div>        
         </dl>
+        <br/>
         {/* <a className="btn btn-primary btn-large btn-block" onClick={props.sendOrder}>Ordenar</a> */}
         <ButtonBlock
           text="Ordenar"

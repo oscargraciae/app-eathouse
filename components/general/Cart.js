@@ -31,7 +31,7 @@ function Cart(props) {
       </div>
       { props.user.bussinesId &&
         <div className="sidecart-message">
-          <span className="message-text">Por formar parte de {props.user.bussine.name} tienes el <strong>20%</strong> de descuento en todas tus ordenes</span>
+          <span className="message-text">Por formar parte de {props.user.bussine.name} tienes el <strong>20%</strong> de descuento en todos tus pedidos</span>
           {/* <span className="message-text">20% de descuento en todas tus ordenes</span> */}
         </div>
       }

@@ -252,10 +252,17 @@ class AddressForm extends React.Component {
             </div>
           }
           
-          <a className="#" className="btn-link" onClick={() => this.setState({ businessView: true })}>Servicio a empresas</a>
+          <hr />
+          <a className="#" className="btn-link" onClick={() => this.setState({ businessView: true })}>Servicio a empresas afiliadas</a>
+          <p className="lbl-notes2">*Esta opción es para personas que trabajan en alguna empresa afiliada a eathouse.</p>
         </form> :
         
         <form className="signupForm" onSubmit={this.saveBusinessAddress} autoComplete="off" >
+          <div className="row">
+            <div className="col-md-12">
+              <p>Si trabajas en una empresa afiliada a eathouse registra la siguiente información para que puedas aprovechar los descuentos y promociones que tenemos para ti.</p>
+            </div>
+          </div>
           <div className="row">
             <div className="col-md-12">
               <label>Empresa de entrega</label>
@@ -271,7 +278,7 @@ class AddressForm extends React.Component {
           <div id="rowFormAddress">
               <div className="row">
                 <div className="col-md-12">
-                  <label>Teléfono</label>
+                  <label>Teléfono móvil</label>
                   <InputText
                     error={errors.phone}
                     value={this.state.phone}
@@ -324,6 +331,12 @@ class AddressForm extends React.Component {
         <style jsx global>{`
           label {
             font-size: 12px;
+          }
+
+          .lbl-notes {
+            margin-top: 20px;
+            font-size: 11px;
+            color: #79776B;
           }
 
           .input {
@@ -403,9 +416,10 @@ class AddressForm extends React.Component {
             border-radius: 0 0 2px 2px;
           }
 
-          .lbl-notes {
+          .lbl-notes2 {
             font-size: 11px;
             color: #79776B;
+            padding: 5px 0px;
           }
 
           .loadingSpinner {
@@ -414,10 +428,10 @@ class AddressForm extends React.Component {
           }
 
           .btn-link {
-            padding: 20px 0;
+            padding: 0px 0 !important;
             font-size: 14px;
             font-weight: bold;
-            color: #3BCF75;
+            color: #B9B9AF;
             cursor: pointer;
             display: inline-block;
             text-decoration: underline;
