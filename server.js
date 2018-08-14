@@ -85,6 +85,18 @@ app.prepare()
   server.get('/faq', (req, res) => {
     return app.render(req, res, '/faq');
   });
+  
+  server.get('/terms', (req, res) => {
+    return app.render(req, res, '/terms');
+  });
+
+  server.get('/privacy', (req, res) => {
+    return app.render(req, res, '/privacy');
+  });
+
+  server.get('/arco', (req, res) => {
+    return app.render(req, res, '/arco');
+  });
 
   server.get('/map-available', (req, res) => {
     return app.render(req, res, '/mapAvailable');

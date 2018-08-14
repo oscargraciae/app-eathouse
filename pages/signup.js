@@ -161,7 +161,7 @@ class Signup extends React.Component {
 
               <div className="controls-small">
                 <p className="lbl-terms">
-                  <span> Al registrarte, confirmas que aceptas los <a className="lbl-principal" href="/app/terms_of_service"> Términos y condiciones </a> y la <a className="lbl-principal" href="/app/privacy-policy"> Política de privacidad</a>.</span>
+                  <span> Al registrarte, confirmas que aceptas los <a className="lbl-principal" href="/terms"> Términos y condiciones </a> y la <a className="lbl-principal" href="/privacy"> Política de privacidad</a>.</span>
                 </p>
               </div>
             </form>
