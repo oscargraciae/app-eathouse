@@ -17,12 +17,6 @@ const DefaultPage = (Page) => {
       }
 
       const token = loggedUser;
-      if (token) {
-        console.log("El usuario esta logeado... ->", token);
-      } else {
-        console.log("El usuario no esta logeado =(");
-      }
-
       return {
         ...props,
         loggedUser,

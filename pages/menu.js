@@ -21,9 +21,15 @@ import Cart from '../components/general/Cart';
 
 class Menu extends React.Component {
   static async getInitialProps({ query }) { 
-    const dishes = await api.dish.getAll();
+    // const dishes = await api.dish.getAll();
+    const [ dishes, dishesLight ] = await Promise.all([
+      api.dish.getAllByCategory(1),
+      api.dish.getAllByCategory(2),
+    ]);
+    // const dishes = await api.dish.getAllByCategory(2);
     return {
       dishes,
+      dishesLight,
       id: 2,
     };
   }
@@ -37,7 +43,6 @@ class Menu extends React.Component {
   componentDidMount() {
     const currentTime = formatDateString(new Date(Date.now()), 'HH:mm');
 
-    console.log("CurrentTime--->", currentTime);
     if(currentTime > "11:00") {
       let newDate = getDateSumDays(new Date(Date.now()), 'YYYY/MM/DD', 1);
       let date = moment(new Date(newDate), "MM-DD-YYYY", "es").locale("mx");
@@ -75,7 +80,7 @@ class Menu extends React.Component {
   }
 
   render() {
-    const dishes = this.props.dishes;
+    const { dishes, dishesLight } = this.props;
     let total = 0;
     let subtotal = 0;
     let discount = 0;
@@ -89,7 +94,6 @@ class Menu extends React.Component {
 
     total = subtotal - discount;
 
-    console.log("Info de usuario--->", this.props.user);
     return (
       <Layout {...this.props}>
         <div>
@@ -101,10 +105,30 @@ class Menu extends React.Component {
             }
           </div>
           { this.state.deliveryDate && <MenuCalendar changeDay={this.changeDay} deliveryDate={this.state.deliveryDate} /> }
+          <div className="containerCategories">
+            <ul>
+              <li><a href="#dishes">Platillos Principales</a></li>
+              <li><a href="#dishesLight">Platillos Saludables</a></li>
+            </ul>
+          </div>
           <div className="fluid-container">
             <div className="menu">
               <div className="row">
+                <div className="col-md-12">
+                  <h2 className="title-category" id="dishes">Platillos Principales</h2>
+                </div>
                 { dishes.map((item) => {
+                  return (
+                    <MenuItem {...item} addCart={this.addCart} deliveryDate={this.state.deliveryDate} key={item.id} />
+                  )
+                }) }
+              </div>
+              <hr />
+              <div className="row">
+                <div className="col-md-12">
+                  <h2 className="title-category" id="dishesLight">Platillos Saludables</h2>
+                </div>
+                { dishesLight.map((item) => {
                   return (
                     <MenuItem {...item} addCart={this.addCart} deliveryDate={this.state.deliveryDate} key={item.id} />
                   )
@@ -164,6 +188,45 @@ class Menu extends React.Component {
 
           .uppercase {
             text-transform: uppercase;
+          }
+
+          .title-category {
+            font-size: 24px;
+            margin-top: 0;
+            margin: 0 0 15px;
+            color: #2d2d2d;
+            font-weight: 500;
+            line-height: 34px;
+          }
+
+          .containerCategories {
+            padding: 10px;
+            border-bottom: 1px solid #e8ebe9;
+
+            position: sticky !important;
+            right: 0;
+            top: 150px;
+            padding-top: 10px;
+            z-index: 2;
+            background: #FFF;
+          }
+
+          .containerCategories > ul {
+            padding: 0px;
+            margin: 0px;
+            display: inline;
+          }
+
+          .containerCategories > ul > li {
+            display: inline;
+            margin: 0px 14px;
+          }
+
+          .containerCategories > ul > li > a {
+            padding: 10px;
+            text-transform: uppercase;
+            color: #515252;
+            font-size: 12px;
           }
 
           @media (max-width: 600px) {

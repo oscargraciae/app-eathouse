@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import ReactTooltip from 'react-tooltip'
 
 import { toMoney, thousandSpace } from '../../utils/formatNumber';
 
@@ -19,15 +20,16 @@ class MenuItem extends React.Component {
     const productToCart = this.props.cart.data.filter((item) => item.id === this.props.id && item.deliveryDate === this.props.deliveryDate )[0];
     return (
       <div className="col-md-3 col-xs-6 menu-item">
+        <ReactTooltip effect="solid" className="custom-tooltip" />
         <div className="menu-item-photo" style={{ backgroundImage: `url(${this.props.image})` }} />
         <div className="menu-item-details">
           <div className="menu-item-description">
-            <div className="menu-item-name-link">
-              <span className="text">{this.props.name}</span>
+            <div className="menu-item-name-link" >
+              <span className="text" data-tip={this.props.description}>{this.props.name}</span>
             </div>
-            <div className="menu-item-featured">
+            {/* <div className="menu-item-featured">
               <p>{this.props.description}</p>
-            </div>
+            </div> */}
           </div>
           <div className="menu-item-actions">
             <div className="menu-item-price">
@@ -81,7 +83,8 @@ class MenuItem extends React.Component {
   
           .menu-item-description {
             /* height: 110px; */
-            height: 130px;
+            /* height: 130px; */
+            height: 55px;
           }
 
           .menu-item-featured {
@@ -182,8 +185,8 @@ class MenuItem extends React.Component {
             
             font-size: 14px;
             margin: 13px 0 15px;
-            padding: 0 20px;
-            width: 50px;
+            padding: 0 10px;
+            width: 40px;
             z-index: 1;
           }
   
@@ -209,7 +212,8 @@ class MenuItem extends React.Component {
             padding: 0 20px;
             font-size: 14px;
             margin: 13px 0 15px;
-            width: 128px;
+            /* width: 128px; */
+            width: 110px;
             z-index: 1;
             font-weight: bold;
           }
@@ -224,7 +228,14 @@ class MenuItem extends React.Component {
           }
   
           .col-md-3 {
-            padding: 5px;
+            /* padding: 5px; */
+            padding-right: 0px;
+            padding-bottom: 15px;
+          }
+
+          .custom-tooltip {
+            width: 190px;
+            text-align: center;
           }
 
           @media (max-width: 600px) {
@@ -248,7 +259,8 @@ class MenuItem extends React.Component {
             }
 
             .menu-item-description {
-              height: 90px;
+              /* height: 90px; */
+              height: 40px;
             }
 
             .menu-item-actions {
@@ -306,7 +318,7 @@ class MenuItem extends React.Component {
   btnCart = (itemCart) => {
     return (
       <div>
-        <button className="small button-add-cart-small" onClick={() => this.removeItem()}>
+        <button  className="small button-add-cart-small" onClick={() => this.removeItem()}>
           <span className="add-icon"></span><span className="add-text">-</span>
         </button>
         <span className="lbl-quantity">{itemCart.quantity}</span>

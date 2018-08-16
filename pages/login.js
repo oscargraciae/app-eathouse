@@ -51,7 +51,7 @@ class Login extends React.Component {
     if(this.isValid()) {
       const { email, password } = this.state;
       const response = await api.user.authentication(email, password);
-      console.log("Response--->", response);
+      
       const { ok, user } = response;
       if(ok) {
         setToken(user.token);
@@ -79,7 +79,7 @@ class Login extends React.Component {
   }
 
   facebookAuth = () => {
-    console.log("Click en Facebook Auth");
+    
   }
 
   async responseFacebook(data) {

@@ -38,6 +38,7 @@
     "react-geosuggest": "^2.7.0",
     "react-number-format": "^3.3.0",
     "react-redux": "^5.0.7",
+    "react-tooltip": "^3.6.1",
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",
     "redux-logger": "^3.0.6",

@@ -109,7 +109,6 @@ class MapaPrueba extends React.Component {
   //   });
 
   //   map.on('click', (e) => {
-  //     console.log("Evento Click--->", e);
   //     this.setState({ meLocation: [e.lngLat.lng, e.lngLat.lat] });
   //   });
   // }
@@ -174,10 +173,8 @@ class MapaPrueba extends React.Component {
       })
 
       map.on('click', (e) => {
-        console.log("Evento Click--->", e);
         this.setState({ meLocation: [e.lngLat.lng, e.lngLat.lat] });
         const isAvailable = isPointAvailable([e.lngLat.lng, e.lngLat.lat]);
-        console.log("Es disponible-->", isAvailable);
       });
       
     });

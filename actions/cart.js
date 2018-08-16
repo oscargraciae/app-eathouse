@@ -41,7 +41,6 @@ export const addToCart = (dish, quantity, deliveryDate) => {
     let isExist = false;
     let index;
 
-    console.log("Fecha de entrega----->", deliveryDate);
     data.map((item, i) => {
       if(item.id === dish.id && item.deliveryDate === deliveryDate) {
         isExist = true;

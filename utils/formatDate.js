@@ -54,7 +54,6 @@ export function getDateSumDays(value, format, sumDays) {
   var date = moment(newDate);
   let dateFormat = date.add(sumDays, 'days').format(format);
   
-  console.log("dateFormat", dateFormat);
   return dateFormat;
 }
 

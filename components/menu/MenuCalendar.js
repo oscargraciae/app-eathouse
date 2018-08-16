@@ -12,7 +12,6 @@ class MenuCalendar extends React.Component {
   constructor(props) {
     super(props);
 
-    console.log("Fecha delivery-->", props.deliveryDate);
     this.state = {
       datesWeek: [],
       // selectedDate: new Date(Date.now()),
@@ -43,7 +42,7 @@ class MenuCalendar extends React.Component {
   render() {
     const { datesWeek, selectedDate } = this.state;
     return (
-      <div>
+      <div className="containerCalendar col-fixed">
         <div className="titleCalendar">Selecciona el día de entrega</div>
         <div className="menuCalendar">
           <div className="menuDays">
@@ -55,6 +54,12 @@ class MenuCalendar extends React.Component {
           </div>
         </div>
         <style jsx>{`
+          .containerCalendar {
+            background: #FFF;
+            position: sticky !important;
+            z-index: 2;
+          }
+
           .menuCalendar {
             background: #FFF;
             border-bottom: 1px solid #EEE;
@@ -83,6 +88,13 @@ class MenuCalendar extends React.Component {
             font-size: 16px;
             text-transform: uppercase;
             font-weight: 600;
+          }
+
+          .col-fixed {
+            position: sticky !important;
+            right: 0;
+            top: 50px;
+            padding-top: 0px;
           }
 
           @media (max-width: 600px) {

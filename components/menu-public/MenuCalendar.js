@@ -12,7 +12,6 @@ class MenuCalendar extends React.Component {
   constructor(props) {
     super(props);
 
-    console.log("Fecha delivery-->", props.deliveryDate);
     this.state = {
       datesWeek: [],
       // selectedDate: new Date(Date.now()),

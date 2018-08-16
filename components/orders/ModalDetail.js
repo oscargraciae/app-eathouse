@@ -7,7 +7,6 @@ import { formatDate } from '../../utils/formatDate';
 import OrderDetailItem from './OrderDetailItem';
 
 export default (props) => {
-  console.log("Order Detail--->", props);
   const { order } = props;
   return (
     <div>

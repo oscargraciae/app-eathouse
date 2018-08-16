@@ -69,7 +69,7 @@ class Signup extends React.Component {
   }
 
   facebookAuth = () => {
-    console.log("Click en Facebook Auth");
+    
   }
 
   async responseFacebook(data) {

@@ -55,7 +55,6 @@ class CreditCardForm extends React.Component {
         }
         this.setState({ isLoading: false });
       }, (error) => { // Error
-        console.log("Error al generar el token", error);
         this.setState({ isLoading: false, errorMessage: `Hubo un error al agregar este método de pago. Verifica los datos e inténtalo de nuevo o usa un método de pago distinto: ${error.message_to_purchaser}` });
       });
     }

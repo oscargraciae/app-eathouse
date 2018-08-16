@@ -84,6 +84,10 @@ const api = {
       const response = await axios.get(`/dishes`);
       return response.data;
     },
+    async getAllByCategory(categoryId) {
+      const response = await axios.get(`/dishes/category/${categoryId}`);
+      return response.data;
+    },
     async get(id) {
       const response = await axios.get(`/dishes/${id}`);
       return response.data;

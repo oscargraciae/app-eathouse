@@ -109,7 +109,6 @@ class Checkout extends React.Component {
       });
     } else {
       const { details } = response.err;
-      console.log("Respuesta de error payment--->",  details[0].message);
       this.setState({ paymentError:  details[0].message, alertShow: true, isSendingOrder: false });
     }
   }
@@ -122,7 +121,6 @@ class Checkout extends React.Component {
 
   afterSave = async () => {
     const creditCards = await api.creditCard.getAll();
-    console.log("Tarjetas guardadas---->", creditCards);
     this.setState({ creditCards }, () => {
       this.setState({ creditCardId: creditCards[0].id });
     });
@@ -145,7 +143,6 @@ class Checkout extends React.Component {
     const { user } = this.props;
     return (
       <Layout {...this.props}>
-
         { loadingPage ? <LoadingSpinner /> :
           <div>
             <ModalAddress show={this.state.showAddress} responseModal={this.responseModal} onHide={this.onModalClose} />

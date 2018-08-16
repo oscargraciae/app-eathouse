@@ -4,7 +4,6 @@ import { moneyThousand } from '../../utils/formatNumber';
 import { formatDate } from '../../utils/formatDate';
 
 function ScheduleItem(props) {
-  console.log("Props--->" , props);
   return (
     <div className="item">
       <div className="item-photo" style={{ backgroundImage: "url(/static/menu9.jpeg)" }} />

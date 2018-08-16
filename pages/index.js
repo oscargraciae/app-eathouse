@@ -133,7 +133,7 @@ class Index extends React.Component {
                       <div className="col-md-3 how-works-steps text-left">
                         <img src="/static/time-is-money.png" height="90" />
                         <p className="how-works-title">Ahorrar tiempo</p>
-                        <p className="why-works-description">No pierdas el tiempo buscando comida rápida o cocinando en la noche para el siguiente día, mejor dedica tu tiempo en las cosas que te gusta hacer, nosotros nos encaremos de llevarte comida rica y saludable.</p>
+                        <p className="why-works-description">No pierdas el tiempo buscando comida rápida o cocinando en la noche para el siguiente día, mejor dedica tu tiempo en las cosas que te gusta hacer, nosotros nos encargamos de llevarte comida rica y saludable.</p>
                       </div>
                       <div className="col-md-3 how-works-steps text-left">
                         <img src="/static/get-money.png" height="90" />

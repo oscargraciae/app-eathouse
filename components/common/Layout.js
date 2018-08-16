@@ -93,10 +93,15 @@ export default ({ children, loggedUser, isAuthenticated, title = 'eathouse', use
       </div>
       <Footer />
       <style jsx global>{`
+        @import url('https://fonts.googleapis.com/css?family=Roboto');
+        
         body {
           color: #42413E;
           /* background: #FAFAFA; */
           background: #FFF;
+
+          /* font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important; */
+          font-family: 'Roboto', sans-serif;
         }
         
         .container-margin-top {

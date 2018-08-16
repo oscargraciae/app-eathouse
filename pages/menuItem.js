@@ -62,7 +62,6 @@ class MenuItemDetail extends React.Component {
     const { dish } = this.props;
     const { option } = this.state;
     const productToCart = this.props.cart.data.filter((item) => item.id === dish.id)[0];
-    console.log(productToCart);
     return (
       <Layout {...this.props}>
         <div className="fluid-container">

@@ -52,7 +52,6 @@ class AddressForm extends React.Component {
 
   async initialFetch() {
     const business = await api.business.getAll();
-    console.log("business--->", business);
     this.setState({ business });
   }
 
@@ -70,8 +69,6 @@ class AddressForm extends React.Component {
           this.props.afterSave();
         }
         
-      } else {
-        console.log("Ha ocurrido un error");
       }
     }
   }
@@ -90,8 +87,6 @@ class AddressForm extends React.Component {
           this.props.afterSave();
         }
         
-      } else {
-        console.log("Ha ocurrido un error");
       }
     }
   }
