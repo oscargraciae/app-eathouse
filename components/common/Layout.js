@@ -38,7 +38,7 @@ export default ({ children, loggedUser, isAuthenticated, title = 'eathouse', use
         <link rel="manifest" href="/manifest.json" />
 
         {/* <script src="https://use.fontawesome.com/f24acb12d1.js" /> */}
-        <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+        <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js"></script>
         <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-yTAH4cD5Lq3VDwysl-Me5bBek1phNBY&libraries=places" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" />
