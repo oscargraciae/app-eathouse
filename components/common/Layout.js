@@ -36,7 +36,7 @@ export default ({ children, loggedUser, isAuthenticated, title = 'eathouse', use
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
         <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.css' rel='stylesheet' />
         
-        <link rel="manifest" href="/static/manifest.json" />
+        <link rel="manifest" href="/manifest.json" />
 
         {/* <script src="https://use.fontawesome.com/f24acb12d1.js" /> */}
         <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js"></script>
