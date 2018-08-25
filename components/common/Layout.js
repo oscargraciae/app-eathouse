@@ -36,9 +36,8 @@ export default ({ children, loggedUser, isAuthenticated, title = 'eathouse', use
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
         <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.css' rel='stylesheet' />
         
-        <link rel="manifest" href="/static/manifest_s.json" />
-
         {/* <script src="https://use.fontawesome.com/f24acb12d1.js" /> */}
+        <link rel="manifest" href="/static/manifest.json" />
         <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
         <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-yTAH4cD5Lq3VDwysl-Me5bBek1phNBY&libraries=places" />
@@ -84,7 +83,7 @@ export default ({ children, loggedUser, isAuthenticated, title = 'eathouse', use
           __html: `var OneSignal = window.OneSignal || [];
           OneSignal.push(function() {
             OneSignal.init({
-              appId: "ca55c3ba-aa54-4824-8c7f-52c2b17b6ee3",
+              appId: "bcdaf232-7554-43e8-989d-cfa6666d058a",
             });
           });`,
         }}>
