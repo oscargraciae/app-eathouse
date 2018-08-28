@@ -34,6 +34,8 @@ class MenuPublic extends React.Component {
 
   state = {
     dishes: [],
+    dishesLight: [],
+    desserts: [],
     deliveryDate: '',
     isTime: false,
   }
@@ -59,8 +61,13 @@ class MenuPublic extends React.Component {
   }
 
   async initialFetch() {
-    const dishes = await api.dish.getAll();
-    this.setState({ dishes });
+    const [ dishes, dishesLight, desserts  ] = await Promise.all([
+      api.dish.getAllByCategory(1),
+      api.dish.getAllByCategory(2),
+      api.dish.getAllByCategory(3),
+    ]);
+
+    this.setState({ dishes, dishesLight, desserts });
   }
 
   changeDay = (deliveryDate) => {
@@ -70,21 +77,40 @@ class MenuPublic extends React.Component {
   }
 
   render() {
-    const { dishes } = this.state;
+    const { dishes, dishesLight, desserts } = this.state;
     return (
       <Layout {...this.props}>
         <div>
           { this.state.deliveryDate && <MenuCalendar changeDay={this.changeDay} deliveryDate={this.state.deliveryDate} /> }
           <div className="fluid-container">
             <div className="menu">
-              {/* { !this.state.isTime &&
-                <div className="alert alert-success">
-                  <p><strong>Aviso</strong></p>
-                  <p>Los pedidos que son para el día de hoy se tienen que ordenar antes de las 11:00am. No olvides programar tus platillos para la semana.</p>
+            <div className="row">
+                <div className="col-md-12">
+                  <h2 className="title-category" id="dishes">Platillos Principales</h2>
                 </div>
-              } */}
-              <div className="row">
                 { dishes.map((item) => {
+                  return (
+                    <MenuItem {...item} addCart={this.addCart} deliveryDate={this.state.deliveryDate} key={item.id} />
+                  )
+                }) }
+              </div>
+              <hr />
+              <div className="row">
+                <div className="col-md-12">
+                  <h2 className="title-category" id="dishesLight">Platillos Saludables</h2>
+                </div>
+                { dishesLight.map((item) => {
+                  return (
+                    <MenuItem {...item} addCart={this.addCart} deliveryDate={this.state.deliveryDate} key={item.id} />
+                  )
+                }) }
+              </div>
+              <hr />
+              <div className="row">
+                <div className="col-md-12">
+                  <h2 className="title-category" id="dishesLight">Postres</h2>
+                </div>
+                { desserts.map((item) => {
                   return (
                     <MenuItem {...item} addCart={this.addCart} deliveryDate={this.state.deliveryDate} key={item.id} />
                   )

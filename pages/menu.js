@@ -22,14 +22,16 @@ import Cart from '../components/general/Cart';
 class Menu extends React.Component {
   static async getInitialProps({ query }) { 
     // const dishes = await api.dish.getAll();
-    const [ dishes, dishesLight ] = await Promise.all([
+    const [ dishes, dishesLight, desserts ] = await Promise.all([
       api.dish.getAllByCategory(1),
       api.dish.getAllByCategory(2),
+      api.dish.getAllByCategory(3),
     ]);
     // const dishes = await api.dish.getAllByCategory(2);
     return {
       dishes,
       dishesLight,
+      desserts,
       id: 2,
     };
   }
@@ -80,7 +82,7 @@ class Menu extends React.Component {
   }
 
   render() {
-    const { dishes, dishesLight } = this.props;
+    const { dishes, dishesLight, desserts } = this.props;
     let total = 0;
     let subtotal = 0;
     let discount = 0;
@@ -109,6 +111,7 @@ class Menu extends React.Component {
             <ul>
               <li><a href="#dishes">Platillos Principales</a></li>
               <li><a href="#dishesLight">Platillos Saludables</a></li>
+              <li><a href="#desserts">Postres</a></li>
             </ul>
           </div>
           <div className="fluid-container">
@@ -129,6 +132,17 @@ class Menu extends React.Component {
                   <h2 className="title-category" id="dishesLight">Platillos Saludables</h2>
                 </div>
                 { dishesLight.map((item) => {
+                  return (
+                    <MenuItem {...item} addCart={this.addCart} deliveryDate={this.state.deliveryDate} key={item.id} />
+                  )
+                }) }
+              </div>
+              <hr />
+              <div className="row">
+                <div className="col-md-12">
+                  <h2 className="title-category" id="desserts">Postres</h2>
+                </div>
+                { desserts.map((item) => {
                   return (
                     <MenuItem {...item} addCart={this.addCart} deliveryDate={this.state.deliveryDate} key={item.id} />
                   )

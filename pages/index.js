@@ -36,7 +36,7 @@ class Index extends React.Component {
   }
 
   async initialFetch() {
-    const dishes = await api.dish.getAll();
+    const dishes = await api.dish.getAllByCategory(1);
     this.setState({ dishes: dishes.slice(0,4) });
   }
 
@@ -73,14 +73,14 @@ class Index extends React.Component {
                 {/* <h2>Ordena para hoy o programa tú semana.</h2> */}
                 <div className="signupForm">
                   <a href="/menu-public" id="btnMobileOrdeneYa" className="btn btn-primary btn-large btn-block">¡Ordena ya!</a><br/>
-                  <a href="https://play.google.com/store/apps/details?id=com.eathouse" className="btn btn-default btn-large btn-block btnDownloadAndroid">Descarga eathouse Gratis</a>
-                  <div className="lbll-default">*Versión para Android</div>
-                  {/* <a href="https://play.google.com/store/apps/details?id=com.eathouse" className="btn-app">
+                  {/* <a href="https://play.google.com/store/apps/details?id=com.eathouse" className="btn btn-default btn-large btn-block btnDownloadAndroid">Descarga eathouse Gratis</a> */}
+                  {/* <div className="lbll-default">*Versión para Android</div> */}
+                  <a href="https://play.google.com/store/apps/details?id=com.eathouse" className="btn-app">
                     <img src="/static/google-play-badge.png" className="android" />
-                  </a> */}
-                  {/* <a href="/" className="btn-app">
-                    <img src="https://play.google.com/store/apps/details?id=com.eathouse" className="ios" />
-                  </a> */}
+                  </a>
+                  <a href="https://itunes.apple.com/us/app/eathouse/id1422515511?mt=8" className="btn-app">
+                    <img src="/static/app_store_badge.svg" className="ios-phone" />
+                  </a>
                   {/* <a className="lnk-default" onClick={() => this.setState({ isShowModalZone: true })}>Ver zonas de entrega disponibles</a> */}
                 </div>
               </div>
@@ -199,9 +199,9 @@ class Index extends React.Component {
                 <a target="_blank" href="https://play.google.com/store/apps/details?id=com.eathouse" className="btn-app btnDownloadAndroid">
                   <img src="/static/google-play-badge.png" className="android-phone" />
                 </a>
-                {/* <a href="https://play.google.com/store/apps/details?id=com.eathouse" className="btn-app">
+                <a href="https://itunes.apple.com/us/app/eathouse/id1422515511?mt=8" className="btn-app">
                   <img src="/static/app_store_badge.svg" className="ios-phone" />
-                </a> */}
+                </a>
               </div>
               <div className="col-md-3">
                 <img src="static/eathouse-phone.png" height="400" />

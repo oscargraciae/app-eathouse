@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import ReactTooltip from 'react-tooltip'
 
 import { toMoney, thousandSpace } from '../../utils/formatNumber';
 
@@ -19,14 +20,12 @@ class MenuItem extends React.Component {
     const productToCart = this.props.cart.data.filter((item) => item.id === this.props.id && item.deliveryDate === this.props.deliveryDate )[0];
     return (
       <div className="col-md-3 col-xs-6 menu-item">
+        <ReactTooltip effect="solid" className="custom-tooltip" />
         <div className="menu-item-photo" style={{ backgroundImage: `url(${this.props.image})` }} />
         <div className="menu-item-details">
           <div className="menu-item-description">
             <div className="menu-item-name-link">
-              <span className="text">{this.props.name}</span>
-            </div>
-            <div className="menu-item-featured">
-              <p>{this.props.description}</p>
+              <span className="text" data-tip={this.props.description}>{this.props.name}</span>
             </div>
           </div>
           <div className="menu-item-actions">
@@ -81,7 +80,8 @@ class MenuItem extends React.Component {
   
           .menu-item-description {
             /* height: 110px; */
-            height: 130px;
+            /* height: 130px; */
+            height: 55px;
           }
 
           .menu-item-featured {
@@ -225,6 +225,11 @@ class MenuItem extends React.Component {
   
           .col-md-3 {
             padding: 5px;
+          }
+
+          .custom-tooltip {
+            width: 190px;
+            text-align: center;
           }
 
           @media (max-width: 600px) {
