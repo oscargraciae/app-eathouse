@@ -22,6 +22,7 @@ function Confirmation(props) {
             buttonStyle="btn btn-primary btn-large btn-block"
             click={props.confirm}
           />
+          <p className="lbl-notes">El cargo en tu estado de cuenta se mostrara con la razón social de la empresa registrada como Chambita Labs S.A.P.I de C.V</p>
         </div>
       </Modal.Body>
 
@@ -76,6 +77,12 @@ function Confirmation(props) {
           color: #79776B;
           font-size: 16px;
           font-weight: 300;
+        }
+
+        .lbl-notes {
+          margin-top: 20px;
+          font-size: 11px;
+          color: #79776B;
         }
 
       `}</style>

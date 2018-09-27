@@ -10,12 +10,12 @@ export default () => {
               <ul>
                 <li className="footernav-item"><a href="/faq">Preguntas frecuentes</a></li>
                 {/* <li className="footernav-item"><a href="https://eathouse.mx/app/ayuda-clientes">Ayuda a clientes</a></li> */}
-                {/* <li className="footernav-item">
-                  <a href="https://eathouse.mx/app/privacy-policy">Política de privacidad</a>
+                <li className="footernav-item">
+                  <a href="/privacy">Política de privacidad</a>
                 </li>
                 <li className="footernav-item">
-                  <a href="https://eathouse.mx/app/terms_of_service"> Términos y condiciones</a>
-                </li> */}
+                  <a href="/terms"> Términos y condiciones</a>
+                </li>
                 {/* <li className="footernav-item">
                   <a target="_blank" rel="noopener noreferrer" href="http://blog.eathouse.mx/"> Blog</a>
                 </li> */}
@@ -51,10 +51,11 @@ export default () => {
             <div className="footernav col-md-8">
               <hr />
               <img alt="eathouse Footer" src="/static/logo-eathouse.png" width="100" />
-              {/* <p>
+              <p>
                 Hecho con <i className="fa fa-heart lbl-danger" /> en Monterrey (Mexico)
-                <br /><span>© eathouse. Todos los derechos reservados</span>
-              </p> */}
+                {/* <br /><span>© eathouse. Todos los derechos reservados</span> */}
+              </p>
+              <p>Chambita Labs S.A.P.I de C.V</p>
             </div>
           </div>
 
