@@ -13,12 +13,24 @@ function CartDetail(props) {
   let total = 0;
   let subtotal = 0;
   let discount = 0;
+  let quantityTotal = 0;
+  
   props.cart.data.map((item, i) => {
     subtotal = subtotal + item.total;
   });
 
   if (props.user.bussinesId) {
     discount = subtotal * 0.20;
+  }
+
+  if (props.cart.data.length > 0) {
+    props.cart.data.map((item, i) => {
+      quantityTotal = quantityTotal + item.quantity;
+    });
+
+    if(quantityTotal >= 5) {
+      discount = subtotal * 0.20;
+    }
   }
   
   total = subtotal - discount;

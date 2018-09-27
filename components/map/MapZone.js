@@ -88,7 +88,7 @@ class MapZone extends React.Component {
         <div ref={el => this.mapContainer = el} className="absolute top right left bottom map" />
         <style jsx>{`
           .map {
-            height: 470px;
+            height: 700px;
           }
         `}</style>
       </div>

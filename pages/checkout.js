@@ -97,9 +97,23 @@ class Checkout extends React.Component {
     this.setState({ isSendingOrder: true });
     const { userAddressId, creditCardId } = this.state;
     const { data } = this.props.cart;
+
+    let isDiscount = false;
+    let quantityTotal = 0;
+    if (data.length > 0) {
+      data.map((item, i) => {
+        quantityTotal = quantityTotal + item.quantity;
+      });
+
+      if(quantityTotal >= 5 || this.props.user.bussinesId) {
+        isDiscount = true;
+      }
+    }
+
     const order = {
       userAddressId,
       creditCardId,
+      isDiscount: isDiscount,
       orderDetails: data,
     }
     const response = await api.orders.create(order);
@@ -154,6 +168,11 @@ class Checkout extends React.Component {
               { user.bussinesId && 
                 <div className="sidecart-message">
                   <span className="message-text">Por formar parte de {user.bussine.name} tienes el <strong>20%</strong> de descuento en todos tus pedidos</span>
+                </div>
+              }
+              { !user.bussinesId && 
+                <div className="sidecart-message">
+                  <span className="message-text">Obtén un <strong>20%</strong> de descuento en la compra de 5 platillos o más.</span>
                 </div>
               }
                 <div className="address">   

@@ -14,12 +14,24 @@ function Cart(props) {
   let total = 0;
   let subtotal = 0;
   let discount = 0;
+  let quantityTotal = 0;
+  
   props.cart.data.map((item, i) => {
     subtotal = subtotal + item.total;
   });
 
   if (props.user.bussinesId) {
     discount = subtotal * 0.20;
+  }
+
+  if (props.cart.data.length > 0) {
+    props.cart.data.map((item, i) => {
+      quantityTotal = quantityTotal + item.quantity;
+    });
+
+    if(quantityTotal >= 5) {
+      discount = subtotal * 0.20;
+    }
   }
   
   total = subtotal - discount;
@@ -32,6 +44,12 @@ function Cart(props) {
       { props.user.bussinesId &&
         <div className="sidecart-message">
           <span className="message-text">Por formar parte de {props.user.bussine.name} tienes el <strong>20%</strong> de descuento en todos tus pedidos</span>
+          {/* <span className="message-text">20% de descuento en todas tus ordenes</span> */}
+        </div>
+      }
+      { !props.user.bussinesId &&
+        <div className="sidecart-message">
+          <span className="message-text">Obtén un <strong>20%</strong> de descuento en la compra de 5 platillos o más.</span>
           {/* <span className="message-text">20% de descuento en todas tus ordenes</span> */}
         </div>
       }
@@ -66,6 +84,11 @@ function Cart(props) {
               <dt className="lbl-subtotal">Gastos de envío</dt><dd className="lbl-subtotal">GRATIS</dd>
             </div>
             { props.user.bussinesId &&
+              <div className="line-item">
+                <dt className="lbl-subtotal">Descuento</dt><dd className="lbl-subtotal">-${moneyThousand(discount)}</dd>
+              </div>
+            }
+            { quantityTotal >= 5 &&
               <div className="line-item">
                 <dt className="lbl-subtotal">Descuento</dt><dd className="lbl-subtotal">-${moneyThousand(discount)}</dd>
               </div>
