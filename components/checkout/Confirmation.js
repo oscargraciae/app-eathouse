@@ -22,7 +22,7 @@ function Confirmation(props) {
             buttonStyle="btn btn-primary btn-large btn-block"
             click={props.confirm}
           />
-          <p className="lbl-notes">El cargo en tu estado de cuenta se mostrara con la razón social de la empresa registrada como Chambita Labs S.A.P.I de C.V</p>
+          {/* <p className="lbl-notes">El cargo en tu estado de cuenta se mostrara con la razón social de la empresa registrada como Chambita Labs S.A.P.I de C.V</p> */}
         </div>
       </Modal.Body>
 
