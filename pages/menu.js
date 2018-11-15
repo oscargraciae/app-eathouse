@@ -20,7 +20,7 @@ import MenuIMobileItem from '../components/menu/MenuIMobileItem';
 import Cart from '../components/general/Cart';
 
 class Menu extends React.Component {
-  static async getInitialProps({ query }) { 
+  static async getInitialProps({ query }) {
     // const dishes = await api.dish.getAll();
     const [ dishes, dishesLight, desserts ] = await Promise.all([
       api.dish.getAllByCategory(1),
@@ -99,12 +99,17 @@ class Menu extends React.Component {
     return (
       <Layout {...this.props}>
         <div>
-          <div className="alertMenu">
+          {/* <div className="alertMenu">
             { !this.state.isLater ?
               <p>Ordena tus platillos para el <strong className="uppercase">{this.state.dateString}</strong> o planifica tu semana.</p> :
               // <p>Los pedidos para entregar hoy se cierran a las 11:00am, ordena tus platillos para el <strong className="uppercase">{this.state.dateString}</strong> o programa para otro día.</p> :
               <p><strong>¡Todavía estas a tiempo!</strong> Los pedidos para entregar hoy cierran a las 11:00am</p>
             }
+          </div> */}
+          <div className="alertMenu warningCont">
+            <p><strong>¡Aviso!</strong> Por el momento nuestro servicio se encuentra en mantenimiento, por lo tanto no es posible realizar compras.</p>
+            <p>Los pedidos ya programados serán entregados con normalidad.</p>
+
           </div>
           { this.state.deliveryDate && <MenuCalendar changeDay={this.changeDay} deliveryDate={this.state.deliveryDate} /> }
           <div className="containerCategories">
@@ -153,7 +158,7 @@ class Menu extends React.Component {
                   <div className="line-item">
                     <dt className="lbl-subtotal">Subtotal</dt><dd className="lbl-subtotal">${subtotal}</dd>
                   </div>
-                  { this.props.user.bussinesId && 
+                  { this.props.user.bussinesId &&
                     <div className="line-item">
                       <dt className="lbl-subtotal">Descuento</dt><dd className="lbl-subtotal">${discount}</dd>
                     </div>
@@ -170,6 +175,10 @@ class Menu extends React.Component {
           .menu {
             margin: 20px 0px;
             width: calc(100% - 300px) !important;
+          }
+
+          .warningCont {
+            background: red !important;
           }
 
           .fluid-container {
@@ -269,14 +278,14 @@ class Menu extends React.Component {
               -webkit-justify-content: space-between;
               justify-content: space-between;
               margin-bottom: 12px;
-    
+
               font-size: 16px;
             }
-    
+
             .lbl-total {
               font-size: 14px;
             }
-    
+
             .lbl-subtotal {
               font-size: 12px;
               font-weight: 300;

@@ -15,7 +15,7 @@ function Cart(props) {
   let subtotal = 0;
   let discount = 0;
   let quantityTotal = 0;
-  
+
   props.cart.data.map((item, i) => {
     subtotal = subtotal + item.total;
   });
@@ -33,7 +33,7 @@ function Cart(props) {
       discount = subtotal * 0.20;
     }
   }
-  
+
   total = subtotal - discount;
 
   return (
@@ -62,15 +62,15 @@ function Cart(props) {
               )
             }) }
           </ul>
-          { props.cart.data.length > 0 && 
+          { props.cart.data.length > 0 &&
             <a href="#" className="lbl-danger" onClick={() => props.clearCart()}>Limpiar carrito</a>
           }
 
-          { props.cart.data.length === 0 && 
+          { props.cart.data.length === 0 &&
             <div className="empty-cart">
               <p><span>Tu canasta está vacía</span></p>
               <p>Te invitamos a agregar platillos a tu canasta.</p>
-            </div> 
+            </div>
           }
         </div>
       </div>
@@ -97,7 +97,8 @@ function Cart(props) {
               <dt className="lbl-total">Total</dt><dd className="lbl-total">${moneyThousand(total)}</dd>
             </div>
           </dl>
-          <a id="btnWebMenuCart" href="/checkout" className="btn btn-primary btn-large btn-block">Comprar</a>
+          {/* <a id="btnWebMenuCart" href="/checkout" className="btn btn-primary btn-large btn-block">Comprar</a> */}
+          <a id="btnWebMenuCart" href="/" className="btn btn-primary btn-large btn-block disabled">Comprar</a>
         </div>
       }
       <style jsx>{`
@@ -164,13 +165,17 @@ function Cart(props) {
           font-size: 18px;
         }
 
+        .disabledGrey {
+          background: grey !important;
+        }
+
         .sidecart-body {
           height: 100%;
           overflow-y: auto;
           overflow-x: hidden;
           padding: 22px;
         }
-        
+
         .sidecart-footer {
           padding: 22px;
           border-top: 1px solid #e8ebe9;
@@ -248,7 +253,7 @@ function Cart(props) {
           letter-spacing: 0.5px;
           font-size: 14px;
           font-weight: normal;
-          color: #42413E;          
+          color: #42413E;
         }
 
         @media (max-width: 600px) {

@@ -63,6 +63,17 @@ const menuAuth = (props) => {
             </a>
           </li>
           <li role="separator" className="divider" /> */}
+          {/* <li>
+            <a
+              data-toggle="collapse"
+              data-target=".navbar-collapse.in"
+              href={`/orders`}
+              className="btn_nav nav-lbl-principal"
+            >
+              Ajustes de cuenta
+            </a>
+          </li>
+          <li role="separator" className="divider" /> */}
           <li>
             <a
               data-toggle="collapse"
@@ -132,7 +143,7 @@ export default function Header(props) {
                 <h2>{props.isAuthenticated}</h2>
                 </a>
               </Link>
-            
+
             </div>
             <div className="collapse navbar-collapse">
               { props.isAuthenticated ? menuAuth(props) : menuGuest() }
@@ -203,7 +214,7 @@ export default function Header(props) {
             .navbar-default .navbar-toggle {
               border: none;
             }
-            
+
             .onlyMobile {
               display: none;
             }
