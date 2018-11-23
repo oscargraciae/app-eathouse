@@ -27,36 +27,83 @@ class CreditCardForm extends React.Component {
       isLoading: false,
       errors: {},
       errorMessage: undefined,
+      deviceSessionId: '',
     }
   }
 
-  onSubmit = (e) => {
+  // componentDidMount() {
+
+  //   this.setState({ deviceSessionId });
+  // }
+
+  // onSubmit = (e) => {
+  //   e.preventDefault();
+  //   if(this.isValid()) {
+  //     this.setState({ isLoading: true });
+  //     // Conekta.setPublicKey("key_JEnHKPz6vGyz5rmzC75F6hg");
+  //     Conekta.setPublicKey(CONEKTA_KEY);
+  //     const { name, creditCardNumber, monthEx, yearEx, cvv } = this.state;
+  //     const tokenParams = {
+  //       "card": {
+  //         "number": creditCardNumber,
+  //         "name": name,
+  //         "exp_year": yearEx,
+  //         "exp_month": monthEx,
+  //         "cvc": cvv,
+  //       }
+  //     };
+
+  //     Conekta.Token.create(tokenParams, async (token) => { // Suceess
+  //       const response = await api.creditCard.create({ token: token.id });
+  //       if(this.props.onToggleModal) {
+  //         this.props.onToggleModal();
+  //         this.props.afterSave();
+  //       }
+  //       this.setState({ isLoading: false });
+  //     }, (error) => { // Error
+  //       this.setState({ isLoading: false, errorMessage: `Hubo un error al agregar este método de pago. Verifica los datos e inténtalo de nuevo o usa un método de pago distinto: ${error.message_to_purchaser}` });
+  //     });
+  //   }
+  // }
+
+  onSubmit = async (e) => {
     e.preventDefault();
     if(this.isValid()) {
       this.setState({ isLoading: true });
-      // Conekta.setPublicKey("key_JEnHKPz6vGyz5rmzC75F6hg");
-      Conekta.setPublicKey(CONEKTA_KEY);
+
+      OpenPay.setId('m7pd5e0tn3gnjzam8jvc');
+      OpenPay.setApiKey('pk_a5f3d2220a334034980ba42287bd819e');
+      OpenPay.setSandboxMode(true);
+      const deviceSessionId = OpenPay.deviceData.setup("payment-form", "deviceIdHiddenFieldName");
+
       const { name, creditCardNumber, monthEx, yearEx, cvv } = this.state;
       const tokenParams = {
-        "card": {
-          "number": creditCardNumber,
-          "name": name,
-          "exp_year": yearEx,
-          "exp_month": monthEx,
-          "cvc": cvv,
-        }
+        "card_number": creditCardNumber,
+        "holder_name": name,
+        "expiration_year": yearEx,
+        "expiration_month": monthEx,
+        "cvv2": cvv,
       };
 
-      Conekta.Token.create(tokenParams, async (token) => { // Suceess
-        const response = await api.creditCard.create({ token: token.id });
-        if(this.props.onToggleModal) {
-          this.props.onToggleModal();
-          this.props.afterSave();
+      console.log("Guardando.....");
+      OpenPay.token.create(tokenParams, async (response) => {
+        console.log("SUCCESS---->", response);
+        const card = await api.creditCard.create({ token: response.data.id, deviceSessionId });
+        console.log("CARD DATa----->", card);
+        if(card.error_code) {
+          this.setState({ isLoading: false, errorMessage: `Hubo un error al agregar este método de pago. Verifica los datos e inténtalo de nuevo o usa un método de pago distinto: ${card.description}` });
+        } else {
+          if(this.props.onToggleModal) {
+            this.props.onToggleModal();
+            this.props.afterSave();
+          }
         }
         this.setState({ isLoading: false });
-      }, (error) => { // Error
-        this.setState({ isLoading: false, errorMessage: `Hubo un error al agregar este método de pago. Verifica los datos e inténtalo de nuevo o usa un método de pago distinto: ${error.message_to_purchaser}` });
+      }, (response) => {
+        console.log("ERROR----->", response);
+        this.setState({ isLoading: false, errorMessage: `Hubo un error al agregar este método de pago. Verifica los datos e inténtalo de nuevo o usa un método de pago distinto: ${response.data.description}` });
       });
+
     }
   }
 
@@ -86,7 +133,7 @@ class CreditCardForm extends React.Component {
 
     return (
       <div>
-        <form className="credit-card-form" onSubmit={this.onSubmit} autoComplete="off" >          
+        <form className="credit-card-form" onSubmit={this.onSubmit} autoComplete="off" id="payment-form">
           <div id="rowFormAddress">
             { this.state.errorMessage && <AlertBox message={this.state.errorMessage} /> }
             <div className="row">
@@ -100,6 +147,7 @@ class CreditCardForm extends React.Component {
                   name="name"
                   label=""
                 />
+                <input type="hidden" name="deviceIdHiddenFieldName" id="deviceIdHiddenFieldName" />
               </div>
             </div>
             <div className="row">
@@ -144,7 +192,7 @@ class CreditCardForm extends React.Component {
                     this.setState({yearEx: value})
                   }}
                   name="yearEx"
-                  label="AAAA"
+                  label="AA"
                   format="####"
                 />
               </div>
@@ -212,7 +260,7 @@ class CreditCardForm extends React.Component {
           .control-input{
             border: 1px solid #ccc;
           }
-          
+
           .containerButton {
             padding: 10px 0px;
           }

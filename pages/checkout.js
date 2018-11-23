@@ -98,6 +98,11 @@ class Checkout extends React.Component {
     const { userAddressId, creditCardId } = this.state;
     const { data } = this.props.cart;
 
+    OpenPay.setId('m7pd5e0tn3gnjzam8jvc');
+    OpenPay.setApiKey('pk_a5f3d2220a334034980ba42287bd819e');
+    OpenPay.setSandboxMode(true);
+    const deviceSessionId = OpenPay.deviceData.setup("payment", "deviceIdHiddenFieldName");
+
     let isDiscount = false;
     let quantityTotal = 0;
     if (data.length > 0) {
@@ -115,6 +120,7 @@ class Checkout extends React.Component {
       creditCardId,
       isDiscount: isDiscount,
       orderDetails: data,
+      deviceSessionId,
     }
     const response = await api.orders.create(order);
     if(response.ok) {
@@ -122,8 +128,8 @@ class Checkout extends React.Component {
         this.props.clearCart();
       });
     } else {
-      const { details } = response.err;
-      this.setState({ paymentError:  details[0].message, alertShow: true, isSendingOrder: false });
+      const { description } = response.err;
+      this.setState({ paymentError: description, alertShow: true, isSendingOrder: false });
     }
   }
 
@@ -136,7 +142,9 @@ class Checkout extends React.Component {
   afterSave = async () => {
     const creditCards = await api.creditCard.getAll();
     this.setState({ creditCards }, () => {
-      this.setState({ creditCardId: creditCards[0].id });
+      if(creditCards.length > 0) {
+        this.setState({ creditCardId: creditCards[0].id });
+      }
     });
   }
 
@@ -165,17 +173,17 @@ class Checkout extends React.Component {
             { this.state.paymentError && <AlertModalApp show={this.state.alertShow} title="Oops! :(" description={this.state.paymentError} onClick={this.alertClick} /> }
             <div className="container">
               <div className="checkout">
-              { user.bussinesId && 
+              { user.bussinesId &&
                 <div className="sidecart-message">
                   <span className="message-text">Por formar parte de {user.bussine.name} tienes el <strong>20%</strong> de descuento en todos tus pedidos</span>
                 </div>
               }
-              { !user.bussinesId && 
+              { !user.bussinesId &&
                 <div className="sidecart-message">
                   <span className="message-text">Obtén un <strong>20%</strong> de descuento en la compra de 5 platillos o más.</span>
                 </div>
               }
-                <div className="address">   
+                <div className="address">
                   <div className="container-step container-box">
                     <div className="title">Dirección</div>
                     <div className="form">
@@ -187,7 +195,7 @@ class Checkout extends React.Component {
                     </div>
                   </div>
 
-                  <div className="container-step container-box">
+                  <form className="container-step container-box" id="payment">
                     <div className="title">Metodo de pago</div>
 
                     {/* <div className="method-controls">
@@ -220,7 +228,7 @@ class Checkout extends React.Component {
                       </div>
                     }
 
-                  </div>
+                  </form>
 
                   <div className="container-step container-box">
                     <div className="title">Horario de entrega</div>
@@ -238,7 +246,7 @@ class Checkout extends React.Component {
                               <CartItem key={i} {...item} />
                             )
                           }) }
-                          
+
                         </ul>
                       </div>
                     </div>
@@ -336,7 +344,7 @@ class Checkout extends React.Component {
             background-color: #fec825;
             padding: 15px 22px;
           }
-  
+
           .message-text {
             font-family: "BentonSans", Helvetica, Arial, sans-serif;
             font-weight: 600;
@@ -344,7 +352,7 @@ class Checkout extends React.Component {
             letter-spacing: 0.5px;
             font-size: 14px;
             font-weight: normal;
-            color: #42413E;          
+            color: #42413E;
           }
 
           .onlyMobile {

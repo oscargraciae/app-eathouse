@@ -97,8 +97,8 @@ function Cart(props) {
               <dt className="lbl-total">Total</dt><dd className="lbl-total">${moneyThousand(total)}</dd>
             </div>
           </dl>
-          {/* <a id="btnWebMenuCart" href="/checkout" className="btn btn-primary btn-large btn-block">Comprar</a> */}
-          <a id="btnWebMenuCart" href="/" className="btn btn-primary btn-large btn-block disabled">Comprar</a>
+          <a id="btnWebMenuCart" href="/checkout" className="btn btn-primary btn-large btn-block">Comprar</a>
+          {/* <a id="btnWebMenuCart" href="/" className="btn btn-primary btn-large btn-block disabled">Comprar</a> */}
         </div>
       }
       <style jsx>{`

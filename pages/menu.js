@@ -106,11 +106,10 @@ class Menu extends React.Component {
               <p><strong>¡Todavía estas a tiempo!</strong> Los pedidos para entregar hoy cierran a las 11:00am</p>
             }
           </div> */}
-          <div className="alertMenu warningCont">
+          {/* <div className="alertMenu warningCont">
             <p><strong>¡Aviso!</strong> Por el momento nuestro servicio se encuentra en mantenimiento, por lo tanto no es posible realizar compras.</p>
             <p>Los pedidos ya programados serán entregados con normalidad.</p>
-
-          </div>
+          </div> */}
           { this.state.deliveryDate && <MenuCalendar changeDay={this.changeDay} deliveryDate={this.state.deliveryDate} /> }
           <div className="containerCategories">
             <ul>

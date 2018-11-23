@@ -489,7 +489,7 @@ class Index extends React.Component {
               .why-container {
                 padding: 40px 10px;
               }
-              
+
               .why-container h2 {
                 font-size: 26px;
               }
@@ -503,7 +503,7 @@ class Index extends React.Component {
                 padding: 20px;
               }
             }
-            
+
           `}</style>
         </main>
       </Layout>

@@ -7,7 +7,7 @@ import Header from './Header';
 import Footer from './Footer';
 import ModalGeneralAddress from '../general/ModalGeneralAddress';
 
-export default ({ children, loggedUser, isAuthenticated, title = 'eathouse', user }) => { 
+export default ({ children, loggedUser, isAuthenticated, title = 'eathouse', user }) => {
   return (
     <div id="layout">
       <Head>
@@ -35,13 +35,15 @@ export default ({ children, loggedUser, isAuthenticated, title = 'eathouse', use
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
         <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.css' rel='stylesheet' />
-        
+
         {/* <script src="https://use.fontawesome.com/f24acb12d1.js" /> */}
         <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-yTAH4cD5Lq3VDwysl-Me5bBek1phNBY&libraries=places" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" />
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" />
-        <script type="text/javascript" src="https://cdn.conekta.io/js/latest/conekta.js"></script>
+        {/* <script type="text/javascript" src="https://cdn.conekta.io/js/latest/conekta.js"></script> */}
+        <script type="text/javascript" src="https://openpay.s3.amazonaws.com/openpay.v1.min.js"></script>
+        <script type="text/javascript" src="https://openpay.s3.amazonaws.com/openpay-data.v1.min.js"></script>
 
         <script dangerouslySetInnerHTML={{
           __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -57,7 +59,7 @@ export default ({ children, loggedUser, isAuthenticated, title = 'eathouse', use
             var t = window.driftt = window.drift = window.driftt || [];
             if (!t.init) {
               if (t.invoked) return void (window.console && console.error && console.error("Drift snippet included twice."));
-              t.invoked = !0, t.methods = [ "identify", "config", "track", "reset", "debug", "show", "ping", "page", "hide", "off", "on" ], 
+              t.invoked = !0, t.methods = [ "identify", "config", "track", "reset", "debug", "show", "ping", "page", "hide", "off", "on" ],
               t.factory = function(e) {
                 return function() {
                   var n = Array.prototype.slice.call(arguments);
@@ -87,14 +89,14 @@ export default ({ children, loggedUser, isAuthenticated, title = 'eathouse', use
       height="0" width="0" style={{ display:'none', visibility:'hidden' }}></iframe></noscript> */}
 
       <Header loggedUser={loggedUser} isAuthenticated={isAuthenticated} user={user} />
-      { isAuthenticated && <ModalGeneralAddress show={!user.withAddress} /> }  
+      { isAuthenticated && <ModalGeneralAddress show={!user.withAddress} /> }
       <div className="container-margin-top">
         { children }
       </div>
       <Footer />
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css?family=Roboto');
-        
+
         body {
           color: #42413E;
           /* background: #FAFAFA; */
@@ -103,7 +105,7 @@ export default ({ children, loggedUser, isAuthenticated, title = 'eathouse', use
           /* font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important; */
           font-family: 'Roboto', sans-serif;
         }
-        
+
         .container-margin-top {
           padding-top: 50px;
         }
