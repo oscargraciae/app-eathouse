@@ -5,7 +5,7 @@ import ReactTooltip from 'react-tooltip'
 import { toMoney, thousandSpace } from '../../utils/formatNumber';
 
 class MenuItem extends React.Component {
-  
+
   addItem = () => {
     const productToCart = this.props.cart.data.filter((item) => item.id === this.props.id && item.deliveryDate === this.props.deliveryDate)[0];
     this.props.addCart(this.props, productToCart.quantity + 1);
@@ -19,17 +19,22 @@ class MenuItem extends React.Component {
   render() {
     const productToCart = this.props.cart.data.filter((item) => item.id === this.props.id && item.deliveryDate === this.props.deliveryDate )[0];
     return (
-      <div className="col-md-3 col-xs-6 menu-item">
+      <div className="menu-item">
         <ReactTooltip effect="solid" className="custom-tooltip" />
-        <div className="menu-item-photo" style={{ backgroundImage: `url(${this.props.image})` }} />
+        {/* <div className="menu-item-photo" style={{ backgroundImage: `url(${this.props.image})` }} /> */}
         <div className="menu-item-details">
-          <div className="menu-item-description">
-            <div className="menu-item-name-link" >
-              <span className="text" data-tip={this.props.description}>{this.props.name}</span>
+          <div className="menu-item-content">
+            <div className="menu-item-description">
+              <div className="menu-item-name-link" >
+                <span className="text" data-tip={this.props.description}>{this.props.name}</span>
+              </div>
+              <div className="menu-item-featured">
+                <p>{this.props.description}</p>
+              </div>
             </div>
-            {/* <div className="menu-item-featured">
-              <p>{this.props.description}</p>
-            </div> */}
+            <div className="menu-item-image">
+              <div className="menu-item-photo" style={{ backgroundImage: `url(${this.props.image})` }} />
+            </div>
           </div>
           <div className="menu-item-actions">
             <div className="menu-item-price">
@@ -40,8 +45,24 @@ class MenuItem extends React.Component {
             </div>
           </div>
         </div>
-  
+
         <style global jsx>{`
+
+          .menu-item {
+            display: flex;
+            cursor: pointer;
+            box-sizing: content-box;
+            width: 48%;
+            height: 150px;
+            /* height: 128px; */
+            margin: 16px 0px;
+            padding: 0px;
+            border-width: 1px;
+            border-style: solid;
+            border-color: rgba(217, 219, 224, 0.5);
+            border-image: initial;
+          }
+
           .menu-item-photo {
             background-color: rgba(231,228,218,0.9);
             background-repeat: no-repeat;
@@ -66,7 +87,7 @@ class MenuItem extends React.Component {
             -ms-user-select: none;
             user-select: none;
           }
-  
+
           .menu-item-details {
             display: block;
             position: relative;
@@ -74,80 +95,92 @@ class MenuItem extends React.Component {
             background-color: white;
             border-bottom-left-radius: 3px;
             border-bottom-right-radius: 3px;
-            border-left: 1px solid #e8ebe9;
+            /* border-left: 1px solid #e8ebe9;
             border-bottom: 1px solid #e8ebe9;
-            border-right: 1px solid #e8ebe9;
-  
-            padding-top: 10px;
+            border-right: 1px solid #e8ebe9; */
+            /* border: 1px solid rgba(217, 219, 224, 0.5); */
           }
-  
+
+          .menu-item-content {
+            display: flex;
+          }
+
           .menu-item-description {
-            /* height: 110px; */
-            /* height: 130px; */
-            height: 55px;
+            display: flex;
+            flex-direction: column;
+            flex: 1 1 0%;
+            padding: 15px;
+            padding-bottom: 0px;
+          }
+
+          .menu-item-image {
+            background: red;
+            width: 100px;
+            height: 100px;
+            display: flex;
           }
 
           .menu-item-featured {
-            margin-left: 16px;
+            margin-left: 0px;
             font-family: "BentonSans", Helvetica, Arial, sans-serif;
             font-weight: 400;
             font-style: normal;
             letter-spacing: 0.2px;
-            color: #79776B;
+            color: rgba(143, 149, 163, 0.9);
             font-size: 12px;
             line-height: 1.75em;
         }
-  
+
           .menu-item-name-link {
             font-family: "BentonSans", Helvetica, Arial, sans-serif;
-            font-weight: 600;
+            font-weight: 500;
             font-style: normal;
             letter-spacing: 0.5px;
-            margin-left: 16px;
+            margin-left: 0px;
             margin-right: 16px;
             font-size: 16px;
             line-height: 1.3em;
             letter-spacing: 0;
-            color: #515252;
+            color: rgb(45, 49, 56);
             overflow: visible;
             text-overflow: ellipsis;
             display: block;
             /* padding: 10px 0; */
             padding: 5px 0;
           }
-  
+
           .menu-item-actions {
-            height: 53px;
+            height: 50px;
             border-top: 1px solid #e8ebe9;
-  
+
             display: flex;
             align-items: center;
             justify-content: space-between;
           }
-  
+
           .menu-item-price {
             font-size: 21px;
             letter-spacing: 0.2px;
-  
+
             color: #333;
             float: left;
             border-right: 1px solid #e8ebe9;
             text-align: justify;
             padding-left: 16px;
             padding-right: 16px;
-  
+
             height: 100%;
             display: flex;
             align-items: center;
           }
-  
+
           .menu-item-buttons {
             margin-right: 12px;
             font-size: 16px;
             display: block;
-            float: right; 
+            float: right;
           }
-  
+
           .add-to-cart {
             border-color: #F27242;
             background-color: white;
@@ -161,37 +194,37 @@ class MenuItem extends React.Component {
             padding-right: 0px;
             width: 100px;
             height: 28px;
-            
+
             visibility: hidden;
             border-radius: 3px;
           }
-  
+
           .add-to-cart:hover {
             background: #F27242;
             color: white;
           }
-  
+
           .button-add-cart-small {
-            color: #FF7901;
+            color: #3BCF78;
             */ color: #3BCF75; */
             background: 0 0;
-            line-height: 33px;
+            line-height: 25px;
             cursor: pointer;
             position: relative;
             border-radius: 4px;
             overflow: hidden;
             text-align: center;
-            border: 1px solid #FF7901;
-            
+            border: 1px solid #3BCF78;
+
             font-size: 14px;
             margin: 13px 0 15px;
             padding: 0 10px;
             width: 40px;
             z-index: 1;
           }
-  
+
           .button-add-cart-small:hover {
-            background: #FF7901;
+            background: #3BCF78;
             color: white;
           }
 
@@ -200,33 +233,32 @@ class MenuItem extends React.Component {
           }
 
           .button-add-cart {
-            color: #FF7901;
+            color: #3BCF78;
             background: 0 0;
-            line-height: 33px;
+            line-height: 26px;
             cursor: pointer;
             position: relative;
             border-radius: 4px;
             overflow: hidden;
             text-align: center;
-            border: 1px solid #FF7901;
-            padding: 0 20px;
-            font-size: 14px;
-            margin: 13px 0 15px;
-            /* width: 128px; */
-            width: 110px;
+            border: 1px solid #3BCF78;
+            padding: 0 10px;
+            font-size: 12px;
+            margin: 7px 0 8px;
+            width: 75px;
             z-index: 1;
             font-weight: bold;
           }
-  
+
           .button-add-cart:hover {
-            background: #FF7901;
+            background: #3BCF78;
             color: white;
           }
 
           .lbl-quantity {
             padding: 10px;
           }
-  
+
           .col-md-3 {
             /* padding: 5px; */
             padding-right: 0px;
@@ -246,13 +278,13 @@ class MenuItem extends React.Component {
               -moz-letter-spacing: 0;
               -ms-letter-spacing: 0;
               letter-spacing: 0;
-              color: #515252;
+              color: #2D3138;
               overflow: visible;
               text-overflow: ellipsis;
               display: block;
               padding: 0px 0;
               /* height: 35px; */
-          
+
             }
             .menu-item-featured {
               font-size: 10px;
@@ -266,34 +298,34 @@ class MenuItem extends React.Component {
             .menu-item-actions {
               height: 53px;
               border-top: 1px solid #e8ebe9;
-    
+
               display: flex;
               align-items: center;
               justify-content: space-between;
             }
-    
+
             .menu-item-price {
               font-size: 16px;
               letter-spacing: 0.2px;
-    
+
               color: #333;
               float: left;
               border-right: 1px solid #e8ebe9;
               text-align: justify;
               padding-left: 12px;
               padding-right: 12px;
-    
+
               height: 100%;
               align-items: center;
             }
-    
+
             .menu-item-buttons {
               margin-right: 12px;
               font-size: 16px;
               display: block;
-              float: right; 
+              float: right;
             }
-            
+
             .button-add-cart {
               font-size: 12px;
               width: 90px;
@@ -328,7 +360,7 @@ class MenuItem extends React.Component {
       </div>
     )
   }
-  
+
   btnAdd = () => {
     return (
       <button className="small button-add-cart" onClick={() => this.props.addCart(this.props, 1)}>

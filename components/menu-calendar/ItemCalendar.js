@@ -13,7 +13,7 @@ function ItemCalendar(props) {
 
   let currentDate = moment(new Date(Date.now()), "MM-DD-YYYY", "es").locale("mx");
 
-  
+
 
   let invalidCurrentDate = false;
   if(currentDate.format('DD') === weekDayNumber) {
@@ -38,7 +38,7 @@ function ItemCalendar(props) {
       </div>
         <style jsx>{`
           .dayItem {
-            padding: 10px 15px;
+            padding: 6px 15px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -59,7 +59,7 @@ function ItemCalendar(props) {
           }
 
           .dayNumber {
-            font-size: 16px;
+            font-size: 12px;
             text-transform: uppercase;
           }
 

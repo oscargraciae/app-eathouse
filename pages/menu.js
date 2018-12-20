@@ -106,51 +106,53 @@ class Menu extends React.Component {
               <p><strong>¡Todavía estas a tiempo!</strong> Los pedidos para entregar hoy cierran a las 11:00am</p>
             }
           </div> */}
-          {/* <div className="alertMenu warningCont">
-            <p><strong>¡Aviso!</strong> Por el momento nuestro servicio se encuentra en mantenimiento, por lo tanto no es posible realizar compras.</p>
-            <p>Los pedidos ya programados serán entregados con normalidad.</p>
-          </div> */}
           { this.state.deliveryDate && <MenuCalendar changeDay={this.changeDay} deliveryDate={this.state.deliveryDate} /> }
-          <div className="containerCategories">
+          {/* <div className="containerCategories">
             <ul>
               <li><a href="#dishes">Platillos Principales</a></li>
               <li><a href="#dishesLight">Platillos Saludables</a></li>
               <li><a href="#desserts">Postres</a></li>
             </ul>
-          </div>
+          </div> */}
           <div className="fluid-container">
             <div className="menu">
-              <div className="row">
-                <div className="col-md-12">
+              <div className="">
+                {/* <div className="col-md-12">
                   <h2 className="title-category" id="dishes">Platillos Principales</h2>
+                </div> */}
+                <div className="menu-items">
+                  { dishes.map((item) => {
+                    return (
+                      <MenuItem {...item} addCart={this.addCart} deliveryDate={this.state.deliveryDate} key={item.id} />
+                    )
+                  }) }
                 </div>
-                { dishes.map((item) => {
-                  return (
-                    <MenuItem {...item} addCart={this.addCart} deliveryDate={this.state.deliveryDate} key={item.id} />
-                  )
-                }) }
               </div>
               <hr />
-              <div className="row">
-                <div className="col-md-12">
+              <div className="">
+                {/* <div className="col-md-12">
                   <h2 className="title-category" id="dishesLight">Platillos Saludables</h2>
+                </div> */}
+                <div className="menu-items">
+                  { dishesLight.map((item) => {
+                    return (
+                      <MenuItem {...item} addCart={this.addCart} deliveryDate={this.state.deliveryDate} key={item.id} />
+                    )
+                  }) }
                 </div>
-                { dishesLight.map((item) => {
-                  return (
-                    <MenuItem {...item} addCart={this.addCart} deliveryDate={this.state.deliveryDate} key={item.id} />
-                  )
-                }) }
               </div>
               <hr />
-              <div className="row">
-                <div className="col-md-12">
+              <div className="">
+                {/* <div className="col-md-12">
                   <h2 className="title-category" id="desserts">Postres</h2>
+                </div> */}
+                <div className="menu-items">
+                  { desserts.map((item) => {
+                    return (
+                      <MenuItem {...item} addCart={this.addCart} deliveryDate={this.state.deliveryDate} key={item.id} />
+                    )
+                  }) }
                 </div>
-                { desserts.map((item) => {
-                  return (
-                    <MenuItem {...item} addCart={this.addCart} deliveryDate={this.state.deliveryDate} key={item.id} />
-                  )
-                }) }
               </div>
               { total > 0 &&
                 <div className="btnContainerMobile">
@@ -174,6 +176,15 @@ class Menu extends React.Component {
           .menu {
             margin: 20px 0px;
             width: calc(100% - 300px) !important;
+          }
+
+          .menu-items {
+            padding-top: 16px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            -webkit-box-pack: justify;
+            justify-content: space-between;
           }
 
           .warningCont {
@@ -213,12 +224,16 @@ class Menu extends React.Component {
           }
 
           .title-category {
-            font-size: 24px;
+            font-size: 18px;
+            padding: 10px 0px;
             margin-top: 0;
             margin: 0 0 15px;
-            color: #2d2d2d;
-            font-weight: 500;
+            color: #2D3138;
+            font-weight: 600;
             line-height: 34px;
+            text-transform: uppercase;
+            /* border-bottom: 1px solid #DDD; */
+            font-family: "BentonSans",Helvetica,Arial,sans-serif;
           }
 
           .containerCategories {
@@ -247,7 +262,7 @@ class Menu extends React.Component {
           .containerCategories > ul > li > a {
             padding: 10px;
             text-transform: uppercase;
-            color: #515252;
+            color: #2D3138;
             font-size: 12px;
           }
 
