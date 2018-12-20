@@ -67,24 +67,25 @@ module.exports =
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 115);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 115:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(116);
-
-
-/***/ }),
-
-/***/ 116:
+/***/ "/Users/oscargracia/Documents/proyectos/eathouse/app-eathouse/node_modules/next/dist/pages/_document.js":
 /***/ (function(module, exports) {
 
 module.exports = require("/Users/oscargracia/Documents/proyectos/eathouse/app-eathouse/node_modules/next/dist/pages/_document.js");
 
+/***/ }),
+
+/***/ 1:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__("/Users/oscargracia/Documents/proyectos/eathouse/app-eathouse/node_modules/next/dist/pages/_document.js");
+
+
 /***/ })
 
 /******/ });
+//# sourceMappingURL=_document.js.map
