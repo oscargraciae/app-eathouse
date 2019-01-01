@@ -10,7 +10,7 @@ function TableOrders(props) {
     <table className="table">
       <thead>
         <tr>
-          <th># Orden</th>
+          <th>#Orden</th>
           <th>Dirección</th>
           <th>Fecha de compra</th>
           {/* <th>Estatus</th> */}
@@ -25,7 +25,7 @@ function TableOrders(props) {
               <td>
                 <div className="tdServiceData">
                   <div className="serviceDescriptionData">
-                    <div className="title">#{item.id}</div>
+                    <div className="">#{item.id}</div>
                   </div>
                 </div>
               </td>
@@ -39,7 +39,7 @@ function TableOrders(props) {
             </tr>
           )
         }) }
-        
+
       </tbody>
       <style jsx>{`
         .tdServiceData {

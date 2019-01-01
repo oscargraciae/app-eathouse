@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import ReactTooltip from 'react-tooltip'
+// import ReactTooltip from 'react-tooltip'
 
 import { toMoney, thousandSpace } from '../../utils/formatNumber';
 
@@ -20,13 +20,13 @@ class MenuItem extends React.Component {
     const productToCart = this.props.cart.data.filter((item) => item.id === this.props.id && item.deliveryDate === this.props.deliveryDate )[0];
     return (
       <div className="menu-item">
-        <ReactTooltip effect="solid" className="custom-tooltip" />
+        {/* <ReactTooltip effect="solid" className="custom-tooltip" /> */}
         {/* <div className="menu-item-photo" style={{ backgroundImage: `url(${this.props.image})` }} /> */}
         <div className="menu-item-details">
           <div className="menu-item-content">
             <div className="menu-item-description">
               <div className="menu-item-name-link" >
-                <span className="text" data-tip={this.props.description}>{this.props.name}</span>
+                <span className="text">{this.props.name}</span>
               </div>
               <div className="menu-item-featured">
                 <p>{this.props.description}</p>
@@ -55,7 +55,7 @@ class MenuItem extends React.Component {
             width: 48%;
             height: 150px;
             /* height: 128px; */
-            margin: 16px 0px;
+            margin: 8px 0px;
             padding: 0px;
             border-width: 1px;
             border-style: solid;
@@ -70,9 +70,9 @@ class MenuItem extends React.Component {
             box-sizing: border-box;
             border-top-left-radius: 3px;
             border-top-right-radius: 3px;
-            border-left: 1px solid #e8ebe9;
-            border-top: 1px solid #e8ebe9;
-            border-right: 1px solid #e8ebe9;
+            border-left: 1px solid rgba(217,219,224,0.5);
+            border-top: 1px solid rgba(217,219,224,0.5);
+            border-right: 1px solid rgba(217,219,224,0.5);
             overflow: hidden;
             display: block;
             padding-top: 100%;
@@ -95,9 +95,9 @@ class MenuItem extends React.Component {
             background-color: white;
             border-bottom-left-radius: 3px;
             border-bottom-right-radius: 3px;
-            /* border-left: 1px solid #e8ebe9;
-            border-bottom: 1px solid #e8ebe9;
-            border-right: 1px solid #e8ebe9; */
+            /* border-left: 1px solid rgba(217,219,224,0.5);
+            border-bottom: 1px solid rgba(217,219,224,0.5);
+            border-right: 1px solid rgba(217,219,224,0.5); */
             /* border: 1px solid rgba(217, 219, 224, 0.5); */
           }
 
@@ -114,7 +114,6 @@ class MenuItem extends React.Component {
           }
 
           .menu-item-image {
-            background: red;
             width: 100px;
             height: 100px;
             display: flex;
@@ -151,7 +150,7 @@ class MenuItem extends React.Component {
 
           .menu-item-actions {
             height: 50px;
-            border-top: 1px solid #e8ebe9;
+            border-top: 1px solid rgba(217,219,224,0.5);
 
             display: flex;
             align-items: center;
@@ -164,7 +163,7 @@ class MenuItem extends React.Component {
 
             color: #333;
             float: left;
-            border-right: 1px solid #e8ebe9;
+            border-right: 1px solid rgba(217,219,224,0.5);
             text-align: justify;
             padding-left: 16px;
             padding-right: 16px;
@@ -271,6 +270,21 @@ class MenuItem extends React.Component {
           }
 
           @media (max-width: 600px) {
+            .menu-item {
+              display: flex;
+              cursor: pointer;
+              box-sizing: content-box;
+              width: 100%;
+              height: 150px;
+              /* height: 128px; */
+              margin: 8px 0px;
+              padding: 0px;
+              border-width: 1px;
+              border-style: solid;
+              border-color: rgba(217, 219, 224, 0.5);
+              border-image: initial;
+            }
+
             .menu-item-name-link {
               font-size: 12px;
               line-height: 1.3em;
@@ -297,7 +311,7 @@ class MenuItem extends React.Component {
 
             .menu-item-actions {
               height: 53px;
-              border-top: 1px solid #e8ebe9;
+              border-top: 1px solid rgba(217,219,224,0.5);
 
               display: flex;
               align-items: center;
@@ -310,7 +324,7 @@ class MenuItem extends React.Component {
 
               color: #333;
               float: left;
-              border-right: 1px solid #e8ebe9;
+              border-right: 1px solid rgba(217,219,224,0.5);
               text-align: justify;
               padding-left: 12px;
               padding-right: 12px;

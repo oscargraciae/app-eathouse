@@ -120,6 +120,9 @@ class Menu extends React.Component {
                 {/* <div className="col-md-12">
                   <h2 className="title-category" id="dishes">Platillos Principales</h2>
                 </div> */}
+                <div>
+                  <h2 className="title-category" id="dishes">Platillos Principales</h2>
+                </div>
                 <div className="menu-items">
                   { dishes.map((item) => {
                     return (
@@ -130,9 +133,9 @@ class Menu extends React.Component {
               </div>
               <hr />
               <div className="">
-                {/* <div className="col-md-12">
+                <div className="">
                   <h2 className="title-category" id="dishesLight">Platillos Saludables</h2>
-                </div> */}
+                </div>
                 <div className="menu-items">
                   { dishesLight.map((item) => {
                     return (
@@ -143,9 +146,9 @@ class Menu extends React.Component {
               </div>
               <hr />
               <div className="">
-                {/* <div className="col-md-12">
+                <div className="">
                   <h2 className="title-category" id="desserts">Postres</h2>
-                </div> */}
+                </div>
                 <div className="menu-items">
                   { desserts.map((item) => {
                     return (
@@ -179,7 +182,7 @@ class Menu extends React.Component {
           }
 
           .menu-items {
-            padding-top: 16px;
+            /* padding-top: 16px; */
             display: flex;
             flex-wrap: wrap;
             align-items: flex-start;
@@ -225,9 +228,9 @@ class Menu extends React.Component {
 
           .title-category {
             font-size: 18px;
-            padding: 10px 0px;
+            padding: 0px 0px;
             margin-top: 0;
-            margin: 0 0 15px;
+            margin: 0 0 0px;
             color: #2D3138;
             font-weight: 600;
             line-height: 34px;
@@ -238,7 +241,7 @@ class Menu extends React.Component {
 
           .containerCategories {
             padding: 10px;
-            border-bottom: 1px solid #e8ebe9;
+            border-bottom: 1px solid rgba(217,219,224,0.5);
 
             position: sticky !important;
             right: 0;

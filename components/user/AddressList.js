@@ -73,7 +73,7 @@ class AddressList extends React.Component {
 
           .address-item {
             background: #FFF;
-            border-bottom: 1px solid #EEE;
+            border-bottom: 1px solid rgba(217,219,224,0.5);
             margin: 0px 0;
             padding: 13px 5px;
             color: #79776B;

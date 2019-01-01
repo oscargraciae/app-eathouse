@@ -62,7 +62,7 @@ class Suscriptions extends React.Component {
           }
 
           .suscriptionBox {
-            border: 1px solid #EEE;
+            border: 1px solid rgba(217,219,224,0.5);
             border-radius: 3px;
             padding: 20px 40px;
             background: #FFF;
@@ -73,7 +73,7 @@ class Suscriptions extends React.Component {
             font-weight: 600;
             font-style: normal;
             letter-spacing: 0.5px;
-            color: #515252;
+            color: #2D3138;
             font-size: 14px;
             text-transform: uppercase;
             line-height: normal;

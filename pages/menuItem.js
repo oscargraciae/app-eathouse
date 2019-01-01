@@ -115,9 +115,9 @@ class MenuItemDetail extends React.Component {
             box-sizing: border-box;
             border-top-left-radius: 3px;
             border-top-right-radius: 3px;
-            border-left: 1px solid #e8ebe9;
-            border-top: 1px solid #e8ebe9;
-            border-right: 1px solid #e8ebe9;
+            border-left: 1px solid rgba(217,219,224,0.5);
+            border-top: 1px solid rgba(217,219,224,0.5);
+            border-right: 1px solid rgba(217,219,224,0.5);
             overflow: hidden;
             cursor: pointer;
             display: block;
@@ -184,7 +184,7 @@ class MenuItemDetail extends React.Component {
           .top-bar {
             background: white;
             width: 100%;
-            border-bottom: 1px solid #EEE;
+            border-bottom: 1px solid rgba(217,219,224,0.5);
             display: flex;
           }
 

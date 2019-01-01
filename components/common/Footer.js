@@ -63,7 +63,7 @@ export default () => {
       </footer>
       <style jsx>{`
         footer {
-          border-top: 1px solid #EEE;
+          border-top: 1px solid rgba(217,219,224,0.5);
           background: #FFF;
           color: #42413E;
           margin-top: 0px;
@@ -74,7 +74,7 @@ export default () => {
           font-weight: 600;
           font-style: normal;
           letter-spacing: 0.5px;
-          color: #515252;
+          color: #2D3138;
           font-size: 14px;
           text-align: left;
           text-transform: uppercase;

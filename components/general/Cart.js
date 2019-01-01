@@ -83,16 +83,16 @@ function Cart(props) {
             <div className="line-item">
               <dt className="lbl-subtotal">Gastos de envío</dt><dd className="lbl-subtotal">GRATIS</dd>
             </div>
-            { props.user.bussinesId &&
+            { (props.user.bussinesId || quantityTotal >= 5) &&
               <div className="line-item">
                 <dt className="lbl-subtotal">Descuento</dt><dd className="lbl-subtotal">-${moneyThousand(discount)}</dd>
               </div>
             }
-            { quantityTotal >= 5 &&
+            {/* { quantityTotal >= 5 &&
               <div className="line-item">
                 <dt className="lbl-subtotal">Descuento</dt><dd className="lbl-subtotal">-${moneyThousand(discount)}</dd>
               </div>
-            }
+            } */}
             <div className="line-item">
               <dt className="lbl-total">Total</dt><dd className="lbl-total">${moneyThousand(total)}</dd>
             </div>
@@ -141,7 +141,7 @@ function Cart(props) {
           right: 0px;
           background: white;
           z-index: 21;
-          border-left: 1px solid #e8ebe9;
+          border-left: 1px solid rgba(217,219,224,0.5);
         }
 
         .sidecart-header {
@@ -154,15 +154,15 @@ function Cart(props) {
           -webkit-flex: 0 1 auto;
           -ms-flex: 0 1 auto;
           flex: 0 1 auto;
-          border-bottom: 1px solid #e8ebe9;
-          margin: 17px 22px 0;
-          padding-bottom: 22px;
+          border-bottom: 1px solid rgba(217,219,224,0.5);
+          margin: 12px 10px 0;
+          padding-bottom: 15px;
           padding-top: 3px;
         }
 
         .sidecart-heading {
           font-weight: bold;
-          font-size: 18px;
+          font-size: 16px;
         }
 
         .disabledGrey {
@@ -173,12 +173,12 @@ function Cart(props) {
           height: 100%;
           overflow-y: auto;
           overflow-x: hidden;
-          padding: 22px;
+          padding: 5px 18px;
         }
 
         .sidecart-footer {
-          padding: 22px;
-          border-top: 1px solid #e8ebe9;
+          padding: 22px 22px;
+          border-top: 1px solid rgba(217,219,224,0.5);
           background: white;
         }
 
@@ -192,7 +192,7 @@ function Cart(props) {
           line-height: 1;
           letter-spacing: 1px;
           color: #42413E;
-          margin-bottom: 50px;
+          margin-bottom: 30px;
         }
 
         .line-item {

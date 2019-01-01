@@ -24,7 +24,7 @@ class Orders extends React.Component {
   }
 
   componentDidMount() {
-    this.initialFetch(); 
+    this.initialFetch();
   }
 
   async initialFetch() {
@@ -51,11 +51,25 @@ class Orders extends React.Component {
       <Layout {...this.props}>
         { orderDetail && <ModalDetail show={openModalDetail} order={orderDetail} onToggle={this.onToggleModalDetail} /> }
         <div className="container">
-          <h2>Mis compras</h2>
+          <h2 className="title">Mis compras</h2>
           <div className="container-box">
             { orders ? <TableOrders data={orders} detailClick={this.detailClick} /> : <LoadingSpinner /> }
           </div>
         </div>
+        <style jsx>{`
+          .title {
+            font-size: 21px;
+            padding: 0px 0px;
+            margin-top: 0;
+            margin: 20px 0 0px;
+            color: #2D3138;
+            font-weight: 600;
+            line-height: 34px;
+            text-transform: uppercase;
+            /* border-bottom: 1px solid #DDD; */
+            font-family: "BentonSans",Helvetica,Arial,sans-serif;
+          }
+        `}</style>
       </Layout>
     )
   }

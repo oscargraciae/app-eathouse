@@ -36,76 +36,76 @@ class CreditCardForm extends React.Component {
   //   this.setState({ deviceSessionId });
   // }
 
-  // onSubmit = (e) => {
-  //   e.preventDefault();
-  //   if(this.isValid()) {
-  //     this.setState({ isLoading: true });
-  //     // Conekta.setPublicKey("key_JEnHKPz6vGyz5rmzC75F6hg");
-  //     Conekta.setPublicKey(CONEKTA_KEY);
-  //     const { name, creditCardNumber, monthEx, yearEx, cvv } = this.state;
-  //     const tokenParams = {
-  //       "card": {
-  //         "number": creditCardNumber,
-  //         "name": name,
-  //         "exp_year": yearEx,
-  //         "exp_month": monthEx,
-  //         "cvc": cvv,
-  //       }
-  //     };
-
-  //     Conekta.Token.create(tokenParams, async (token) => { // Suceess
-  //       const response = await api.creditCard.create({ token: token.id });
-  //       if(this.props.onToggleModal) {
-  //         this.props.onToggleModal();
-  //         this.props.afterSave();
-  //       }
-  //       this.setState({ isLoading: false });
-  //     }, (error) => { // Error
-  //       this.setState({ isLoading: false, errorMessage: `Hubo un error al agregar este método de pago. Verifica los datos e inténtalo de nuevo o usa un método de pago distinto: ${error.message_to_purchaser}` });
-  //     });
-  //   }
-  // }
-
-  onSubmit = async (e) => {
+  onSubmit = (e) => {
     e.preventDefault();
     if(this.isValid()) {
       this.setState({ isLoading: true });
-
-      OpenPay.setId('m7pd5e0tn3gnjzam8jvc');
-      OpenPay.setApiKey('pk_a5f3d2220a334034980ba42287bd819e');
-      OpenPay.setSandboxMode(true);
-      const deviceSessionId = OpenPay.deviceData.setup("payment-form", "deviceIdHiddenFieldName");
-
+      // Conekta.setPublicKey("key_JEnHKPz6vGyz5rmzC75F6hg");
+      Conekta.setPublicKey(CONEKTA_KEY);
       const { name, creditCardNumber, monthEx, yearEx, cvv } = this.state;
       const tokenParams = {
-        "card_number": creditCardNumber,
-        "holder_name": name,
-        "expiration_year": yearEx,
-        "expiration_month": monthEx,
-        "cvv2": cvv,
+        "card": {
+          "number": creditCardNumber,
+          "name": name,
+          "exp_year": yearEx,
+          "exp_month": monthEx,
+          "cvc": cvv,
+        }
       };
 
-      console.log("Guardando.....");
-      OpenPay.token.create(tokenParams, async (response) => {
-        console.log("SUCCESS---->", response);
-        const card = await api.creditCard.create({ token: response.data.id, deviceSessionId });
-        console.log("CARD DATa----->", card);
-        if(card.error_code) {
-          this.setState({ isLoading: false, errorMessage: `Hubo un error al agregar este método de pago. Verifica los datos e inténtalo de nuevo o usa un método de pago distinto: ${card.description}` });
-        } else {
-          if(this.props.onToggleModal) {
-            this.props.onToggleModal();
-            this.props.afterSave();
-          }
+      Conekta.Token.create(tokenParams, async (token) => { // Suceess
+        const response = await api.creditCard.create({ token: token.id });
+        if(this.props.onToggleModal) {
+          this.props.onToggleModal();
+          this.props.afterSave();
         }
         this.setState({ isLoading: false });
-      }, (response) => {
-        console.log("ERROR----->", response);
-        this.setState({ isLoading: false, errorMessage: `Hubo un error al agregar este método de pago. Verifica los datos e inténtalo de nuevo o usa un método de pago distinto: ${response.data.description}` });
+      }, (error) => { // Error
+        this.setState({ isLoading: false, errorMessage: `Hubo un error al agregar este método de pago. Verifica los datos e inténtalo de nuevo o usa un método de pago distinto: ${error.message_to_purchaser}` });
       });
-
     }
   }
+
+  // onSubmit = async (e) => {
+  //   e.preventDefault();
+  //   if(this.isValid()) {
+  //     this.setState({ isLoading: true });
+
+  //     OpenPay.setId('m7pd5e0tn3gnjzam8jvc');
+  //     OpenPay.setApiKey('pk_a5f3d2220a334034980ba42287bd819e');
+  //     OpenPay.setSandboxMode(true);
+  //     const deviceSessionId = OpenPay.deviceData.setup("payment-form", "deviceIdHiddenFieldName");
+
+  //     const { name, creditCardNumber, monthEx, yearEx, cvv } = this.state;
+  //     const tokenParams = {
+  //       "card_number": creditCardNumber,
+  //       "holder_name": name,
+  //       "expiration_year": yearEx,
+  //       "expiration_month": monthEx,
+  //       "cvv2": cvv,
+  //     };
+
+  //     console.log("Guardando.....");
+  //     OpenPay.token.create(tokenParams, async (response) => {
+  //       console.log("SUCCESS---->", response);
+  //       const card = await api.creditCard.create({ token: response.data.id, deviceSessionId });
+  //       console.log("CARD DATa----->", card);
+  //       if(card.error_code) {
+  //         this.setState({ isLoading: false, errorMessage: `Hubo un error al agregar este método de pago. Verifica los datos e inténtalo de nuevo o usa un método de pago distinto: ${card.description}` });
+  //       } else {
+  //         if(this.props.onToggleModal) {
+  //           this.props.onToggleModal();
+  //           this.props.afterSave();
+  //         }
+  //       }
+  //       this.setState({ isLoading: false });
+  //     }, (response) => {
+  //       console.log("ERROR----->", response);
+  //       this.setState({ isLoading: false, errorMessage: `Hubo un error al agregar este método de pago. Verifica los datos e inténtalo de nuevo o usa un método de pago distinto: ${response.data.description}` });
+  //     });
+
+  //   }
+  // }
 
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
@@ -168,8 +168,8 @@ class CreditCardForm extends React.Component {
             </div>
 
             <div className="row">
-              <div className="col-md-4">
-                <label>Mes de vencimiento</label>
+              <div className="col-md-4 padding-input-small">
+                <label>Mes</label>
                 <InputTextFormat
                   error={errors.monthEx}
                   value={this.state.monthEx}
@@ -182,8 +182,8 @@ class CreditCardForm extends React.Component {
                   format="##"
                 />
               </div>
-              <div className="col-md-4">
-                <label>Año de vencimiento</label>
+              <div className="col-md-4 padding-input-small">
+                <label>Año</label>
                 <InputTextFormat
                   error={errors.yearEx}
                   value={this.state.yearEx}
@@ -196,7 +196,7 @@ class CreditCardForm extends React.Component {
                   format="####"
                 />
               </div>
-              <div className="col-md-4">
+              <div className="col-md-4 padding-input-small">
                 <label>CVV</label>
                 <InputText
                   error={errors.cvv}
@@ -234,7 +234,7 @@ class CreditCardForm extends React.Component {
           }
 
           .credit-card-form {
-            padding: 0px 20px;
+            padding: 0px 0px;
           }
 
           .footer-modal-card {
@@ -251,6 +251,7 @@ class CreditCardForm extends React.Component {
             padding: 12px 10px;
             width: 100%;
             font-size: 14px;
+            height: 39px;
           }
 
           .input:disabled {
@@ -260,6 +261,8 @@ class CreditCardForm extends React.Component {
           .control-input{
             border: 1px solid #ccc;
           }
+
+
 
           .containerButton {
             padding: 10px 0px;

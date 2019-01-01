@@ -62,13 +62,13 @@ class AddressForm extends React.Component {
       this.setState({ isLoading: true });
       const response = await api.user.createAddress(this.state);
       const { ok, address } = response;
-      
+
       if(ok) {
         this.setState({ isLoading: false });
         if(this.props.afterSave) {
           this.props.afterSave();
         }
-        
+
       }
     }
   }
@@ -86,7 +86,7 @@ class AddressForm extends React.Component {
         if(this.props.afterSave) {
           this.props.afterSave();
         }
-        
+
       }
     }
   }
@@ -146,7 +146,7 @@ class AddressForm extends React.Component {
     const { errors } = this.state;
     return (
       <div>
-        { !this.state.businessView ? 
+        { !this.state.businessView ?
         <form className="signupForm" onSubmit={this.onSubmit} autoComplete="off" >
           <div className="row">
             <div className="col-md-12">
@@ -156,12 +156,12 @@ class AddressForm extends React.Component {
                 onSuggestSelect={this.onSuggestSelect}
                 suggestsClassName="suggest"
                 suggestItemClassName="suggestItem"
-                inputClassName="input control-input" 
+                inputClassName="input control-input"
                 country="mx"
               />
             </div>
           </div>
-          
+
           { this.state.address &&
             <div id="rowFormAddress">
               <div className="row">
@@ -188,7 +188,7 @@ class AddressForm extends React.Component {
                     id=""
                     label=""
                   />
-                </div> 
+                </div>
               </div>
 
               <div className="row">
@@ -215,7 +215,7 @@ class AddressForm extends React.Component {
                   <p className="lbl-notes">Utilizado solo para notificarte algo sobre tu pedido.</p>
                 </div>
                 <div className="col-md-6">
-                  <label>Datos adicionales (Opcional)</label>
+                  <label>Instrucciones y Datos adicionales (Opcional)</label>
                   <InputText
                     error={errors.notes}
                     value={this.state.notes}
@@ -246,12 +246,12 @@ class AddressForm extends React.Component {
               <MapZone userLocation={this.state.userLocation}/>
             </div>
           }
-          
+
           <hr />
           <a className="#" className="btn-link" onClick={() => this.setState({ businessView: true })}>Servicio a empresas afiliadas</a>
           <p className="lbl-notes2">*Esta opción es para personas que trabajan en alguna empresa afiliada a eathouse.</p>
         </form> :
-        
+
         <form className="signupForm" onSubmit={this.saveBusinessAddress} autoComplete="off" >
           <div className="row">
             <div className="col-md-12">
@@ -301,7 +301,7 @@ class AddressForm extends React.Component {
                   />
                 </div>
               </div>
-            
+
 
               <div className="row">
                 <div className="col-md-4">
@@ -319,7 +319,7 @@ class AddressForm extends React.Component {
                   />
                 </div>
               </div>
-            </div>          
+            </div>
         </form>
         }
 
@@ -353,7 +353,7 @@ class AddressForm extends React.Component {
           .control-input{
             border: 1px solid #ccc;
           }
-          
+
           .containerButton {
             padding: 10px 0px;
           }
@@ -366,15 +366,17 @@ class AddressForm extends React.Component {
 
           .suggest {
             border: 1px solid #DDD;
+            padding: 0px;
           }
 
           .suggestItem:hover {
-            color: green;
             cursor: pointer;
+            background-color: rgb(250, 250, 250);
           }
 
           .suggestItem {
-            padding: 10px;
+            padding: 15px 10px;
+            list-style: none;
           }
 
           .inputCity {

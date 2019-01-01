@@ -63,17 +63,17 @@ const menuAuth = (props) => {
             </a>
           </li>
           <li role="separator" className="divider" /> */}
-          {/* <li>
+          <li>
             <a
               data-toggle="collapse"
               data-target=".navbar-collapse.in"
-              href={`/orders`}
+              href={`/account`}
               className="btn_nav nav-lbl-principal"
             >
               Ajustes de cuenta
             </a>
           </li>
-          <li role="separator" className="divider" /> */}
+          <li role="separator" className="divider" />
           <li>
             <a
               data-toggle="collapse"
@@ -136,9 +136,9 @@ export default function Header(props) {
               <Link href="/">
                 <a className="navbar-brand">
                 <img
-                  src="/static/logo2.png"
+                  src="/static/logo4.png"
                   alt="eathouse"
-                  width="120"
+                  height="25"
                 />
                 <h2>{props.isAuthenticated}</h2>
                 </a>
@@ -173,7 +173,7 @@ export default function Header(props) {
 
           .navbar-default {
             background: #FFF;
-            border: 1px solid #e8ebe9;
+            border: 1px solid rgba(217,219,224,0.5);
             margin-bottom: 0px;
           }
 

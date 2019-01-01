@@ -25,7 +25,7 @@ function OrderDetailItem(props) {
         .item {
           display: flex;
           margin: 10px 0;
-          border-bottom: 1px solid #e8ebe9;
+          border-bottom: 1px solid rgba(217,219,224,0.5);
           padding-bottom: 8px;
         }
 

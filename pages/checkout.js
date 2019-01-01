@@ -289,7 +289,7 @@ class Checkout extends React.Component {
           .container-box {
             border-radius: 3px;
             background-color: #fff;
-            border: 1px solid #e8ebe9;
+            border: 1px solid rgba(217,219,224,0.5);
             margin-top: 8px;
             padding: 10px 40px;
           }

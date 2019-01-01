@@ -52,7 +52,7 @@ class Schedules extends React.Component {
     return (
       <Layout {...this.props}>
         <div className="container">
-          <h2>Mi Calendario</h2>
+          <h2 className="title">Mi Calendario</h2>
           { schedules.map((item, index) => {
             return (
               <div className="container-box" key={index}>
@@ -69,11 +69,12 @@ class Schedules extends React.Component {
               </div>
             )
           }) }
+          { schedules.length == 0 && <p>No hay pedidos programados, ingresa al menu y programa tus platillos. </p> }
           <style jsx>{`
             h4 {
               color: #777
             }
-            
+
             .item-photo {
               display: table-cell;
               min-width: 45px;
@@ -83,6 +84,19 @@ class Schedules extends React.Component {
               background-position: center center;
               background-repeat: no-repeat;
               margin-right: 12px;
+            }
+
+            .title {
+              font-size: 21px;
+              padding: 0px 0px;
+              margin-top: 0;
+              margin: 20px 0 0px;
+              color: #2D3138;
+              font-weight: 600;
+              line-height: 34px;
+              text-transform: uppercase;
+              /* border-bottom: 1px solid #DDD; */
+              font-family: "BentonSans",Helvetica,Arial,sans-serif;
             }
           `}</style>
         </div>

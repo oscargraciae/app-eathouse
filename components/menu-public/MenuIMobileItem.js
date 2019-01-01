@@ -47,9 +47,9 @@ class MenuItem extends React.Component {
             box-sizing: border-box;
             border-top-left-radius: 3px;
             border-top-right-radius: 3px;
-            border-left: 1px solid #e8ebe9;
-            border-top: 1px solid #e8ebe9;
-            border-right: 1px solid #e8ebe9;
+            border-left: 1px solid rgba(217,219,224,0.5);
+            border-top: 1px solid rgba(217,219,224,0.5);
+            border-right: 1px solid rgba(217,219,224,0.5);
             overflow: hidden;
             display: block;
             padding-top: 100%;
@@ -72,9 +72,9 @@ class MenuItem extends React.Component {
             background-color: white;
             border-bottom-left-radius: 3px;
             border-bottom-right-radius: 3px;
-            border-left: 1px solid #e8ebe9;
-            border-bottom: 1px solid #e8ebe9;
-            border-right: 1px solid #e8ebe9;
+            border-left: 1px solid rgba(217,219,224,0.5);
+            border-bottom: 1px solid rgba(217,219,224,0.5);
+            border-right: 1px solid rgba(217,219,224,0.5);
   
             padding-top: 10px;
           }
@@ -104,7 +104,7 @@ class MenuItem extends React.Component {
             font-size: 16px;
             line-height: 1.3em;
             letter-spacing: 0;
-            color: #515252;
+            color: #2D3138;
             overflow: visible;
             text-overflow: ellipsis;
             display: block;
@@ -114,7 +114,7 @@ class MenuItem extends React.Component {
   
           .menu-item-actions {
             height: 53px;
-            border-top: 1px solid #e8ebe9;
+            border-top: 1px solid rgba(217,219,224,0.5);
   
             display: flex;
             align-items: center;
@@ -127,7 +127,7 @@ class MenuItem extends React.Component {
   
             color: #79776B;
             float: left;
-            border-right: 1px solid #e8ebe9;
+            border-right: 1px solid rgba(217,219,224,0.5);
             text-align: justify;
             padding-left: 16px;
             padding-right: 16px;

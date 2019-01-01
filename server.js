@@ -53,7 +53,7 @@ app.prepare()
   server.get('/menu-public', (req, res) => {
     return app.render(req, res, '/menuPublic');
   });
-  
+
   server.get('/menu/item/:id/:deliveryDate', (req, res) => {
     return app.render(req, res, '/menuItem', { id: req.params.id });
   });
@@ -62,14 +62,14 @@ app.prepare()
     return app.render(req, res, '/checkout');
   });
 
-  server.get('/profile', (req, res) => {
-    return app.render(req, res, '/profile');
+  server.get('/account', (req, res) => {
+    return app.render(req, res, '/account');
   });
 
   server.get('/service/:id', (req, res) => {
     return app.render(req, res, '/service', { id: req.params.id });
   });
-  
+
   server.get('/orders', (req, res) => {
     return app.render(req, res, '/orders');
   });
@@ -85,7 +85,7 @@ app.prepare()
   server.get('/faq', (req, res) => {
     return app.render(req, res, '/faq');
   });
-  
+
   server.get('/terms', (req, res) => {
     return app.render(req, res, '/terms');
   });
@@ -102,7 +102,7 @@ app.prepare()
     return app.render(req, res, '/mapAvailable');
   });
 
-  
+
   server.get('*', (req, res) => {
     return handle(req, res);
   });

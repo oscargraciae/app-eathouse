@@ -57,7 +57,7 @@ export default (props) => {
 
         .orden-confirm-title {
           padding-top: 20px;
-          color: #515252;
+          color: #2D3138;
           font-size: 16px;
           display: flex;
           align-items: center;

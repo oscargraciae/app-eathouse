@@ -7,7 +7,7 @@ import Header from './Header';
 import Footer from './Footer';
 import ModalGeneralAddress from '../general/ModalGeneralAddress';
 
-export default ({ children, loggedUser, isAuthenticated, title = 'eathouse', user }) => {
+export default ({ children, loggedUser, isAuthenticated, title = 'Eathouse', user }) => {
   return (
     <div id="layout">
       <Head>
@@ -21,6 +21,7 @@ export default ({ children, loggedUser, isAuthenticated, title = 'eathouse', use
         <meta name="author" content="Eathouse" />
         <meta name="pagename" content="Eathouse" />
         <meta content="IE=edge,chrome=1" httpEquiv="X-UA-Compatible" />
+        <link rel="icon" type="image/png" sizes="192x192"  href="/static/logo-icono.png" />
 
         <meta property="og:type" content="website" />
         <meta property="og:title" content="COMER BIEN TODOS LOS DÍAS, ¡ES POSIBLE!" />
@@ -41,10 +42,7 @@ export default ({ children, loggedUser, isAuthenticated, title = 'eathouse', use
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-yTAH4cD5Lq3VDwysl-Me5bBek1phNBY&libraries=places" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" />
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" />
-        {/* <script type="text/javascript" src="https://cdn.conekta.io/js/latest/conekta.js"></script> */}
-        <script type="text/javascript" src="https://openpay.s3.amazonaws.com/openpay.v1.min.js"></script>
-        <script type="text/javascript" src="https://openpay.s3.amazonaws.com/openpay-data.v1.min.js"></script>
-
+        <script type="text/javascript" src="https://cdn.conekta.io/js/latest/conekta.js"></script>
         <script dangerouslySetInnerHTML={{
           __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
           new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -54,7 +52,7 @@ export default ({ children, loggedUser, isAuthenticated, title = 'eathouse', use
         }}>
         </script>
 
-        <script dangerouslySetInnerHTML={{
+        {/* <script dangerouslySetInnerHTML={{
           __html: `!function() {
             var t = window.driftt = window.drift = window.driftt || [];
             if (!t.init) {
@@ -78,7 +76,7 @@ export default ({ children, loggedUser, isAuthenticated, title = 'eathouse', use
           drift.SNIPPET_VERSION = '0.3.1';
           drift.load('vmvp65uv9t8h');`,
         }}>
-        </script>
+        </script> */}
       </Head>
       <noscript dangerouslySetInnerHTML={{
           __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TQS3BV7"
@@ -119,7 +117,7 @@ export default ({ children, loggedUser, isAuthenticated, title = 'eathouse', use
         .container-box {
           border-radius: 3px;
           background-color: #fff;
-          border: 1px solid #e8ebe9;
+          border: 1px solid rgba(217,219,224,0.5);
           margin-top: 15px;
           padding: 15px 40px;
         }
@@ -131,6 +129,20 @@ export default ({ children, loggedUser, isAuthenticated, title = 'eathouse', use
         .containerAppButon {
           padding: 5px;
         }
+
+        .header-title {
+          font-size: 21px;
+          padding: 0px 0px;
+          margin-top: 0;
+          margin: 20px 0 0px;
+          color: #2D3138;
+          font-weight: 600;
+          line-height: 34px;
+          text-transform: uppercase;
+          /* border-bottom: 1px solid #DDD; */
+          font-family: "BentonSans",Helvetica,Arial,sans-serif;
+        }
+
         .btn{
           display: inline-block;
           margin-bottom: 0;

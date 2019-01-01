@@ -79,7 +79,7 @@ export default (props) => {
           right: 0px;
           background: white;
           z-index: 21;
-          border-left: 1px solid #e8ebe9;
+          border-left: 1px solid rgba(217,219,224,0.5);
         }
 
         .sidecart-header {
@@ -92,7 +92,7 @@ export default (props) => {
           -webkit-flex: 0 1 auto;
           -ms-flex: 0 1 auto;
           flex: 0 1 auto;
-          border-bottom: 1px solid #e8ebe9;
+          border-bottom: 1px solid rgba(217,219,224,0.5);
           margin: 17px 22px 0;
           padding-bottom: 22px;
           padding-top: 3px;
