@@ -98,11 +98,6 @@ class Checkout extends React.Component {
     const { userAddressId, creditCardId } = this.state;
     const { data } = this.props.cart;
 
-    OpenPay.setId('m7pd5e0tn3gnjzam8jvc');
-    OpenPay.setApiKey('pk_a5f3d2220a334034980ba42287bd819e');
-    OpenPay.setSandboxMode(true);
-    const deviceSessionId = OpenPay.deviceData.setup("payment", "deviceIdHiddenFieldName");
-
     let isDiscount = false;
     let quantityTotal = 0;
     if (data.length > 0) {
@@ -120,7 +115,6 @@ class Checkout extends React.Component {
       creditCardId,
       isDiscount: isDiscount,
       orderDetails: data,
-      deviceSessionId,
     }
     const response = await api.orders.create(order);
     if(response.ok) {
@@ -128,8 +122,8 @@ class Checkout extends React.Component {
         this.props.clearCart();
       });
     } else {
-      const { description } = response.err;
-      this.setState({ paymentError: description, alertShow: true, isSendingOrder: false });
+      const { details } = response.err;
+      this.setState({ paymentError:  details[0].message, alertShow: true, isSendingOrder: false });
     }
   }
 
@@ -142,9 +136,7 @@ class Checkout extends React.Component {
   afterSave = async () => {
     const creditCards = await api.creditCard.getAll();
     this.setState({ creditCards }, () => {
-      if(creditCards.length > 0) {
-        this.setState({ creditCardId: creditCards[0].id });
-      }
+      this.setState({ creditCardId: creditCards[0].id });
     });
   }
 
@@ -195,7 +187,7 @@ class Checkout extends React.Component {
                     </div>
                   </div>
 
-                  <form className="container-step container-box" id="payment">
+                  <div className="container-step container-box">
                     <div className="title">Metodo de pago</div>
 
                     {/* <div className="method-controls">
@@ -228,7 +220,7 @@ class Checkout extends React.Component {
                       </div>
                     }
 
-                  </form>
+                  </div>
 
                   <div className="container-step container-box">
                     <div className="title">Horario de entrega</div>
@@ -289,7 +281,7 @@ class Checkout extends React.Component {
           .container-box {
             border-radius: 3px;
             background-color: #fff;
-            border: 1px solid rgba(217,219,224,0.5);
+            border: 1px solid #e8ebe9;
             margin-top: 8px;
             padding: 10px 40px;
           }
