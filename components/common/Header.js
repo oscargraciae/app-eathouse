@@ -63,7 +63,7 @@ const menuAuth = (props) => {
             </a>
           </li>
           <li role="separator" className="divider" /> */}
-          {/* <li>
+          <li>
             <a
               data-toggle="collapse"
               data-target=".navbar-collapse.in"
@@ -73,7 +73,7 @@ const menuAuth = (props) => {
               Ajustes de cuenta
             </a>
           </li>
-          <li role="separator" className="divider" /> */}
+          <li role="separator" className="divider" />
           <li>
             <a
               data-toggle="collapse"

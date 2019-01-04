@@ -99,13 +99,13 @@ class Menu extends React.Component {
     return (
       <Layout {...this.props}>
         <div>
-          {/* <div className="alertMenu">
+          <div className="alertMenu">
             { !this.state.isLater ?
               <p>Ordena tus platillos para el <strong className="uppercase">{this.state.dateString}</strong> o planifica tu semana.</p> :
               // <p>Los pedidos para entregar hoy se cierran a las 11:00am, ordena tus platillos para el <strong className="uppercase">{this.state.dateString}</strong> o programa para otro día.</p> :
               <p><strong>¡Todavía estas a tiempo!</strong> Los pedidos para entregar hoy cierran a las 11:00am</p>
             }
-          </div> */}
+          </div>
           { this.state.deliveryDate && <MenuCalendar changeDay={this.changeDay} deliveryDate={this.state.deliveryDate} /> }
           {/* <div className="containerCategories">
             <ul>
@@ -170,6 +170,28 @@ class Menu extends React.Component {
                   <a id="btnMobileMenuCart" href="/checkout" className="btn btn-primary btn-large btn-block">VER CARRITO ${total}</a>
                 </div>
               }
+
+            <section className="container-apps">
+            {/* DESCARGAR APP */}
+            <div className="row info-phones">
+              <div className="col-md-4 text-center hide-item">
+                <img src="static/android-device.png" height="250" />
+              </div>
+              <div className="col-md-6">
+                <h3>Descarga eathouse en tu celular</h3>
+                <p>Descargue nuestra aplicación móvil para hacer tu orden más fácil y más rápido.</p>
+                <a target="_blank" href="https://play.google.com/store/apps/details?id=com.eathouse" className="btn-app btnDownloadAndroid">
+                  <img src="/static/google-play-badge.png" className="android-phone" />
+                </a>
+                <a href="https://itunes.apple.com/us/app/eathouse/id1422515511?mt=8" className="btn-app">
+                  <img src="/static/app_store_badge.svg" className="ios-phone" />
+                </a>
+              </div>
+              <div className="col-md-3 hide-item">
+                <img src="static/eathouse-phone.png" height="250" />
+              </div>
+            </div>
+          </section>
             </div>
             <Cart user={this.props.user} />
           </div>
@@ -214,6 +236,7 @@ class Menu extends React.Component {
             background: #3BCF75;
             padding: 16px;
             text-align: left;
+            margin-top: 4px;
           }
 
           .alertMenu > p {
@@ -269,6 +292,36 @@ class Menu extends React.Component {
             font-size: 12px;
           }
 
+          .android-phone {
+            float: left;
+            width: 170px;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            left: -4px;
+          }
+
+          .ios-phone {
+            float: left;
+            /* width: 178px; */
+            width: 160px;
+            position: relative;
+            left: 8px;
+            top: 10px;
+          }
+
+          .info-phones {
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+            display: flex;
+            margin-top: 40px;
+          }
+
+          .container-apps {
+            background: white;
+          }
+
           @media (max-width: 600px) {
             .menu {
               margin: 20px 0px;
@@ -306,6 +359,10 @@ class Menu extends React.Component {
             .lbl-subtotal {
               font-size: 12px;
               font-weight: 300;
+            }
+
+            .hide-item {
+              display: none;
             }
 
           }
