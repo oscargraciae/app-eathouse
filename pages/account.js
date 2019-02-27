@@ -87,11 +87,11 @@ class Account extends React.Component {
             <h3 className="header-subtitle">Notificaciones</h3>
             <div className="account-input">
               <div className="check-alerts">
-                <label htmlFor="id_send_offers"><span></span> Dejar de recibir avisos y promociones. </label>
+                <label htmlFor="id_send_offers"><span></span>Recibir avisos y promociones. </label>
                 <input checked={this.state.offersAlert} id="id_send_offers" name="offersAlert" type="checkbox" onChange={this.onChangeAlert} />
               </div>
               <div className="check-pedido">
-                <label htmlFor="id_remainder"><span></span> Dejar de recibir el recordatorio diario. </label>
+                <label htmlFor="id_remainder"><span></span>Recibir el recordatorio diario. </label>
                 <input checked={this.state.remainderAlert} id="id_remainder" name="remainderAlert" type="checkbox" onChange={this.onChangeAlert} />
               </div>
               <div>
