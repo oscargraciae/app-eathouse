@@ -90,7 +90,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "bc7251a539fe9ac64ee1"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "4d733fcf46ad28facc09"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -755,7 +755,7 @@
 /******/ 		if (__webpack_require__.nc) {
 /******/ 			script.setAttribute("nonce", __webpack_require__.nc);
 /******/ 		}
-/******/ 		script.src = __webpack_require__.p + "" + ({"0":"main.js","1":"bundles/pages/_error.js","2":"commons","4":"chunks/components_map_MapZone_49a06d2b3ff73dc2fdb3ce0b400916f7","5":"bundles/pages/account.js"}[chunkId]||chunkId) + "-" + {"0":"3eae8f0b9aaf82e89f2a","1":"dbedf8264eff5ac2eab4","2":"112a70b41bfbcd7c6dde","4":"b29e9d65bab242403636","5":"4424ba819fe68c86853e"}[chunkId] + ".js";
+/******/ 		script.src = __webpack_require__.p + "" + ({"0":"main.js","1":"bundles/pages/_error.js","2":"commons","4":"chunks/components_map_MapZone_49a06d2b3ff73dc2fdb3ce0b400916f7","5":"bundles/pages/account.js","6":"bundles/pages/index.js","7":"bundles/pages/menu.js"}[chunkId]||chunkId) + "-" + {"0":"3eae8f0b9aaf82e89f2a","1":"dbedf8264eff5ac2eab4","2":"112a70b41bfbcd7c6dde","4":"b29e9d65bab242403636","5":"2260e53d1c6e8273dda9","6":"f2cd73c44887703fc6f4","7":"551146d1816e76d5903d"}[chunkId] + ".js";
 /******/ 		var timeout = setTimeout(onScriptComplete, 120000);
 /******/ 		script.onerror = script.onload = onScriptComplete;
 /******/ 		function onScriptComplete() {

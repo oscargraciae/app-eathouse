@@ -19,6 +19,7 @@ class Account extends React.Component {
     user: null,
     offersAlert: false,
     remainderAlert: false,
+    isLoading: false,
   }
 
   componentDidMount() {
@@ -37,9 +38,11 @@ class Account extends React.Component {
   }
 
   saveAlerts = async () => {
+    this.setState({ isLoading: true });
     const alerts = { marketing: this.state.offersAlert, remainderAlert: this.state.remainderAlert };
     const user = await api.user.updateAlerts(alerts);
     console.log("Alerts--<", user);
+    this.setState({ isLoading: false });
   }
 
   render() {
