@@ -5,8 +5,8 @@ const baseUrl = 'http://localhost:3001';
 // const baseUrl = 'http://127.0.0.1:3000';
 // const baseUrl = 'https://api.gigbox.mx';
 
-axios.defaults.baseURL = 'http://localhost:3001/api/v1';
-// axios.defaults.baseURL = 'https://api.eathouse.mx/api/v1';
+// axios.defaults.baseURL = 'http://localhost:3001/api/v1';
+axios.defaults.baseURL = 'https://api.eathouse.mx/api/v1';
 // axios.defaults.baseURL = 'https://api-eathouse-cpefohxxee.now.sh/api/v1';
 
 
