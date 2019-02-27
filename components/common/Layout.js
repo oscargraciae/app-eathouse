@@ -143,6 +143,19 @@ export default ({ children, loggedUser, isAuthenticated, title = 'Eathouse', use
           font-family: "BentonSans",Helvetica,Arial,sans-serif;
         }
 
+        .header-subtitle {
+          font-size: 18px;
+          padding: 0px 0px;
+          margin-top: 0;
+          margin: 20px 0 0px;
+          color: #2D3138;
+          font-weight: 600;
+          line-height: 34px;
+          text-transform: uppercase;
+          /* border-bottom: 1px solid #DDD; */
+          font-family: "BentonSans",Helvetica,Arial,sans-serif;
+        }
+
         .btn{
           display: inline-block;
           margin-bottom: 0;
