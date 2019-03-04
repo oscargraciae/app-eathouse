@@ -53,7 +53,7 @@ class MenuItem extends React.Component {
             cursor: pointer;
             box-sizing: content-box;
             width: 48%;
-            height: 150px;
+            height: 180px;
             /* height: 128px; */
             margin: 8px 0px;
             padding: 0px;
@@ -114,8 +114,8 @@ class MenuItem extends React.Component {
           }
 
           .menu-item-image {
-            width: 100px;
-            height: 100px;
+            width: 130px;
+            height: 130px;
             display: flex;
           }
 
@@ -302,6 +302,12 @@ class MenuItem extends React.Component {
             }
             .menu-item-featured {
               font-size: 10px;
+            }
+
+            .menu-item-image {
+              width: 100px;
+              height: 100px;
+              display: flex;
             }
 
             .menu-item-description {

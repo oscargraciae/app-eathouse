@@ -10,14 +10,8 @@ import { clearCart } from '../actions/cart';
 
 // import components
 import Layout from '../components/common/Layout';
-import InputText from '../components/general/InputText';
-import ButtonApp from '../components/general/ButtonApp';
 import ButtonBlock from '../components/general/ButtonBlock';
-import MenuCalendar from '../components/menu/MenuCalendar';
-import MenuItem from '../components/menu/MenuItem';
 import CartDetail from '../components/checkout/CartDetail';
-import CreditCardForm from '../components/common/CreditCardForm';
-import AddressForm from '../components/user/AddressForm';
 import AddressList from '../components/user/AddressList';
 import ModalAddress from '../components/general/ModalAddress';
 import ModalCreditCard from '../components/general/ModalCreditCard';
@@ -113,6 +107,7 @@ class Checkout extends React.Component {
     const order = {
       userAddressId,
       creditCardId,
+      deviceType: 'web',
       isDiscount: isDiscount,
       orderDetails: data,
     }

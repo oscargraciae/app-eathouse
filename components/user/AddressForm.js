@@ -223,7 +223,7 @@ class AddressForm extends React.Component {
                     type="text"
                     name="notes"
                     id=""
-                    label=""
+                    label="Ej: piso, oficina, apto, depto"
                   />
                 </div>
               </div>
