@@ -19,6 +19,7 @@ import Confirmation from '../components/checkout/Confirmation';
 import LoadingSpinner from '../components/common/LoadingSpinner';
 import AlertModalApp from '../components/general/AlertModalApp';
 import CartItem from '../components/general/CartItem';
+import InputText from '../components/general/InputText';
 
 class Checkout extends React.Component {
   static async getInitialProps(context) {
@@ -42,7 +43,8 @@ class Checkout extends React.Component {
     paymentError: null,
     alertShow: false,
     isSendingOrder: false,
-    methodPayment: 2,
+    methodPayment: 1,
+    paymentChange: 0,
   }
 
   componentDidMount() {
@@ -88,37 +90,19 @@ class Checkout extends React.Component {
   }
 
   sendOrder = async () => {
+    const { methodPayment } = this.state;
+
     this.setState({ isSendingOrder: true });
-    const { userAddressId, creditCardId } = this.state;
-    const { data } = this.props.cart;
 
-    let isDiscount = false;
-    let quantityTotal = 0;
-    if (data.length > 0) {
-      data.map((item, i) => {
-        quantityTotal = quantityTotal + item.quantity;
-      });
-
-      if(quantityTotal >= 5 || this.props.user.bussinesId) {
-        isDiscount = true;
-      }
-    }
-
-    const order = {
-      userAddressId,
-      creditCardId,
-      deviceType: 'web',
-      isDiscount: isDiscount,
-      orderDetails: data,
-    }
-    const response = await api.orders.create(order);
-    if(response.ok) {
-      this.setState({ confirmation: true, isSendingOrder: false }, () => {
-        this.props.clearCart();
-      });
-    } else {
-      const { details } = response.err;
-      this.setState({ paymentError:  details[0].message, alertShow: true, isSendingOrder: false });
+    switch (methodPayment) {
+      case 1:
+        this.orderCard();
+        break;
+      case 2:
+        this.orderCash();
+        break;
+      default:
+        break;
     }
   }
 
@@ -143,13 +127,97 @@ class Checkout extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  // onChangePayment = () => {
+  //   const change = e.target.value;
+  //   if(change > )
+  //   this.setState({ [e.target.name]: e.target.value });
+  // }
+
   onModalClose = () => {
     this.setState({ showAddress: false });
+  }
+
+  async orderCard() {
+    const { userAddressId, creditCardId } = this.state;
+    const { data } = this.props.cart;
+
+    let isDiscount = false;
+    let quantityTotal = 0;
+    if (data.length > 0) {
+      data.map((item, i) => {
+        quantityTotal = quantityTotal + item.quantity;
+      });
+
+      if(quantityTotal >= 5 || this.props.user.bussinesId) {
+        isDiscount = true;
+      }
+    }
+
+    const order = {
+      userAddressId,
+      creditCardId,
+      deviceType: 'web',
+      paymentMethod: 1,
+      paymentChange: 0,
+      isDiscount: isDiscount,
+      orderDetails: data,
+    }
+    const response = await api.orders.create(order);
+    if(response.ok) {
+      this.setState({ confirmation: true, isSendingOrder: false }, () => {
+        this.props.clearCart();
+      });
+    } else {
+      const { details } = response.err;
+      this.setState({ paymentError:  details[0].message, alertShow: true, isSendingOrder: false });
+    }
+  }
+
+  async orderCash() {
+    const { userAddressId, creditCardId, paymentChange } = this.state;
+    const { data } = this.props.cart;
+
+    let isDiscount = false;
+    let quantityTotal = 0;
+    if (data.length > 0) {
+      data.map((item, i) => {
+        quantityTotal = quantityTotal + item.quantity;
+      });
+
+      if(quantityTotal >= 5 || this.props.user.bussinesId) {
+        isDiscount = true;
+      }
+    }
+
+    const order = {
+      userAddressId,
+      deviceType: 'web',
+      paymentMethod: 2,
+      paymentChange,
+      isDiscount: isDiscount,
+      orderDetails: data,
+    }
+    const response = await api.orders.createCash(order);
+    if(response.ok) {
+      this.setState({ confirmation: true, isSendingOrder: false }, () => {
+        this.props.clearCart();
+      });
+    } else {
+      const { details } = response.err;
+      this.setState({ paymentError:  details[0].message, alertShow: true, isSendingOrder: false });
+    }
   }
 
   render() {
     const { step, address, addressFormHidden, userAddressId, creditCards, loadingPage } = this.state;
     const { user } = this.props;
+    let quantityTotal = 0;
+    if (this.props.cart.data.length > 0) {
+      this.props.cart.data.map((item, i) => {
+        quantityTotal = quantityTotal + item.quantity;
+      });
+    }
+    console.log("DATA CART-->",  this.props.cart.data.length);
     return (
       <Layout {...this.props}>
         { loadingPage ? <LoadingSpinner /> :
@@ -184,19 +252,24 @@ class Checkout extends React.Component {
 
                   <div className="container-step container-box">
                     <div className="title">Metodo de pago</div>
-
-                    {/* <div className="method-controls">
-                      <div className="method-controls-btn" onClick={() => this.setState({ methodPayment: 1 })}>
-                        <i className="fas fa-money-bill-alt fa-lg" />
-                        <span>Efectivo</span>
-                      </div>
-                      <div className="method-controls-btn" onClick={() => this.setState({ methodPayment: 2 })}>
+                    <div className="method-controls">
+                    <div className={this.state.methodPayment == 1 ? 'method-controls-btn method-controls-btn-selected' : 'method-controls-btn'} onClick={() => this.setState({ methodPayment: 1 })}>
                         <i className="far fa-credit-card fa-lg" />
                         <span>Tarjeta de crédito/debito</span>
                       </div>
-                    </div> */}
+                      { quantityTotal < 5 ?
+                        <div className='method-controls-btn method-controls-btn-disabled'>
+                          <i className="fas fa-money-bill-alt fa-lg" />
+                          <span>Efectivo</span>
+                        </div> :
+                        <div className={this.state.methodPayment == 2 ? 'method-controls-btn method-controls-btn-selected' : 'method-controls-btn'} onClick={() => this.setState({ methodPayment: 2 })}>
+                          <i className="fas fa-money-bill-alt fa-lg" />
+                          <span>Efectivo</span>
+                        </div>
+                      }
+                    </div>
 
-                    { this.state.methodPayment === 2 &&
+                    { this.state.methodPayment === 1 &&
                       <div className="form">
                         <select className="form-control input-lg" name="creditCardId" onChange={this.onChange} value={this.state.creditCardId}>
                           <option>Seleccionar método de pago</option>
@@ -209,12 +282,25 @@ class Checkout extends React.Component {
                       </div>
                     }
 
-                    { this.state.methodPayment === 1 &&
+                    { this.state.methodPayment === 2 &&
                       <div className="form">
-                        <p>Pago en efectivo</p>
+                        <label>¿Cambio de cuanto?</label>
+                        <p>Escribe cuanto vas a pagar en efectivo para envíar tu cambio.</p>
+                        <div className="row">
+                          <div className="col-md-4">
+                            <InputText
+                              value={this.state.paymentChange}
+                              onChange={this.onChange}
+                              type="text"
+                              name="paymentChange"
+                              label="0"
+                            />
+                          </div>
+                        </div>
                       </div>
                     }
 
+                    <p className="lbl-notes">*El pago en efectivo está disponible en la compra de 5 platillos o más</p>
                   </div>
 
                   <div className="container-step container-box">
@@ -251,7 +337,11 @@ class Checkout extends React.Component {
                 />
               </div>
               <div className="cartDetail">
-                <CartDetail user={this.props.user} sendOrder={this.sendOrder} disabled={!this.state.creditCardId || !this.state.userAddressId} loading={this.state.isSendingOrder}/>
+                { this.state.methodPayment === 1 ?
+                  <CartDetail user={this.props.user} sendOrder={this.sendOrder} disabled={!this.state.creditCardId || !this.state.userAddressId} loading={this.state.isSendingOrder}/> :
+                  <CartDetail user={this.props.user} sendOrder={this.sendOrder} disabled={this.state.paymentChange < 300 || !this.state.userAddressId } loading={this.state.isSendingOrder}/>
+                }
+
               </div>
             </div>
           </div>
@@ -324,6 +414,22 @@ class Checkout extends React.Component {
 
           .method-controls-btn > span {
             margin-left: 10px !important;
+          }
+
+          .method-controls-btn-selected {
+            padding: 12px 18px;
+            margin-right: 5px;
+            border: 1px solid #FF7901;
+            border-radius: 3px;
+            color: #FF7901;
+          }
+
+          .method-controls-btn-disabled {
+            padding: 12px 18px;
+            margin-right: 5px;
+            border: 1px solid #DDDDDD;
+            border-radius: 3px;
+            color: #DDDDDD;
           }
 
           .sidecart-message {

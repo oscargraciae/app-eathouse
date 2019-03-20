@@ -108,6 +108,10 @@ const api = {
       const response = await axios.post('/orders', order);
       return response.data;
     },
+    async createCash(order) {
+      const response = await axios.post('/orders/cash', order);
+      return response.data;
+    },
     async estimateOrder(order) {
       // Calcula el costo de la orden
       const response = await axios.post('/orders/estimate-order', order);
