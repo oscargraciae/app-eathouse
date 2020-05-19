@@ -12,7 +12,7 @@ export default (props) => {
     <div>
       <Modal show={props.show}>
         <Modal.Header>
-          <Modal.Title>Orden #{order.info.id} <br /><span className="spanMessage">Fecha de compra:  {formatDate(order.info.created_at).toString()}</span></Modal.Title>
+          <Modal.Title>Orden #{order.info.id} <br /><span className="spanMessage">Fecha de compra:  {formatDate(order.info.createdAt).toString()}</span></Modal.Title>
         </Modal.Header>
         <Modal.Body className="modal-order-detail">
           { order.items.map((item, index) => {
@@ -109,7 +109,7 @@ export default (props) => {
           overflow-x: hidden;
           padding: 22px;
         }
-        
+
         .sidecart-footer {
           padding: 15px 0px;
           background: white;

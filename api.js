@@ -1,12 +1,13 @@
 import axios from 'axios';
 // import fetch from 'isomorphic-unfetch';
 
-const baseUrl = 'http://localhost:3001';
+// const baseUrl = 'http://localhost:3001';
 // const baseUrl = 'http://127.0.0.1:3000';
 // const baseUrl = 'https://api.gigbox.mx';
 
-// axios.defaults.baseURL = 'http://localhost:3001/api/v1';
-axios.defaults.baseURL = 'https://api.eathouse.mx/api/v1';
+// axios.defaults.baseURL = 'https://api-ecommerce.azurewebsites.net/api/v1';
+axios.defaults.baseURL = 'http://localhost:3001/api/v1';
+// axios.defaults.baseURL = 'https://api.eathouse.mx/api/v1';
 // axios.defaults.baseURL = 'https://api-eathouse-cpefohxxee.now.sh/api/v1';
 
 
@@ -85,17 +86,17 @@ const api = {
       return response.data;
     }
   },
-  dish: {
-    async getAll() {
-      const response = await axios.get(`/dishes`);
+  product: {
+    async getAll(storeId) {
+      const response = await axios.get(`/products/store/${storeId}`);
       return response.data;
     },
-    async getAllByCategory(categoryId) {
-      const response = await axios.get(`/dishes/category/${categoryId}`);
-      return response.data;
-    },
+    // async getAllByCategory(categoryId) {
+    //   const response = await axios.get(`/dishes/category/${categoryId}`);
+    //   return response.data;
+    // },
     async get(id) {
-      const response = await axios.get(`/dishes/${id}`);
+      const response = await axios.get(`/products/${id}`);
       return response.data;
     }
   },
@@ -131,7 +132,28 @@ const api = {
       const response = await axios.get('/bussines');
       return response.data;
     }
-  }
+  },
+  store: {
+    async create(data) {
+      try {
+        const store = await axios.post('https://api-ecommerce.azurewebsites.net/api/manager/auth/signup', data);
+        return store.data;
+      } catch (error) {
+        return {
+          success: false,
+          message: error.message,
+        }
+      }
+    },
+    async getAll() {
+      const response = await axios.get('/stores');
+      return response.data;
+    },
+    async get(storeId) {
+      const response = await axios.get(`/stores/${storeId}`);
+      return response.data;
+    }
+  },
 };
 
 export default api;

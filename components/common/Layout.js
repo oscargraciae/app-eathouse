@@ -7,7 +7,7 @@ import Header from './Header';
 import Footer from './Footer';
 import ModalGeneralAddress from '../general/ModalGeneralAddress';
 
-export default ({ children, loggedUser, isAuthenticated, title = 'Eathouse', user }) => {
+export default ({ children, loggedUser, isAuthenticated, title = 'Northware', user, tokenData }) => {
   return (
     <div id="layout">
       <Head>
@@ -86,12 +86,12 @@ export default ({ children, loggedUser, isAuthenticated, title = 'Eathouse', use
       {/* <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TQS3BV7"
       height="0" width="0" style={{ display:'none', visibility:'hidden' }}></iframe></noscript> */}
 
-      <Header loggedUser={loggedUser} isAuthenticated={isAuthenticated} user={user} />
+      <Header loggedUser={loggedUser} isAuthenticated={isAuthenticated} user={user} userToken={tokenData} />
       { isAuthenticated && <ModalGeneralAddress show={!user.withAddress} /> }
       <div className="container-margin-top">
         { children }
       </div>
-      <Footer />
+      {/* <Footer /> */}
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css?family=Roboto');
 
@@ -246,6 +246,11 @@ export default ({ children, loggedUser, isAuthenticated, title = 'Eathouse', use
         .lbl-danger {
           color: #B31E0B;
         }
+
+
+
+
+
       `}</style>
     </div>
   )

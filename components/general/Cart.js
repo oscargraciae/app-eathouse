@@ -20,39 +20,29 @@ function Cart(props) {
     subtotal = subtotal + item.total;
   });
 
-  if (props.user.bussinesId) {
-    discount = subtotal * 0.20;
-  }
+  // if (props.user.bussinesId) {
+  //   discount = subtotal * 0.20;
+  // }
 
-  if (props.cart.data.length > 0) {
-    props.cart.data.map((item, i) => {
-      quantityTotal = quantityTotal + item.quantity;
-    });
+  // if (props.cart.data.length > 0) {
+  //   props.cart.data.map((item, i) => {
+  //     quantityTotal = quantityTotal + item.quantity;
+  //   });
 
-    if(quantityTotal >= 5) {
-      discount = subtotal * 0.20;
-    }
-  }
+  //   if(quantityTotal >= 5) {
+  //     discount = subtotal * 0.20;
+  //   }
+  // }
 
   total = subtotal - discount;
+
+  const { isAuthenticated } = props;
 
   return (
     <div className="sidecart">
       <div className="sidecart-header">
         <div className="sidecart-heading">Tu orden</div>
       </div>
-      { props.user.bussinesId &&
-        <div className="sidecart-message">
-          <span className="message-text">Por formar parte de {props.user.bussine.name} tienes el <strong>20%</strong> de descuento en todos tus pedidos</span>
-          {/* <span className="message-text">20% de descuento en todas tus ordenes</span> */}
-        </div>
-      }
-      { !props.user.bussinesId &&
-        <div className="sidecart-message">
-          <span className="message-text">Obtén un <strong>20%</strong> de descuento en la compra de 5 platillos o más.</span>
-          {/* <span className="message-text">20% de descuento en todas tus ordenes</span> */}
-        </div>
-      }
       <div className="sidecart-body">
         <div className="items-group">
           <ul className="items">
@@ -78,26 +68,29 @@ function Cart(props) {
         <div className="sidecart-footer">
           <dl className="estimated-total">
             <div className="line-item">
-              <dt className="lbl-subtotal">Subtotal</dt><dd className="lbl-subtotal">${moneyThousand(subtotal)}</dd>
+              <dt className="lbl-tota">Subtotal</dt><dd className="lbl-tota">${moneyThousand(subtotal)}</dd>
             </div>
-            <div className="line-item">
+            {/* <div className="line-item">
               <dt className="lbl-subtotal">Gastos de envío</dt><dd className="lbl-subtotal">GRATIS</dd>
-            </div>
-            { (props.user.bussinesId || quantityTotal >= 5) &&
+            </div> */}
+            {/* { (props.user.bussinesId || quantityTotal >= 5) &&
               <div className="line-item">
                 <dt className="lbl-subtotal">Descuento</dt><dd className="lbl-subtotal">-${moneyThousand(discount)}</dd>
               </div>
-            }
+            } */}
             {/* { quantityTotal >= 5 &&
               <div className="line-item">
                 <dt className="lbl-subtotal">Descuento</dt><dd className="lbl-subtotal">-${moneyThousand(discount)}</dd>
               </div>
             } */}
-            <div className="line-item">
+            {/* <div className="line-item">
               <dt className="lbl-total">Total</dt><dd className="lbl-total">${moneyThousand(total)}</dd>
-            </div>
+            </div> */}
           </dl>
-          <a id="btnWebMenuCart" href="/checkout" className="btn btn-primary btn-large btn-block">Comprar</a>
+          { isAuthenticated ?
+            <a id="btnWebMenuCart" href={`/checkout/${props.id}`} className="btn btn-primary btn-large btn-block">Comprar</a> :
+            <a id="btnWebMenuCart" href="/login" className="btn btn-primary btn-large btn-block">Comprar</a>
+          }
           {/* <a id="btnWebMenuCart" href="/" className="btn btn-primary btn-large btn-block disabled">Comprar</a> */}
         </div>
       }

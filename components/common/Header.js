@@ -29,13 +29,23 @@ const menuGuest = () => {
           </a>
         </Link>
       </li>
+      <li>
+        <Link href="/signup-store">
+          <a className="btn_navf">
+            <span>Publicar tu tienda</span>
+          </a>
+        </Link>
+      </li>
     </ul>
   )
 }
 
 const menuAuth = (props) => {
+  const { user, userToken } = props;
+  console.log("USER---->", user);
+  console.log("USER TOKEN---->", props);
   return (
-    <ul className="nav navbar-nav navbar-right">
+    <ul className="nav navbar-nav navbar-right nav-menu-right">
       {/* { props.user.user_address.length > 0 &&
         <li>
           <a><i className="fas fa-map-marker-alt" /> {props.user.user_address[0].addressMap.substr(0, 30)}...</a>
@@ -49,7 +59,7 @@ const menuAuth = (props) => {
           aria-haspopup="true"
           aria-expanded="false"
         >
-          Cuenta <span className="caret" />
+          Hola, {user.firstName} <span className="caret" />
         </a>
         <ul className="dropdown-menu">
           {/* <li>
@@ -108,8 +118,20 @@ const menuAuth = (props) => {
           </li>
         </ul>
       </li>
-      <li className="onlyMobile">
+      {/* <li className="onlyMobile">
         <a className="btn-link onlyMobile" href="/menu"><span className="btn btn-primary btn-block">Menu</span></a>
+      </li> */}
+      <li>
+        { userToken.storeId &&
+          <a className="btn_navf" href="http://localhost:3000/" target="_blank">
+            <span className="btn btn-primary btn-block" >Administrar mi tienda</span>
+          </a>
+          }
+          { !userToken.storeId &&
+          <a className="btn_navf" href="/signup-store">
+            <span className="btn btn-primary btn-block">Publicar tu tienda</span>
+          </a>
+          }
       </li>
     </ul>
   )
@@ -136,7 +158,7 @@ export default function Header(props) {
               <Link href="/">
                 <a className="navbar-brand">
                 <img
-                  src="/static/logo4.png"
+                  src="/static/logo_northware.png"
                   alt="eathouse"
                   height="25"
                 />
@@ -204,6 +226,12 @@ export default function Header(props) {
             box-shadow: 0 0 10px #ff9300, 0 0 5px #ff9300;
             opacity: 1.0;
             transform: rotate(3deg) translate(0px, -4px);
+          }
+
+          .nav-menu-right {
+            display: flex;
+            justify-content: center;
+            align-items: center;
           }
 
           @media (max-width: 600px) {

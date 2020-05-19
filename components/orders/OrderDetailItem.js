@@ -6,10 +6,10 @@ import { formatDateString, formatNormal } from '../../utils/formatDate';
 function OrderDetailItem(props) {
   return (
     <li className="item">
-      <div className="item-photo" style={{ backgroundImage: `url(${props.dish.image})` }} />
+      {/* <div className="item-photo" style={{ backgroundImage: `url(${props.dish.image})` }} /> */}
       <div className="item-details">
         <div className="item-name">
-          {props.dish.name}
+          {props.product.name}
         </div>
         <div className="item-date">
           {/* Entrega: {formatDateString(props.deliveryDate, "DD MMMM YYYY")} */}
@@ -17,7 +17,7 @@ function OrderDetailItem(props) {
         </div>
         <div className="item-quntity">
           {/* <span className="lbl-quantity">Cant. 10 </span> */}
-          <span className="lbl-subtotal">({props.quantity}) ${moneyThousand(props.total)}</span>
+          <span className="lbl-subtotal">({props.quantity} {props.productPrice.unidType.name}) ${moneyThousand(props.total)}</span>
         </div>
       </div>
 

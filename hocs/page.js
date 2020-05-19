@@ -21,14 +21,15 @@ export default Page => class DefaultPage extends React.Component {
     const props = await Page.getInitialProps(context);
     const token = loggedUser;
     let user = null;
+    let tokenDecode = null;
 
     if (!token) {
       delete axios.defaults.headers.common['Authorization'];
-      redirect('/', context);
+      // redirect('/', context);
     } else {
       axios.defaults.headers.common['Authorization'] = `JWT ${token}`;
 
-      const tokenDecode = decode(token);
+      tokenDecode = decode(token);
       user = await api.user.get(tokenDecode.id);
     }
 
@@ -37,6 +38,7 @@ export default Page => class DefaultPage extends React.Component {
       loggedUser,
       currentUrl: context.pathname,
       isAuthenticated: !!loggedUser,
+      tokenData: tokenDecode,
       user,
     };
   }
@@ -50,15 +52,15 @@ export default Page => class DefaultPage extends React.Component {
 
 
   componentDidMount() {
-    if (!window.GA_INITIALIZED) {
-      const user = this.props.user;
-      initUserGA(user);
-      setUser(user);
-      dataLayer.push({ userId: user.id });
-      window.GA_INITIALIZED = true;
-    }
-    logPageView();
-    
+    // if (!window.GA_INITIALIZED) {
+    //   const user = this.props.user;
+    //   initUserGA(user);
+    //   setUser(user);
+    //   dataLayer.push({ userId: user.id });
+    //   window.GA_INITIALIZED = true;
+    // }
+    // logPageView();
+
     const expireTransform = createExpirationTransform({
       expireKey: 'persistExpiresAt',
       defaultState: {
@@ -77,7 +79,6 @@ export default Page => class DefaultPage extends React.Component {
   }
 
   render() {
-    const token = this.props.loggedUser;
     return (
       <Provider store={store}>
         <Page {...this.props}/>

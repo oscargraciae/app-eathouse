@@ -16,10 +16,11 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch(action.type) {
-    case SET_ITEM: 
+    case SET_ITEM:
       return {
         data: [...state.data, action.payload],
         persistExpiresAt: action.date,
+        // storeId: action.storeId,
       }
     case UPDATE_ITEM:
       return {

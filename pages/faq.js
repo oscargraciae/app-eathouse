@@ -87,7 +87,7 @@ class Faq extends React.Component {
                   <div className="answer">Puedes hacer cualquier tipo de modificación a tus órdenes hasta las 9:00 pm del día anterior al que las vas a recibir.</div>
                 </div>
               </li> */}
-              
+
             </ul>
           </div>
           <h3>Para más información contacta a nuestro equipos de soporte ayuda@eathouse.mx</h3>

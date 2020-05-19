@@ -30,7 +30,7 @@ function TableOrders(props) {
                 </div>
               </td>
               <td>{item.user_address.addressMap}</td>
-              <td>{formatDate(item.created_at)}</td>
+              <td>{formatDate(item.createdAt)}</td>
               {/* <td><div className="category">Pendiente</div></td> */}
               <td>${moneyThousand(item.total)}MX</td>
               <td>

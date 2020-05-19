@@ -51,11 +51,11 @@ class Login extends React.Component {
     if(this.isValid()) {
       const { email, password } = this.state;
       const response = await api.user.authentication(email, password);
-      
-      const { ok, user } = response;
-      if(ok) {
-        setToken(user.token);
-        location.href = "/menu";
+
+      const { success, token } = response;
+      if(success) {
+        setToken(token);
+        location.href = "/";
         // Router.push('/menu');
       } else {
         this.setState({ errorsServer: 'Verifica tu correo electrónico y contraseña' });
@@ -79,7 +79,7 @@ class Login extends React.Component {
   }
 
   facebookAuth = () => {
-    
+
   }
 
   async responseFacebook(data) {
@@ -103,19 +103,19 @@ class Login extends React.Component {
             <p>¿Todavía no tienes cuenta? <a className="lbl-principal" href="signup">Regístrate</a></p>
             { errorsServer && <AlertBox message={this.state.errorsServer} /> }
 
-            <FacebookLogin
+            {/* <FacebookLogin
               appId="244527906154813"
               autoLoad={false}
               fields="name,email,picture"
               onClick={this.facebookAuth}
               textButton="     Iniciar sesión con Facebook"
               icon="fab fa-facebook-f"
-              callback={this.responseFacebook} 
-              cssClass="btn btn-facebook btn-block btn-large" />
+              callback={this.responseFacebook}
+              cssClass="btn btn-facebook btn-block btn-large" /> */}
             {/* <hr/> */}
-            <div className="text-above-line">
+            {/* <div className="text-above-line">
               <span>o</span>
-            </div>
+            </div> */}
             <form className="signupForm" onSubmit={this.onSubmit}>
               { this.state.messageError && <div className="alert alert-danger">{ this.state.messageError }</div> }
               <InputText

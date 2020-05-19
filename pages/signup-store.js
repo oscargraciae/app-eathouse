@@ -1,12 +1,5 @@
 import React from 'react';
-import { graphql, compose } from 'react-apollo';
-import gql from 'graphql-tag';
-import Router from 'next/router'
 import dynamic from 'next/dynamic'
-
-const FacebookLogin = dynamic(import('react-facebook-login'), {
-  ssr: false
-})
 
 import Layout from '../components/common/Layout';
 import InputText from '../components/general/InputText';
@@ -23,10 +16,6 @@ import defaultPage from '../hocs/defaultPage';
 
 class Signup extends React.Component {
   static getInitialProps(context) {
-    const loggedUser = process.browser ? getTokenFromLocalStorage() : getTokenFromCookie(context.req);
-    if(loggedUser) {
-      redirect('/menu', context);
-    }
     return {};
   }
 
@@ -34,6 +23,7 @@ class Signup extends React.Component {
     super();
 
     this.state = {
+      storeName: '',
       firstName: '',
       lastName: '',
       email: '',
@@ -49,38 +39,25 @@ class Signup extends React.Component {
     this.setState({ isLoading: true });
 
     if(this.isValid()) {
-      const response = await api.user.create(this.state);
-      console.log("CREATE USER--->", response);
-      const { ok, user } = response;
+      const response = await api.store.create(this.state);
+      const { success, user } = response;
 
-      if(ok) {
+      if(success) {
         const { email, password } = this.state;
-        const response = await api.user.authentication(email, password);
-        if(response.success) {
-          setToken(response.token);
-        }
-        location.href = "/";
+
+        // const response = await api.user.authentication(email, password);
+        // if(response.ok) {
+        //   setToken(response.user.token);
+        // }
+        // location.href = "/menu";
         // Router.push('/menu');
+        location.href = "http://localhost:3000/";
       } else {
         this.setState({ errorsServer: response.errors });
       }
     }
 
     this.setState({ isLoading: false });
-  }
-
-  facebookAuth = () => {
-
-  }
-
-  async responseFacebook(data) {
-    if(data) {
-      const response = await api.user.authenticationFacebook(data.accessToken);
-        if(response.ok) {
-          setToken(response.user.token);
-        }
-        location.href = "/menu";
-    }
   }
 
   isValid() {
@@ -102,25 +79,19 @@ class Signup extends React.Component {
         <div className="container">
           <div className="container-login">
             <h1>Registrarse</h1>
-            <p>¿Ya tienes una cuenta? <a className="lbl-principal" href="login">Iniciar sesión</a></p>
+            {/* { errorsServer && <h2>Hemos enviado un correo electronico</h2> } */}
             { errorsServer && <AlertBox message={this.state.errorsServer} /> }
-
-
-            {/* <FacebookLogin
-              appId="244527906154813"
-              autoLoad={false}
-              fields="name,email,picture"
-              onClick={this.facebookAuth}
-              textButton="     Registrarse con Facebook"
-              icon="fab fa-facebook-f"
-              callback={this.responseFacebook}
-              cssClass="btn btn-facebook btn-block btn-large" /> */}
-            {/* <hr/> */}
-            {/* <div className="text-above-line">
-              <span>o</span>
-            </div> */}
             <form className="signupForm" onSubmit={this.onSubmit}>
               { this.state.messageError && <div className="alert alert-danger">{ this.state.messageError }</div> }
+              <InputText
+                error={errors.storeName}
+                value={this.state.storeName}
+                onChange={this.onChange}
+                type="text"
+                name="storeName"
+                label="Nombre de tu negocio"
+                focus={true}
+              />
               <InputText
                 error={errors.firstName}
                 value={this.state.firstName}

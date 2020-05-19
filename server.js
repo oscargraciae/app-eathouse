@@ -5,7 +5,6 @@ const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
-
 app.prepare()
 .then(() => {
   const server = express();
@@ -20,6 +19,10 @@ app.prepare()
 
   server.get('/signup', (req, res) => {
     return app.render(req, res, '/signup');
+  });
+
+  server.get('/signup-store', (req, res) => {
+    return app.render(req, res, '/signup-store');
   });
 
   server.get('/login', (req, res) => {
@@ -46,8 +49,8 @@ app.prepare()
     return app.render(req, res, '/paymentSuscription', { id: req.params.id });
   });
 
-  server.get('/menu', (req, res) => {
-    return app.render(req, res, '/menu');
+  server.get('/store/:name/:id', (req, res) => {
+    return app.render(req, res, '/store', { id: req.params.id });
   });
 
   server.get('/menu-public', (req, res) => {
@@ -58,8 +61,8 @@ app.prepare()
     return app.render(req, res, '/menuItem', { id: req.params.id });
   });
 
-  server.get('/checkout', (req, res) => {
-    return app.render(req, res, '/checkout');
+  server.get('/checkout/:id', (req, res) => {
+    return app.render(req, res, '/checkout', { id: req.params.id });
   });
 
   server.get('/account', (req, res) => {
@@ -107,8 +110,14 @@ app.prepare()
     return handle(req, res);
   });
 
-  server.listen(process.env.PORT || 3000);
+  // server.listen(process.env.PORT || 3000);
+  const port = process.env.PORT || 3003;
+
+  server.listen(port, () => {
+    console.log(`Server listen on port: ${port}`);
+  });
 })
-.catch(() => {
+.catch((error) => {
+  console.log("HA OCURRIDO UN ERROR------->", error);
   process.exit(1);
 });

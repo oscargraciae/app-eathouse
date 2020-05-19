@@ -14,9 +14,9 @@ import InputText from '../general/InputTextIdSmall';
 import ButtonBlock from '../general/ButtonBlock';
 import { flattenSelections } from 'apollo-utilities';
 // import MapZone from '../map/MapZone';
-const MapZone = dynamic(import('../map/MapZone'));
+// const MapZone = dynamic(import('../map/MapZone'));
 
-class AddressForm extends React.Component {
+class  AddressForm extends React.Component {
 
   constructor() {
     super();
@@ -46,14 +46,14 @@ class AddressForm extends React.Component {
     }
   }
 
-  componentDidMount() {
-    this.initialFetch();
-  }
+  // componentDidMount() {
+  //   this.initialFetch();
+  // }
 
-  async initialFetch() {
-    const business = await api.business.getAll();
-    this.setState({ business });
-  }
+  // async initialFetch() {
+  //   const business = await api.business.getAll();
+  //   this.setState({ business });
+  // }
 
   onSubmit = async (e) => {
     e.preventDefault();
@@ -243,13 +243,13 @@ class AddressForm extends React.Component {
           { this.state.addressNotAvailable &&
             <div>
               <p><strong>Aún no realizamos entregas en tu dirección.</strong></p>
-              <MapZone userLocation={this.state.userLocation}/>
+              {/* <MapZone userLocation={this.state.userLocation}/> */}
             </div>
           }
 
-          <hr />
+          {/* <hr />
           <a className="#" className="btn-link" onClick={() => this.setState({ businessView: true })}>Servicio a empresas afiliadas</a>
-          <p className="lbl-notes2">*Esta opción es para personas que trabajan en alguna empresa afiliada a eathouse.</p>
+          <p className="lbl-notes2">*Esta opción es para personas que trabajan en alguna empresa afiliada a eathouse.</p> */}
         </form> :
 
         <form className="signupForm" onSubmit={this.saveBusinessAddress} autoComplete="off" >

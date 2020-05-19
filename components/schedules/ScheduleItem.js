@@ -6,10 +6,10 @@ import { formatDate } from '../../utils/formatDate';
 function ScheduleItem(props) {
   return (
     <div className="item">
-      <div className="item-photo" style={{ backgroundImage: `url(${props.dish.image})` }} />
+      {/* <div className="item-photo" style={{ backgroundImage: `url(${props.dish.image})` }} /> */}
       <div className="item-details">
         <div className="item-name">
-          {props.dish.name}
+          {props.product.name}
         </div>
         <div className="item-date">
           Orden #{props.order.id}

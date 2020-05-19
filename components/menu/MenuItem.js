@@ -6,18 +6,55 @@ import { toMoney, thousandSpace } from '../../utils/formatNumber';
 
 class MenuItem extends React.Component {
 
+  state = {
+    productPriceSelected: this.props.productPrice[0],
+  }
+
   addItem = () => {
-    const productToCart = this.props.cart.data.filter((item) => item.id === this.props.id && item.deliveryDate === this.props.deliveryDate)[0];
-    this.props.addCart(this.props, productToCart.quantity + 1);
+    console.log("PRODUCT PRICE ITEM----->", this.state.productPriceSelected);
+    const productToCart = this.props.cart.data.filter((item) => item.id === this.props.id && item.deliveryDate === this.props.deliveryDate && item.unidType.id === this.state.productPriceSelected.unidType.id,)[0];
+    this.props.addCart(this.props, productToCart.quantity + 1, this.state.productPriceSelected); // Producto, cantidad, (precio de productio y tipo de unidad)
   }
 
   removeItem = () => {
-    const productToCart = this.props.cart.data.filter((item) => item.id === this.props.id && item.deliveryDate === this.props.deliveryDate)[0];
-    this.props.addCart(this.props, productToCart.quantity - 1);
+    const productToCart = this.props.cart.data.filter((item) => item.id === this.props.id && item.deliveryDate === this.props.deliveryDate && item.unidType.id === this.state.productPriceSelected.unidType.id,)[0];
+    this.props.addCart(this.props, productToCart.quantity - 1, this.state.productPriceSelected);  // Producto, cantidad, (precio de productio y tipo de unidad)
+  }
+
+  btnCart = (itemCart) => {
+    return (
+      <div>
+        <button  className="small button-add-cart-small" onClick={() => this.removeItem()}>
+          <span className="add-icon"></span><span className="add-text">-</span>
+        </button>
+        <span className="lbl-quantity">{itemCart.quantity}</span>
+        <button className="small button-add-cart-small" onClick={() => this.addItem()}>
+          <span className="add-icon"></span><span className="add-text">+</span>
+        </button>
+      </div>
+    )
+  }
+
+  btnAdd = () => {
+    return (
+      <button className="small button-add-cart" onClick={() => this.props.addCart(this.props, 1, this.state.productPriceSelected)}>
+        <span className="add-icon"></span><span className="add-text">Agregar</span>
+      </button>
+    )
+  }
+
+  onChangePrice = (e) => {
+    const productPrice = this.props.productPrice.filter((item) => item.id === Number(e.target.value))[0];
+    console.log("productPrice selected--->", productPrice);
+    this.setState({ productPriceSelected: productPrice });
   }
 
   render() {
-    const productToCart = this.props.cart.data.filter((item) => item.id === this.props.id && item.deliveryDate === this.props.deliveryDate )[0];
+    const productToCart = this.props.cart.data.filter(
+      (item) => item.id === this.props.id
+      && item.deliveryDate === this.props.deliveryDate
+      && item.unidType.id === this.state.productPriceSelected.unidType.id,
+    )[0];
     return (
       <div className="menu-item">
         {/* <ReactTooltip effect="solid" className="custom-tooltip" /> */}
@@ -33,12 +70,23 @@ class MenuItem extends React.Component {
               </div>
             </div>
             <div className="menu-item-image">
-              <div className="menu-item-photo" style={{ backgroundImage: `url(${this.props.image})` }} />
+              {this.props.image && <div className="menu-item-photo" style={{ backgroundImage: `url(${this.props.image})` }} /> }
+
             </div>
           </div>
           <div className="menu-item-actions">
-            <div className="menu-item-price">
-              <span>${this.props.price}</span>
+            <div>
+              <div className="menu-item-price">
+                <span>${this.state.productPriceSelected.price}</span>
+              </div>
+              <div className="menu-item-price">
+                {/* <span>{this.props.productPrice[0].unidType.name}</span> */}
+                <select onChange={this.onChangePrice} className="unid-type-select">
+                  {this.props.productPrice.map((item) => (
+                    <option value={item.id} key={item.id}>{item.unidType.name}</option>
+                  ))}
+                </select>
+              </div>
             </div>
             <div className="menu-item-buttons">
               { productToCart ? this.btnCart(productToCart) : this.btnAdd() }
@@ -269,6 +317,12 @@ class MenuItem extends React.Component {
             text-align: center;
           }
 
+          .unid-type-select {
+            background: transparent;
+            border: 1px solid transparent;
+            color: #333;
+          }
+
           @media (max-width: 600px) {
             .menu-item {
               display: flex;
@@ -367,27 +421,6 @@ class MenuItem extends React.Component {
     )
   }
 
-  btnCart = (itemCart) => {
-    return (
-      <div>
-        <button  className="small button-add-cart-small" onClick={() => this.removeItem()}>
-          <span className="add-icon"></span><span className="add-text">-</span>
-        </button>
-        <span className="lbl-quantity">{itemCart.quantity}</span>
-        <button className="small button-add-cart-small" onClick={() => this.addItem()}>
-          <span className="add-icon"></span><span className="add-text">+</span>
-        </button>
-      </div>
-    )
-  }
-
-  btnAdd = () => {
-    return (
-      <button className="small button-add-cart" onClick={() => this.props.addCart(this.props, 1)}>
-        <span className="add-icon"></span><span className="add-text">Agregar</span>
-      </button>
-    )
-  }
 }
 
 const mapStateToProps = (state) => {

@@ -2,6 +2,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Router from 'next/router';
+import { GoCreditCard } from 'react-icons/go';
+
 
 // import local libraries
 import securePage from '../hocs/page';
@@ -22,8 +24,10 @@ import CartItem from '../components/general/CartItem';
 import InputText from '../components/general/InputText';
 
 class Checkout extends React.Component {
-  static async getInitialProps(context) {
-    return {};
+  static async getInitialProps({query}) {
+    return {
+      id: query.id,
+    };
   }
 
   state = {
@@ -108,7 +112,7 @@ class Checkout extends React.Component {
 
   confirm = () => {
     this.setState({ confirmation: false }, () => {
-      Router.push('/menu');
+      Router.push('/orders');
     })
   }
 
@@ -139,7 +143,7 @@ class Checkout extends React.Component {
 
   async orderCard() {
     const { userAddressId, creditCardId } = this.state;
-    const { data } = this.props.cart;
+    const { data, storeId } = this.props.cart;
 
     let isDiscount = false;
     let quantityTotal = 0;
@@ -148,9 +152,9 @@ class Checkout extends React.Component {
         quantityTotal = quantityTotal + item.quantity;
       });
 
-      if(quantityTotal >= 5 || this.props.user.bussinesId) {
-        isDiscount = true;
-      }
+      // if(quantityTotal >= 5 || this.props.user.bussinesId) {
+      //   isDiscount = true;
+      // }
     }
 
     const order = {
@@ -161,6 +165,7 @@ class Checkout extends React.Component {
       paymentChange: 0,
       isDiscount: isDiscount,
       orderDetails: data,
+      storeId: this.props.id,
     }
     const response = await api.orders.create(order);
     if(response.ok) {
@@ -184,9 +189,9 @@ class Checkout extends React.Component {
         quantityTotal = quantityTotal + item.quantity;
       });
 
-      if(quantityTotal >= 5 || this.props.user.bussinesId) {
-        isDiscount = true;
-      }
+      // if(quantityTotal >= 5 || this.props.user.bussinesId) {
+      //   isDiscount = true;
+      // }
     }
 
     const order = {
@@ -196,6 +201,7 @@ class Checkout extends React.Component {
       paymentChange,
       isDiscount: isDiscount,
       orderDetails: data,
+      storeId: this.props.id,
     }
     const response = await api.orders.createCash(order);
     if(response.ok) {
@@ -209,6 +215,7 @@ class Checkout extends React.Component {
   }
 
   render() {
+    console.log("PROPS CHECKOUT------>", this.props);
     const { step, address, addressFormHidden, userAddressId, creditCards, loadingPage } = this.state;
     const { user } = this.props;
     let quantityTotal = 0;
@@ -217,7 +224,6 @@ class Checkout extends React.Component {
         quantityTotal = quantityTotal + item.quantity;
       });
     }
-    console.log("DATA CART-->",  this.props.cart.data.length);
     return (
       <Layout {...this.props}>
         { loadingPage ? <LoadingSpinner /> :
@@ -228,7 +234,7 @@ class Checkout extends React.Component {
             { this.state.paymentError && <AlertModalApp show={this.state.alertShow} title="Oops! :(" description={this.state.paymentError} onClick={this.alertClick} /> }
             <div className="container">
               <div className="checkout">
-              { user.bussinesId &&
+              {/* { user.bussinesId &&
                 <div className="sidecart-message">
                   <span className="message-text">Por formar parte de {user.bussine.name} tienes el <strong>20%</strong> de descuento en todos tus pedidos</span>
                 </div>
@@ -237,7 +243,7 @@ class Checkout extends React.Component {
                 <div className="sidecart-message">
                   <span className="message-text">Obtén un <strong>20%</strong> de descuento en la compra de 5 platillos o más.</span>
                 </div>
-              }
+              } */}
                 <div className="address">
                   <div className="container-step container-box">
                     <div className="title">Dirección</div>
@@ -254,19 +260,18 @@ class Checkout extends React.Component {
                     <div className="title">Metodo de pago</div>
                     <div className="method-controls">
                     <div className={this.state.methodPayment == 1 ? 'method-controls-btn method-controls-btn-selected' : 'method-controls-btn'} onClick={() => this.setState({ methodPayment: 1 })}>
-                        <i className="far fa-credit-card fa-lg" />
+                        <GoCreditCard />
                         <span>Tarjeta de crédito/debito</span>
                       </div>
-                      { quantityTotal < 5 ?
+                      {/* { quantityTotal < 5 ?
                         <div className='method-controls-btn method-controls-btn-disabled'>
-                          <i className="fas fa-money-bill-alt fa-lg" />
                           <span>Efectivo</span>
                         </div> :
                         <div className={this.state.methodPayment == 2 ? 'method-controls-btn method-controls-btn-selected' : 'method-controls-btn'} onClick={() => this.setState({ methodPayment: 2 })}>
-                          <i className="fas fa-money-bill-alt fa-lg" />
+                          <i className="fas fa-money-bill-alt fa-sm" />
                           <span>Efectivo</span>
                         </div>
-                      }
+                      } */}
                     </div>
 
                     { this.state.methodPayment === 1 &&
@@ -303,11 +308,11 @@ class Checkout extends React.Component {
                     <p className="lbl-notes">*El pago en efectivo está disponible en la compra de 5 platillos o más</p>
                   </div>
 
-                  <div className="container-step container-box">
+                  {/* <div className="container-step container-box">
                     <div className="title">Horario de entrega</div>
                     <div className="lbl-deliveryTime">12:30pm - 1:30pm</div>
                     <p className="lbl-notes">*Actualmente solo contamos con este horario de entrega</p>
-                  </div>
+                  </div> */}
 
                   <div className="container-step container-box onlyMobile">
                     <div className="title">Resumen de compra</div>
@@ -406,6 +411,9 @@ class Checkout extends React.Component {
             margin-right: 5px;
             border: 1px solid #838286;
             border-radius: 3px;
+
+            display: flex;
+            align-items: center;
           }
 
           .method-controls-btn:hover {

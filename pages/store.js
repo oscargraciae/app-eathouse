@@ -19,20 +19,18 @@ import MenuItem from '../components/menu/MenuItem';
 import MenuIMobileItem from '../components/menu/MenuIMobileItem';
 import Cart from '../components/general/Cart';
 
-class Menu extends React.Component {
+class Store extends React.Component {
   static async getInitialProps({ query }) {
-    // const dishes = await api.dish.getAll();
-    const [ dishes, dishesLight, desserts ] = await Promise.all([
-      api.dish.getAllByCategory(1),
-      api.dish.getAllByCategory(2),
-      api.dish.getAllByCategory(3),
+    console.log("QUERY------>", query);
+    const [products, data] = await Promise.all([
+      api.product.getAll(query.id),
+      api.store.get(query.id),
     ]);
-    // const dishes = await api.dish.getAllByCategory(2);
     return {
-      dishes,
-      dishesLight,
-      desserts,
-      id: 2,
+      products,
+      // store,
+      data,
+      id: query.id,
     };
   }
 
@@ -76,103 +74,62 @@ class Menu extends React.Component {
 
   }
 
-  addCart = (dish, quantity) => {
+  addCart = (dish, quantity, productPrice) => {
     const { deliveryDate } = this.state;
-    this.props.addToCart(dish, quantity, deliveryDate);
+
+    this.props.addToCart(dish, quantity, deliveryDate, productPrice, this.props.id);
   }
 
   render() {
-    const { dishes, dishesLight, desserts } = this.props;
+    const { products } = this.props;
     let total = 0;
     let subtotal = 0;
     let discount = 0;
-    this.props.cart.data.map((item, i) => {
-      subtotal = subtotal + item.total;
-    });
-
-    if (this.props.user.bussinesId) {
-      discount = subtotal * 0.20;
-    }
+    // this.props.cart.data.map((item, i) => {
+    //   subtotal = subtotal + item.total;
+    // });
 
     total = subtotal - discount;
 
     return (
       <Layout {...this.props}>
         <div>
-          <div className="alertMenu">
-            { !this.state.isLater ?
-              <p>Ordena tus platillos para el <strong className="uppercase">{this.state.dateString}</strong> o planifica tu semana.</p> :
-              // <p>Los pedidos para entregar hoy se cierran a las 11:00am, ordena tus platillos para el <strong className="uppercase">{this.state.dateString}</strong> o programa para otro día.</p> :
-              <p><strong>¡Todavía estas a tiempo!</strong> Los pedidos para entregar hoy cierran a las 11:00am</p>
-            }
-          </div>
-          { this.state.deliveryDate && <MenuCalendar changeDay={this.changeDay} deliveryDate={this.state.deliveryDate} /> }
-          {/* <div className="containerCategories">
-            <ul>
-              <li><a href="#dishes">Platillos Principales</a></li>
-              <li><a href="#dishesLight">Platillos Saludables</a></li>
-              <li><a href="#desserts">Postres</a></li>
-            </ul>
-          </div> */}
+        { this.state.deliveryDate && <MenuCalendar changeDay={this.changeDay} deliveryDate={this.state.deliveryDate} /> }
           <div className="fluid-container">
+            <div>
+              <h2>{this.props.data.name}</h2>
+            </div>
             <div className="menu">
+
               <div className="">
-                {/* <div className="col-md-12">
-                  <h2 className="title-category" id="dishes">Platillos Principales</h2>
-                </div> */}
                 <div>
-                  <h2 className="title-category" id="dishes">Platillos Principales</h2>
+                  <h2 className="title-category" id="products">Platillos Principales</h2>
                 </div>
                 <div className="menu-items">
-                  { dishes.map((item) => {
+                  { products.map((item, index) => {
                     return (
-                      <MenuItem {...item} addCart={this.addCart} deliveryDate={this.state.deliveryDate} key={item.id} />
+                      <MenuItem {...item} addCart={this.addCart} deliveryDate={this.state.deliveryDate} key={index} />
                     )
                   }) }
                 </div>
               </div>
-              <hr />
-              <div className="">
-                <div className="">
-                  <h2 className="title-category" id="dishesLight">Platillos Saludables</h2>
-                </div>
-                <div className="menu-items">
-                  { dishesLight.map((item) => {
-                    return (
-                      <MenuItem {...item} addCart={this.addCart} deliveryDate={this.state.deliveryDate} key={item.id} />
-                    )
-                  }) }
-                </div>
-              </div>
-              <hr />
-              <div className="">
-                <div className="">
-                  <h2 className="title-category" id="desserts">Postres</h2>
-                </div>
-                <div className="menu-items">
-                  { desserts.map((item) => {
-                    return (
-                      <MenuItem {...item} addCart={this.addCart} deliveryDate={this.state.deliveryDate} key={item.id} />
-                    )
-                  }) }
-                </div>
-              </div>
+
+
               { total > 0 &&
                 <div className="btnContainerMobile">
                   <div className="line-item">
                     <dt className="lbl-subtotal">Subtotal</dt><dd className="lbl-subtotal">${subtotal}</dd>
                   </div>
-                  { this.props.user.bussinesId &&
+                  {/* { this.props.user.bussinesId &&
                     <div className="line-item">
                       <dt className="lbl-subtotal">Descuento</dt><dd className="lbl-subtotal">${discount}</dd>
                     </div>
-                  }
+                  } */}
                   <a id="btnMobileMenuCart" href="/checkout" className="btn btn-primary btn-large btn-block">VER CARRITO ${total}</a>
                 </div>
               }
 
-            <section className="container-apps">
-            {/* DESCARGAR APP */}
+            {/* <section className="container-apps">
             <div className="row info-phones">
               <div className="col-md-4 text-center hide-item">
                 <img src="static/android-device.png" height="250" />
@@ -191,9 +148,9 @@ class Menu extends React.Component {
                 <img src="static/eathouse-phone.png" height="250" />
               </div>
             </div>
-          </section>
+          </section> */}
             </div>
-            <Cart user={this.props.user} />
+            <Cart user={this.props.user} {...this.props} />
           </div>
         </div>
 
@@ -379,4 +336,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default securePage(connect(mapStateToProps, { addToCart })(Menu));
+export default securePage(connect(mapStateToProps, { addToCart })(Store));

@@ -12,7 +12,7 @@ function CartItem(props) {
         </div>
         <div className="item-date">
           {/* <span className="lbl-quantity">Cant. 10 </span> */}
-          <span className="">({props.quantity}) ${props.total}</span>
+          <span className="">({props.quantity}) ${props.total}/{props.unidType.name}</span>
         </div>
         <div className="lbl-subtotal">
           Entrega: { formatDateString(props.deliveryDate, "DD MMMM YYYY") }

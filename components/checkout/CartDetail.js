@@ -14,25 +14,25 @@ function CartDetail(props) {
   let subtotal = 0;
   let discount = 0;
   let quantityTotal = 0;
-  
+
   props.cart.data.map((item, i) => {
     subtotal = subtotal + item.total;
   });
 
-  if (props.user.bussinesId) {
-    discount = subtotal * 0.20;
-  }
+  // if (props.user.bussinesId) {
+  //   discount = subtotal * 0.20;
+  // }
 
   if (props.cart.data.length > 0) {
     props.cart.data.map((item, i) => {
       quantityTotal = quantityTotal + item.quantity;
     });
 
-    if(quantityTotal >= 5) {
-      discount = subtotal * 0.20;
-    }
+    // if(quantityTotal >= 5) {
+    //   discount = subtotal * 0.20;
+    // }
   }
-  
+
   total = subtotal - discount;
 
   return (
@@ -48,7 +48,7 @@ function CartDetail(props) {
                 <CartItem key={i} {...item} />
               )
             }) }
-            
+
           </ul>
         </div>
       </div>
@@ -56,16 +56,16 @@ function CartDetail(props) {
         <dl className="estimated-total">
           <div className="line-item">
             <dt>Subtotal</dt><dd>${moneyThousand(subtotal)}</dd>
-          </div>        
+          </div>
           <div className="line-item">
             <dt>Gastos de envío</dt><dd>GRATIS</dd>
           </div>
-          <div className="line-item">
+          {/* <div className="line-item">
             <dt>Descuento</dt><dd>-${moneyThousand(discount)}</dd>
-          </div>
+          </div> */}
           <div className="line-item">
             <dt>Total</dt><dd>${moneyThousand(total)}</dd>
-          </div>        
+          </div>
         </dl>
         <br/>
         {/* <a className="btn btn-primary btn-large btn-block" onClick={props.sendOrder}>Ordenar</a> */}
@@ -140,7 +140,7 @@ function CartDetail(props) {
           overflow-x: hidden;
           padding: 22px;
         }
-        
+
         .sidecart-footer {
           padding: 22px;
           border-top: 1px solid rgba(217,219,224,0.5);

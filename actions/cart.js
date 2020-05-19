@@ -10,6 +10,7 @@ function add(data) {
     type: SET_ITEM,
     payload: data,
     date: moment().add(180, 'm').format(),
+    // storeId,
   }
 }
 
@@ -35,21 +36,23 @@ function clearItems() {
   }
 }
 
-export const addToCart = (dish, quantity, deliveryDate) => {
+export const addToCart = (dish, quantity, deliveryDate, productPrice, storeId) => {
   return (dispatch, getState) => {
     const { data } = getState().cart;
     let isExist = false;
     let index;
 
     data.map((item, i) => {
-      if(item.id === dish.id && item.deliveryDate === deliveryDate) {
+      if(item.id === dish.id && item.deliveryDate === deliveryDate && item.unidType.id === productPrice.unidType.id) {
         isExist = true;
         index = i;
       }
     });
 
-    const { id, name, price, image } = dish;
-    const item = { id, name, price, image, quantity, total: (Number(price) * quantity), availableOn: '04-10-2018', deliveryDate };
+    console.log("Product Price---->", productPrice);
+    const { id, name, image } = dish;
+    const { price, unidType } = productPrice;
+    const item = { id, name, price, image, quantity, total: Number((Number(price) * quantity).toFixed(2)), availableOn: '04-10-2018', deliveryDate, unidType: unidType, productPriceId: productPrice.id };
 
     if(isExist) {
       if(quantity === 0) {
@@ -57,7 +60,7 @@ export const addToCart = (dish, quantity, deliveryDate) => {
       } else {
         dispatch(update(item, index));
       }
-      
+
     } else {
       dispatch(add(item));
     }

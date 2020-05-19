@@ -11,12 +11,12 @@ const DefaultPage = (Page) => {
     static async getInitialProps(context) {
       const loggedUser = process.browser ? getTokenFromLocalStorage() : getTokenFromCookie(context.req);
       let props = {};
-      
-      if(Page.getInitialProps) {
-        props = Page.getInitialProps(context);
-      }
 
-      const token = loggedUser;
+      // if(Page.getInitialProps) {
+      //   props = Page.getInitialProps(context);
+      // }
+      props = Page.getInitialProps(context);
+
       return {
         ...props,
         loggedUser,
@@ -25,15 +25,16 @@ const DefaultPage = (Page) => {
       };
     }
 
-    componentDidMount() {
-      if (!window.GA_INITIALIZED) {
-        initGA();
-        window.GA_INITIALIZED = true;
-      }
-      logPageView();
-    }
-    
+    // componentDidMount() {
+    //   if (!window.GA_INITIALIZED) {
+    //     initGA();
+    //     window.GA_INITIALIZED = true;
+    //   }
+    //   logPageView();
+    // }
+
     render() {
+      console.log("props default page----->", this.props);
       return (
         <Provider store={store}>
           <Page {...this.props}/>
