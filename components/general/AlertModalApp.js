@@ -1,5 +1,6 @@
 import React from 'react';
 import { Modal } from 'react-bootstrap';
+import {FiAlertTriangle} from 'react-icons/fi';
 
 import ButtonApp from '../general/ButtonBlock';
 
@@ -10,7 +11,7 @@ export default (props) => {
         <div className="header-confirmation">
           <h3 className="text-center">{props.title}</h3>
           <br />
-          <i className="fas fa-exclamation-triangle fa-7x"></i>
+          <FiAlertTriangle size={60} />
         </div>
         <div className="body-confirmation">
           <div className="orden-confirm-body">{props.description}</div>

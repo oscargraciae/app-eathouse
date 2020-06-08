@@ -34,7 +34,6 @@ const DefaultPage = (Page) => {
     // }
 
     render() {
-      console.log("props default page----->", this.props);
       return (
         <Provider store={store}>
           <Page {...this.props}/>

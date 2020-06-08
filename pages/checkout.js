@@ -9,6 +9,7 @@ import { GoCreditCard } from 'react-icons/go';
 import securePage from '../hocs/page';
 import api from '../api';
 import { clearCart } from '../actions/cart';
+import { moneyThousand } from '../utils/formatNumber';
 
 // import components
 import Layout from '../components/common/Layout';
@@ -49,6 +50,9 @@ class Checkout extends React.Component {
     isSendingOrder: false,
     methodPayment: 1,
     paymentChange: 0,
+    shippingId: null,
+    shippingSelected: null,
+    shippings: [],
   }
 
   componentDidMount() {
@@ -56,14 +60,20 @@ class Checkout extends React.Component {
   }
 
   async initialFetch() {
-    const [addresses, creditCards] = await Promise.all([
+    const [addresses, creditCards, shippings] = await Promise.all([
       api.user.getAddress(),
       api.creditCard.getAll(),
+      api.shipping.getAll(this.props.id),
     ]);
-    this.setState({ address: addresses, creditCards, loadingPage: false }, () => {
+    this.setState({ address: addresses, creditCards, loadingPage: false, shippings }, () => {
       if(addresses.length > 0) {
         this.setState({ userAddressId: addresses[0].id });
       }
+
+      if (!shippings || shippings.length === 0) {
+        this.setState({ shippingId: 0, shippingSelected: { id: 0 } });
+      }
+
     });
   }
 
@@ -98,16 +108,7 @@ class Checkout extends React.Component {
 
     this.setState({ isSendingOrder: true });
 
-    switch (methodPayment) {
-      case 1:
-        this.orderCard();
-        break;
-      case 2:
-        this.orderCash();
-        break;
-      default:
-        break;
-    }
+    this.orderCard();
   }
 
   confirm = () => {
@@ -142,7 +143,7 @@ class Checkout extends React.Component {
   }
 
   async orderCard() {
-    const { userAddressId, creditCardId } = this.state;
+    const { userAddressId, creditCardId, shippingId } = this.state;
     const { data, storeId } = this.props.cart;
 
     let isDiscount = false;
@@ -156,7 +157,6 @@ class Checkout extends React.Component {
       //   isDiscount = true;
       // }
     }
-
     const order = {
       userAddressId,
       creditCardId,
@@ -164,59 +164,28 @@ class Checkout extends React.Component {
       paymentMethod: 1,
       paymentChange: 0,
       isDiscount: isDiscount,
-      orderDetails: data,
       storeId: this.props.id,
+      shippingId: shippingId === 0 ? null : shippingId,
+      orderDetails: data,
     }
     const response = await api.orders.create(order);
-    if(response.ok) {
+    if(response.success) {
       this.setState({ confirmation: true, isSendingOrder: false }, () => {
         this.props.clearCart();
       });
     } else {
-      const { details } = response.err;
-      this.setState({ paymentError:  details[0].message, alertShow: true, isSendingOrder: false });
+      console.log("ERROR----->", response);
+      this.setState({ paymentError: response.message, alertShow: true, isSendingOrder: false });
     }
   }
 
-  async orderCash() {
-    const { userAddressId, creditCardId, paymentChange } = this.state;
-    const { data } = this.props.cart;
-
-    let isDiscount = false;
-    let quantityTotal = 0;
-    if (data.length > 0) {
-      data.map((item, i) => {
-        quantityTotal = quantityTotal + item.quantity;
-      });
-
-      // if(quantityTotal >= 5 || this.props.user.bussinesId) {
-      //   isDiscount = true;
-      // }
-    }
-
-    const order = {
-      userAddressId,
-      deviceType: 'web',
-      paymentMethod: 2,
-      paymentChange,
-      isDiscount: isDiscount,
-      orderDetails: data,
-      storeId: this.props.id,
-    }
-    const response = await api.orders.createCash(order);
-    if(response.ok) {
-      this.setState({ confirmation: true, isSendingOrder: false }, () => {
-        this.props.clearCart();
-      });
-    } else {
-      const { details } = response.err;
-      this.setState({ paymentError:  details[0].message, alertShow: true, isSendingOrder: false });
-    }
+  onSelectShipping = (shippingId) => {
+    const shippingSelected = this.state.shippings.filter(item => item.id === shippingId)[0];
+    this.setState({ shippingId, shippingSelected });
   }
 
   render() {
-    console.log("PROPS CHECKOUT------>", this.props);
-    const { step, address, addressFormHidden, userAddressId, creditCards, loadingPage } = this.state;
+    const { step, address, addressFormHidden, userAddressId, creditCards, loadingPage, shippings, shippingId } = this.state;
     const { user } = this.props;
     let quantityTotal = 0;
     if (this.props.cart.data.length > 0) {
@@ -234,16 +203,6 @@ class Checkout extends React.Component {
             { this.state.paymentError && <AlertModalApp show={this.state.alertShow} title="Oops! :(" description={this.state.paymentError} onClick={this.alertClick} /> }
             <div className="container">
               <div className="checkout">
-              {/* { user.bussinesId &&
-                <div className="sidecart-message">
-                  <span className="message-text">Por formar parte de {user.bussine.name} tienes el <strong>20%</strong> de descuento en todos tus pedidos</span>
-                </div>
-              }
-              { !user.bussinesId &&
-                <div className="sidecart-message">
-                  <span className="message-text">Obtén un <strong>20%</strong> de descuento en la compra de 5 platillos o más.</span>
-                </div>
-              } */}
                 <div className="address">
                   <div className="container-step container-box">
                     <div className="title">Dirección</div>
@@ -263,15 +222,6 @@ class Checkout extends React.Component {
                         <GoCreditCard />
                         <span>Tarjeta de crédito/debito</span>
                       </div>
-                      {/* { quantityTotal < 5 ?
-                        <div className='method-controls-btn method-controls-btn-disabled'>
-                          <span>Efectivo</span>
-                        </div> :
-                        <div className={this.state.methodPayment == 2 ? 'method-controls-btn method-controls-btn-selected' : 'method-controls-btn'} onClick={() => this.setState({ methodPayment: 2 })}>
-                          <i className="fas fa-money-bill-alt fa-sm" />
-                          <span>Efectivo</span>
-                        </div>
-                      } */}
                     </div>
 
                     { this.state.methodPayment === 1 &&
@@ -304,15 +254,31 @@ class Checkout extends React.Component {
                         </div>
                       </div>
                     }
-
-                    <p className="lbl-notes">*El pago en efectivo está disponible en la compra de 5 platillos o más</p>
                   </div>
 
-                  {/* <div className="container-step container-box">
-                    <div className="title">Horario de entrega</div>
-                    <div className="lbl-deliveryTime">12:30pm - 1:30pm</div>
-                    <p className="lbl-notes">*Actualmente solo contamos con este horario de entrega</p>
-                  </div> */}
+                  <div className="container-step container-box">
+                    <div className="title">Tipo de envío</div>
+
+                    <div className={`shipping-options`}>
+                      {shippings.map((item) => (
+                        <div
+                          key={item.id}
+                          className={shippingId === item.id ? 'shipping-item shipping-item-selected' : 'shipping-item'}
+                          onClick={() => this.onSelectShipping(item.id)}
+                        >
+                          <div>{item.description}</div>
+                          <div>${moneyThousand(item.price)}MXN</div>
+                        </div>
+                      ))}
+
+                      { shippings.length == 0 &&
+                        <div className={'shipping-item shipping-item-selected'}>
+                          <div>GRATIS</div>
+                          <div>$0 MXN</div>
+                        </div>
+                      }
+                    </div>
+                  </div>
 
                   <div className="container-step container-box onlyMobile">
                     <div className="title">Resumen de compra</div>
@@ -337,16 +303,19 @@ class Checkout extends React.Component {
                   text="Ordenar"
                   buttonStyle="btn btn-primary btn-large btn-block"
                   loading={this.state.isSendingOrder}
-                  disabled={!this.state.creditCardId || !this.state.userAddressId}
+                  disabled={!this.state.creditCardId || !this.state.userAddressId || !this.state.shippingId}
                   click={this.sendOrder}
                 />
               </div>
               <div className="cartDetail">
-                { this.state.methodPayment === 1 ?
-                  <CartDetail user={this.props.user} sendOrder={this.sendOrder} disabled={!this.state.creditCardId || !this.state.userAddressId} loading={this.state.isSendingOrder}/> :
-                  <CartDetail user={this.props.user} sendOrder={this.sendOrder} disabled={this.state.paymentChange < 300 || !this.state.userAddressId } loading={this.state.isSendingOrder}/>
-                }
-
+                <CartDetail
+                  user={this.props.user}
+                  sendOrder={this.sendOrder}
+                  disabled={!this.state.creditCardId || !this.state.userAddressId || this.state.shippingId > 0}
+                  loading={this.state.isSendingOrder}
+                  shipping={this.state.shippingSelected}
+                  cart={this.props.cart}
+                />
               </div>
             </div>
           </div>
@@ -458,6 +427,29 @@ class Checkout extends React.Component {
 
           .onlyMobile {
             display: none;
+          }
+
+          .shipping-options {
+
+          }
+
+          .shipping-item {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+
+            border: 1px solid #DDD;
+            padding: 12px;
+            border-radius: 3px;
+            margin-bottom: 12px;
+          }
+
+          .shipping-item:hover {
+            cursor: pointer;
+          }
+
+          .shipping-item-selected {
+            background: lightgrey;
           }
 
           @media (max-width: 600px) {

@@ -29,21 +29,19 @@ const menuGuest = () => {
           </a>
         </Link>
       </li>
-      <li>
+      {/* <li>
         <Link href="/signup-store">
           <a className="btn_navf">
             <span>Publicar tu tienda</span>
           </a>
         </Link>
-      </li>
+      </li> */}
     </ul>
   )
 }
 
 const menuAuth = (props) => {
   const { user, userToken } = props;
-  console.log("USER---->", user);
-  console.log("USER TOKEN---->", props);
   return (
     <ul className="nav navbar-nav navbar-right nav-menu-right">
       {/* { props.user.user_address.length > 0 &&
@@ -123,15 +121,17 @@ const menuAuth = (props) => {
       </li> */}
       <li>
         { userToken.storeId &&
-          <a className="btn_navf" href="http://localhost:3000/" target="_blank">
-            <span className="btn btn-primary btn-block" >Administrar mi tienda</span>
+          <a className="btn_navf" href="http://manager.uorder.mx/" target="_blank">
+            <span>Administrar mi tienda</span>
           </a>
           }
-          { !userToken.storeId &&
-          <a className="btn_navf" href="/signup-store">
-            <span className="btn btn-primary btn-block">Publicar tu tienda</span>
-          </a>
-          }
+          {/* { !userToken.storeId &&
+          <Link href="/signup-store">
+            <a className="btn_navf">
+              <span>Publicar tu tienda</span>
+            </a>
+          </Link>
+          } */}
       </li>
     </ul>
   )

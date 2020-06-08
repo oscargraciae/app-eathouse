@@ -123,7 +123,7 @@ export default ({ children, loggedUser, isAuthenticated, title = 'Northware', us
         }
 
         .modal-credit-card {
-          min-height: 490px;
+          /* min-height: 490px; */
         }
 
         .containerAppButon {

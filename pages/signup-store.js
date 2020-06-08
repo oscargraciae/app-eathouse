@@ -7,53 +7,55 @@ import ButtonBlock from '../components/general/ButtonBlock';
 import AlertBox from '../components/general/AlertBox';
 
 import withData from '../apollo/withData';
-import validation from '../validations/signup';
+import validation from '../validations/signup-store';
 import { getTokenFromCookie, getTokenFromLocalStorage } from '../utils/auth';
 import redirect from '../utils/redirect';
 import api from '../api';
 import { setToken } from '../utils/auth';
-import defaultPage from '../hocs/defaultPage';
+import defaultPage from '../hocs/page';
 
 class Signup extends React.Component {
   static getInitialProps(context) {
     return {};
   }
 
-  constructor() {
-    super();
-
-    this.state = {
-      storeName: '',
-      firstName: '',
-      lastName: '',
-      email: '',
-      password: '',
-      errors: [],
-      errorsServer: null,
-      isLoading: false,
-    }
+  state = {
+    userId: this.props.tokenData ? this.props.tokenData.id : 0,
+    storeName: '',
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    errors: [],
+    errorsServer: null,
+    isLoading: false,
   }
 
   onSubmit = async (e) => {
     e.preventDefault();
     this.setState({ isLoading: true });
 
-    if(this.isValid()) {
+    if (this.state.userId > 0) {
       const response = await api.store.create(this.state);
-      const { success, user } = response;
+      const { success } = response;
 
       if(success) {
-        const { email, password } = this.state;
+        // location.href = "http://localhost:3000/";
+        location.href = "http://manager.uorder.mx/";
 
-        // const response = await api.user.authentication(email, password);
-        // if(response.ok) {
-        //   setToken(response.user.token);
-        // }
-        // location.href = "/menu";
-        // Router.push('/menu');
-        location.href = "http://localhost:3000/";
       } else {
         this.setState({ errorsServer: response.errors });
+      }
+    } else {
+      if(this.isValid()) {
+        const response = await api.store.create(this.state);
+        const { success } = response;
+
+        if(success) {
+          location.href = "http://manager.uorder.mx/";
+        } else {
+          this.setState({ errorsServer: response.errors });
+        }
       }
     }
 
@@ -81,6 +83,7 @@ class Signup extends React.Component {
             <h1>Registrarse</h1>
             {/* { errorsServer && <h2>Hemos enviado un correo electronico</h2> } */}
             { errorsServer && <AlertBox message={this.state.errorsServer} /> }
+            {!this.props.isAuthenticated &&
             <form className="signupForm" onSubmit={this.onSubmit}>
               { this.state.messageError && <div className="alert alert-danger">{ this.state.messageError }</div> }
               <InputText
@@ -99,7 +102,6 @@ class Signup extends React.Component {
                 type="text"
                 name="firstName"
                 label="Nombre"
-                focus={true}
               />
               <InputText
                 error={errors.lastName}
@@ -137,6 +139,34 @@ class Signup extends React.Component {
                 </p>
               </div>
             </form>
+            }
+
+
+            {this.props.isAuthenticated &&
+              <form className="signupForm" onSubmit={this.onSubmit}>
+              { this.state.messageError && <div className="alert alert-danger">{ this.state.messageError }</div> }
+              <InputText
+                error={errors.storeName}
+                value={this.state.storeName}
+                onChange={this.onChange}
+                type="text"
+                name="storeName"
+                label="Nombre de tu negocio"
+                focus={true}
+              />
+              <ButtonBlock
+                text="¡Registrarme!"
+                buttonStyle="btn btn-primary btn-block"
+                loading={this.state.isLoading}
+              />
+
+              <div className="controls-small">
+                <p className="lbl-terms">
+                  <span> Al registrarte, confirmas que aceptas los <a className="lbl-principal" href="/terms"> Términos y condiciones </a> y la <a className="lbl-principal" href="/privacy"> Política de privacidad</a>.</span>
+                </p>
+              </div>
+            </form>
+            }
           </div>
         </div>
 

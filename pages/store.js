@@ -10,7 +10,7 @@ import {
 
 import securePage from '../hocs/page';
 import api from '../api';
-import { addToCart } from '../actions/cart';
+import { addToCart, clearCart } from '../actions/cart';
 import { formatDateString, getDateSumDays } from '../utils/formatDate';
 
 import Layout from '../components/common/Layout';
@@ -21,14 +21,12 @@ import Cart from '../components/general/Cart';
 
 class Store extends React.Component {
   static async getInitialProps({ query }) {
-    console.log("QUERY------>", query);
     const [products, data] = await Promise.all([
       api.product.getAll(query.id),
       api.store.get(query.id),
     ]);
     return {
       products,
-      // store,
       data,
       id: query.id,
     };
@@ -66,6 +64,10 @@ class Store extends React.Component {
 
       this.setState({ deliveryDate: newDate, isLater: false });
     }
+  }
+
+  componentWillUnmount() {
+    this.props.clearCart();
   }
 
   changeDay = (deliveryDate) => {
@@ -336,4 +338,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default securePage(connect(mapStateToProps, { addToCart })(Store));
+export default securePage(connect(mapStateToProps, { addToCart, clearCart })(Store));

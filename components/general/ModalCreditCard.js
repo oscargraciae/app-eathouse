@@ -3,18 +3,21 @@ import React from 'react';
 import { Modal } from 'react-bootstrap';
 
 // import componentes
-import CreditCardForm from '../user/CreditCardForm';
+// import CreditCardForm from '../user/CreditCardForm';
+import FormCreditCard from '../user/FormCreditCards';
 
 class ModalCreditCard extends React.Component {
 
   render() {
     return (
       <div>
-        <Modal show={this.props.show} bsSize="small">
+        {/* <Modal show={this.props.show} bsSize="sm"> */}
+        <Modal show={this.props.show}>
           <Modal.Body className="modal-credit-card">
             <h3 className="text-center title-modal-card">Agrega una tarjeta de crédito/débito</h3>
             <br />
-            <CreditCardForm afterSave={this.props.afterSave} onToggleModal={this.props.onToggle} />
+            <FormCreditCard afterSave={this.props.afterSave} onToggleModal={this.props.onToggle} />
+            {/* <CreditCardForm afterSave={this.props.afterSave} onToggleModal={this.props.onToggle} /> */}
           </Modal.Body>
         </Modal>
         <style jsx>{`

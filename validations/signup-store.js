@@ -4,6 +4,10 @@ import isEmpty from 'lodash/isEmpty';
 export default function validateInput(data) {
   const errors = {};
 
+  if (Validator.isEmpty(data.storeName)) {
+    errors.storeName = 'Nombre de tu negocio es obligatorio.';
+  }
+
   if (Validator.isEmpty(data.firstName)) {
     errors.firstName = 'Nombre obligatorio.';
   }

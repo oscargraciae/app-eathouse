@@ -5,8 +5,11 @@ import axios from 'axios';
 // const baseUrl = 'http://127.0.0.1:3000';
 // const baseUrl = 'https://api.gigbox.mx';
 
+const URL_BASE = 'http://localhost:3001/api';
+// const URL_BASE = 'https://api-ecommerce.azurewebsites.net/api';
+
 // axios.defaults.baseURL = 'https://api-ecommerce.azurewebsites.net/api/v1';
-axios.defaults.baseURL = 'http://localhost:3001/api/v1';
+axios.defaults.baseURL = `${URL_BASE}/v1`;
 // axios.defaults.baseURL = 'https://api.eathouse.mx/api/v1';
 // axios.defaults.baseURL = 'https://api-eathouse-cpefohxxee.now.sh/api/v1';
 
@@ -72,7 +75,7 @@ const api = {
   },
   creditCard: {
     async create(data) {
-      const response = await axios.post(`/credit-cards`, data);
+      const response = await axios.post(`/credit-cards/card`, data);
       return response.data;
     },
     async getAll() {
@@ -106,18 +109,18 @@ const api = {
       return response.data;
     },
     async create(order) {
-      const response = await axios.post('/orders', order);
+      const response = await axios.post('/orders/order', order);
       return response.data;
     },
     async createCash(order) {
       const response = await axios.post('/orders/cash', order);
       return response.data;
     },
-    async estimateOrder(order) {
-      // Calcula el costo de la orden
-      const response = await axios.post('/orders/estimate-order', order);
-      return response.data;
-    },
+    // async estimateOrder(order) {
+    //   // Calcula el costo de la orden
+    //   const response = await axios.post('/orders/estimate-order', order);
+    //   return response.data;
+    // },
     async getDetail(id) {
       const response = await axios.get(`/orders/order-detail/${id}`);
       return response.data;
@@ -136,7 +139,7 @@ const api = {
   store: {
     async create(data) {
       try {
-        const store = await axios.post('https://api-ecommerce.azurewebsites.net/api/manager/auth/signup', data);
+        const store = await axios.post(`${URL_BASE}/manager/auth/signup`, data);
         return store.data;
       } catch (error) {
         return {
@@ -154,6 +157,12 @@ const api = {
       return response.data;
     }
   },
+  shipping: {
+    async getAll(storeId) {
+      const response = await axios.get(`/shippings/${storeId}`);
+      return response.data;
+    }
+  }
 };
 
 export default api;

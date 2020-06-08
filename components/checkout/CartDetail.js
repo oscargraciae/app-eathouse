@@ -1,5 +1,5 @@
 // import libraries
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
 // import local libraries
@@ -9,31 +9,38 @@ import { moneyThousand } from '../../utils/formatNumber';
 import ButtonBlock from '../general/ButtonBlock';
 import CartItem from '../general/CartItem';
 
-function CartDetail(props) {
+const CartDetail = props => {
+  const [shippingSelected, setShippingSelected] = useState(null);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [subtotalPrice, setSubtotalPrice] = useState(0);
+
   let total = 0;
   let subtotal = 0;
   let discount = 0;
   let quantityTotal = 0;
+  let shippingPrice = 0;
 
-  props.cart.data.map((item, i) => {
-    subtotal = subtotal + item.total;
-  });
-
-  // if (props.user.bussinesId) {
-  //   discount = subtotal * 0.20;
-  // }
-
-  if (props.cart.data.length > 0) {
+  useEffect(() => {
     props.cart.data.map((item, i) => {
-      quantityTotal = quantityTotal + item.quantity;
+      subtotal = subtotal + item.total;
     });
 
-    // if(quantityTotal >= 5) {
-    //   discount = subtotal * 0.20;
-    // }
-  }
+    if (props.cart.data.length > 0) {
+      props.cart.data.map((item, i) => {
+        quantityTotal = quantityTotal + item.quantity;
+      });
+    }
 
-  total = subtotal - discount;
+    console.log("props.shipping--->", props.shipping);
+    if (props.shipping && props.shipping.id !== 0) {
+      setShippingSelected(props.shipping);
+        shippingPrice = Number(props.shipping.price);
+
+    }
+    total = (subtotal - discount) + shippingPrice;
+    setTotalPrice(total);
+    setSubtotalPrice(subtotal);
+  }, [props]);
 
   return (
     <div className="sidecart">
@@ -55,16 +62,20 @@ function CartDetail(props) {
       <div className="sidecart-footer">
         <dl className="estimated-total">
           <div className="line-item">
-            <dt>Subtotal</dt><dd>${moneyThousand(subtotal)}</dd>
+            <dt>Subtotal</dt><dd>${moneyThousand(subtotalPrice)}</dd>
           </div>
           <div className="line-item">
-            <dt>Gastos de envío</dt><dd>GRATIS</dd>
+            <dt>Gastos de envío</dt>
+            { !shippingSelected ?
+              <dd>-</dd> :
+              <dd>${shippingSelected.price}</dd>
+            }
           </div>
           {/* <div className="line-item">
             <dt>Descuento</dt><dd>-${moneyThousand(discount)}</dd>
           </div> */}
           <div className="line-item">
-            <dt>Total</dt><dd>${moneyThousand(total)}</dd>
+            <dt>Total</dt><dd>${moneyThousand(totalPrice)}</dd>
           </div>
         </dl>
         <br/>
@@ -188,10 +199,10 @@ function CartDetail(props) {
   )
 }
 
-const mapStateToProps = (state) => {
-  return {
-    cart: state.cart,
-  }
-}
+// const mapStateToProps = (state) => {
+//   return {
+//     cart: state.cart,
+//   }
+// }
 
-export default connect(mapStateToProps)(CartDetail);
+export default CartDetail;

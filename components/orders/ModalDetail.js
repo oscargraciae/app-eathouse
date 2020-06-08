@@ -26,7 +26,7 @@ export default (props) => {
                 <dt className="lbl-total">Subtotal</dt><dd className="lbl-total">${moneyThousand(order.info.subtotal)} MX</dd>
               </div>
               <div className="line-item">
-                <dt className="lbl-total">Costo de envío</dt><dd className="lbl-total">$0 MX</dd>
+                <dt className="lbl-total">Envío</dt><dd className="lbl-total">${moneyThousand(order.info.shippingPrice)} MX</dd>
               </div>
               <div className="line-item">
                 <dt className="lbl-total">Total</dt><dd className="lbl-total">${moneyThousand(order.info.total)} MX</dd>

@@ -1,7 +1,7 @@
 import React from 'react';
 import generateName from '../../utils/generateName';
 
-const StoreItem = ({ id, name, cover }) => {
+const StoreItem = ({ id, name, description, cover }) => {
   return (
     <div className="menu-item">
       <a href={`/store/${generateName(name)}/${id}`} className="menu-item-details">
@@ -14,6 +14,9 @@ const StoreItem = ({ id, name, cover }) => {
           <div className="menu-item-description">
             <div className="menu-item-name-link" >
               <span className="text">{name}</span>
+            </div>
+            <div>
+              {description && description.substr(0, 100)}...
             </div>
           </div>
         </div>
@@ -28,7 +31,7 @@ const StoreItem = ({ id, name, cover }) => {
           /* height: 140px; */
           margin: 8px 5px;
           padding: 0px;
-          /* border: 1px solid rgba(217, 219, 224, 0.5); */
+          border: 1px solid rgba(217, 219, 224, 0.5);
         }
 
         .menu-item-details {
@@ -37,18 +40,27 @@ const StoreItem = ({ id, name, cover }) => {
           width: 100%;
           border-radius: 3px;
           /* border: 1px solid rgba(217,219,224,0.5); */
+
+          color: #333;
+        }
+
+        .menu-item-details:hover {
+          color: #333;
+          text-decoration: none;
         }
 
         .menu-item-image {
           display: flex;
           justify-content: center;
           width: 100%;
-          height: 180px;
+          /* height: 180px; */
+          height: 15rem;
         }
 
         .store-logo {
           background-position: center center;
-          background-size: contain;
+          /* background-size: contain; */
+          background-size: cover;
           background-repeat: no-repeat;
           width: 100%;
           height: 100%;
@@ -63,7 +75,8 @@ const StoreItem = ({ id, name, cover }) => {
           flex-direction: column;
           margin-top: 16px;
           padding: 5px 12px;
-          border-top: 1px solid rgba(217,219,224,0.5);
+          /* border-top: 1px solid rgba(217,219,224,0.5); */
+          height: 100px;
         }
 
 

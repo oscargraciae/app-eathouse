@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 function ButtonApp(props) {
   return (
     <div className="containerAppButon">
-      <button className={props.buttonStyle} onClick={props.click} disabled={props.disabled || props.loading}>
+      <button type={props.type} className={props.buttonStyle} onClick={props.click} disabled={props.disabled || props.loading}>
         { props.loading && <span>Cargando...</span> }
         {!props.loading && props.text }
       </button>
@@ -87,7 +87,7 @@ function ButtonApp(props) {
         .btn-facebook:hover, .btn-facebook:focus{
           background: #3B5999;
         }
-        
+
       `}</style>
     </div>
   );
