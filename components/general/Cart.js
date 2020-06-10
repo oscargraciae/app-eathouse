@@ -59,7 +59,7 @@ function Cart(props) {
           { props.cart.data.length === 0 &&
             <div className="empty-cart">
               <p><span>Tu canasta está vacía</span></p>
-              <p>Te invitamos a agregar platillos a tu canasta.</p>
+              <p>Te invitamos a agregar productos a tu canasta.</p>
             </div>
           }
         </div>

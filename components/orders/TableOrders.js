@@ -11,7 +11,7 @@ function TableOrders(props) {
       <thead>
         <tr>
           <th>#Orden</th>
-          <th>Dirección</th>
+          <th className="mobile-hide">Dirección</th>
           <th>Fecha de compra</th>
           {/* <th>Estatus</th> */}
           <th>Total</th>
@@ -29,7 +29,7 @@ function TableOrders(props) {
                   </div>
                 </div>
               </td>
-              <td>{item.user_address.addressMap}</td>
+              <td className="mobile-hide">{item.user_address.addressMap}</td>
               <td>{formatDate(item.createdAt)}</td>
               {/* <td><div className="category">Pendiente</div></td> */}
               <td>${moneyThousand(item.total)}MX</td>
@@ -47,10 +47,6 @@ function TableOrders(props) {
           align-items: center;
         }
 
-        .serviceDescriptionData {
-
-        }
-
         .title {
           font-size: 18px;
         }
@@ -63,6 +59,14 @@ function TableOrders(props) {
         @media (max-width: 600px) {
           .onlyWeb {
             display: none;
+          }
+
+          .table > thead > tr > th {
+            font-size: 10px;
+          }
+
+          .table > tbody > tr > td {
+            font-size: 10px;
           }
         }
       `}</style>

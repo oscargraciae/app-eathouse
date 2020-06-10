@@ -14,7 +14,7 @@ Router.onRouteChangeError = () => {
 
 const menuGuest = () => {
   return (
-    <ul className="nav navbar-nav navbar-right">
+    <ul className="nav navbar-nav navbar-right nav-menu-right">
       <li>
         <Link href="/login">
           <a className="btn_nav">
@@ -121,7 +121,7 @@ const menuAuth = (props) => {
       </li> */}
       <li>
         { userToken.storeId &&
-          <a className="btn_navf" href="http://manager.uorder.mx/" target="_blank">
+          <a className="btn_navf mobile-hide" href="http://manager.uorder.mx/" target="_blank">
             <span>Administrar mi tienda</span>
           </a>
           }
@@ -143,7 +143,7 @@ export default function Header(props) {
         <nav className="navbar navbar-default">
           <div className="fluid-container header-uorder">
             <div className="navbar-header">
-              <button
+              {/* <button
                 type="button"
                 className="navbar-toggle"
                 data-toggle="collapse"
@@ -153,7 +153,7 @@ export default function Header(props) {
                 <span className="icon-bar" />
                 <span className="icon-bar" />
                 <span className="icon-bar" />
-              </button>
+              </button> */}
 
               <Link href="/">
                 <a>
@@ -166,7 +166,7 @@ export default function Header(props) {
               </Link>
 
             </div>
-            <div className="collapse navbar-collapse">
+            <div className="navbar-collapse">
               { props.isAuthenticated ? menuAuth(props) : menuGuest() }
             </div>
 
@@ -251,6 +251,27 @@ export default function Header(props) {
             .onlyMobile {
               display: none;
             }
+
+            .dropdown-menu {
+              position: absolute !important;
+              top: 100%;
+              left: 0;
+              z-index: 1000;
+              display: none;
+              float: left !important;
+              min-width: 160px !important;
+              padding: 5px 0;
+              margin: 2px 0 0;
+              font-size: 14px;
+              text-align: left;
+              list-style: none;
+              background-color: #fff !important;
+              background-clip: padding-box;
+              border: 1px solid #ccc !important;
+              border: 1px solid rgba(0,0,0,.15) !important;
+              border-radius: 4px;
+              box-shadow: 0 6px 12px rgba(0,0,0,.175) !important;
+          }
 
           }
         `}</style>

@@ -4,7 +4,7 @@ import generateName from '../../utils/generateName';
 const StoreItem = ({ id, name, description, cover }) => {
   return (
     <div className="menu-item">
-      <a href={`/store/${generateName(name)}/${id}`} className="menu-item-details">
+      {/* <a href={`/store/${generateName(name)}/${id}`} className="menu-item-details"> */}
         <div className="menu-item-details">
           <div className="menu-item-image">
             <div className="store-logo" style={{ backgroundImage: `url(${cover})` }} />
@@ -18,24 +18,21 @@ const StoreItem = ({ id, name, description, cover }) => {
             </div> */}
             <div>
               <br />
-              <a className="btn btn-primary btn-block">
+              <a className="btn btn-primary btn-block" href={`/store/${generateName(name)}/${id}`}>
                 Ir a la tienda
               </a>
             </div>
           </div>
         </div>
-      </a>
+      {/* </a> */}
 
       <style global jsx>{`
-
         .menu-item {
           display: flex;
           cursor: pointer;
           width: 24%;
-          /* height: 140px; */
           margin: 8px 5px;
           padding: 0px;
-          /* border: 1px solid rgba(217, 219, 224, 0.5); */
           border: 1px solid rgba(217,219,224,0.5);
           border-radius: 3px;
           background: #FFFFFF;
@@ -66,7 +63,6 @@ const StoreItem = ({ id, name, description, cover }) => {
 
         .store-logo {
           background-position: center center;
-          /* background-size: contain; */
           background-size: cover;
           background-repeat: no-repeat;
           width: 100%;
@@ -80,10 +76,7 @@ const StoreItem = ({ id, name, description, cover }) => {
         .menu-item-description {
           display: flex;
           flex-direction: column;
-          /* margin-top: 16px; */
           padding: 28px 14px;
-          /* border-top: 1px solid rgba(217,219,224,0.5); */
-          /* height: 140px; */
         }
 
 
@@ -107,38 +100,16 @@ const StoreItem = ({ id, name, description, cover }) => {
 
         @media (max-width: 600px) {
           .menu-item {
-            display: flex;
-            cursor: pointer;
-            box-sizing: content-box;
             width: 100%;
-            height: 150px;
-            /* height: 128px; */
-            margin: 8px 0px;
-            padding: 0px;
-            border-width: 1px;
-            border-style: solid;
-            border-color: rgba(217, 219, 224, 0.5);
-            border-image: initial;
           }
 
           .menu-item-name-link {
-            font-size: 12px;
-            line-height: 1.3em;
-            -webkit-letter-spacing: 0;
-            -moz-letter-spacing: 0;
-            -ms-letter-spacing: 0;
-            letter-spacing: 0;
-            color: #2D3138;
-            overflow: visible;
-            text-overflow: ellipsis;
-            display: block;
-            padding: 0px 0;
-            /* height: 35px; */
+
 
           }
 
           .menu-item-description {
-            height: 40px;
+
           }
         }
       `}</style>

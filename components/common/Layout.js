@@ -18,20 +18,20 @@ export default ({ children, loggedUser, isAuthenticated, title = 'UORDER', user,
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charSet="utf-8" />
         <meta name="language" content="es" />
-        <meta name="author" content="Eathouse" />
-        <meta name="pagename" content="Eathouse" />
+        <meta name="author" content="UOrder" />
+        <meta name="pagename" content="UOrder" />
         <meta content="IE=edge,chrome=1" httpEquiv="X-UA-Compatible" />
-        <link rel="icon" type="image/png" sizes="192x192"  href="/static/logo-icono.png" />
+        <link rel="icon" type="image/png" sizes="64x64"  href="/static/u-order-64x64.png" />
 
-        <meta property="og:type" content="website" />
+        {/* <meta property="og:type" content="website" />
         <meta property="og:title" content="COMER BIEN TODOS LOS DÍAS, ¡ES POSIBLE!" />
         <meta property="og:description" content="Comidas ricas y saludables, entregadas directamente a la puerta de tu oficina." />
         <meta property="og:image" content="https://s3.us-west-2.amazonaws.com/eathouse/assets/og-page.png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:url" content="https://eathouse.mx" />
-        <meta property="og:site_name" content="Eathouse" />
-        <meta property="og:locale" content="es" />
+        <meta property="og:url" content="https://uorder.mx" />
+        <meta property="og:site_name" content="Uorder" />
+        <meta property="og:locale" content="es" /> */}
 
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
@@ -51,40 +51,12 @@ export default ({ children, loggedUser, isAuthenticated, title = 'UORDER', user,
           })(window,document,'script','dataLayer','GTM-TQS3BV7');`,
         }}>
         </script>
-
-        {/* <script dangerouslySetInnerHTML={{
-          __html: `!function() {
-            var t = window.driftt = window.drift = window.driftt || [];
-            if (!t.init) {
-              if (t.invoked) return void (window.console && console.error && console.error("Drift snippet included twice."));
-              t.invoked = !0, t.methods = [ "identify", "config", "track", "reset", "debug", "show", "ping", "page", "hide", "off", "on" ],
-              t.factory = function(e) {
-                return function() {
-                  var n = Array.prototype.slice.call(arguments);
-                  return n.unshift(e), t.push(n), t;
-                };
-              }, t.methods.forEach(function(e) {
-                t[e] = t.factory(e);
-              }), t.load = function(t) {
-                var e = 3e5, n = Math.ceil(new Date() / e) * e, o = document.createElement("script");
-                o.type = "text/javascript", o.async = !0, o.crossorigin = "anonymous", o.src = "https://js.driftt.com/include/" + n + "/" + t + ".js";
-                var i = document.getElementsByTagName("script")[0];
-                i.parentNode.insertBefore(o, i);
-              };
-            }
-          }();
-          drift.SNIPPET_VERSION = '0.3.1';
-          drift.load('vmvp65uv9t8h');`,
-        }}>
-        </script> */}
       </Head>
       <noscript dangerouslySetInnerHTML={{
           __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TQS3BV7"
           height="0" width="0" style={{ display:'none', visibility:'hidden' }}></iframe>`,
         }}>
       </noscript>
-      {/* <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TQS3BV7"
-      height="0" width="0" style={{ display:'none', visibility:'hidden' }}></iframe></noscript> */}
 
       <Header loggedUser={loggedUser} isAuthenticated={isAuthenticated} user={user} userToken={tokenData} />
       { isAuthenticated && <ModalGeneralAddress show={!user.withAddress} /> }
@@ -103,10 +75,7 @@ export default ({ children, loggedUser, isAuthenticated, title = 'UORDER', user,
 
         body {
           color: #42413E;
-          /* background: #FAFAFA; */
-          /* background: #FFF; */
           background: rgb(247, 247, 247);
-          /* font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important; */
           font-family: 'Roboto', sans-serif;
         }
 
@@ -261,9 +230,11 @@ export default ({ children, loggedUser, isAuthenticated, title = 'UORDER', user,
           color: #B31E0B;
         }
 
-
-
-
+        @media (max-width: 600px) {
+          .mobile-hide {
+            display: none;
+          }
+        }
 
       `}</style>
     </div>

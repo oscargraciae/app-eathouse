@@ -87,12 +87,11 @@ class Store extends React.Component {
     let total = 0;
     let subtotal = 0;
     let discount = 0;
-    // this.props.cart.data.map((item, i) => {
-    //   subtotal = subtotal + item.total;
-    // });
+    this.props.cart.data.map((item, i) => {
+      subtotal = subtotal + item.total;
+    });
 
     total = subtotal - discount;
-
     return (
       <Layout {...this.props}>
         <div>
@@ -105,7 +104,7 @@ class Store extends React.Component {
 
               <div className="">
                 <div>
-                  <h2 className="title-category" id="products">Platillos Principales</h2>
+                  <h2 className="title-category" id="products">Productos Principales</h2>
                 </div>
                 <div className="menu-items">
                   { products.map((item, index) => {
@@ -119,15 +118,15 @@ class Store extends React.Component {
 
               { total > 0 &&
                 <div className="btnContainerMobile">
-                  <div className="line-item">
+                  {/* <div className="line-item">
                     <dt className="lbl-subtotal">Subtotal</dt><dd className="lbl-subtotal">${subtotal}</dd>
-                  </div>
+                  </div> */}
                   {/* { this.props.user.bussinesId &&
                     <div className="line-item">
                       <dt className="lbl-subtotal">Descuento</dt><dd className="lbl-subtotal">${discount}</dd>
                     </div>
                   } */}
-                  <a id="btnMobileMenuCart" href="/checkout" className="btn btn-primary btn-large btn-block">VER CARRITO ${total}</a>
+                  <a id="btnMobileMenuCart" href={`/checkout/${this.props.id}`} className="btn btn-primary btn-large btn-block">VER CARRITO ${total}</a>
                 </div>
               }
 

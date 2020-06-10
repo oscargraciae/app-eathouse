@@ -187,12 +187,12 @@ class Checkout extends React.Component {
   render() {
     const { step, address, addressFormHidden, userAddressId, creditCards, loadingPage, shippings, shippingId } = this.state;
     const { user } = this.props;
-    let quantityTotal = 0;
-    if (this.props.cart.data.length > 0) {
-      this.props.cart.data.map((item, i) => {
-        quantityTotal = quantityTotal + item.quantity;
-      });
-    }
+    // let quantityTotal = 0;
+    // if (this.props.cart.data.length > 0) {
+    //   this.props.cart.data.map((item, i) => {
+    //     quantityTotal = quantityTotal + item.quantity;
+    //   });
+    // }
     return (
       <Layout {...this.props}>
         { loadingPage ? <LoadingSpinner /> :
@@ -223,37 +223,16 @@ class Checkout extends React.Component {
                         <span>Tarjeta de crédito/debito</span>
                       </div>
                     </div>
-
-                    { this.state.methodPayment === 1 &&
-                      <div className="form">
-                        <select className="form-control input-lg" name="creditCardId" onChange={this.onChange} value={this.state.creditCardId}>
-                          <option>Seleccionar método de pago</option>
-                          { creditCards && creditCards.map((item) => (
-                            <option value={item.id} key={item.id}>{item.last4} - {item.brand}</option>
-                          )) }
-                        </select>
-                        <br />
-                        <a href="#" onClick={this.showCreditCardModal} className="btn-link">+ Agregar otro método de pago</a>
-                      </div>
-                    }
-
-                    { this.state.methodPayment === 2 &&
-                      <div className="form">
-                        <label>¿Cambio de cuanto?</label>
-                        <p>Escribe cuanto vas a pagar en efectivo para envíar tu cambio.</p>
-                        <div className="row">
-                          <div className="col-md-4">
-                            <InputText
-                              value={this.state.paymentChange}
-                              onChange={this.onChange}
-                              type="text"
-                              name="paymentChange"
-                              label="0"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    }
+                    <div className="form">
+                      <select className="form-control input-lg" name="creditCardId" onChange={this.onChange} value={this.state.creditCardId}>
+                        <option>Seleccionar método de pago</option>
+                        { creditCards && creditCards.map((item) => (
+                          <option value={item.id} key={item.id}>{item.last4} - {item.brand}</option>
+                        )) }
+                      </select>
+                      <br />
+                      <a href="#" onClick={this.showCreditCardModal} className="btn-link">+ Agregar otro método de pago</a>
+                    </div>
                   </div>
 
                   <div className="container-step container-box">
@@ -280,7 +259,7 @@ class Checkout extends React.Component {
                     </div>
                   </div>
 
-                  <div className="container-step container-box onlyMobile">
+                  {/* <div className="container-step container-box onlyMobile">
                     <div className="title">Resumen de compra</div>
                     <div className="sidecart-body">
                       <div className="items-group">
@@ -294,11 +273,11 @@ class Checkout extends React.Component {
                         </ul>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
 
                 </div>
               </div>
-              <div className="btnContainerMobile">
+              {/* <div className="btnContainerMobile">
                 <ButtonBlock
                   text="Ordenar"
                   buttonStyle="btn btn-primary btn-large btn-block"
@@ -306,7 +285,7 @@ class Checkout extends React.Component {
                   disabled={!this.state.creditCardId || !this.state.userAddressId || !this.state.shippingId}
                   click={this.sendOrder}
                 />
-              </div>
+              </div> */}
               <div className="cartDetail">
                 <CartDetail
                   user={this.props.user}
@@ -449,7 +428,7 @@ class Checkout extends React.Component {
           }
 
           .shipping-item-selected {
-            background: lightgrey;
+            background: rgba(59, 207, 117, 0.3);
           }
 
           @media (max-width: 600px) {
@@ -459,7 +438,7 @@ class Checkout extends React.Component {
             }
 
             .cartDetail {
-              display: none;
+              /* display: none; */
             }
 
             .container-box {

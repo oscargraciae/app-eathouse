@@ -242,8 +242,6 @@ class Login extends React.Component {
               max-width: 400px;
               margin: 65px auto;
               background-color: #fff;
-              padding: 0px;
-              border: none;
             }
 
             .container-login > h1{

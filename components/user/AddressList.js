@@ -30,9 +30,6 @@ class AddressList extends React.Component {
             return (
               <div className={item.id === this.state.selectItemId ? 'row address-item address-item-select' : 'row address-item'} key={item.id} onClick={() => this.selectItem(item)}>
                 <div className="col-md-12 address-content">
-                  <div className={item.id === this.state.selectItemId ? 'address-status check' : 'address-status nocheck'}>
-                    <i className="far fa-check-circle fa-lg" />
-                  </div>
                   <div className="address-body">
                     <div className="title-address">{item.addressMap}</div>
                     <div>{item.area}, {item.street}, {item.zipcode}</div>
@@ -87,7 +84,10 @@ class AddressList extends React.Component {
           }
 
           .address-item-select {
-            /* border: 2px solid #3BCF75; */
+            background: rgba(59, 207, 117, 0.3);
+          }
+          .address-item-select:active, .address-item-select:focus, .address-item-select:visited, .address-item-select:hover {
+            background: rgba(59, 207, 117, 0.3);
           }
         `}</style>
       </div>

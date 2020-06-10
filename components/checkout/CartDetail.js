@@ -89,11 +89,6 @@ const CartDetail = props => {
         />
       </div>
       <style jsx>{`
-        .menu {
-          margin: 20px 0px;
-          width: calc(100% - 350px) !important;
-        }
-
         .fluid-container {
           padding-left: 1.8rem;
           padding-right: 1.8rem;
@@ -101,18 +96,8 @@ const CartDetail = props => {
 
         .sidecart {
           box-sizing: border-box;
-          display: -webkit-box;
-          display: -webkit-flex;
-          display: -ms-flexbox;
           display: flex;
-          -webkit-box-flex: 0;
-          -webkit-flex: 0 1 auto;
-          -ms-flex: 0 1 auto;
           flex: 0 1 auto;
-          -webkit-box-orient: vertical;
-          -webkit-box-direction: normal;
-          -webkit-flex-direction: column;
-          -ms-flex-direction: column;
           flex-direction: column;
           position: fixed;
           width: 350px;
@@ -126,13 +111,7 @@ const CartDetail = props => {
 
         .sidecart-header {
           box-sizing: border-box;
-          display: -webkit-box;
-          display: -webkit-flex;
-          display: -ms-flexbox;
           display: flex;
-          -webkit-box-flex: 0;
-          -webkit-flex: 0 1 auto;
-          -ms-flex: 0 1 auto;
           flex: 0 1 auto;
           border-bottom: 1px solid rgba(217,219,224,0.5);
           margin: 17px 22px 0;
@@ -172,19 +151,10 @@ const CartDetail = props => {
         }
 
         .line-item {
-          display: -ms-flexbox;
-          display: -webkit-flex;
           display: flex;
-          -webkit-flex-direction: row;
-          -ms-flex-direction: row;
           flex-direction: row;
-          -ms-justify-content: space-between;
-          -ms-flex-pack: justify;
-          -ms-flex-line-pack: center;
-          -webkit-justify-content: space-between;
           justify-content: space-between;
           margin-bottom: 12px;
-
           font-size: 16px;
         }
 
@@ -194,6 +164,19 @@ const CartDetail = props => {
           margin: 0;
         }
 
+        @media (max-width: 600px) {
+          .sidecart {
+            display: flex;
+            position: static;
+            width: 100%;
+            height: 95%;
+            top: 52px;
+            right: 0px;
+            background: white;
+            z-index: 21;
+            border-left: 1px solid rgba(217,219,224,0.5);
+          }
+        }
       `}</style>
     </div>
   )
