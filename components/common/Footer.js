@@ -82,29 +82,29 @@ export default () => {
           letter-spacing: 1px;
           cursor: pointer;
         }
-        
+
         .footernav {
           padding: 20px 10px;
         }
-        
+
         .footernav ul {
           margin: 0px;
           padding: 0px;
         }
 
-        
-        
+
+
         .footernav-item {
           padding: 0px 0px;
           list-style: none;
           margin-top: 12px;
         }
-        
+
         .footernav-item, .footernav a {
           color: #79776B;
           font-size: 14px;
         }
-        
+
         .social-button {
           border-radius: 50%;
           border: 2px solid #42413E;
@@ -118,12 +118,12 @@ export default () => {
           float: left;
           margin: 0 5px;
         }
-        
+
         .footernav-item .social-button:hover {
-          color: #FF7901;
-          border-color: #FF7901;
+          color: var(--primary-color);
+          border-color: var(--primary-color);
         }
-        
+
         .arrow {
           border-bottom-color: #ddd;
           border-color: transparent;

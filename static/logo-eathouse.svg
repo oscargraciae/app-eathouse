@@ -7,7 +7,7 @@
         <g id="Artboard">
             <text id="eathouse">
                 <tspan x="2" y="88" fill="#42413E">eat</tspan>
-                <tspan x="155" y="88" fill="#FF7901">house</tspan>
+                <tspan x="155" y="88" fill="var(--primary-color)">house</tspan>
             </text>
         </g>
     </g>

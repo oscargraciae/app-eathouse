@@ -169,7 +169,7 @@ class MenuItem extends React.Component {
           }
 
           .button-add-cart-small {
-            color: #FF7901;
+            color: var(--primary-color);
             */ color: #3BCF75; */
             background: 0 0;
             line-height: 33px;
@@ -178,7 +178,7 @@ class MenuItem extends React.Component {
             border-radius: 4px;
             overflow: hidden;
             text-align: center;
-            border: 1px solid #FF7901;
+            border: 1px solid var(--primary-color);
 
             font-size: 14px;
             margin: 13px 0 15px;
@@ -188,7 +188,7 @@ class MenuItem extends React.Component {
           }
 
           .button-add-cart-small:hover {
-            background: #FF7901;
+            background: var(--primary-color);
             color: white;
           }
 
@@ -197,7 +197,7 @@ class MenuItem extends React.Component {
           }
 
           .button-add-cart {
-            color: #FF7901;
+            color: var(--primary-color);
             background: 0 0;
             line-height: 33px;
             cursor: pointer;
@@ -205,7 +205,7 @@ class MenuItem extends React.Component {
             border-radius: 4px;
             overflow: hidden;
             text-align: center;
-            border: 1px solid #FF7901;
+            border: 1px solid var(--primary-color);
             padding: 0 20px;
             font-size: 14px;
             margin: 13px 0 15px;
@@ -215,7 +215,7 @@ class MenuItem extends React.Component {
           }
 
           .button-add-cart:hover {
-            background: #FF7901;
+            background: var(--primary-color);
             color: white;
           }
 

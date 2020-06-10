@@ -102,20 +102,6 @@ class Login extends React.Component {
             <h1>Iniciar sesión</h1>
             <p>¿Todavía no tienes cuenta? <a className="lbl-principal" href="signup">Regístrate</a></p>
             { errorsServer && <AlertBox message={this.state.errorsServer} /> }
-
-            {/* <FacebookLogin
-              appId="244527906154813"
-              autoLoad={false}
-              fields="name,email,picture"
-              onClick={this.facebookAuth}
-              textButton="     Iniciar sesión con Facebook"
-              icon="fab fa-facebook-f"
-              callback={this.responseFacebook}
-              cssClass="btn btn-facebook btn-block btn-large" /> */}
-            {/* <hr/> */}
-            {/* <div className="text-above-line">
-              <span>o</span>
-            </div> */}
             <form className="signupForm" onSubmit={this.onSubmit}>
               { this.state.messageError && <div className="alert alert-danger">{ this.state.messageError }</div> }
               <InputText
@@ -136,6 +122,7 @@ class Login extends React.Component {
               />
               <div className="lblRemember">
                 <a href="#" onClick={() => this.setState({ isRememberPassword: true }) }>¿Olvidaste tu contraseña?</a>
+                <br /><br/>
               </div>
               <ButtonBlock
                 text="Entrar"
@@ -143,9 +130,10 @@ class Login extends React.Component {
                 loading={this.state.isLoading}
               />
               <div className="controls-small">
-                <p className="lbl-terms">
+                {/* <p className="lbl-terms">
                   <span> Al registrarte, confirmas que aceptas los <a className="lbl-principal" href="/terms"> Términos y condiciones </a> y la <a className="lbl-principal" href="/privacy"> Política de privacidad</a>.</span>
-                </p>
+                </p> */}
+                <br /><br/>
               </div>
             </form>
           </div> :

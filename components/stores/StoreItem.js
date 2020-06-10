@@ -7,16 +7,20 @@ const StoreItem = ({ id, name, description, cover }) => {
       <a href={`/store/${generateName(name)}/${id}`} className="menu-item-details">
         <div className="menu-item-details">
           <div className="menu-item-image">
-            {/* <img className="store-logo" src="https://images.rappi.com.mx/marketplace/vinoteca_liquor-1556649682.png?d=300x300&e=webp" /> */}
-            {/* <div className="store-logo" style={{ backgroundImage: `url(https://images.rappi.com.mx/marketplace/vinoteca_liquor-1556649682.png?d=300x300&e=webp)` }} /> */}
             <div className="store-logo" style={{ backgroundImage: `url(${cover})` }} />
           </div>
           <div className="menu-item-description">
             <div className="menu-item-name-link" >
               <span className="text">{name}</span>
             </div>
-            <div>
+            {/* <div>
               {description && description.substr(0, 100)}...
+            </div> */}
+            <div>
+              <br />
+              <a className="btn btn-primary btn-block">
+                Ir a la tienda
+              </a>
             </div>
           </div>
         </div>
@@ -31,7 +35,10 @@ const StoreItem = ({ id, name, description, cover }) => {
           /* height: 140px; */
           margin: 8px 5px;
           padding: 0px;
-          border: 1px solid rgba(217, 219, 224, 0.5);
+          /* border: 1px solid rgba(217, 219, 224, 0.5); */
+          border: 1px solid rgba(217,219,224,0.5);
+          border-radius: 3px;
+          background: #FFFFFF;
         }
 
         .menu-item-details {
@@ -73,21 +80,22 @@ const StoreItem = ({ id, name, description, cover }) => {
         .menu-item-description {
           display: flex;
           flex-direction: column;
-          margin-top: 16px;
-          padding: 5px 12px;
+          /* margin-top: 16px; */
+          padding: 28px 14px;
           /* border-top: 1px solid rgba(217,219,224,0.5); */
-          height: 100px;
+          /* height: 140px; */
         }
 
 
         .menu-item-name-link {
           font-family: "BentonSans", Helvetica, Arial, sans-serif;
-          font-weight: bold;
+          font-weight: 500;
           font-style: normal;
           letter-spacing: 0.5px;
           margin-left: 0px;
           margin-right: 16px;
-          font-size: 16px;
+          /* font-size: 16px; */
+          font-size: 1.92rem;
           line-height: 1.3em;
           letter-spacing: 0;
           color: rgb(45, 49, 56);

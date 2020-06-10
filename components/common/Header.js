@@ -141,7 +141,7 @@ export default function Header(props) {
   return (
     <header>
         <nav className="navbar navbar-default">
-          <div className="fluid-container">
+          <div className="fluid-container header-uorder">
             <div className="navbar-header">
               <button
                 type="button"
@@ -156,13 +156,12 @@ export default function Header(props) {
               </button>
 
               <Link href="/">
-                <a className="navbar-brand">
+                <a>
                 <img
-                  src="/static/logo_northware.png"
+                  src="/static/uorder-logo.png"
                   alt="eathouse"
-                  height="25"
+                  height="40"
                 />
-                <h2>{props.isAuthenticated}</h2>
                 </a>
               </Link>
 
@@ -181,8 +180,14 @@ export default function Header(props) {
             box-shadow: initial;
           }
 
+          .header-uorder {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          }
+
           .header-message {
-            background: #FF7901;
+            background: var(--primary-color);
             font-size: 14px;
             color: #FFF;
             text-align: center;

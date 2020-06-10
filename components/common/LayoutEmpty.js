@@ -1,7 +1,7 @@
 // import libraries
 import Head from 'next/head'
 
-export default ({ children, loggedUser, isAuthenticated, title = 'eathouse', user }) => { 
+export default ({ children, loggedUser, isAuthenticated, title = 'eathouse', user }) => {
   return (
     <div id="layout">
       <Head>
@@ -89,8 +89,8 @@ export default ({ children, loggedUser, isAuthenticated, title = 'eathouse', use
         }
 
         .btn-primary {
-          border-color: #FF7901 !important;
-          background-color: #FF7901 !important;
+          border-color: var(--primary-color) !important;
+          background-color: var(--primary-color) !important;
           color: #fff;
         }
 

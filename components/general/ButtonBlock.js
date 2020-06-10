@@ -49,8 +49,8 @@ function ButtonApp(props) {
         }
 
         .btn-primary {
-          border-color: #FF7901 !important;
-          background-color: #FF7901 !important;
+          border-color: var(--primary-color) !important;
+          background-color: var(--primary-color) !important;
           color: #fff;
         }
 

@@ -1,7 +1,7 @@
 import React from 'react';
 
 class AddressList extends React.Component {
-  
+
   constructor(props) {
     super(props);
 
@@ -44,7 +44,7 @@ class AddressList extends React.Component {
         </div>
         <style jsx>{`
           .address-list {
-            
+
           }
 
           .address-content {
@@ -82,7 +82,7 @@ class AddressList extends React.Component {
           }
 
           .address-item:hover {
-            /* border: 2px solid #FF7901; */
+            /* border: 2px solid var(--primary-color); */
             background: #F7F7F7;
           }
 

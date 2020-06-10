@@ -7,9 +7,9 @@ import Header from './Header';
 import Footer from './Footer';
 import ModalGeneralAddress from '../general/ModalGeneralAddress';
 
-export default ({ children, loggedUser, isAuthenticated, title = 'Northware', user, tokenData }) => {
+export default ({ children, loggedUser, isAuthenticated, title = 'UORDER', user, tokenData }) => {
   return (
-    <div id="layout">
+    <div id="layout" className="layout">
       <Head>
         <title>{ title }</title>
         <meta charSet='utf-8' />
@@ -95,13 +95,27 @@ export default ({ children, loggedUser, isAuthenticated, title = 'Northware', us
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css?family=Roboto');
 
+        :root {
+          --primary-color: rgb(232, 68, 30);
+          --sec-color: #81AC05;
+          --border-color: #e7e7e7;
+        }
+
         body {
           color: #42413E;
           /* background: #FAFAFA; */
-          background: #FFF;
-
+          /* background: #FFF; */
+          background: rgb(247, 247, 247);
           /* font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important; */
           font-family: 'Roboto', sans-serif;
+        }
+
+        .layout {
+          background: rgb(247, 247, 247);
+        }
+
+        .btn {
+          border-radius: 0px !important;
         }
 
         .container-margin-top {
@@ -192,8 +206,8 @@ export default ({ children, loggedUser, isAuthenticated, title = 'Northware', us
         }
 
         .btn-primary {
-          border-color: #FF7901 !important;
-          background-color: #FF7901 !important;
+          border-color: var(--primary-color) !important;
+          background-color: var(--primary-color) !important;
           color: #fff;
         }
 

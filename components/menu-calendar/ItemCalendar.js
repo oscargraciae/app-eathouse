@@ -47,7 +47,7 @@ function ItemCalendar(props) {
           }
 
           .dayItem:hover {
-            color: #FF7901;
+            color: var(--primary-color);
             cursor: pointer;
           }
 
@@ -69,7 +69,7 @@ function ItemCalendar(props) {
 
             background: #3BCF75;
             color: #FFF;
-            border-radius: 5px;
+            border-radius: 0px;
           }
 
           .disabled {

@@ -253,8 +253,7 @@ class MenuItem extends React.Component {
 
           .button-add-cart-small {
             color: #3BCF78;
-            */ color: #3BCF75; */
-            background: 0 0;
+            background: #FFFFFF;
             line-height: 25px;
             cursor: pointer;
             position: relative;

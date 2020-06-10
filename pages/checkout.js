@@ -71,7 +71,7 @@ class Checkout extends React.Component {
       }
 
       if (!shippings || shippings.length === 0) {
-        this.setState({ shippingId: 0, shippingSelected: { id: 0 } });
+        this.setState({ shippingId: -1, shippingSelected: { id: 0 } });
       }
 
     });
@@ -165,7 +165,7 @@ class Checkout extends React.Component {
       paymentChange: 0,
       isDiscount: isDiscount,
       storeId: this.props.id,
-      shippingId: shippingId === 0 ? null : shippingId,
+      shippingId: shippingId === -1 ? null : shippingId,
       orderDetails: data,
     }
     const response = await api.orders.create(order);
@@ -311,7 +311,7 @@ class Checkout extends React.Component {
                 <CartDetail
                   user={this.props.user}
                   sendOrder={this.sendOrder}
-                  disabled={!this.state.creditCardId || !this.state.userAddressId || this.state.shippingId > 0}
+                  disabled={!this.state.creditCardId || !this.state.userAddressId || !this.state.shippingId}
                   loading={this.state.isSendingOrder}
                   shipping={this.state.shippingSelected}
                   cart={this.props.cart}
@@ -396,9 +396,9 @@ class Checkout extends React.Component {
           .method-controls-btn-selected {
             padding: 12px 18px;
             margin-right: 5px;
-            border: 1px solid #FF7901;
+            border: 1px solid var(--primary-color);
             border-radius: 3px;
-            color: #FF7901;
+            color: var(--primary-color);
           }
 
           .method-controls-btn-disabled {

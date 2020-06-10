@@ -217,7 +217,7 @@ class Index extends React.Component {
               background: url('static/hero-edit-2.jpg') 30px 0px no-repeat;
               /* background: white; */
               height: 445px;
-              /* border-bottom: 10px solid #FF7901; */
+              /* border-bottom: 10px solid var(--primary-color); */
               background-size: cover;
               /* margin-bottom: 100px; */
             }
@@ -246,7 +246,7 @@ class Index extends React.Component {
             }
 
             .about-us-title > strong {
-              color: #FF7901;
+              color: var(--primary-color);
             }
 
             .Hero-Box > h1 {
@@ -294,7 +294,7 @@ class Index extends React.Component {
             .how-works-steps .how-works-title {
               font-weight: bold;
               font-size: 18px;
-              /* color: #FF7901; */
+              /* color: var(--primary-color); */
               color: #333;
               padding: 12px 0px;
             }

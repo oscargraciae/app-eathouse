@@ -63,7 +63,7 @@ class MenuCalendar extends React.Component {
           .menuCalendar {
             background: #FFF;
             border-bottom: 1px solid rgba(217,219,224,0.5);
-            height: 70px;
+            /* height: 70px; */
             margin-right: 250px;
 
             display: flex;
@@ -85,7 +85,7 @@ class MenuCalendar extends React.Component {
             align-items: center;
 
             color: #2D3138;
-            font-size: 14px;
+            font-size: 12px;
             text-transform: uppercase;
             font-weight: 600;
           }
