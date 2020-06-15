@@ -28,12 +28,10 @@ class Account extends React.Component {
 
   async initialFetch() {
     const user = await api.user.get(this.props.user.id);
-    console.log("USER DATA--->", user);
     this.setState({ user, remainderAlert: user.remainderAlert, offersAlert: user.marketing });
   }
 
   onChangeAlert = (e) => {
-    console.log("Event--->", e.target.checked);
     this.setState({ [e.target.name]:  e.target.checked });
   }
 
@@ -41,7 +39,6 @@ class Account extends React.Component {
     this.setState({ isLoading: true });
     const alerts = { marketing: this.state.offersAlert, remainderAlert: this.state.remainderAlert };
     const user = await api.user.updateAlerts(alerts);
-    console.log("Alerts--<", user);
     this.setState({ isLoading: false });
   }
 

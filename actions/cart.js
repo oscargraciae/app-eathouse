@@ -51,7 +51,7 @@ export const addToCart = (dish, quantity, deliveryDate, productPrice, storeId) =
 
     const { id, name, image } = dish;
     const { price, unidType } = productPrice;
-    const item = { id, name, price, image, quantity, total: Number((Number(price) * quantity).toFixed(2)), availableOn: '04-10-2018', deliveryDate, unidType: unidType, productPriceId: productPrice.id };
+    const item = { id, name, price, image, quantity, total: Number((Number(price) * quantity).toFixed(2)), availableOn: '04-10-2018', deliveryDate, unidType: unidType, productPriceId: productPrice.id, productPrice };
 
     if(isExist) {
       if(quantity === 0) {

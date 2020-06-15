@@ -48,7 +48,7 @@ function Cart(props) {
           <ul className="items">
             { props.cart.data.map((item, i) => {
               return (
-                <CartItem key={i} {...item} />
+                <CartItem key={i} item={item} />
               )
             }) }
           </ul>

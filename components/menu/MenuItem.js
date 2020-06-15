@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-// import ReactTooltip from 'react-tooltip'
 
 import { toMoney, thousandSpace } from '../../utils/formatNumber';
 
@@ -11,7 +10,6 @@ class MenuItem extends React.Component {
   }
 
   addItem = () => {
-    console.log("PRODUCT PRICE ITEM----->", this.state.productPriceSelected);
     const productToCart = this.props.cart.data.filter((item) => item.id === this.props.id && item.deliveryDate === this.props.deliveryDate && item.unidType.id === this.state.productPriceSelected.unidType.id,)[0];
     this.props.addCart(this.props, productToCart.quantity + 1, this.state.productPriceSelected); // Producto, cantidad, (precio de productio y tipo de unidad)
   }
@@ -45,7 +43,6 @@ class MenuItem extends React.Component {
 
   onChangePrice = (e) => {
     const productPrice = this.props.productPrice.filter((item) => item.id === Number(e.target.value))[0];
-    console.log("productPrice selected--->", productPrice);
     this.setState({ productPriceSelected: productPrice });
   }
 

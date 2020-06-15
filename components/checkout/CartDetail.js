@@ -31,7 +31,6 @@ const CartDetail = props => {
       });
     }
 
-    console.log("props.shipping--->", props.shipping);
     if (props.shipping && props.shipping.id !== 0) {
       setShippingSelected(props.shipping);
         shippingPrice = Number(props.shipping.price);
@@ -41,6 +40,16 @@ const CartDetail = props => {
     setTotalPrice(total);
     setSubtotalPrice(subtotal);
   }, [props]);
+
+  const addItem = (product) => {
+    const productToCart = props.cart.data.filter((item) => item.id === product.id && item.deliveryDate === product.deliveryDate && item.unidType.id === product.unidType.id,)[0];
+    props.addToCart(product, productToCart.quantity + 1, product.deliveryDate, product.productPrice); // Producto, cantidad, (precio de productio y tipo de unidad)
+  }
+
+  const removeItem = (product) => {
+    const productToCart = props.cart.data.filter((item) => item.id === product.id && item.deliveryDate === product.deliveryDate && item.unidType.id === product.unidType.id,)[0];
+    props.addToCart(product, productToCart.quantity - 1, product.deliveryDate, product.productPrice); // Producto, cantidad, (precio de productio y tipo de unidad)
+  }
 
   return (
     <div className="sidecart">
@@ -52,7 +61,7 @@ const CartDetail = props => {
           <ul className="items">
             { props.cart.data.map((item, i) => {
               return (
-                <CartItem key={i} {...item} />
+                <CartItem key={i} item={item} addItem={addItem} removeItem={removeItem} />
               )
             }) }
 

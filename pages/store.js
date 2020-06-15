@@ -92,16 +92,20 @@ class Store extends React.Component {
     });
 
     total = subtotal - discount;
+
     return (
       <Layout {...this.props}>
         <div>
         { this.state.deliveryDate && <MenuCalendar changeDay={this.changeDay} deliveryDate={this.state.deliveryDate} /> }
           <div className="fluid-container">
-            <div>
-              <h2>{this.props.data.name}</h2>
-            </div>
-            <div className="menu">
 
+            <div className="container-info-store">
+              <h2>{this.props.data.name}</h2>
+              <p ></p>
+              <hr />
+            </div>
+
+            <div className="menu">
               <div className="">
                 <div>
                   <h2 className="title-category" id="products">Productos Principales</h2>
@@ -129,27 +133,6 @@ class Store extends React.Component {
                   <a id="btnMobileMenuCart" href={`/checkout/${this.props.id}`} className="btn btn-primary btn-large btn-block">VER CARRITO ${total}</a>
                 </div>
               }
-
-            {/* <section className="container-apps">
-            <div className="row info-phones">
-              <div className="col-md-4 text-center hide-item">
-                <img src="static/android-device.png" height="250" />
-              </div>
-              <div className="col-md-6">
-                <h3>Descarga eathouse en tu celular</h3>
-                <p>Descargue nuestra aplicación móvil para hacer tu orden más fácil y más rápido.</p>
-                <a target="_blank" href="https://play.google.com/store/apps/details?id=com.eathouse" className="btn-app btnDownloadAndroid">
-                  <img src="/static/google-play-badge.png" className="android-phone" />
-                </a>
-                <a href="https://itunes.apple.com/us/app/eathouse/id1422515511?mt=8" className="btn-app">
-                  <img src="/static/app_store_badge.svg" className="ios-phone" />
-                </a>
-              </div>
-              <div className="col-md-3 hide-item">
-                <img src="static/eathouse-phone.png" height="250" />
-              </div>
-            </div>
-          </section> */}
             </div>
             <Cart user={this.props.user} {...this.props} />
           </div>

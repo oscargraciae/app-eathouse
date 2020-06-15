@@ -8,8 +8,10 @@ import { GoCreditCard } from 'react-icons/go';
 // import local libraries
 import securePage from '../hocs/page';
 import api from '../api';
-import { clearCart } from '../actions/cart';
+import { clearCart, addToCart } from '../actions/cart';
 import { moneyThousand } from '../utils/formatNumber';
+import { getTokenFromCookie, getTokenFromLocalStorage } from '../utils/auth';
+import redirect from '../utils/redirect';
 
 // import components
 import Layout from '../components/common/Layout';
@@ -25,9 +27,14 @@ import CartItem from '../components/general/CartItem';
 import InputText from '../components/general/InputText';
 
 class Checkout extends React.Component {
-  static async getInitialProps({query}) {
+  static async getInitialProps(context) {
+    const loggedUser = process.browser ? getTokenFromLocalStorage() : getTokenFromCookie(context.req);
+    if(!loggedUser) {
+      redirect('/login', context);
+    }
+
     return {
-      id: query.id,
+      id: context.query.id,
     };
   }
 
@@ -174,7 +181,6 @@ class Checkout extends React.Component {
         this.props.clearCart();
       });
     } else {
-      console.log("ERROR----->", response);
       this.setState({ paymentError: response.message, alertShow: true, isSendingOrder: false });
     }
   }
@@ -294,6 +300,7 @@ class Checkout extends React.Component {
                   loading={this.state.isSendingOrder}
                   shipping={this.state.shippingSelected}
                   cart={this.props.cart}
+                  addToCart={this.props.addToCart}
                 />
               </div>
             </div>
@@ -475,4 +482,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default securePage(connect(mapStateToProps, { clearCart })(Checkout));
+export default securePage(connect(mapStateToProps, { clearCart, addToCart })(Checkout));

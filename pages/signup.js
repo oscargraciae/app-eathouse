@@ -50,7 +50,6 @@ class Signup extends React.Component {
 
     if(this.isValid()) {
       const response = await api.user.create(this.state);
-      console.log("CREATE USER--->", response);
       const { ok, user } = response;
 
       if(ok) {

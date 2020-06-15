@@ -22,14 +22,6 @@ function ItemCalendar(props) {
     }
   }
 
-  // console.log("dia de la semana :"+date.day());
-  // console.log("mes:"+date.month());
-  // console.log("año:"+date.year());
-  // console.log("Fecha con localización :"+ date.format("DD MMMM YYYY"));
-  // console.log("Fechsssss", date);
-
-  // console.log("Día de la semana", weekDayName, weekDayNumber);
-  // console.log(selectedDay, weekDayNumber);
   return (
     <div className={((day === 6 || day === 0) || invalidCurrentDate) ? 'disabled' : ''}>
       <div className={selectedDay === weekDayNumber ? 'dayItem selected' : 'dayItem'} onClick={() => props.changeDate(props.date)}>
