@@ -9,9 +9,12 @@ import {
   CardExpiryElement,
 } from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
+
 import api from '../../api';
+import validation from '../../validations/credit-card';
 
 import ButtonBlock from '../general/ButtonBlock';
+import AlertBox from  '../general/AlertBox';
 
 const ELEMENT_OPTIONS = {
   style: {
@@ -33,14 +36,20 @@ const CheckoutForm = props => {
   const stripe = useStripe();
   const elements = useElements();
   const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     // const elm = elements.getElement(CardElement);
     setIsLoading(true);
     const elm = elements.getElement(CardNumberElement);
     const data = await stripe.createToken(elm);
-
+    console.log("STRIPE RESPONSE----->", data);
+    if (data.error) {
+      setErrorMessage(data.error.message);
+      setIsLoading(false);
+      return;
+    }
     // if (error) return;
 
     const response = await api.creditCard.create({ tokenCard: data.token.id })
@@ -55,7 +64,7 @@ const CheckoutForm = props => {
 
   return (
     <form onSubmit={handleSubmit}>
-
+      { errorMessage && <AlertBox show message={errorMessage} /> }
       <div className="row">
         <div className="col-md-12">
           {/* <CardElement options={ELEMENT_OPTIONS} /> */}

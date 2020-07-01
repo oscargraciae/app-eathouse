@@ -83,7 +83,7 @@ class Store extends React.Component {
   }
 
   render() {
-    const { products } = this.props;
+    const categories = this.props.products;
     let total = 0;
     let subtotal = 0;
     let discount = 0;
@@ -92,7 +92,6 @@ class Store extends React.Component {
     });
 
     total = subtotal - discount;
-
     return (
       <Layout {...this.props}>
         <div>
@@ -106,18 +105,21 @@ class Store extends React.Component {
             </div>
 
             <div className="menu">
-              <div className="">
-                <div>
-                  <h2 className="title-category" id="products">Productos Principales</h2>
+              { categories.map((category) => (
+                <div key={category.id} className="products-row">
+                  <div>
+                  <h2 className="title-category" id="products">{category.name}</h2>
+                  </div>
+                  <div className="menu-items">
+                    { category.products.map((item, index) => {
+                      return (
+                        <MenuItem {...item} addCart={this.addCart} deliveryDate={this.state.deliveryDate} key={index} />
+                      )
+                    }) }
+                  </div>
                 </div>
-                <div className="menu-items">
-                  { products.map((item, index) => {
-                    return (
-                      <MenuItem {...item} addCart={this.addCart} deliveryDate={this.state.deliveryDate} key={index} />
-                    )
-                  }) }
-                </div>
-              </div>
+              )) }
+
 
 
               { total > 0 &&
@@ -199,8 +201,11 @@ class Store extends React.Component {
             font-weight: 600;
             line-height: 34px;
             text-transform: uppercase;
-            /* border-bottom: 1px solid #DDD; */
+            border-bottom: 1px solid #DDD;
             font-family: "BentonSans",Helvetica,Arial,sans-serif;
+            padding-top: 32px;
+            padding-bottom: 16px;
+            margin-bottom: 16px;
           }
 
           .containerCategories {

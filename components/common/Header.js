@@ -271,7 +271,11 @@ export default function Header(props) {
               border: 1px solid rgba(0,0,0,.15) !important;
               border-radius: 4px;
               box-shadow: 0 6px 12px rgba(0,0,0,.175) !important;
-          }
+            }
+
+            .mobile-hide {
+              display: none !important;
+            }
 
           }
         `}</style>
