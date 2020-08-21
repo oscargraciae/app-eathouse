@@ -1,6 +1,8 @@
 import NProgress from 'nprogress';
 import Router from 'next/router';
 import Link from 'next/link';
+import { Fragment } from 'react';
+import { GrLocation } from 'react-icons/gr';
 
 Router.onRouteChangeStart = () => {
   return NProgress.start();
@@ -29,111 +31,116 @@ const menuGuest = () => {
           </a>
         </Link>
       </li>
-      {/* <li>
+      <li>
         <Link href="/signup-store">
           <a className="btn_navf">
             <span>Publicar tu tienda</span>
           </a>
         </Link>
-      </li> */}
+      </li>
     </ul>
   )
 }
 
 const menuAuth = (props) => {
-  const { user, userToken } = props;
+  const { user, userToken, setShowAddressModal, userState } = props;
   return (
-    <ul className="nav navbar-nav navbar-right nav-menu-right">
-      {/* { props.user.user_address.length > 0 &&
-        <li>
-          <a><i className="fas fa-map-marker-alt" /> {props.user.user_address[0].addressMap.substr(0, 30)}...</a>
-        </li>
-      } */}
-      <li className="dropdown">
-        <a
-          className="dropdown-toggle"
-          data-toggle="dropdown"
-          role="button"
-          aria-haspopup="true"
-          aria-expanded="false"
-        >
-          Hola, {user.firstName} <span className="caret" />
-        </a>
-        <ul className="dropdown-menu">
-          {/* <li>
-            <a
-              data-toggle="collapse"
-              data-target=".navbar-collapse.in"
-              href={`/services/new`}
-              className="btn_nav nav-lbl-principal"
-            >
-              Mi cuenta
-            </a>
+    <Fragment>
+      <ul className="nav navbar-nav navbar-left navbar-location">
+        { (userState && userState.address) &&
+          <li onClick={() => setShowAddressModal(true)}>
+            <GrLocation size={21} />
+            <a>{userState.address.addressMap.substr(0, 50)}...</a>
           </li>
-          <li role="separator" className="divider" /> */}
-          <li>
-            <a
-              data-toggle="collapse"
-              data-target=".navbar-collapse.in"
-              href={`/account`}
-              className="btn_nav nav-lbl-principal"
-            >
-              Ajustes de cuenta
-            </a>
-          </li>
-          <li role="separator" className="divider" />
-          <li>
-            <a
-              data-toggle="collapse"
-              data-target=".navbar-collapse.in"
-              href={`/orders`}
-              className="btn_nav nav-lbl-principal"
-            >
-              Mis compras
-            </a>
-          </li>
-          <li role="separator" className="divider" />
-          <li>
-            <a
-              data-toggle="collapse"
-              data-target=".navbar-collapse.in"
-              href={`/schedules`}
-              className="btn_nav nav-lbl-principal"
-            >
-              Mi Calendario
-            </a>
-          </li>
-          <li role="separator" className="divider" />
-          <li>
-            <a
-              data-toggle="collapse"
-              data-target=".navbar-collapse.in"
-              href={`/logout`}
-              className="btn_nav"
-            >
-              Salir
-            </a>
-          </li>
-        </ul>
-      </li>
-      {/* <li className="onlyMobile">
-        <a className="btn-link onlyMobile" href="/menu"><span className="btn btn-primary btn-block">Menu</span></a>
-      </li> */}
-      <li>
-        { userToken.storeId &&
-          <a className="btn_navf mobile-hide" href="http://manager.uorder.mx/" target="_blank">
-            <span>Administrar mi tienda</span>
+        }
+      </ul>
+      <ul className="nav navbar-nav navbar-right nav-menu-right">
+        <li className="dropdown">
+          <a
+            className="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Hola, {user.firstName} <span className="caret" />
           </a>
-          }
-          {/* { !userToken.storeId &&
-          <Link href="/signup-store">
-            <a className="btn_navf">
-              <span>Publicar tu tienda</span>
+          <ul className="dropdown-menu">
+            {/* <li>
+              <a
+                data-toggle="collapse"
+                data-target=".navbar-collapse.in"
+                href={`/services/new`}
+                className="btn_nav nav-lbl-principal"
+              >
+                Mi cuenta
+              </a>
+            </li>
+            <li role="separator" className="divider" /> */}
+            <li>
+              <a
+                data-toggle="collapse"
+                data-target=".navbar-collapse.in"
+                href={`/account`}
+                className="btn_nav nav-lbl-principal"
+              >
+                Ajustes de cuenta
+              </a>
+            </li>
+            <li role="separator" className="divider" />
+            <li>
+              <a
+                data-toggle="collapse"
+                data-target=".navbar-collapse.in"
+                href={`/orders`}
+                className="btn_nav nav-lbl-principal"
+              >
+                Mis compras
+              </a>
+            </li>
+            <li role="separator" className="divider" />
+            <li>
+              <a
+                data-toggle="collapse"
+                data-target=".navbar-collapse.in"
+                href={`/schedules`}
+                className="btn_nav nav-lbl-principal"
+              >
+                Mi Calendario
+              </a>
+            </li>
+            <li role="separator" className="divider" />
+            <li>
+              <a
+                data-toggle="collapse"
+                data-target=".navbar-collapse.in"
+                href={`/logout`}
+                className="btn_nav"
+              >
+                Salir
+              </a>
+            </li>
+          </ul>
+        </li>
+        {/* <li className="onlyMobile">
+          <a className="btn-link onlyMobile" href="/menu"><span className="btn btn-primary btn-block">Menu</span></a>
+        </li> */}
+        <li>
+          { userToken.storeId &&
+            <a className="btn_navf mobile-hide" href="http://manager.uorder.mx/" target="_blank">
+              <span>Administrar mi tienda</span>
             </a>
-          </Link>
-          } */}
-      </li>
-    </ul>
+            }
+            { !userToken.storeId &&
+            <Link href="/signup-store">
+              <a className="btn_navf">
+                <span>Publicar tu tienda</span>
+              </a>
+            </Link>
+            }
+        </li>
+      </ul>
+    </Fragment>
   )
 }
 
@@ -204,6 +211,10 @@ export default function Header(props) {
             margin-bottom: 0px;
           }
 
+          .navbar-collapse {
+            width: 100%;
+          }
+
           .btn-link {
             padding: 9px !important;
           }
@@ -239,6 +250,13 @@ export default function Header(props) {
             align-items: center;
           }
 
+          .navbar-location > li {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+          }
+
           @media (max-width: 600px) {
             .navbar-default {
               box-shadow: 0 1px 10px 0 rgba(0,0,0,.1);
@@ -249,6 +267,10 @@ export default function Header(props) {
             }
 
             .onlyMobile {
+              display: none;
+            }
+
+            .navbar-location {
               display: none;
             }
 

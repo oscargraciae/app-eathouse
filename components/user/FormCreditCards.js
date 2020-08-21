@@ -44,7 +44,6 @@ const CheckoutForm = props => {
     setIsLoading(true);
     const elm = elements.getElement(CardNumberElement);
     const data = await stripe.createToken(elm);
-    console.log("STRIPE RESPONSE----->", data);
     if (data.error) {
       setErrorMessage(data.error.message);
       setIsLoading(false);

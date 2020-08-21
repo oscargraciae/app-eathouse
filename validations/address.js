@@ -12,14 +12,14 @@ export default (data) => {
     errors.area = "La colonia es obligatoria. "
   }
 
-  if(Validator.isEmpty(data.phone)) {
-    errors.phone = "El teléfono es obligatorio. "
-  }
+  // if(Validator.isEmpty(data.phone)) {
+  //   errors.phone = "El teléfono es obligatorio. "
+  // }
 
   // if(Validator.isEmpty(data.zipcode)) {
   //   errors.zipcode = "El codigo postal es obligatorio. "
   // }
-  
+
   return {
     errors,
     isValid: isEmpty(errors),

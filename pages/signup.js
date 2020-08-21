@@ -1,6 +1,4 @@
 import React from 'react';
-import { graphql, compose } from 'react-apollo';
-import gql from 'graphql-tag';
 import Router from 'next/router'
 import dynamic from 'next/dynamic'
 
@@ -13,7 +11,6 @@ import InputText from '../components/general/InputText';
 import ButtonBlock from '../components/general/ButtonBlock';
 import AlertBox from '../components/general/AlertBox';
 
-import withData from '../apollo/withData';
 import validation from '../validations/signup';
 import { getTokenFromCookie, getTokenFromLocalStorage } from '../utils/auth';
 import redirect from '../utils/redirect';
@@ -38,6 +35,7 @@ class Signup extends React.Component {
       lastName: '',
       email: '',
       password: '',
+      phone: '',
       errors: [],
       errorsServer: null,
       isLoading: false,
@@ -152,6 +150,14 @@ class Signup extends React.Component {
                 type="password"
                 name="password"
                 label="Contraseña"
+              />
+              <InputText
+                error={errors.phone}
+                value={this.state.phone}
+                onChange={this.onChange}
+                type="text"
+                name="phone"
+                label="Teléfono"
               />
               <ButtonBlock
                 text="¡Registrarme!"

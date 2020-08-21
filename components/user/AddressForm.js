@@ -13,8 +13,7 @@ import { isPointAvailable } from '../../utils/geospatial';
 import InputText from '../general/InputTextIdSmall';
 import ButtonBlock from '../general/ButtonBlock';
 import { flattenSelections } from 'apollo-utilities';
-// import MapZone from '../map/MapZone';
-// const MapZone = dynamic(import('../map/MapZone'));
+
 
 class  AddressForm extends React.Component {
 
@@ -66,7 +65,7 @@ class  AddressForm extends React.Component {
       if(ok) {
         this.setState({ isLoading: false });
         if(this.props.afterSave) {
-          this.props.afterSave();
+          this.props.afterSave(address);
         }
 
       }
@@ -113,13 +112,9 @@ class  AddressForm extends React.Component {
 
   onSuggestSelect = (suggest) => {
     if(suggest) {
-      if(isPointAvailable([suggest.location.lng, suggest.location.lat])) {
-        this.setState({ address: suggest.description, latLng: suggest.location, lat: suggest.location.lat, lng: suggest.location.lng, addressMap: suggest.label, addressNotAvailable: false }, () => {
-          this.fillInAddress(suggest.gmaps);
-        });
-      } else {
-        this.setState({ addressNotAvailable: true, userLocation: [suggest.location.lng, suggest.location.lat], address: '' });
-      }
+      this.setState({ address: suggest.description, latLng: suggest.location, lat: suggest.location.lat, lng: suggest.location.lng, addressMap: suggest.label, addressNotAvailable: false }, () => {
+        this.fillInAddress(suggest.gmaps);
+      });
     }
   }
 
@@ -201,7 +196,7 @@ class  AddressForm extends React.Component {
               </div>
 
               <div className="row">
-                <div className="col-md-6">
+                {/* <div className="col-md-6">
                   <label>Teléfono</label>
                   <InputText
                     error={errors.phone}
@@ -213,8 +208,8 @@ class  AddressForm extends React.Component {
                     label=""
                   />
                   <p className="lbl-notes">Utilizado solo para notificarte algo sobre tu pedido.</p>
-                </div>
-                <div className="col-md-6">
+                </div> */}
+                <div className="col-md-12">
                   <label>Instrucciones y Datos adicionales (Opcional)</label>
                   <InputText
                     error={errors.notes}

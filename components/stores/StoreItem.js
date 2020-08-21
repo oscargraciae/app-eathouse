@@ -1,7 +1,7 @@
 import React from 'react';
 import generateName from '../../utils/generateName';
 
-const StoreItem = ({ id, name, description, cover }) => {
+const StoreItem = ({ id, name, description, cover, store_address, store_type }) => {
   return (
     <div className="menu-item">
       {/* <a href={`/store/${generateName(name)}/${id}`} className="menu-item-details"> */}
@@ -13,9 +13,12 @@ const StoreItem = ({ id, name, description, cover }) => {
             <div className="menu-item-name-link" >
               <span className="text">{name}</span>
             </div>
-            {/* <div>
-              {description && description.substr(0, 100)}...
+            {/* <div className="store-item-address">
+              {store_address && `${store_address.street}, ${store_address.area}, ${store_address.city}`}
             </div> */}
+            <div className="store-item-category">
+              {store_type && `${store_type.name}`}
+            </div>
             <div>
               <br />
               <a className="btn btn-primary btn-block" href={`/store/${generateName(name)}/${id}`}>
@@ -59,6 +62,18 @@ const StoreItem = ({ id, name, description, cover }) => {
           width: 100%;
           /* height: 180px; */
           height: 15rem;
+        }
+
+        .store-item-address {
+          font-size: 12px;
+          height: 30px;
+          padding-top: 10px;
+          color: rgb(143, 149, 163);
+        }
+
+        .store-item-category {
+          font-size: 14px;
+          color: rgb(143, 149, 163);
         }
 
         .store-logo {

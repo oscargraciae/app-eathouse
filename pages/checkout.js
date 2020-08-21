@@ -210,7 +210,8 @@ class Checkout extends React.Component {
             <div className="container">
               <div className="checkout">
                 <div className="address">
-                  <div className="container-step container-box">
+
+                  {/* <div className="container-step container-box">
                     <div className="title">Dirección</div>
                     <div className="form">
                       { address.length > 0 &&
@@ -219,26 +220,35 @@ class Checkout extends React.Component {
                       <br />
                       <a href="#" className="btn-link" onClick={this.showAddressModal}>+ Agregar nueva dirección</a>
                     </div>
-                  </div>
+                  </div> */}
 
                   <div className="container-step container-box">
                     <div className="title">Metodo de pago</div>
                     <div className="method-controls">
-                    <div className={this.state.methodPayment == 1 ? 'method-controls-btn method-controls-btn-selected' : 'method-controls-btn'} onClick={() => this.setState({ methodPayment: 1 })}>
-                        <GoCreditCard />
+                      <div className={this.state.methodPayment == 1 ? 'method-controls-btn method-controls-btn-selected' : 'method-controls-btn'} onClick={() => this.setState({ methodPayment: 1 })}>
+                        {/* <GoCreditCard /> */}
                         <span>Tarjeta de crédito/debito</span>
                       </div>
+                      <div className={this.state.methodPayment == 2 ? 'method-controls-btn method-controls-btn-selected' : 'method-controls-btn'} onClick={() => this.setState({ methodPayment: 2 })}>
+                        {/* <GoCreditCard /> */}
+                        <span>Efectivo</span>
+                      </div>
+                      {/* <div className={this.state.methodPayment == 3 ? 'method-controls-btn method-controls-btn-selected' : 'method-controls-btn'} onClick={() => this.setState({ methodPayment: 3 })}>
+                        <span>Tranferencia</span>
+                      </div> */}
                     </div>
-                    <div className="form">
-                      <select className="form-control input-lg" name="creditCardId" onChange={this.onChange} value={this.state.creditCardId}>
-                        <option>Seleccionar método de pago</option>
-                        { creditCards && creditCards.map((item) => (
-                          <option value={item.id} key={item.id}>{item.last4} - {item.brand}</option>
-                        )) }
-                      </select>
-                      <br />
-                      <a href="#" onClick={this.showCreditCardModal} className="btn-link">+ Agregar otro método de pago</a>
-                    </div>
+                    { this.state.methodPayment == 1 &&
+                      <div className="form">
+                        <select className="form-control input-lg" name="creditCardId" onChange={this.onChange} value={this.state.creditCardId}>
+                          <option>Seleccionar método de pago</option>
+                          { creditCards && creditCards.map((item) => (
+                            <option value={item.id} key={item.id}>{item.last4} - {item.brand}</option>
+                          )) }
+                        </select>
+                        <br />
+                        <a href="#" onClick={this.showCreditCardModal} className="btn-link">+ Agregar otro método de pago</a>
+                      </div>
+                    }
                   </div>
 
                   <div className="container-step container-box">
@@ -296,7 +306,7 @@ class Checkout extends React.Component {
                 <CartDetail
                   user={this.props.user}
                   sendOrder={this.sendOrder}
-                  disabled={!this.state.creditCardId || !this.state.userAddressId || !this.state.shippingId}
+                  disabled={(!this.state.creditCardId && this.state.methodPayment === 1) || !this.state.userAddressId || !this.state.shippingId}
                   loading={this.state.isSendingOrder}
                   shipping={this.state.shippingSelected}
                   cart={this.props.cart}
@@ -376,7 +386,7 @@ class Checkout extends React.Component {
           }
 
           .method-controls-btn > span {
-            margin-left: 10px !important;
+            /* margin-left: 10px !important; */
           }
 
           .method-controls-btn-selected {

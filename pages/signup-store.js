@@ -6,7 +6,6 @@ import InputText from '../components/general/InputText';
 import ButtonBlock from '../components/general/ButtonBlock';
 import AlertBox from '../components/general/AlertBox';
 
-import withData from '../apollo/withData';
 import validation from '../validations/signup-store';
 import { getTokenFromCookie, getTokenFromLocalStorage } from '../utils/auth';
 import redirect from '../utils/redirect';

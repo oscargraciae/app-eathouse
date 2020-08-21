@@ -12,6 +12,10 @@ export default function validateInput(data) {
     errors.lastName = 'Apellido obligatorio.';
   }
 
+  if (Validator.isEmpty(data.phone)) {
+    errors.phone = 'Teléfono obligatorio.';
+  }
+
   if (Validator.isEmpty(data.email)) {
     errors.email = 'Debes indicar un correo electrónico.';
   }

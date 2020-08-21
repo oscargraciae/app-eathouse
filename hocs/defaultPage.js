@@ -3,8 +3,6 @@ import { Provider } from 'react-redux';
 
 import { getTokenFromCookie, getTokenFromLocalStorage } from '../utils/auth';
 import store from '../redux/store';
-import { initGA, logPageView } from '../config/analytics';
-
 
 const DefaultPage = (Page) => {
   return class extends React.Component {

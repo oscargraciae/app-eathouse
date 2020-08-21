@@ -39,17 +39,15 @@ class Home extends React.Component {
               <div className="HeroMobile-image"></div>
           </section>
 
-          <section className="how-it-works background-primary">
+          {/* <section className="how-it-works background-primary">
             <div className="container">
                 <div className="row ">
                   <div className="col-md-12">
                     <div className="about-us-title">UORDER es la plataforma de Ecommerce especialmente diseñada para negocios con logística propia que desean ofrecerle a sus clientes una nueva alternativa para crear Pedidos de Venta</div>
-
-                    {/* <p className="about-us-subtitle">Nuestro principal objetivo es llenarte el estomago y brindarte una buena experiencia.</p> */}
                   </div>
                 </div>
               </div>
-          </section>
+          </section> */}
 
           <div className="container container-home">
             <div>

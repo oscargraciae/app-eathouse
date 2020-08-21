@@ -43,23 +43,19 @@ export default Page => class DefaultPage extends React.Component {
     };
   }
 
-  componentWillMount() {
+  // componentWillMount() {
+  //   const token = this.props.loggedUser;
+  //   if(token) {
+  //     axios.defaults.headers.common['Authorization'] =  `JWT ${token}`;
+  //   }
+  // }
+
+
+  componentDidMount() {
     const token = this.props.loggedUser;
     if(token) {
       axios.defaults.headers.common['Authorization'] =  `JWT ${token}`;
     }
-  }
-
-
-  componentDidMount() {
-    // if (!window.GA_INITIALIZED) {
-    //   const user = this.props.user;
-    //   initUserGA(user);
-    //   setUser(user);
-    //   dataLayer.push({ userId: user.id });
-    //   window.GA_INITIALIZED = true;
-    // }
-    // logPageView();
 
     const expireTransform = createExpirationTransform({
       expireKey: 'persistExpiresAt',
@@ -71,7 +67,7 @@ export default Page => class DefaultPage extends React.Component {
     persistStore(
       store,
       {
-        whitelist: [ 'cart' ],
+        whitelist: [ 'cart', 'user' ],
         transforms: [expireTransform]
       },
       () => this.setState({ ready: true })
