@@ -53,6 +53,13 @@ const menuAuth = (props) => {
             <a>{userState.address.addressMap.substr(0, 50)}...</a>
           </li>
         }
+
+        { (userState && !userState.address) &&
+          <li onClick={() => setShowAddressModal(true)}>
+            <GrLocation size={21} />
+            <a>Busca una dirección nueva</a>
+          </li>
+        }
       </ul>
       <ul className="nav navbar-nav navbar-right nav-menu-right">
         <li className="dropdown">

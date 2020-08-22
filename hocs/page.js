@@ -24,7 +24,7 @@ export default Page => class DefaultPage extends React.Component {
     let tokenDecode = null;
 
     if (!token) {
-      delete axios.defaults.headers.common['Authorization'];
+      // delete axios.defaults.headers.common['Authorization'];
       // redirect('/', context);
     } else {
       axios.defaults.headers.common['Authorization'] = `JWT ${token}`;
@@ -43,19 +43,19 @@ export default Page => class DefaultPage extends React.Component {
     };
   }
 
-  // componentWillMount() {
-  //   const token = this.props.loggedUser;
-  //   if(token) {
-  //     axios.defaults.headers.common['Authorization'] =  `JWT ${token}`;
-  //   }
-  // }
-
-
-  componentDidMount() {
+  componentWillMount() {
     const token = this.props.loggedUser;
     if(token) {
       axios.defaults.headers.common['Authorization'] =  `JWT ${token}`;
     }
+  }
+
+
+  componentDidMount() {
+    // const token = this.props.loggedUser;
+    // if(token) {
+    //   axios.defaults.headers.common['Authorization'] =  `JWT ${token}`;
+    // }
 
     const expireTransform = createExpirationTransform({
       expireKey: 'persistExpiresAt',
