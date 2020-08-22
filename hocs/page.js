@@ -43,12 +43,20 @@ export default Page => class DefaultPage extends React.Component {
     };
   }
 
-  componentWillMount() {
-    const token = this.props.loggedUser;
+  constructor(props) {
+    super(props);
+    const token = props.loggedUser;
     if(token) {
       axios.defaults.headers.common['Authorization'] =  `JWT ${token}`;
     }
   }
+
+  // componentWillMount() {
+  //   const token = this.props.loggedUser;
+  //   if(token) {
+  //     axios.defaults.headers.common['Authorization'] =  `JWT ${token}`;
+  //   }
+  // }
 
 
   componentDidMount() {
