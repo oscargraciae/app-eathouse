@@ -18,7 +18,12 @@ import ModalAddress from '../components/general/ModalAddress'
 export default Page => class DefaultPage extends React.Component {
   static async getInitialProps(context) {
     const loggedUser = process.browser ? getTokenFromLocalStorage() : getTokenFromCookie(context.req);
-    const props = await Page.getInitialProps(context);
+
+    let props = {};
+    if (Page.getInitialProps) {
+      props = await Page.getInitialProps(context);
+    }
+
     const token = loggedUser;
     let user = null;
     let tokenDecode = null;

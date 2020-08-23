@@ -16,8 +16,6 @@ const Layout = ({ children, loggedUser, isAuthenticated, title = 'UORDER', user,
     setShowAddressModal(true);
   }
 
-  console.log("userState----->", userState);
-
   return (
     <div id="layout" className="layout">
       <Head>
@@ -51,12 +49,13 @@ const Layout = ({ children, loggedUser, isAuthenticated, title = 'UORDER', user,
 
         body {
           color: #42413E;
-          background: rgb(247, 247, 247);
+          /* background: rgb(247, 247, 247); */
+          background: #FFFFFF !important;
           font-family: 'Roboto', sans-serif;
         }
 
         .layout {
-          background: rgb(247, 247, 247);
+          /* background: rgb(247, 247, 247) */;
         }
 
         .btn {
@@ -219,7 +218,7 @@ const Layout = ({ children, loggedUser, isAuthenticated, title = 'UORDER', user,
 
 const mapStateToProps = (state) => {
   return {
-    userState: state.user.data,
+    userState: state.user,
   }
 }
 

@@ -1,12 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import {
-  BrowserView,
-  MobileView,
-  isBrowser,
-  isMobile
-} from "react-device-detect";
 
 import securePage from '../hocs/page';
 import api from '../api';
@@ -16,8 +10,8 @@ import { formatDateString, getDateSumDays } from '../utils/formatDate';
 import Layout from '../components/common/Layout';
 import MenuCalendar from '../components/menu/MenuCalendar';
 import MenuItem from '../components/menu/MenuItem';
-import MenuIMobileItem from '../components/menu/MenuIMobileItem';
 import Cart from '../components/general/Cart';
+import ModalProductDetail from '../components/menu/ModalProductDetail';
 
 class Store extends React.Component {
   static async getInitialProps({ query }) {
@@ -36,6 +30,8 @@ class Store extends React.Component {
     deliveryDate: '',
     isLater: false,
     dateString: '',
+    productSelected: null,
+    showModalProduct: false,
   }
 
   componentDidMount() {
@@ -82,6 +78,15 @@ class Store extends React.Component {
     this.props.addToCart(dish, quantity, deliveryDate, productPrice, this.props.id);
   }
 
+  selectDetailProduct = (product) => {
+    this.setState({ productSelected: product, showModalProduct: true });
+  }
+
+  handleCloseModal = () => {
+    console.log("CLOSE MODAL");
+    this.setState({ showModalProduct: false, productSelected: null });
+  }
+
   render() {
     const categories = this.props.products;
     let total = 0;
@@ -94,6 +99,9 @@ class Store extends React.Component {
     total = subtotal - discount;
     return (
       <Layout {...this.props}>
+        { (this.state.productSelected && this.state.showModalProduct) &&
+          <ModalProductDetail product={this.state.productSelected} onHide={this.handleCloseModal} />
+        }
         <div>
         { this.state.deliveryDate && <MenuCalendar changeDay={this.changeDay} deliveryDate={this.state.deliveryDate} /> }
           <div className="fluid-container">
@@ -113,7 +121,13 @@ class Store extends React.Component {
                   <div className="menu-items">
                     { category.products.map((item, index) => {
                       return (
-                        <MenuItem {...item} addCart={this.addCart} deliveryDate={this.state.deliveryDate} key={index} />
+                        <MenuItem
+                          {...item}
+                          addCart={this.addCart}
+                          deliveryDate={this.state.deliveryDate}
+                          key={index}
+                          selectDetailProduct={() => this.selectDetailProduct(item)}
+                        />
                       )
                     }) }
                   </div>

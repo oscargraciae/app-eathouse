@@ -4,7 +4,7 @@ import generateName from '../../utils/generateName';
 const StoreItem = ({ id, name, description, cover, store_address, store_type }) => {
   return (
     <div className="menu-item">
-      {/* <a href={`/store/${generateName(name)}/${id}`} className="menu-item-details"> */}
+      <a href={`/store/${generateName(name)}/${id}`} className="menu-item-details">
         <div className="menu-item-details">
           <div className="menu-item-image">
             <div className="store-logo" style={{ backgroundImage: `url(${cover})` }} />
@@ -13,21 +13,22 @@ const StoreItem = ({ id, name, description, cover, store_address, store_type }) 
             <div className="menu-item-name-link" >
               <span className="text">{name}</span>
             </div>
-            {/* <div className="store-item-address">
-              {store_address && `${store_address.street}, ${store_address.area}, ${store_address.city}`}
-            </div> */}
             <div className="store-item-category">
               {store_type && `${store_type.name}`}
             </div>
-            <div>
+            <div className="store-item-address">
+              {store_address && `${store_address.street}, ${store_address.area}, ${store_address.city}`}
+            </div>
+
+            {/* <div>
               <br />
               <a className="btn btn-primary btn-block" href={`/store/${generateName(name)}/${id}`}>
                 Ir a la tienda
               </a>
-            </div>
+            </div> */}
           </div>
         </div>
-      {/* </a> */}
+      </a>
 
       <style global jsx>{`
         .menu-item {
@@ -39,6 +40,8 @@ const StoreItem = ({ id, name, description, cover, store_address, store_type }) 
           border: 1px solid rgba(217,219,224,0.5);
           border-radius: 3px;
           background: #FFFFFF;
+
+          box-shadow: 0 0.5em 1.5em 0 rgba(0,0,0,0.1);
         }
 
         .menu-item-details {
@@ -91,7 +94,8 @@ const StoreItem = ({ id, name, description, cover, store_address, store_type }) 
         .menu-item-description {
           display: flex;
           flex-direction: column;
-          padding: 28px 14px;
+          padding: 8px 14px;
+          height: 135px;
         }
 
 
@@ -103,7 +107,7 @@ const StoreItem = ({ id, name, description, cover, store_address, store_type }) 
           margin-left: 0px;
           margin-right: 16px;
           /* font-size: 16px; */
-          font-size: 1.92rem;
+          font-size: 16px;
           line-height: 1.3em;
           letter-spacing: 0;
           color: rgb(45, 49, 56);

@@ -57,7 +57,7 @@ class MenuItem extends React.Component {
         {/* <ReactTooltip effect="solid" className="custom-tooltip" /> */}
         {/* <div className="menu-item-photo" style={{ backgroundImage: `url(${this.props.image})` }} /> */}
         <div className="menu-item-details">
-          <div className="menu-item-content">
+          <div className="menu-item-content" onClick={this.props.selectDetailProduct}>
             <div className="menu-item-description">
               <div className="menu-item-name-link" >
                 <span className="text">{this.props.name}</span>
