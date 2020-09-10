@@ -47,7 +47,7 @@ const ModalAddress = ({ show, setShowAddressModal, addUserData }) => {
     <div>
       <Modal show={show} onHide={() => setShowAddressModal(false)}>
         <Modal.Header closeButton>
-        <h4 className="text-left">Ingresa tu nueva dirección</h4>
+        <h4 className="text-left">Ingresa tu dirección</h4>
         </Modal.Header>
         <Modal.Body>
           <AddressForm afterSave={afterSave} />

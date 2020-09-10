@@ -1,5 +1,5 @@
 // import libraries
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Head from 'next/head'
 import {connect} from 'react-redux';
 
@@ -15,6 +15,13 @@ const Layout = ({ children, loggedUser, isAuthenticated, title = 'UORDER', user,
   const handleShowAddressModal = () => {
     setShowAddressModal(true);
   }
+
+  useEffect(() => {
+    console.log("user state------>", userState);
+    if (!userState.address) {
+      setShowAddressModal(true);
+    }
+  }, []);
 
   return (
     <div id="layout" className="layout">
@@ -32,8 +39,8 @@ const Layout = ({ children, loggedUser, isAuthenticated, title = 'UORDER', user,
         setShowAddressModal={handleShowAddressModal}
       />
 
-      { isAuthenticated && <ModalGeneralAddress show={!user.withAddress} /> }
-      { isAuthenticated && <ModalAddress show={showAddressModal} hide={!showAddressModal} setShowAddressModal={setShowAddressModal} /> }
+      {/* { isAuthenticated && <ModalGeneralAddress show={!user.withAddress} /> } */}
+      { isAuthenticated && <ModalAddress show={!user.withAddress || showAddressModal} hide={!showAddressModal} setShowAddressModal={setShowAddressModal} /> }
       <div className="container-margin-top">
         { children }
       </div>

@@ -41,10 +41,6 @@ app.prepare()
     return app.render(req, res, '/onBoarding');
   });
 
-  server.get('/suscriptions', (req, res) => {
-    return app.render(req, res, '/suscriptions');
-  });
-
   server.get('/payment-suscription/:id', (req, res) => {
     return app.render(req, res, '/paymentSuscription', { id: req.params.id });
   });
@@ -79,26 +75,6 @@ app.prepare()
 
   server.get('/schedules', (req, res) => {
     return app.render(req, res, '/schedules');
-  });
-
-  server.get('/prueba', (req, res) => {
-    return app.render(req, res, '/prueba');
-  });
-
-  server.get('/faq', (req, res) => {
-    return app.render(req, res, '/faq');
-  });
-
-  server.get('/terms', (req, res) => {
-    return app.render(req, res, '/terms');
-  });
-
-  server.get('/privacy', (req, res) => {
-    return app.render(req, res, '/privacy');
-  });
-
-  server.get('/arco', (req, res) => {
-    return app.render(req, res, '/arco');
   });
 
   server.get('/map-available', (req, res) => {

@@ -26,7 +26,7 @@ class Login extends React.Component {
   static getInitialProps(context) {
     const loggedUser = process.browser ? getTokenFromLocalStorage() : getTokenFromCookie(context.req);
     if(loggedUser) {
-      redirect('/menu', context);
+      redirect('/', context);
     }
     return {};
   }

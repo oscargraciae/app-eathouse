@@ -27,7 +27,6 @@ const Home = (props) => {
 
     let params = {};
     if (props.userState.address) {
-      console.log("PARAMS--->", props.userState.address.lat);
       params = { lat: props.userState.address.lat, lng: props.userState.address.lng };
     }
 
@@ -39,7 +38,7 @@ const Home = (props) => {
 
   useEffect(() => {
     fetchStores();
-  }, [props]);
+  }, [props.userState.address]);
 
   return (
     <Layout {...props}>

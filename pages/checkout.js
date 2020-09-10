@@ -112,10 +112,17 @@ class Checkout extends React.Component {
 
   sendOrder = async () => {
     const { methodPayment } = this.state;
+    console.log("methodPayment---->", methodPayment);
 
     this.setState({ isSendingOrder: true });
 
-    this.orderCard();
+    if (methodPayment === 1) {
+      this.orderCard();
+    } else {
+      this.orderCash();
+    }
+
+
   }
 
   confirm = () => {
@@ -175,7 +182,43 @@ class Checkout extends React.Component {
       shippingId: shippingId === -1 ? null : shippingId,
       orderDetails: data,
     }
-    const response = await api.orders.create(order);
+    const response = await api.orders.createCash(order);
+    if(response.success) {
+      this.setState({ confirmation: true, isSendingOrder: false }, () => {
+        this.props.clearCart();
+      });
+    } else {
+      this.setState({ paymentError: response.message, alertShow: true, isSendingOrder: false });
+    }
+  }
+
+  async orderCash() {
+    const { userAddressId, shippingId } = this.state;
+    const { data, storeId } = this.props.cart;
+
+    let isDiscount = false;
+    let quantityTotal = 0;
+    if (data.length > 0) {
+      data.map((item, i) => {
+        quantityTotal = quantityTotal + item.quantity;
+      });
+
+      // if(quantityTotal >= 5 || this.props.user.bussinesId) {
+      //   isDiscount = true;
+      // }
+    }
+    const order = {
+      userAddressId,
+      creditCardId: null,
+      deviceType: 'web',
+      paymentMethod: 2,
+      paymentChange: 0,
+      isDiscount: isDiscount,
+      storeId: this.props.id,
+      shippingId: shippingId === -1 ? null : shippingId,
+      orderDetails: data,
+    }
+    const response = await api.orders.createCash(order);
     if(response.success) {
       this.setState({ confirmation: true, isSendingOrder: false }, () => {
         this.props.clearCart();
