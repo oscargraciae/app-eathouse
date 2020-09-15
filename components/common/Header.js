@@ -3,6 +3,7 @@ import Router from 'next/router';
 import Link from 'next/link';
 import { Fragment } from 'react';
 import { GrLocation } from 'react-icons/gr';
+import { useSelector } from 'react-redux';
 
 Router.onRouteChangeStart = () => {
   return NProgress.start();
@@ -43,24 +44,28 @@ const menuGuest = () => {
 }
 
 const menuAuth = (props) => {
-  const { user, userToken, setShowAddressModal, userState } = props;
+  const { user, userToken, setShowAddressModal, showHeaderAddress } = props;
+  const { address } = useSelector(state => state.user);
+
   return (
     <Fragment>
-      <ul className="nav navbar-nav navbar-left navbar-location">
-        { (userState && userState.address) &&
-          <li onClick={() => setShowAddressModal(true)}>
-            <GrLocation size={21} />
-            <a>{userState.address.addressMap.substr(0, 50)}...</a>
-          </li>
-        }
+      { showHeaderAddress &&
+        <ul className="nav navbar-nav navbar-left navbar-location">
+          { (address) &&
+            <li onClick={() => setShowAddressModal(true)}>
+              <GrLocation size={21} />
+              <a>{address.addressMap.substr(0, 50)}...</a>
+            </li>
+          }
 
-        { (userState && !userState.address) &&
-          <li onClick={() => setShowAddressModal(true)}>
-            <GrLocation size={21} />
-            <a>Busca una dirección nueva</a>
-          </li>
-        }
-      </ul>
+          { (!address) &&
+            <li onClick={() => setShowAddressModal(true)}>
+              <GrLocation size={21} />
+              <a>Busca una dirección nueva</a>
+            </li>
+          }
+        </ul>
+      }
       <ul className="nav navbar-nav navbar-right nav-menu-right">
         <li className="dropdown">
           <a
@@ -106,7 +111,7 @@ const menuAuth = (props) => {
               </a>
             </li>
             <li role="separator" className="divider" />
-            <li>
+            {/* <li>
               <a
                 data-toggle="collapse"
                 data-target=".navbar-collapse.in"
@@ -115,7 +120,7 @@ const menuAuth = (props) => {
               >
                 Mi Calendario
               </a>
-            </li>
+            </li> */}
             <li role="separator" className="divider" />
             <li>
               <a

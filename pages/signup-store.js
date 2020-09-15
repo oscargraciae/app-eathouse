@@ -11,7 +11,7 @@ import { getTokenFromCookie, getTokenFromLocalStorage } from '../utils/auth';
 import redirect from '../utils/redirect';
 import api from '../api';
 import { setToken } from '../utils/auth';
-import securePage from '../hocs/page';
+// import securePage from '../hocs/page';
 import JwtDecode from 'jwt-decode';
 
 class Signup extends React.Component {
@@ -285,4 +285,4 @@ class Signup extends React.Component {
   }
 }
 
-export default securePage(Signup);
+export default Signup;

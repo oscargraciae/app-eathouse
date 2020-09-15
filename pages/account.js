@@ -6,7 +6,7 @@ import api from '../api';
 // import components
 import InputTextMaterial from '../components/general/InputTextMaterial';
 import Layout from '../components/common/Layout';
-import securePage from '../hocs/page';
+// import securePage from '../hocs/page';
 import LoadingSpinner from '../components/common/LoadingSpinner';
 import ButtonApp from '../components/general/Button';
 
@@ -69,7 +69,7 @@ class Account extends React.Component {
             <div className="account-input">
               <InputTextMaterial label="Email" value={user.email} />
             </div>
-            <div>
+            {/* <div>
               <ButtonApp
                 text="Guardar"
                 classStyle="btn btn-primary btn-large btn-block"
@@ -77,33 +77,8 @@ class Account extends React.Component {
                 paddingVertical={10}
                 paddingHorizontal={0}
               />
-              </div>
+            </div> */}
           </div>
-          <hr/>
-          <div className="content-settings">
-            <h3 className="header-subtitle">Notificaciones</h3>
-            <div className="account-input">
-              <div className="check-alerts">
-                <label htmlFor="id_send_offers"><span></span>Recibir avisos y promociones. </label>
-                <input checked={this.state.offersAlert} id="id_send_offers" name="offersAlert" type="checkbox" onChange={this.onChangeAlert} />
-              </div>
-              <div className="check-pedido">
-                <label htmlFor="id_remainder"><span></span>Recibir el recordatorio diario. </label>
-                <input checked={this.state.remainderAlert} id="id_remainder" name="remainderAlert" type="checkbox" onChange={this.onChangeAlert} />
-              </div>
-              <div>
-              <ButtonApp
-                text="Guardar"
-                classStyle="btn btn-primary btn-large btn-block"
-                loading={this.state.isLoading}
-                paddingVertical={10}
-                paddingHorizontal={0}
-                click={this.saveAlerts}
-              />
-              </div>
-            </div>
-          </div>
-
 
         </div>
         <style jsx>{`
@@ -130,4 +105,4 @@ class Account extends React.Component {
   }
 }
 
-export default securePage(Account);
+export default Account;

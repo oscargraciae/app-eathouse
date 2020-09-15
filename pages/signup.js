@@ -16,13 +16,12 @@ import { getTokenFromCookie, getTokenFromLocalStorage } from '../utils/auth';
 import redirect from '../utils/redirect';
 import api from '../api';
 import { setToken } from '../utils/auth';
-import defaultPage from '../hocs/defaultPage';
 
 class Signup extends React.Component {
   static getInitialProps(context) {
     const loggedUser = process.browser ? getTokenFromLocalStorage() : getTokenFromCookie(context.req);
     if(loggedUser) {
-      redirect('/menu', context);
+      redirect('/', context);
     }
     return {};
   }
@@ -279,4 +278,4 @@ class Signup extends React.Component {
   }
 }
 
-export default defaultPage(Signup);
+export default Signup;

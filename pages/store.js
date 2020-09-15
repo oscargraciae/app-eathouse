@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 
-import securePage from '../hocs/page';
 import api from '../api';
 import { addToCart, clearCart } from '../actions/cart';
 import { formatDateString, getDateSumDays } from '../utils/formatDate';
@@ -15,15 +14,17 @@ import ModalProductDetail from '../components/menu/ModalProductDetail';
 
 class Store extends React.Component {
   static async getInitialProps({ query }) {
-    const [products, data] = await Promise.all([
-      api.product.getAll(query.id),
-      api.store.get(query.id),
-    ]);
     return {
-      products,
-      data,
       id: query.id,
     };
+  }
+
+  async initialFetch() {
+    const [products, data] = await Promise.all([
+      api.product.getAll(this.props.pageProps.id),
+      api.store.get(this.props.pageProps.id),
+    ]);
+    this.setState({ store: data, products });
   }
 
   state = {
@@ -32,9 +33,14 @@ class Store extends React.Component {
     dateString: '',
     productSelected: null,
     showModalProduct: false,
+
+    store: {},
+    products: [],
   }
 
   componentDidMount() {
+    this.initialFetch();
+
     const currentTime = formatDateString(new Date(Date.now()), 'HH:mm');
 
     if(currentTime > "11:00") {
@@ -75,7 +81,7 @@ class Store extends React.Component {
   addCart = (dish, quantity, productPrice) => {
     const { deliveryDate } = this.state;
 
-    this.props.addToCart(dish, quantity, deliveryDate, productPrice, this.props.id);
+    this.props.addToCart(dish, quantity, deliveryDate, productPrice, this.props.pageProps.id);
   }
 
   selectDetailProduct = (product) => {
@@ -83,12 +89,11 @@ class Store extends React.Component {
   }
 
   handleCloseModal = () => {
-    console.log("CLOSE MODAL");
     this.setState({ showModalProduct: false, productSelected: null });
   }
 
   render() {
-    const categories = this.props.products;
+    const categories = this.state.products;
     let total = 0;
     let subtotal = 0;
     let discount = 0;
@@ -107,7 +112,7 @@ class Store extends React.Component {
           <div className="fluid-container">
 
             <div className="container-info-store">
-              <h2>{this.props.data.name}</h2>
+              <h2>{this.state.store.name}</h2>
               <p ></p>
               <hr />
             </div>
@@ -146,7 +151,7 @@ class Store extends React.Component {
                       <dt className="lbl-subtotal">Descuento</dt><dd className="lbl-subtotal">${discount}</dd>
                     </div>
                   } */}
-                  <a id="btnMobileMenuCart" href={`/checkout/${this.props.id}`} className="btn btn-primary btn-large btn-block">VER CARRITO ${total}</a>
+                  <a id="btnMobileMenuCart" href={`/checkout/${this.props.pageProps.id}`} className="btn btn-primary btn-large btn-block">VER CARRITO ${total}</a>
                 </div>
               }
             </div>
@@ -339,4 +344,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default securePage(connect(mapStateToProps, { addToCart, clearCart })(Store));
+export default connect(mapStateToProps, { addToCart, clearCart })(Store);

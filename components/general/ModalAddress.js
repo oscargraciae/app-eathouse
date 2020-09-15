@@ -33,14 +33,14 @@ const ModalAddress = ({ show, setShowAddressModal, addUserData }) => {
     setSelectItemId(address.id);
     setShowAddressModal(false);
     addUserData(address);
-    location.href = "/";
+    // location.href = "/";
   };
 
   const handleSelectedItem = (address) => {
     setSelectItemId(address.id);
     setShowAddressModal(false);
     addUserData(address);
-    location.href = "/";
+    // location.href = "/";
   }
 
   return (

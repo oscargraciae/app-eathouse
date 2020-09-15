@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 // import local libraries
 import api from '../api';
-import securePage from '../hocs/page';
+// import securePage from '../hocs/page';
 import { addToCart } from '../actions/cart';
 
 // import components
@@ -49,7 +49,7 @@ class MenuItemDetail extends React.Component {
       </div>
     )
   }
-  
+
   btnAdd = () => {
     return (
       <button className="small button-add-cart" onClick={() => this.props.addToCart(this.props.dish, 1)}>
@@ -212,7 +212,7 @@ class MenuItemDetail extends React.Component {
             width: 50;
             z-index: 1;
           }
-  
+
           .button-add-cart-small:hover {
             background: #3BCF75;
             color: white;
@@ -238,7 +238,7 @@ class MenuItemDetail extends React.Component {
             width: 128px;
             z-index: 1;
           }
-  
+
           .button-add-cart:hover {
             background: #3BCF75;
             color: white;
@@ -260,4 +260,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default securePage(connect(mapStateToProps, { addToCart })(MenuItemDetail));
+export default connect(mapStateToProps, { addToCart })(MenuItemDetail);

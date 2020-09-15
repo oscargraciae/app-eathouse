@@ -1,9 +1,9 @@
 // import libraries
 import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 // import local libraries
-import securePage from '../hocs/page';
+// import securePage from '../hocs/page';
 import api from '../api';
 
 // import components
@@ -12,22 +12,17 @@ import StoreItem from '../components/stores/StoreItem';
 import LoadingSpinner from '../components/common/LoadingSpinner';
 
 const Home = (props) => {
-  // static async getInitialProps({ query }) {
-  //   const { success, stores } = await api.store.getAll();
-  //   return {
-  //     stores,
-  //     id: 1,
-  //   };
-  // }
-
   const [stores, setStores] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  const { address } = useSelector(state => state.user);
+
   const fetchStores = async () => {
     setIsLoading(true);
 
     let params = {};
-    if (props.userState.address) {
-      params = { lat: props.userState.address.lat, lng: props.userState.address.lng };
+    if (address) {
+      params = { lat: address.lat, lng: address.lng };
     }
 
     const { success, stores } = await api.store.getAll(params);
@@ -38,10 +33,10 @@ const Home = (props) => {
 
   useEffect(() => {
     fetchStores();
-  }, [props.userState.address]);
+  }, [address]);
 
   return (
-    <Layout {...props}>
+    <Layout {...props} showHeaderAddress={true}>
       <main>
         <section className="Hero onlyWeb">
             <div className="container Hero-Box">
@@ -296,10 +291,4 @@ const Home = (props) => {
   )
 }
 
-const mapStateToProps = (state) => {
-  return {
-    userState: state.user
-  }
-}
-
-export default securePage(connect(mapStateToProps)(Home));
+export default Home;

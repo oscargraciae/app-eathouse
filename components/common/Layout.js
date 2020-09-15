@@ -1,7 +1,7 @@
 // import libraries
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head'
-import {connect} from 'react-redux';
+import {useSelector} from 'react-redux';
 
 // import components
 import Header from './Header';
@@ -10,15 +10,16 @@ import ModalGeneralAddress from '../general/ModalGeneralAddress';
 import ModalAddress from '../general/ModalAddress';
 import Meta from '../general/Meta';
 
-const Layout = ({ children, loggedUser, isAuthenticated, title = 'UORDER', user, tokenData, userState }) => {
+const Layout = ({ children, loggedUser, isAuthenticated, title = 'UORDER', user, tokenData, showHeaderAddress = false }) => {
   const [showAddressModal, setShowAddressModal] = useState(false);
   const handleShowAddressModal = () => {
     setShowAddressModal(true);
   }
 
+  const { address } = useSelector(state => state.user);
+
   useEffect(() => {
-    console.log("user state------>", userState);
-    if (!userState.address) {
+    if (!address) {
       setShowAddressModal(true);
     }
   }, []);
@@ -27,16 +28,16 @@ const Layout = ({ children, loggedUser, isAuthenticated, title = 'UORDER', user,
     <div id="layout" className="layout">
       <Head>
         <title>{ title }</title>
-        <Meta />
+        {/* <Meta /> */}
       </Head>
 
       <Header
         loggedUser={loggedUser}
         isAuthenticated={isAuthenticated}
         user={user}
-        userState={userState}
         userToken={tokenData}
         setShowAddressModal={handleShowAddressModal}
+        showHeaderAddress={showHeaderAddress}
       />
 
       {/* { isAuthenticated && <ModalGeneralAddress show={!user.withAddress} /> } */}
@@ -223,10 +224,10 @@ const Layout = ({ children, loggedUser, isAuthenticated, title = 'UORDER', user,
   )
 }
 
-const mapStateToProps = (state) => {
-  return {
-    userState: state.user,
-  }
-}
+// const mapStateToProps = (state) => {
+//   return {
+//     userState: state.user,
+//   }
+// }
 
-export default connect(mapStateToProps)(Layout);
+export default Layout;

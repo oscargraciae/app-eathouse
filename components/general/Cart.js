@@ -88,7 +88,7 @@ function Cart(props) {
             </div> */}
           </dl>
           { isAuthenticated ?
-            <a id="btnWebMenuCart" href={`/checkout/${props.id}`} className="btn btn-primary btn-large btn-block">Comprar</a> :
+            <a id="btnWebMenuCart" href={`/checkout/${props.pageProps.id}`} className="btn btn-primary btn-large btn-block">Comprar</a> :
             <a id="btnWebMenuCart" href="/login" className="btn btn-primary btn-large btn-block">Comprar</a>
           }
           {/* <a id="btnWebMenuCart" href="/" className="btn btn-primary btn-large btn-block disabled">Comprar</a> */}

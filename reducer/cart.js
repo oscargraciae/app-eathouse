@@ -1,20 +1,10 @@
 import { SET_ITEM, UPDATE_ITEM, REMOVE_ITEM, CLEAR_ITEMS } from '../actions/cart';
 
-
-// const INITIAL_STATE = [{
-//     id: 0,
-//     name: '',
-//     quantity: 0,
-//     price: 0,
-//     total: 0,
-//     availableOn: '',
-// }];
-
 const INITIAL_STATE = {
   data: [],
 };
 
-export default (state = INITIAL_STATE, action) => {
+const cartReducer = (state = INITIAL_STATE, action) => {
   switch(action.type) {
     case SET_ITEM:
       return {
@@ -45,3 +35,5 @@ export default (state = INITIAL_STATE, action) => {
       return state;
   }
 }
+
+export default cartReducer;

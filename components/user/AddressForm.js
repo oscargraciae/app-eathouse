@@ -1,19 +1,15 @@
 // import libraries
 import React from 'react';
 import Geosuggest from 'react-geosuggest';
-import dynamic from 'next/dynamic';
 
 // import local libraries
 import validation from '../../validations/address';
 import validationBusiness from '../../validations/address-business';
 import api from '../../api';
-import { isPointAvailable } from '../../utils/geospatial';
 
 // import components
 import InputText from '../general/InputTextIdSmall';
 import ButtonBlock from '../general/ButtonBlock';
-import { flattenSelections } from 'apollo-utilities';
-
 
 class  AddressForm extends React.Component {
 

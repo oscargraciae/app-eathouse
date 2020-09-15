@@ -1,7 +1,7 @@
 import Validator from 'validator';
 import isEmpty from 'lodash/isEmpty';
 
-export default (data) => {
+const validation = (data) => {
   const errors = {};
 
   if(Validator.isEmpty(data.email)) {
@@ -21,3 +21,5 @@ export default (data) => {
     isValid: isEmpty(errors),
   };
 }
+
+export default validation;

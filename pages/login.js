@@ -20,7 +20,6 @@ import { setToken } from '../utils/auth';
 import { getTokenFromCookie, getTokenFromLocalStorage } from '../utils/auth';
 import redirect from '../utils/redirect';
 import api from '../api';
-import defaultPage from '../hocs/defaultPage';
 
 class Login extends React.Component {
   static getInitialProps(context) {
@@ -255,4 +254,4 @@ class Login extends React.Component {
   }
 }
 
-export default defaultPage(Login);
+export default Login;

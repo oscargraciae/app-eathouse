@@ -1,6 +1,6 @@
 import Router from "next/router";
 
-export default (target, ctx = {}) => {
+const redirect = (target, ctx = {}) => {
   if (ctx.res) {
     // Si el rediccionamiento se produce en el servidor,
     // usamos la respuesta HTTP 303 con la cabecera "Location".
@@ -14,3 +14,5 @@ export default (target, ctx = {}) => {
     Router.replace(target);
   }
 };
+
+export default redirect;

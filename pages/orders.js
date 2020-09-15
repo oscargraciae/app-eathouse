@@ -3,7 +3,7 @@ import React from 'react';
 import { Modal } from 'react-bootstrap';
 
 // import local libraries
-import securePage from '../hocs/page';
+// import securePage from '../hocs/page';
 import api from '../api';
 
 // import componentes
@@ -75,4 +75,4 @@ class Orders extends React.Component {
   }
 }
 
-export default securePage(Orders);
+export default Orders;

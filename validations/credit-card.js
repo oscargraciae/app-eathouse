@@ -1,7 +1,7 @@
 import Validator from 'validator';
 import isEmpty from 'lodash/isEmpty';
 
-export default (data) => {
+const validation = (data) => {
   const errors = {};
 
   if(Validator.isEmpty(data.name)) {
@@ -23,10 +23,12 @@ export default (data) => {
   if(Validator.isEmpty(data.cvv)) {
     errors.cvv = "CVV debe tener de 3 o 4 dígitos";
   }
-  
-  
+
+
   return {
     errors,
     isValid: isEmpty(errors),
   };
 }
+
+export default validation;

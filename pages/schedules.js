@@ -3,7 +3,7 @@ import React from 'react';
 
 // import libraries
 import api from '../api';
-import securePage from '../hocs/page';
+// import securePage from '../hocs/page';
 import { formatDateString } from '../utils/formatDate';
 
 // import componentes
@@ -105,4 +105,4 @@ class Schedules extends React.Component {
   }
 }
 
-export default securePage(Schedules);
+export default Schedules;

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
+import { createWrapper } from 'next-redux-wrapper';
 
 import { getTokenFromCookie, getTokenFromLocalStorage } from '../utils/auth';
 import store from '../redux/store';
@@ -41,4 +42,8 @@ const DefaultPage = (Page) => {
   }
 }
 
+// const makeStore = () => store;
+// const wrapper = createWrapper(makeStore);
+
+// export default wrapper.withRedux(DefaultPage);
 export default DefaultPage;

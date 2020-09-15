@@ -4,7 +4,7 @@ import {FiAlertTriangle} from 'react-icons/fi';
 
 import ButtonApp from '../general/ButtonBlock';
 
-export default (props) => {
+const AlertModalApp = (props) => {
   return (
     <Modal show={props.show}>
       <Modal.Body className="modal-confirmation">
@@ -81,3 +81,5 @@ export default (props) => {
     </Modal>
   )
 }
+
+export default AlertModalApp;

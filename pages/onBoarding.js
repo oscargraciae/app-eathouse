@@ -2,7 +2,7 @@
 import React from 'react';
 
 // import local libraries
-import securePage from '../hocs/page';
+// import securePage from '../hocs/page';
 
 // import components
 import Layout from '../components/common/Layout';
@@ -40,6 +40,6 @@ class OnBoarding extends React.Component {
   }
 };
 
-export default securePage(OnBoarding);
+export default OnBoarding;
 
 
