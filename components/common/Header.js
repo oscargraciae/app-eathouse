@@ -46,7 +46,7 @@ const menuGuest = () => {
 const menuAuth = (props) => {
   const { user, userToken, setShowAddressModal, showHeaderAddress } = props;
   const { address } = useSelector(state => state.user);
-
+  console.log('user data---->', user)
   return (
     <Fragment>
       { showHeaderAddress &&
@@ -138,12 +138,12 @@ const menuAuth = (props) => {
           <a className="btn-link onlyMobile" href="/menu"><span className="btn btn-primary btn-block">Menu</span></a>
         </li> */}
         <li>
-          { userToken.storeId &&
+          { user.storeId &&
             <a className="btn_navf mobile-hide" href="http://manager.uorder.mx/" target="_blank">
               <span>Administrar mi tienda</span>
             </a>
             }
-            { !userToken.storeId &&
+            { !user.storeId &&
             <Link href="/signup-store">
               <a className="btn_navf">
                 <span>Publicar tu tienda</span>

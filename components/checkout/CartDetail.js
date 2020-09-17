@@ -51,6 +51,10 @@ const CartDetail = props => {
     props.addToCart(product, productToCart.quantity - 1, product.deliveryDate, product.productPrice); // Producto, cantidad, (precio de productio y tipo de unidad)
   }
 
+  if (props.cart.data.length === 0) {
+    return null
+  }
+
   return (
     <div className="sidecart">
       <div className="sidecart-header">

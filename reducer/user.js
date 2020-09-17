@@ -5,8 +5,9 @@ const userReducer = (state = INITIAL_STATE, action) => {
     case "SET_DATA":
       return {
         ...action.payload,
-        persistExpiresAt: action.date,
       }
+    case "REMOVE_DATA":
+      return null;
     default:
       return state;
   }
