@@ -8,9 +8,7 @@ import AddressList from '../user/AddressList';
 import api from '../../api';
 import { addUserData } from '../../actions/user';
 
-
-
-const ModalAddress = ({ show, setShowAddressModal, addUserData }) => {
+const ModalAddress = ({ show, hideModal, addUserData, hide }) => {
   const [selectItemId, setSelectItemId] = useState(0);
   const [address, setAddress] = useState([]);
   // const [showModal, setShowModal] = useState(show);
@@ -31,21 +29,21 @@ const ModalAddress = ({ show, setShowAddressModal, addUserData }) => {
   const afterSave = (address) => {
     getAddress();
     setSelectItemId(address.id);
-    setShowAddressModal(false);
+    hideModal();
     addUserData(address);
     // location.href = "/";
   };
 
   const handleSelectedItem = (address) => {
     setSelectItemId(address.id);
-    setShowAddressModal(false);
+    hideModal();
     addUserData(address);
     // location.href = "/";
   }
 
   return (
     <div>
-      <Modal show={show} onHide={() => setShowAddressModal(false)}>
+      <Modal show={show} onHide={hideModal}>
         <Modal.Header closeButton>
         <h4 className="text-left">Ingresa tu dirección</h4>
         </Modal.Header>

@@ -6,7 +6,7 @@ export const setToken = (token) => {
   }
 
   window.localStorage.setItem('token', token);
-  Cookie.set('token', token, { expires: 365 });
+  Cookie.set('token', token, { expires: 365, secure: true });
 };
 
 export const unsetToken = () => {

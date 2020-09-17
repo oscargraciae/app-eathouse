@@ -18,6 +18,11 @@ const Layout = ({ children, loggedUser, isAuthenticated, title = 'UORDER', user,
 
   const { address } = useSelector(state => state.user);
 
+  const hideModal = () => {
+    console.log("HIDE MODAL");
+    setShowAddressModal(false);
+  }
+
   useEffect(() => {
     if (!address) {
       setShowAddressModal(true);
@@ -41,7 +46,7 @@ const Layout = ({ children, loggedUser, isAuthenticated, title = 'UORDER', user,
       />
 
       {/* { isAuthenticated && <ModalGeneralAddress show={!user.withAddress} /> } */}
-      { isAuthenticated && <ModalAddress show={!user.withAddress || showAddressModal} hide={!showAddressModal} setShowAddressModal={setShowAddressModal} /> }
+      { isAuthenticated && <ModalAddress show={!user.withAddress || showAddressModal} hide={!showAddressModal} hideModal={hideModal} /> }
       <div className="container-margin-top">
         { children }
       </div>

@@ -16,11 +16,11 @@ function ItemCalendar(props) {
 
 
   let invalidCurrentDate = false;
-  if(currentDate.format('DD') === weekDayNumber) {
-    if(dayTime > "11:00") {
-      invalidCurrentDate = true;
-    }
-  }
+  // if(currentDate.format('DD') === weekDayNumber) {
+  //   if(dayTime > "11:00") {
+  //     invalidCurrentDate = true;
+  //   }
+  // }
 
   return (
     <div className={((day === 6 || day === 0) || invalidCurrentDate) ? 'disabled' : ''}>

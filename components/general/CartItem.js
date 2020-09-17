@@ -14,9 +14,9 @@ function CartItem({ item, addItem, removeItem }) {
           {/* <span className="lbl-quantity">Cant. 10 </span> */}
           <span className="">({item.quantity}) ${item.total}/{item.unidType.name}</span>
         </div>
-        <div className="lbl-subtotal">
+        {/* <div className="lbl-subtotal">
           Entrega: { formatDateString(item.deliveryDate, "DD MMMM YYYY") }
-        </div>
+        </div> */}
         { addItem &&
           <div className="item-options">
             <button  className="small button-add-cart-small" onClick={() => removeItem(item)}>

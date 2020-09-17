@@ -1,13 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import moment from 'moment';
 
 import api from '../api';
 import { addToCart, clearCart } from '../actions/cart';
-import { formatDateString, getDateSumDays } from '../utils/formatDate';
+import { formatDateString } from '../utils/formatDate';
 
 import Layout from '../components/common/Layout';
-import MenuCalendar from '../components/menu/MenuCalendar';
 import MenuItem from '../components/menu/MenuItem';
 import Cart from '../components/general/Cart';
 import ModalProductDetail from '../components/menu/ModalProductDetail';
@@ -41,31 +39,31 @@ class Store extends React.Component {
   componentDidMount() {
     this.initialFetch();
 
-    const currentTime = formatDateString(new Date(Date.now()), 'HH:mm');
+    // const currentTime = formatDateString(new Date(Date.now()), 'HH:mm');
 
-    if(currentTime > "11:00") {
-      let newDate = getDateSumDays(new Date(Date.now()), 'YYYY/MM/DD', 1);
-      let date = moment(new Date(newDate), "MM-DD-YYYY", "es").locale("mx");
-      if(date.day() === 6) {
-        newDate = getDateSumDays(new Date(Date.now()), 'YYYY/MM/DD', 3);
-      } else if(date.day() === 0) {
-        newDate = getDateSumDays(new Date(Date.now()), 'YYYY/MM/DD', 2);
-      }
+    // if(currentTime > "11:00") {
+    //   let newDate = getDateSumDays(new Date(Date.now()), 'YYYY/MM/DD', 1);
+    //   let date = moment(new Date(newDate), "MM-DD-YYYY", "es").locale("mx");
+    //   if(date.day() === 6) {
+    //     newDate = getDateSumDays(new Date(Date.now()), 'YYYY/MM/DD', 3);
+    //   } else if(date.day() === 0) {
+    //     newDate = getDateSumDays(new Date(Date.now()), 'YYYY/MM/DD', 2);
+    //   }
 
-      let dateS = moment(new Date(newDate), "MM-DD-YYYY", "es").locale("mx");
-      const weekDayName = dateS.format('dddd');
-      const weekDayNumber = dateS.format('DD');
-      this.setState({ deliveryDate: newDate, dateString: `${weekDayName} ${weekDayNumber}` });
-      // if(currentTime < "14:00") {
-      //   this.setState({ isLater: true });
-      // }
-    } else {
+    //   let dateS = moment(new Date(newDate), "MM-DD-YYYY", "es").locale("mx");
+    //   const weekDayName = dateS.format('dddd');
+    //   const weekDayNumber = dateS.format('DD');
+    //   this.setState({ deliveryDate: newDate, dateString: `${weekDayName} ${weekDayNumber}` });
+    //   // if(currentTime < "14:00") {
+    //   //   this.setState({ isLater: true });
+    //   // }
+    // } else {
+    //   const newDate = formatDateString(new Date(Date.now()), 'YYYY/MM/DD');
+    //   this.setState({ deliveryDate: newDate, isLater: false });
+    // }
+
       const newDate = formatDateString(new Date(Date.now()), 'YYYY/MM/DD');
-      // const weekDayName = newDate.format('ddd');
-      // const weekDayNumber = newDate.format('DD');
-
       this.setState({ deliveryDate: newDate, isLater: false });
-    }
   }
 
   componentWillUnmount() {
@@ -108,7 +106,7 @@ class Store extends React.Component {
           <ModalProductDetail product={this.state.productSelected} onHide={this.handleCloseModal} />
         }
         <div>
-        { this.state.deliveryDate && <MenuCalendar changeDay={this.changeDay} deliveryDate={this.state.deliveryDate} /> }
+        {/* { this.state.deliveryDate && <MenuCalendar changeDay={this.changeDay} deliveryDate={this.state.deliveryDate} /> } */}
           <div className="fluid-container">
 
             <div className="container-info-store">

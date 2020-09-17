@@ -110,7 +110,7 @@ const menuAuth = (props) => {
                 Mis compras
               </a>
             </li>
-            <li role="separator" className="divider" />
+            {/* <li role="separator" className="divider" /> */}
             {/* <li>
               <a
                 data-toggle="collapse"
