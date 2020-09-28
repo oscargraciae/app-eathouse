@@ -37,49 +37,34 @@ class Store extends React.Component {
   }
 
   componentDidMount() {
+    const { data } = this.props.cart;
     this.initialFetch();
+    const newDate = formatDateString(new Date(Date.now()), 'YYYY/MM/DD');
+    this.setState({ deliveryDate: newDate, isLater: false });
 
-    // const currentTime = formatDateString(new Date(Date.now()), 'HH:mm');
-
-    // if(currentTime > "11:00") {
-    //   let newDate = getDateSumDays(new Date(Date.now()), 'YYYY/MM/DD', 1);
-    //   let date = moment(new Date(newDate), "MM-DD-YYYY", "es").locale("mx");
-    //   if(date.day() === 6) {
-    //     newDate = getDateSumDays(new Date(Date.now()), 'YYYY/MM/DD', 3);
-    //   } else if(date.day() === 0) {
-    //     newDate = getDateSumDays(new Date(Date.now()), 'YYYY/MM/DD', 2);
-    //   }
-
-    //   let dateS = moment(new Date(newDate), "MM-DD-YYYY", "es").locale("mx");
-    //   const weekDayName = dateS.format('dddd');
-    //   const weekDayNumber = dateS.format('DD');
-    //   this.setState({ deliveryDate: newDate, dateString: `${weekDayName} ${weekDayNumber}` });
-    //   // if(currentTime < "14:00") {
-    //   //   this.setState({ isLater: true });
-    //   // }
-    // } else {
-    //   const newDate = formatDateString(new Date(Date.now()), 'YYYY/MM/DD');
-    //   this.setState({ deliveryDate: newDate, isLater: false });
-    // }
-
-      const newDate = formatDateString(new Date(Date.now()), 'YYYY/MM/DD');
-      this.setState({ deliveryDate: newDate, isLater: false });
+    if (data.length > 0) {
+      if (data[0].storeId != this.props.pageProps.id) {
+        this.props.clearCart();
+      }
+    }
   }
 
-  componentWillUnmount() {
-    this.props.clearCart();
-  }
-
-  changeDay = (deliveryDate) => {
-    const newDate =  formatDateString(deliveryDate, 'YYYY/MM/DD');
-    this.setState({ deliveryDate: newDate });
-
-  }
+  // componentWillUnmount() {
+  //   this.props.clearCart();
+  // }
 
   addCart = (dish, quantity, productPrice) => {
     const { deliveryDate } = this.state;
+    const { data } = this.props.cart;
 
-    this.props.addToCart(dish, quantity, deliveryDate, productPrice, this.props.pageProps.id);
+    if (data.length > 0) {
+      if (data[0].storeId !== dish.storeId) {
+        alert('Sólo puedes agregar productos de un restaurante cada vez. Vacia tu carrito si quieres añadir este producto.');
+        return;
+      }
+    }
+
+    this.props.addToCart(dish, quantity, deliveryDate, productPrice, this.props.pageProps.id, this.state.store);
   }
 
   selectDetailProduct = (product) => {
@@ -106,7 +91,6 @@ class Store extends React.Component {
           <ModalProductDetail product={this.state.productSelected} onHide={this.handleCloseModal} />
         }
         <div>
-        {/* { this.state.deliveryDate && <MenuCalendar changeDay={this.changeDay} deliveryDate={this.state.deliveryDate} /> } */}
           <div className="fluid-container">
 
             <div className="container-info-store">

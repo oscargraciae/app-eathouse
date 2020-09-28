@@ -13,7 +13,7 @@ function OrderDetailItem(props) {
         </div>
         <div className="item-date">
           {/* Entrega: {formatDateString(props.deliveryDate, "DD MMMM YYYY")} */}
-          Entrega: {formatDateString(props.deliveryDate, "DD MMMM YYYY")}
+          Entrega: {formatDateString(props.createdAt, "DD MMMM YYYY")}
         </div>
         <div className="item-quntity">
           {/* <span className="lbl-quantity">Cant. 10 </span> */}

@@ -8,7 +8,7 @@ import AddressList from '../user/AddressList';
 import api from '../../api';
 import { addUserData } from '../../actions/user';
 
-const ModalAddress = ({ show, hideModal, addUserData, hide }) => {
+const ModalAddress = ({ show, hideModal, addUserData, hide, isClosable }) => {
   const [selectItemId, setSelectItemId] = useState(0);
   const [address, setAddress] = useState([]);
   // const [showModal, setShowModal] = useState(show);
@@ -43,9 +43,9 @@ const ModalAddress = ({ show, hideModal, addUserData, hide }) => {
 
   return (
     <div>
-      <Modal show={show} onHide={hideModal}>
-        <Modal.Header closeButton>
-        <h4 className="text-left">Ingresa tu dirección</h4>
+      <Modal show={show} onHide={hideModal} backdrop="static" keyboard={false}>
+        <Modal.Header closeButton={isClosable}>
+          <h4 className="text-center">¿Donde quieres recibir tu pedido?</h4>
         </Modal.Header>
         <Modal.Body>
           <AddressForm afterSave={afterSave} />

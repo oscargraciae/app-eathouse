@@ -10,6 +10,7 @@ const cartReducer = (state = INITIAL_STATE, action) => {
       return {
         data: [...state.data, action.payload],
         persistExpiresAt: action.date,
+        store: action.store,
         // storeId: action.storeId,
       }
     case UPDATE_ITEM:

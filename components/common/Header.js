@@ -35,7 +35,7 @@ const menuGuest = () => {
       <li>
         <Link href="/signup-store">
           <a className="btn_navf">
-            <span>Publicar tu tienda</span>
+            <span>Registrar tienda</span>
           </a>
         </Link>
       </li>
@@ -46,7 +46,7 @@ const menuGuest = () => {
 const menuAuth = (props) => {
   const { user, userToken, setShowAddressModal, showHeaderAddress } = props;
   const { address } = useSelector(state => state.user);
-  console.log('user data---->', user)
+
   return (
     <Fragment>
       { showHeaderAddress &&
@@ -78,17 +78,6 @@ const menuAuth = (props) => {
             Hola, {user.firstName} <span className="caret" />
           </a>
           <ul className="dropdown-menu">
-            {/* <li>
-              <a
-                data-toggle="collapse"
-                data-target=".navbar-collapse.in"
-                href={`/services/new`}
-                className="btn_nav nav-lbl-principal"
-              >
-                Mi cuenta
-              </a>
-            </li>
-            <li role="separator" className="divider" /> */}
             <li>
               <a
                 data-toggle="collapse"
@@ -110,17 +99,6 @@ const menuAuth = (props) => {
                 Mis compras
               </a>
             </li>
-            {/* <li role="separator" className="divider" /> */}
-            {/* <li>
-              <a
-                data-toggle="collapse"
-                data-target=".navbar-collapse.in"
-                href={`/schedules`}
-                className="btn_nav nav-lbl-principal"
-              >
-                Mi Calendario
-              </a>
-            </li> */}
             <li role="separator" className="divider" />
             <li>
               <a
@@ -134,19 +112,16 @@ const menuAuth = (props) => {
             </li>
           </ul>
         </li>
-        {/* <li className="onlyMobile">
-          <a className="btn-link onlyMobile" href="/menu"><span className="btn btn-primary btn-block">Menu</span></a>
-        </li> */}
         <li>
-          { user.storeId &&
+          { user.store &&
             <a className="btn_navf mobile-hide" href="http://manager.uorder.mx/" target="_blank">
               <span>Administrar mi tienda</span>
             </a>
             }
-            { !user.storeId &&
+            { !user.store &&
             <Link href="/signup-store">
               <a className="btn_navf">
-                <span>Publicar tu tienda</span>
+                <span>Registrar tienda</span>
               </a>
             </Link>
             }
@@ -162,25 +137,13 @@ export default function Header(props) {
         <nav className="navbar navbar-default">
           <div className="fluid-container header-uorder">
             <div className="navbar-header">
-              {/* <button
-                type="button"
-                className="navbar-toggle"
-                data-toggle="collapse"
-                data-target=".navbar-collapse"
-              >
-                <span className="sr-only">Toggle navigation</span>
-                <span className="icon-bar" />
-                <span className="icon-bar" />
-                <span className="icon-bar" />
-              </button> */}
-
               <Link href="/">
                 <a>
-                <img
-                  src="/static/uorder-logo.png"
-                  alt="eathouse"
-                  height="40"
-                />
+                  <img
+                    src="/static/uorder-logo.png"
+                    alt="eathouse"
+                    height="40"
+                  />
                 </a>
               </Link>
 
@@ -283,7 +246,12 @@ export default function Header(props) {
             }
 
             .navbar-location {
-              display: none;
+              position: absolute;
+              top: 48px;
+              width: 100%;
+              left: 15px;
+              background: #FFFFFF;
+              border-bottom: 1px solid #DDD;
             }
 
             .dropdown-menu {

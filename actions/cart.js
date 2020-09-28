@@ -5,11 +5,12 @@ export const CLEAR_ITEMS = 'CLEAR_ITEMS';
 
 import moment from 'moment';
 
-function add(data) {
+function add(data, store) {
   return {
     type: SET_ITEM,
     payload: data,
     date: moment().add(180, 'm').format(),
+    store,
     // storeId,
   }
 }
@@ -36,7 +37,7 @@ function clearItems() {
   }
 }
 
-export const addToCart = (dish, quantity, deliveryDate, productPrice, storeId) => {
+export const addToCart = (dish, quantity, deliveryDate, productPrice, storeId, store) => {
   return (dispatch, getState) => {
     const { data } = getState().cart;
     let isExist = false;
@@ -51,7 +52,8 @@ export const addToCart = (dish, quantity, deliveryDate, productPrice, storeId) =
 
     const { id, name, image } = dish;
     const { price, unidType } = productPrice;
-    const item = { id, name, price, image, quantity, total: Number((Number(price) * quantity).toFixed(2)), availableOn: '04-10-2018', deliveryDate, unidType: unidType, productPriceId: productPrice.id, productPrice };
+    // const item = { id, name, price, image, quantity, total: Number((Number(price) * quantity).toFixed(2)), availableOn: '04-10-2018', deliveryDate, unidType: unidType, productPriceId: productPrice.id, productPrice, storeId: Number(storeId) };
+    const item = { id, name, price, image, quantity, total: Number((Number(price) * quantity).toFixed(2)), deliveryDate, unidType: unidType, productPriceId: productPrice.id, productPrice, storeId: Number(storeId) };
 
     if(isExist) {
       if(quantity === 0) {
@@ -61,7 +63,7 @@ export const addToCart = (dish, quantity, deliveryDate, productPrice, storeId) =
       }
 
     } else {
-      dispatch(add(item));
+      dispatch(add(item, store));
     }
   }
 }

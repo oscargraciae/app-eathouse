@@ -25,7 +25,7 @@ const Home = (props) => {
       params = { lat: address.lat, lng: address.lng };
     }
 
-    const { success, stores } = await api.store.getAll(params);
+    const { stores } = await api.store.getAll(params);
 
     setIsLoading(false);
     setStores(stores);
@@ -41,22 +41,11 @@ const Home = (props) => {
         <section className="Hero onlyWeb">
             <div className="container Hero-Box">
               <div className="">
-                <h1>Aumenta tus pedidos de venta y digitalízate al instante con UORDER. </h1>
-                {/* <h2>Aumenta tus pedidos de venta y digitalízate al instante con UORDER. </h2> */}
+                <h1>Encuentra restaurantes cerca de ti</h1>
               </div>
             </div>
             <div className="HeroMobile-image"></div>
         </section>
-
-        {/* <section className="how-it-works background-primary">
-          <div className="container">
-              <div className="row ">
-                <div className="col-md-12">
-                  <div className="about-us-title">UORDER es la plataforma de Ecommerce especialmente diseñada para negocios con logística propia que desean ofrecerle a sus clientes una nueva alternativa para crear Pedidos de Venta</div>
-                </div>
-              </div>
-            </div>
-        </section> */}
 
         <div className="container container-home">
           <div>
@@ -71,9 +60,6 @@ const Home = (props) => {
               ))}
             </div>
           }
-          {/* <div className="text-center">
-            <a className="btn btn-default btn-large btn-block">Ver más</a>
-          </div> */}
         </div>
 
         <section className="container-business-info">
@@ -87,12 +73,8 @@ const Home = (props) => {
                     ¿Tus clientes te solicitan productos de manera recurrente (2 o más veces por mes)? <br />
 
                     ¿Cuentas con inventario/productos para ser entregados de manera inmediata o en el corto plazo? <br/><br/>
-                    {/* <a className="btn btn-primary btn-large">Registra tú negocio</a> */}
                     <strong>Contactanos a hola@uorder.mx</strong>
                   </div>
-
-
-                  {/* <p className="about-us-subtitle">Nuestro principal objetivo es llenarte el estomago y brindarte una buena experiencia.</p> */}
                 </div>
               </div>
             </div>
@@ -126,7 +108,7 @@ const Home = (props) => {
           }
 
           .Hero {
-            height: 330px;
+            height: 200px;
             background: #FFFFFF;
 
             display: flex;

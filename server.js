@@ -87,7 +87,7 @@ app.prepare()
   });
 
   // server.listen(process.env.PORT || 3000);
-  const port = process.env.PORT || 3003;
+  const port = process.env.PORT || 3004;
 
   server.listen(port, () => {
     console.log(`Server listen on port: ${port}`);

@@ -5,10 +5,7 @@ import {useSelector} from 'react-redux';
 
 // import components
 import Header from './Header';
-import Footer from './Footer';
-import ModalGeneralAddress from '../general/ModalGeneralAddress';
 import ModalAddress from '../general/ModalAddress';
-import Meta from '../general/Meta';
 
 const Layout = ({ children, loggedUser, isAuthenticated, title = 'UORDER', user, tokenData, showHeaderAddress = false }) => {
   const [showAddressModal, setShowAddressModal] = useState(false);
@@ -19,7 +16,6 @@ const Layout = ({ children, loggedUser, isAuthenticated, title = 'UORDER', user,
   const { address } = useSelector(state => state.user);
 
   const hideModal = () => {
-    console.log("HIDE MODAL");
     setShowAddressModal(false);
   }
 
@@ -33,7 +29,6 @@ const Layout = ({ children, loggedUser, isAuthenticated, title = 'UORDER', user,
     <div id="layout" className="layout">
       <Head>
         <title>{ title }</title>
-        {/* <Meta /> */}
       </Head>
 
       <Header
@@ -46,7 +41,7 @@ const Layout = ({ children, loggedUser, isAuthenticated, title = 'UORDER', user,
       />
 
       {/* { isAuthenticated && <ModalGeneralAddress show={!user.withAddress} /> } */}
-      { isAuthenticated && <ModalAddress show={!user.withAddress || showAddressModal} hide={!showAddressModal} hideModal={hideModal} /> }
+      { isAuthenticated && <ModalAddress isClosable={Boolean(address)} show={!address || showAddressModal} hide={!showAddressModal} hideModal={hideModal} /> }
       <div className="container-margin-top">
         { children }
       </div>

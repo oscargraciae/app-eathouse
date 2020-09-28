@@ -11,7 +11,7 @@ function TableOrders(props) {
       <thead>
         <tr>
           <th>#Orden</th>
-          <th className="mobile-hide">Dirección</th>
+          <th className="mobile-hide">Tienda</th>
           <th>Fecha de compra</th>
           {/* <th>Estatus</th> */}
           <th>Total</th>
@@ -29,7 +29,7 @@ function TableOrders(props) {
                   </div>
                 </div>
               </td>
-              <td className="mobile-hide">{item.user_address.addressMap}</td>
+              <td className="mobile-hide">{item.store.name}</td>
               <td>{formatDate(item.createdAt)}</td>
               {/* <td><div className="category">Pendiente</div></td> */}
               <td>${moneyThousand(item.total)}MX</td>

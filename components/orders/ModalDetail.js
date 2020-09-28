@@ -15,6 +15,7 @@ export default (props) => {
           <Modal.Title>Orden #{order.info.id} <br /><span className="spanMessage">Fecha de compra:  {formatDate(order.info.createdAt).toString()}</span></Modal.Title>
         </Modal.Header>
         <Modal.Body className="modal-order-detail">
+          <h4>{order.info.store.name}</h4>
           { order.items.map((item, index) => {
             return (
               <OrderDetailItem key={item.id} {...item} />

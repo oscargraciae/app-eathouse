@@ -34,6 +34,7 @@ class Checkout extends React.Component {
 
   state = {
     step: 1,
+    store: {},
     creditCards: null,
     showModalCreditCard: false,
     confirmation: false,
@@ -58,11 +59,12 @@ class Checkout extends React.Component {
 
   async initialFetch() {
     const { address } = this.props.userState;
-    const [creditCards, shippings] = await Promise.all([
+    const [creditCards, shippings, store] = await Promise.all([
       api.creditCard.getAll(),
       api.shipping.getAll(this.props.pageProps.id),
+      api.store.get(this.props.pageProps.id),
     ]);
-    this.setState({ userAddressId: address.id, creditCards, loadingPage: false, shippings }, () => {
+    this.setState({ store, userAddressId: address.id, creditCards, loadingPage: false, shippings }, () => {
       if (!shippings || shippings.length === 0) {
         this.setState({ shippingId: -1, shippingSelected: { id: 0 } });
       }
@@ -83,7 +85,6 @@ class Checkout extends React.Component {
   // Metodo que envía la orden al API
   sendOrder = async () => {
     const { methodPaymentId } = this.state;
-    console.log('methodPaymentId------->', methodPaymentId)
 
     this.setState({ isSendingOrder: true });
 
@@ -173,7 +174,7 @@ class Checkout extends React.Component {
       paymentMethodId: 2,
       paymentChange: 0,
       isDiscount: isDiscount,
-      storeId: this.props.id,
+      storeId: this.props.pageProps.id,
       shippingId: shippingId === -1 ? null : shippingId,
       orderDetails: data,
     }
@@ -202,6 +203,7 @@ class Checkout extends React.Component {
     //     quantityTotal = quantityTotal + item.quantity;
     //   });
     // }
+
     return (
       <Layout {...this.props}>
         { loadingPage ? <LoadingSpinner /> :
@@ -212,6 +214,17 @@ class Checkout extends React.Component {
             <div className="container">
               <div className="checkout">
                 <div className="address">
+
+                  <div className="container-step container-box">
+                    <div className="title">Tienda</div>
+                    <div className='row address-item address-item-select'>
+                      <div className="col-md-12 address-content">
+                        <div className="address-body">
+                          <div className="title-address"><h3>{this.state.store.name}</h3></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
                   <div className="container-step container-box">
                     <div className="title">Dirección de envío</div>
