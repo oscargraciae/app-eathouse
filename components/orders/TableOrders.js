@@ -6,6 +6,7 @@ import { formatDate } from '../../utils/formatDate';
 
 function TableOrders(props) {
   const { data } = props;
+  console.log('Data Store', data);
   return (
     <table className="table">
       <thead>

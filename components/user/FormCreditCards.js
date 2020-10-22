@@ -100,8 +100,8 @@ const CheckoutForm = props => {
   );
 };
 
-// const stripePromise = loadStripe('pk_test_qOTjYTWzFfowD4Gr7ebCewSU004Gkh7dAp');
-const stripePromise = loadStripe('pk_live_j1cDaf12GfRGd4b8Hyw2ZCdr00PEMXuPDS');
+const stripePromise = loadStripe('pk_test_qOTjYTWzFfowD4Gr7ebCewSU004Gkh7dAp');
+// const stripePromise = loadStripe('pk_live_j1cDaf12GfRGd4b8Hyw2ZCdr00PEMXuPDS');
 
 const FormCreditCard = (props) => {
   return (
