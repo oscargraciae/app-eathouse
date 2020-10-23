@@ -46,7 +46,8 @@ class PasswordReset extends React.Component {
   }
 
   async initialFetch() {
-    const { t, id } = this.props.query;
+    console.log('this.props.query', this.props);
+    const { t, id } = this.props.pageProps.query;
     const { userId, isValid, message } = await api.user.validationToken(t, id);
     this.setState({ userId, token: t, isValid, errorsServer: message });
   }
@@ -85,7 +86,7 @@ class PasswordReset extends React.Component {
           <div className="container-login">
             <h1>Recuperar contraseña</h1>
             { !isValid && <AlertBox message={this.state.errorsServer} /> }
-            { isValid && 
+            { isValid &&
             <form className="signupForm" onSubmit={this.onSubmit}>
               { this.state.messageError && <div className="alert alert-danger">{ this.state.messageError }</div> }
               <InputText
