@@ -6,7 +6,8 @@ import axios from 'axios';
 // const baseUrl = 'https://api.gigbox.mx';
 
 // const URL_BASE = 'http://localhost:3001/api';
-const URL_BASE = 'https://api-ecommerce.azurewebsites.net/api';
+// const URL_BASE = 'https://api-ecommerce.azurewebsites.net/api';
+const URL_BASE = 'https://as-api-uorder-qa.azurewebsites.net/api';
 
 // axios.defaults.baseURL = 'https://api-ecommerce.azurewebsites.net/api/v1';
 axios.defaults.baseURL = `${URL_BASE}/v1`;
