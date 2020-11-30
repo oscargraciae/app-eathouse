@@ -114,13 +114,7 @@ function Cart(props) {
 
         .sidecart {
           box-sizing: border-box;
-          display: -webkit-box;
-          display: -webkit-flex;
-          display: -ms-flexbox;
           display: flex;
-          -webkit-box-flex: 0;
-          -webkit-flex: 0 1 auto;
-          -ms-flex: 0 1 auto;
           flex: 0 1 auto;
           -webkit-box-orient: vertical;
           -webkit-box-direction: normal;
@@ -129,11 +123,11 @@ function Cart(props) {
           flex-direction: column;
           position: fixed;
           width: 300px;
-          height: 95%;
-          top: 52px;
+          height: 94%;
+          top: 72px;
           right: 0px;
           background: white;
-          z-index: 21;
+          z-index: 0;
           border-left: 1px solid rgba(217,219,224,0.5);
         }
 

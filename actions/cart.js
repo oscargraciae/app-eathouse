@@ -44,7 +44,7 @@ export const addToCart = (dish, quantity, deliveryDate, productPrice, storeId, s
     let index;
 
     data.map((item, i) => {
-      if(item.id === dish.id && item.deliveryDate === deliveryDate && item.unidType.id === productPrice.unidType.id) {
+      if(item.id === dish.id && item.unidType.id === productPrice.unidType.id) {
         isExist = true;
         index = i;
       }
@@ -53,7 +53,7 @@ export const addToCart = (dish, quantity, deliveryDate, productPrice, storeId, s
     const { id, name, image } = dish;
     const { price, unidType } = productPrice;
     // const item = { id, name, price, image, quantity, total: Number((Number(price) * quantity).toFixed(2)), availableOn: '04-10-2018', deliveryDate, unidType: unidType, productPriceId: productPrice.id, productPrice, storeId: Number(storeId) };
-    const item = { id, name, price, image, quantity, total: Number((Number(price) * quantity).toFixed(2)), deliveryDate, unidType: unidType, productPriceId: productPrice.id, productPrice, storeId: Number(storeId) };
+    const item = { id, name, price, image, quantity, total: Number((Number(price) * quantity).toFixed(2)), deliveryDate: '2020/11/25', unidType: unidType, productPriceId: productPrice.id, productPrice, storeId: Number(storeId) };
 
     if(isExist) {
       if(quantity === 0) {

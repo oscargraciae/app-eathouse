@@ -1,4 +1,5 @@
 // import libraries
+import { Text } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
@@ -9,32 +10,31 @@ import { moneyThousand } from '../../utils/formatNumber';
 import ButtonBlock from '../general/ButtonBlock';
 import CartItem from '../general/CartItem';
 
-const CartDetail = props => {
+const CartDetail = (props) => {
   const [shippingSelected, setShippingSelected] = useState(null);
   const [totalPrice, setTotalPrice] = useState(0);
   const [subtotalPrice, setSubtotalPrice] = useState(0);
 
   let total = 0;
   let subtotal = 0;
-  let discount = 0;
+  const discount = 0;
   let quantityTotal = 0;
   let shippingPrice = 0;
 
   useEffect(() => {
     props.cart.data.map((item, i) => {
-      subtotal = subtotal + item.total;
+      subtotal += item.total;
     });
 
     if (props.cart.data.length > 0) {
       props.cart.data.map((item, i) => {
-        quantityTotal = quantityTotal + item.quantity;
+        quantityTotal += item.quantity;
       });
     }
 
     if (props.shipping && props.shipping.id !== 0) {
       setShippingSelected(props.shipping);
-        shippingPrice = Number(props.shipping.price);
-
+      shippingPrice = Number(props.shipping.price);
     }
     total = (subtotal - discount) + shippingPrice;
     setTotalPrice(total);
@@ -42,17 +42,17 @@ const CartDetail = props => {
   }, [props]);
 
   const addItem = (product) => {
-    const productToCart = props.cart.data.filter((item) => item.id === product.id && item.deliveryDate === product.deliveryDate && item.unidType.id === product.unidType.id,)[0];
+    const productToCart = props.cart.data.filter((item) => item.id === product.id && item.deliveryDate === product.deliveryDate && item.unidType.id === product.unidType.id)[0];
     props.addToCart(product, productToCart.quantity + 1, product.deliveryDate, product.productPrice); // Producto, cantidad, (precio de productio y tipo de unidad)
-  }
+  };
 
   const removeItem = (product) => {
-    const productToCart = props.cart.data.filter((item) => item.id === product.id && item.deliveryDate === product.deliveryDate && item.unidType.id === product.unidType.id,)[0];
+    const productToCart = props.cart.data.filter((item) => item.id === product.id && item.deliveryDate === product.deliveryDate && item.unidType.id === product.unidType.id)[0];
     props.addToCart(product, productToCart.quantity - 1, product.deliveryDate, product.productPrice); // Producto, cantidad, (precio de productio y tipo de unidad)
-  }
+  };
 
   if (props.cart.data.length === 0) {
-    return null
+    return null;
   }
 
   return (
@@ -63,11 +63,9 @@ const CartDetail = props => {
       <div className="sidecart-body">
         <div className="items-group">
           <ul className="items">
-            { props.cart.data.map((item, i) => {
-              return (
-                <CartItem key={i} item={item} addItem={addItem} removeItem={removeItem} />
-              )
-            }) }
+            { props.cart.data.map((item, i) => (
+              <CartItem key={i} item={item} addItem={addItem} removeItem={removeItem} />
+            )) }
 
           </ul>
         </div>
@@ -75,23 +73,35 @@ const CartDetail = props => {
       <div className="sidecart-footer">
         <dl className="estimated-total">
           <div className="line-item">
-            <dt>Subtotal</dt><dd>${moneyThousand(subtotalPrice)}</dd>
+            <dt>Subtotal</dt>
+            <dd>
+              $
+              {moneyThousand(subtotalPrice)}
+            </dd>
           </div>
           <div className="line-item">
             <dt>Gastos de envío</dt>
-            { !shippingSelected ?
-              <dd>-</dd> :
-              <dd>${shippingSelected.price}</dd>
-            }
+            { !shippingSelected
+              ? <dd>-</dd>
+              : (
+                <dd>
+                  $
+                  {shippingSelected.price}
+                </dd>
+              )}
           </div>
           {/* <div className="line-item">
             <dt>Descuento</dt><dd>-${moneyThousand(discount)}</dd>
           </div> */}
           <div className="line-item">
-            <dt>Total</dt><dd>${moneyThousand(totalPrice)}</dd>
+            <dt>Total</dt>
+            <dd>
+              $
+              {moneyThousand(totalPrice)}
+            </dd>
           </div>
         </dl>
-        <br/>
+        <br />
         {/* <a className="btn btn-primary btn-large btn-block" onClick={props.sendOrder}>Ordenar</a> */}
         <ButtonBlock
           text="Ordenar"
@@ -100,8 +110,10 @@ const CartDetail = props => {
           disabled={props.disabled}
           click={props.sendOrder}
         />
+        {/* <Text>Seguro y encriptado</Text> */}
       </div>
-      <style jsx>{`
+      <style jsx>
+        {`
         .fluid-container {
           padding-left: 1.8rem;
           padding-right: 1.8rem;
@@ -190,10 +202,11 @@ const CartDetail = props => {
             border-left: 1px solid rgba(217,219,224,0.5);
           }
         }
-      `}</style>
+      `}
+      </style>
     </div>
-  )
-}
+  );
+};
 
 // const mapStateToProps = (state) => {
 //   return {

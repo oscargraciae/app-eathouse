@@ -3,7 +3,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Router from 'next/router';
 
-
 // import local libraries
 // import securePage from '../hocs/page';
 import api from '../api';
@@ -16,9 +15,10 @@ import redirect from '../utils/redirect';
 import Layout from '../components/common/Layout';
 import CartDetail from '../components/checkout/CartDetail';
 import ModalCreditCard from '../components/general/ModalCreditCard';
-import Confirmation from '../components/checkout/Confirmation';
+
 import LoadingSpinner from '../components/common/LoadingSpinner';
-import AlertModalApp from '../components/general/AlertModalApp';
+import { Box, Select, useToast } from '@chakra-ui/react';
+import ModalAlert from '../components/checkout/ModalAlert';
 
 class Checkout extends React.Component {
   static async getInitialProps(context) {
@@ -32,25 +32,29 @@ class Checkout extends React.Component {
     };
   }
 
-  state = {
-    step: 1,
-    store: {},
-    creditCards: null,
-    showModalCreditCard: false,
-    confirmation: false,
-    creditCardId: 0,
-    subtotal: 0,
-    total: 0,
-    errors: {},
-    loadingPage: true,
-    paymentError: null,
-    alertShow: false,
-    isSendingOrder: false,
-    methodPaymentId: 1,
-    paymentChange: 0,
-    shippingId: null,
-    shippingSelected: null,
-    shippings: [],
+  constructor() {
+    super();
+    this.state = {
+      store: {},
+      creditCards: null,
+      showModalCreditCard: false,
+      showModalAlert: false,
+      paymentError: null,
+      creditCardId: 0,
+      subtotal: 0,
+      total: 0,
+      errors: {},
+
+      loadingPage: true,
+
+      // alertShow: false,
+      isSendingOrder: false,
+      methodPaymentId: 1,
+      paymentChange: 0,
+      shippingId: null,
+      shippingSelected: null,
+      shippings: [],
+    }
   }
 
   componentDidMount() {
@@ -69,17 +73,6 @@ class Checkout extends React.Component {
         this.setState({ shippingId: -1, shippingSelected: { id: 0 } });
       }
     });
-
-
-  }
-
-  showCreditCardModal = () => {
-    this.setState({ showModalCreditCard: !this.state.showModalCreditCard });
-  }
-
-  responseModal = async () => {
-    const address = await api.user.getAddress();
-    this.setState({ showAddress: false, address });
   }
 
   // Metodo que envía la orden al API
@@ -108,10 +101,6 @@ class Checkout extends React.Component {
     });
   }
 
-  alertClick = () => {
-    this.setState({ alertShow: false });
-  }
-
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -127,9 +116,6 @@ class Checkout extends React.Component {
         quantityTotal = quantityTotal + item.quantity;
       });
 
-      // if(quantityTotal >= 5 || this.props.user.bussinesId) {
-      //   isDiscount = true;
-      // }
     }
     const order = {
       userAddressId,
@@ -144,11 +130,11 @@ class Checkout extends React.Component {
     }
     const response = await api.orders.create(order);
     if(response.success) {
-      this.setState({ confirmation: true, isSendingOrder: false }, () => {
+      this.setState({ paymentError: null,  isSuccess: true, showModalAlert: true, isSendingOrder: false }, () => {
         this.props.clearCart();
       });
     } else {
-      this.setState({ paymentError: response.message, alertShow: true, isSendingOrder: false });
+      this.setState({ isSuccess: false, showModalAlert: true, paymentError: response.message, isSendingOrder: false });
     }
   }
 
@@ -162,10 +148,6 @@ class Checkout extends React.Component {
       data.map((item) => {
         quantityTotal = quantityTotal + item.quantity;
       });
-
-      // if(quantityTotal >= 5 || this.props.user.bussinesId) {
-      //   isDiscount = true;
-      // }
     }
     const order = {
       userAddressId,
@@ -197,21 +179,25 @@ class Checkout extends React.Component {
     const { creditCards, loadingPage, shippings, shippingId } = this.state;
     const { userState } = this.props;
     const { address } = userState; // Dirección del estado en REDUX
-    // let quantityTotal = 0;
-    // if (this.props.cart.data.length > 0) {
-    //   this.props.cart.data.map((item, i) => {
-    //     quantityTotal = quantityTotal + item.quantity;
-    //   });
-    // }
 
     return (
       <Layout {...this.props}>
         { loadingPage ? <LoadingSpinner /> :
-          <div>
-            <ModalCreditCard show={this.state.showModalCreditCard} onToggle={this.showCreditCardModal} afterSave={this.afterSave} />
-            <Confirmation show={this.state.confirmation} confirm={this.confirm} />
-            { this.state.paymentError && <AlertModalApp show={this.state.alertShow} title="Oops! :(" description={this.state.paymentError} onClick={this.alertClick} /> }
-            <div className="container">
+          <Box mx="auto" maxWidth='1140px'>
+            <ModalCreditCard
+              show={this.state.showModalCreditCard}
+              onToggle={() => this.setState({ showModalCreditCard: !this.state.showModalCreditCard })}
+              afterSave={this.afterSave}
+            />
+            <ModalAlert
+              show={this.state.showModalAlert}
+              confirm={this.confirm}
+              onClose={() => this.setState({ showModalAlert: false })}
+              error={this.state.paymentError}
+            />
+            {/* <Confirmation show={this.state.confirmation} confirm={this.confirm} /> */}
+            {/* { this.state.paymentError && <AlertModalApp show={this.state.paymentError} title="Oops! :(" description={this.state.paymentError} onClick={this.alertClick} /> } */}
+            <Box>
               <div className="checkout">
                 <div className="address">
 
@@ -239,32 +225,34 @@ class Checkout extends React.Component {
                   </div>
 
                   <div className="container-step container-box">
-                    <div className="title">Metodo de pago</div>
+                    <div className="title">Método de pago</div>
                     <div className="method-controls">
                       <div className={this.state.methodPaymentId == 1 ? 'method-controls-btn method-controls-btn-selected' : 'method-controls-btn'} onClick={() => this.setState({ methodPaymentId: 1 })}>
-                        {/* <GoCreditCard /> */}
+                        {/* <FiCreditCard /> */}
                         <span>Tarjeta de crédito/debito</span>
                       </div>
                       <div className={this.state.methodPaymentId == 2 ? 'method-controls-btn method-controls-btn-selected' : 'method-controls-btn'} onClick={() => this.setState({ methodPaymentId: 2 })}>
-                        {/* <GoCreditCard /> */}
+                      {/* <FiCreditCard /> */}
                         <span>Efectivo</span>
                       </div>
-                      {/* <div className={this.state.methodPaymentId == 3 ? 'method-controls-btn method-controls-btn-selected' : 'method-controls-btn'} onClick={() => this.setState({ methodPaymentId: 3 })}>
-                        <span>Tranferencia</span>
-                      </div> */}
                     </div>
                     { this.state.methodPaymentId == 1 &&
                       <div className="form">
                         { creditCards.length > 0 &&
-                          <select className="form-control input-lg" name="creditCardId" onChange={this.onChange} value={this.state.creditCardId}>
+                            <Select size='lg' name="creditCardId" onChange={this.onChange} value={this.state.creditCardId}>
                             <option>Seleccionar método de pago</option>
                             { creditCards.map((item) => (
                               <option value={item.id} key={item.id}>{item.last4} - {item.brand}</option>
                             )) }
-                          </select>
+                          </Select>
                         }
                         <br />
-                        <a href="#" onClick={this.showCreditCardModal} className="btn-link">+ Agregar otra tarjeta de Crédito/Débito</a>
+                        <a
+                        href="#"
+                        onClick={() => this.setState({ showModalCreditCard: !this.state.showModalCreditCard })}
+                        className="btn-link">
+                          + Agregar otra tarjeta de Crédito/Débito
+                        </a>
                       </div>
                     }
                   </div>
@@ -306,8 +294,8 @@ class Checkout extends React.Component {
                   addToCart={this.props.addToCart}
                 />
               </div>
-            </div>
-          </div>
+            </Box>
+          </Box>
         }
         <style jsx>{`
           .checkout {

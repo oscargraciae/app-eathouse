@@ -10,6 +10,7 @@ import api from '../../api';
 // import components
 import InputText from '../general/InputTextIdSmall';
 import ButtonBlock from '../general/ButtonBlock';
+import { Text } from '@chakra-ui/react';
 
 class  AddressForm extends React.Component {
 
@@ -141,7 +142,7 @@ class  AddressForm extends React.Component {
         <form className="signupForm" onSubmit={this.onSubmit} autoComplete="off" >
           <div className="row">
             <div className="col-md-12">
-              <label>Dirección</label>
+              <Text fontWeight='bold' fontSize='sm'>Nueva dirección</Text>
               <Geosuggest
                 placeholder="Escribe correctamente la dirección (Colonia, Ciudad, Estado)"
                 onSuggestSelect={this.onSuggestSelect}

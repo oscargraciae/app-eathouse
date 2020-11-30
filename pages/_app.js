@@ -1,46 +1,50 @@
-import { useEffect, useState } from 'react';
-import App from 'next/app'
-import {Provider} from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import App from 'next/app';
+import { Provider } from 'react-redux';
 import decode from 'jwt-decode';
 import axios from 'axios';
 import { persistStore } from 'redux-persist';
+import { CSSReset, ThemeProvider } from '@chakra-ui/react';
 
+import Head from 'next/head';
 import store from '../redux/store';
 
 import { getTokenFromCookie, getTokenFromLocalStorage } from '../utils/auth';
 import api from '../api';
 import LoadingSpinner from '../components/common/LoadingSpinner';
-import Head from 'next/head';
 import Meta from '../components/general/Meta';
+import theme from '../config/theme';
 
-
-function MyApp({ Component, pageProps  }) {
+function MyApp({ Component, pageProps }) {
   const [ready, setReady] = useState(false);
   const token = pageProps.loggedUser;
-  if(token) {
-    axios.defaults.headers.common['Authorization'] =  `JWT ${token}`;
+  if (token) {
+    axios.defaults.headers.common.Authorization = `JWT ${token}`;
   }
 
   useEffect(() => {
     persistStore(
       store,
       {
-        whitelist: [ 'cart', 'user' ],
+        whitelist: ['cart', 'user'],
       },
-      () => setReady(true)
+      () => setReady(true),
     );
   });
 
-  if (!ready) return <LoadingSpinner />
+  if (!ready) return <LoadingSpinner />;
 
   return (
     <Provider store={store}>
-      <Head>
-        <Meta />
-      </Head>
-      <Component {...pageProps} />
+      <ThemeProvider theme={theme}>
+        <CSSReset />
+        <Head>
+          <Meta />
+        </Head>
+        <Component {...pageProps} />
+      </ThemeProvider>
     </Provider>
-  )
+  );
 }
 
 MyApp.getInitialProps = async (appContext) => {
@@ -59,7 +63,7 @@ MyApp.getInitialProps = async (appContext) => {
     // delete axios.defaults.headers.common['Authorization'];
     // redirect('/', context);
   } else {
-    axios.defaults.headers.common['Authorization'] = `JWT ${token}`;
+    axios.defaults.headers.common.Authorization = `JWT ${token}`;
 
     tokenDecode = decode(token);
     user = await api.user.get(tokenDecode.id);
@@ -73,9 +77,9 @@ MyApp.getInitialProps = async (appContext) => {
       isAuthenticated: !!loggedUser,
       tokenData: tokenDecode,
       user,
-    }
+    },
 
   };
-}
+};
 
-export default MyApp
+export default MyApp;

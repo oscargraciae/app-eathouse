@@ -1,153 +1,138 @@
-import React from 'react';
-import { Modal } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalBody,
+  ModalHeader,
+  Text,
+  Button,
+  Stack,
+  HStack,
+  Spinner,
+  Flex,
+  ModalCloseButton,
+  Divider,
+  StackDivider,
+} from '@chakra-ui/react';
+import { AiOutlinePhone } from 'react-icons/ai';
+import { GrLocation } from 'react-icons/gr';
 
+// Local libraries
 import { moneyThousand } from '../../utils/formatNumber';
 import { formatDate } from '../../utils/formatDate';
+import api from '../../api';
 
+// Local components
 import OrderDetailItem from './OrderDetailItem';
 
-export default (props) => {
-  const { order } = props;
+const ModalDetail = ({ show, orderId, onToggle }) => {
+  const [order, setOrder] = useState({});
+  const [orderProducts, setOrderProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const initialFetch = async () => {
+    setIsLoading(true);
+    const data = await api.orders.getOrder(orderId);
+    const dataProducts = await api.orders.getDetail(orderId);
+    console.log("dataProducts", dataProducts);
+    setOrder(data);
+    setOrderProducts(dataProducts);
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    initialFetch();
+  }, [orderId]);
   return (
-    <div>
-      <Modal show={props.show}>
-        <Modal.Header>
-          <Modal.Title>Orden #{order.info.id} <br /><span className="spanMessage">Fecha de compra:  {formatDate(order.info.createdAt).toString()}</span></Modal.Title>
-        </Modal.Header>
-        <Modal.Body className="modal-order-detail">
-          <h4>{order.info.store.name}</h4>
-          { order.items.map((item, index) => {
-            return (
-              <OrderDetailItem key={item.id} {...item} />
-            )
-          }) }
-          <div className="sidecart-footer">
-            <dl className="estimated-total">
-              <div className="line-item">
-                <dt className="lbl-total">Subtotal</dt><dd className="lbl-total">${moneyThousand(order.info.subtotal)} MX</dd>
-              </div>
-              <div className="line-item">
-                <dt className="lbl-total">Envío</dt><dd className="lbl-total">${moneyThousand(order.info.shippingPrice)} MX</dd>
-              </div>
-              <div className="line-item">
-                <dt className="lbl-total">Total</dt><dd className="lbl-total">${moneyThousand(order.info.total)} MX</dd>
-              </div>
-            </dl>
-            <a onClick={props.onToggle} className="btn btn-primary btn-large btn-block">Listo</a>
-          </div>
-        </Modal.Body>
-      </Modal>
-      <style>{`
-        .modal-order-detail {
-          padding: 20px 40px;
-        }
+    <Modal isOpen={show} size="lg" onClose={onToggle}>
+      <ModalOverlay />
+      { isLoading ? (
+        <ModalContent>
+          <ModalBody>
+            <Flex align="center" justify="center" minHeight="400px" padding={8}>
+              <Spinner color="brand.400" size="lg" />
+            </Flex>
+          </ModalBody>
 
-        .spanMessage{
-          font-weight: normal !important;
-          color: #767676 !important;
-          font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
-          margin: 0px !important;
-          word-wrap: break-word !important;
-          font-size: 12px !important;
-          line-height: 16px !important;
-          letter-spacing: 0.4px !important;
-          padding-top: 10px !important;
-          padding-bottom: 0px !important;
-          display: flex;
-          flex: 1;
-          justify-content: left;
-        }
+        </ModalContent>
+      )
+        : (
+          <ModalContent>
+            <ModalHeader>
+              <Text fontSize="lg" fontWeight="bold">
+                Orden #
+                {order.id}
+                {' '}
+              </Text>
+              <Text color="gray.600" fontSize="sm" fontWeight="semibold">
+                Fecha de compra:
+                {' '}
+                {formatDate(order.createdAt).toString()}
+              </Text>
+              <ModalCloseButton />
+            </ModalHeader>
+            <ModalBody className="modal-order-detail">
+              <Stack spacing={1}>
+                <Text fontSize="lg" fontWeight="bold">
+                  {order.store.name}
+                </Text>
+                <Stack isInline fontSize="xs" align="center">
+                  <GrLocation />
+                  <Text>
+                    {order.store.store_address.addressMap}
+                  </Text>
+                </Stack>
+                <Stack isInline fontSize="xs" align="center">
+                  <AiOutlinePhone />
+                  <Text fontSize="xs">
+                    {order.store.store_address.phone}
+                  </Text>
+                </Stack>
+              </Stack>
+              <Divider borderColor="gray.200" my={4} />
+              <Stack divider={<StackDivider borderColor="gray.200" />}>
+                { orderProducts.map((item) => (
+                  <OrderDetailItem key={item.id} {...item} />
+                )) }
+                <Divider borderColor="gray.200" my={4} />
+              </Stack>
+              <Stack my={3} fontSize="md" fontWeight="bold">
+                <HStack justify="space-between">
+                  <Text fontSize="md" fontWeight="bold">Subtotal</Text>
+                  <Text>
+                    $
+                    {moneyThousand(order.subtotal)}
+                    {' '}
+                    MX
+                  </Text>
+                </HStack>
+                <HStack justify="space-between">
+                  <Text fontSize="md" fontWeight="bold">Envío</Text>
+                  <Text>
+                    $
+                    {moneyThousand(order.shippingPrice)}
+                    {' '}
+                    MX
+                  </Text>
+                </HStack>
+                <HStack justify="space-between" fontSize="md" fontWeight="bold">
+                  <Text fontSize="md" fontWeight="bold">Total</Text>
+                  <Text>
+                    $
+                    {moneyThousand(order.total)}
+                    {' '}
+                    MX
+                  </Text>
+                </HStack>
+              </Stack>
 
-        .sidecart {
-          box-sizing: border-box;
-          display: -webkit-box;
-          display: -webkit-flex;
-          display: -ms-flexbox;
-          display: flex;
-          -webkit-box-flex: 0;
-          -webkit-flex: 0 1 auto;
-          -ms-flex: 0 1 auto;
-          flex: 0 1 auto;
-          -webkit-box-orient: vertical;
-          -webkit-box-direction: normal;
-          -webkit-flex-direction: column;
-          -ms-flex-direction: column;
-          flex-direction: column;
-          position: fixed;
-          width: 300px;
-          height: 95%;
-          top: 52px;
-          right: 0px;
-          background: white;
-          z-index: 21;
-          border-left: 1px solid rgba(217,219,224,0.5);
-        }
+              <Button onClick={onToggle} bg="brand.400" color="#FFF" isFullWidth>Listo</Button>
+            </ModalBody>
+          </ModalContent>
+        )}
+    </Modal>
+  );
+};
 
-        .sidecart-header {
-          box-sizing: border-box;
-          display: -webkit-box;
-          display: -webkit-flex;
-          display: -ms-flexbox;
-          display: flex;
-          -webkit-box-flex: 0;
-          -webkit-flex: 0 1 auto;
-          -ms-flex: 0 1 auto;
-          flex: 0 1 auto;
-          border-bottom: 1px solid rgba(217,219,224,0.5);
-          margin: 17px 22px 0;
-          padding-bottom: 22px;
-          padding-top: 3px;
-        }
-
-        .sidecart-heading {
-          font-weight: bold;
-          font-size: 18px;
-        }
-
-        .sidecart-body {
-          height: 100%;
-          overflow-y: auto;
-          overflow-x: hidden;
-          padding: 22px;
-        }
-
-        .sidecart-footer {
-          padding: 15px 0px;
-          background: white;
-        }
-
-        .estimated-total {
-          font-family: "BentonSans", Helvetica, Arial, sans-serif;
-          font-weight: 600;
-          font-style: normal;
-          letter-spacing: 0.5px;
-          font-size: 14px;
-          font-weight: normal;
-          line-height: 1;
-          letter-spacing: 1px;
-          color: #42413E;
-          margin-bottom: 20px;
-        }
-
-        .line-item {
-          display: -ms-flexbox;
-          display: -webkit-flex;
-          display: flex;
-          -webkit-flex-direction: row;
-          -ms-flex-direction: row;
-          flex-direction: row;
-          -ms-justify-content: space-between;
-          -ms-flex-pack: justify;
-          -ms-flex-line-pack: center;
-          -webkit-justify-content: space-between;
-          justify-content: space-between;
-          margin-bottom: 12px;
-        }
-
-        .lbl-total {
-          font-size: 16px;
-        }
-      `}</style>
-    </div>
-  )
-}
+export default ModalDetail;

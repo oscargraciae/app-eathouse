@@ -46,7 +46,8 @@ app.prepare()
   });
 
   server.get('/store/:name/:id', (req, res) => {
-    return app.render(req, res, '/store', { id: req.params.id });
+    // return app.render(req, res, '/store', { id: req.params.id });
+    return app.render(req, res, '/store-profile', { id: req.params.id });
   });
 
   server.get('/menu-public', (req, res) => {
@@ -79,6 +80,10 @@ app.prepare()
 
   server.get('/map-available', (req, res) => {
     return app.render(req, res, '/mapAvailable');
+  });
+
+  server.get('/active', (req, res) => {
+    return app.render(req, res, '/active');
   });
 
 

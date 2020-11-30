@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Active from './pages/active';
 // import fetch from 'isomorphic-unfetch';
 
 // const baseUrl = 'http://localhost:3001';
@@ -7,39 +8,51 @@ import axios from 'axios';
 
 // const URL_BASE = 'http://localhost:3001/api';
 // const URL_BASE = 'https://api-ecommerce.azurewebsites.net/api';
-// const URL_BASE = 'https://as-api-uorder-qa.azurewebsites.net/api';
-const URL_BASE = 'https://as-api-uorder-prod.azurewebsites.net/api';
+const URL_BASE = 'https://as-api-uorder-qa.azurewebsites.net/api';
+// const URL_BASE = 'https://as-api-uorder-prod.azurewebsites.net/api';
 
 // axios.defaults.baseURL = 'https://api-ecommerce.azurewebsites.net/api/v1';
 axios.defaults.baseURL = `${URL_BASE}/v1`;
 // axios.defaults.baseURL = 'https://api.eathouse.mx/api/v1';
 // axios.defaults.baseURL = 'https://api-eathouse-cpefohxxee.now.sh/api/v1';
 
-
 const api = {
   user: {
     async authentication(email, password) {
       try {
-        const response = await axios.post(`/users/login`, { email, password });
+        const response = await axios.post('/users/login', { email, password });
+        return response.data;
+      } catch (error) {
+        console.log('Error response', error.response.data.message);
+        return {
+          succes: false,
+          message: error.response.data.message,
+        };
+      }
+    },
+    async active(userId) {
+      try {
+        const response = await axios.get(`/users/u/active?id=${userId}`);
         return response.data;
       } catch (error) {
         return {
-          ok: false,
-        }
+          success: false,
+          message: error.response.data.message,
+        };
       }
     },
     async authenticationFacebook(token) {
       try {
-        const response = await axios.post(`/users/login-facebook`, { access_token: token });
+        const response = await axios.post('/users/login-facebook', { access_token: token });
         return response.data;
       } catch (error) {
         return {
           ok: false,
-        }
+        };
       }
     },
     async create(userData) {
-      const response = await axios.post(`/users/signup`, userData);
+      const response = await axios.post('/users/signup', userData);
       return response.data;
     },
     async get(id) {
@@ -47,19 +60,19 @@ const api = {
       return response.data;
     },
     async createAddress(data) {
-      const response = await axios.post(`/users/address`, data);
+      const response = await axios.post('/users/address', data);
       return response.data;
     },
     async createAddressWithBusiness(data) {
-      const response = await axios.post(`/users/link-business`, data);
+      const response = await axios.post('/users/link-business', data);
       return response.data;
     },
     async getAddress() {
-      const response = await axios.get(`/address`);
+      const response = await axios.get('/address');
       return response.data;
     },
     async sendMailPassword(data) {
-      const response = await axios.post(`/users/send-password-email`, data);
+      const response = await axios.post('/users/send-password-email', data);
       return response.data;
     },
     async validationToken(emailToken, id) {
@@ -71,25 +84,25 @@ const api = {
       return response.data;
     },
     async updateAlerts(data) {
-      const response = await axios.post(`/users/control-alerts`, data);
+      const response = await axios.post('/users/control-alerts', data);
       return response.data;
-    }
+    },
   },
   creditCard: {
     async create(data) {
-      const response = await axios.post(`/credit-cards/card`, data);
+      const response = await axios.post('/credit-cards/card', data);
       return response.data;
     },
     async getAll() {
-      const response = await axios.get(`/credit-cards`);
+      const response = await axios.get('/credit-cards');
       return response.data;
-    }
+    },
   },
   suscriptions: {
     async get(id) {
       const response = await axios.get(`/suscriptions/${id}`);
       return response.data;
-    }
+    },
   },
   product: {
     async getAll(storeId) {
@@ -103,11 +116,15 @@ const api = {
     async get(id) {
       const response = await axios.get(`/products/${id}`);
       return response.data;
-    }
+    },
   },
   orders: {
     async getAll() {
-      const response = await axios.get(`/orders`);
+      const response = await axios.get('/orders');
+      return response.data;
+    },
+    async getOrder(id) {
+      const response = await axios.get(`/orders/${id}`);
       return response.data;
     },
     async create(order) {
@@ -130,13 +147,13 @@ const api = {
     async getSchedules() {
       const response = await axios.get('/orders/schedules');
       return response.data;
-    }
+    },
   },
   business: {
     async getAll() {
       const response = await axios.get('/bussines');
       return response.data;
-    }
+    },
   },
   store: {
     async create(data) {
@@ -147,7 +164,7 @@ const api = {
         return {
           success: false,
           message: error.message,
-        }
+        };
       }
     },
     async getAll(params) {
@@ -157,14 +174,14 @@ const api = {
     async get(storeId) {
       const response = await axios.get(`/stores/${storeId}`);
       return response.data;
-    }
+    },
   },
   shipping: {
     async getAll(storeId) {
       const response = await axios.get(`/shippings/${storeId}`);
       return response.data;
-    }
-  }
+    },
+  },
 };
 
 export default api;

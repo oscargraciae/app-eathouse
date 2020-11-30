@@ -55,7 +55,7 @@ class Signup extends React.Component {
         if(response.success) {
           setToken(response.token);
         }
-        location.href = "/";
+        location.href = "/login";
         // Router.push('/menu');
       } else {
         this.setState({ errorsServer: response.errors });

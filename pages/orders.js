@@ -1,9 +1,10 @@
 // import libraries
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Modal } from 'react-bootstrap';
 
 // import local libraries
 // import securePage from '../hocs/page';
+import { Box, Divider, Heading } from '@chakra-ui/react';
 import api from '../api';
 
 // import componentes
@@ -12,67 +13,45 @@ import TableOrders from '../components/orders/TableOrders';
 import ModalDetail from '../components/orders/ModalDetail';
 import LoadingSpinner from '../components/common/LoadingSpinner';
 
-class Orders extends React.Component {
-  static getInitialProps() {
-    return 1;
-  }
+const Orders = (props) => {
+  const [orders, setOrders] = useState([]);
+  const [isOpenModalDetail, setIsOpenModalDetail] = useState(false);
+  const [orderId, setOrderId] = useState(null);
 
-  state = {
-    orders: null,
-    orderDetail: null,
-    openModalDetail: false,
-  }
+  const initialFetch = async () => {
+    const data = await api.orders.getAll();
+    setOrders(data);
+  };
+  useEffect(() => {
+    initialFetch();
+  }, []);
 
-  componentDidMount() {
-    this.initialFetch();
-  }
+  const detailClick = async (id) => {
+    // const response = await api.orders.getDetail(item.id);
+    // setOrderDetaill(dataOrder);
+    setOrderId(id);
+    setIsOpenModalDetail(true);
+  };
 
-  async initialFetch() {
-    const orders = await api.orders.getAll();
-    this.setState({ orders });
-  }
-
-  onToggleModalDetail = () => {
-    this.setState({ openModalDetail: !this.state.openModalDetail });
-  }
-
-  detailClick = async (item) => {
-    const response = await api.orders.getDetail(item.id);
-    const orderDetail = {
-      info: item,
-      items: response
-    };
-    this.setState({ openModalDetail: true, orderDetail });
-  }
-
-  render() {
-    const { orders, openModalDetail, orderDetail } = this.state;
-    return (
-      <Layout {...this.props}>
-        { orderDetail && <ModalDetail show={openModalDetail} order={orderDetail} onToggle={this.onToggleModalDetail} /> }
-        <div className="container">
-          <h2 className="title">Mis compras</h2>
-          <div className="container-box">
-            { orders ? <TableOrders data={orders} detailClick={this.detailClick} /> : <LoadingSpinner /> }
-          </div>
-        </div>
-        <style jsx>{`
-          .title {
-            font-size: 21px;
-            padding: 0px 0px;
-            margin-top: 0;
-            margin: 20px 0 0px;
-            color: #2D3138;
-            font-weight: 600;
-            line-height: 34px;
-            text-transform: uppercase;
-            /* border-bottom: 1px solid #DDD; */
-            font-family: "BentonSans",Helvetica,Arial,sans-serif;
-          }
-        `}</style>
-      </Layout>
-    )
-  }
-}
+  return (
+    <Layout {...props}>
+      {(isOpenModalDetail && orderId)
+        && (
+        <ModalDetail
+          show={(isOpenModalDetail && orderId)}
+          orderId={orderId}
+          onToggle={() => setIsOpenModalDetail(false)}
+        />
+        )}
+      <Box mx="auto" maxWidth="1140px" mt={4}>
+        <Heading textTransform="uppercase" as="h3" size="lg">Mis compras</Heading>
+        <Divider borderColor="#DDD" my={4} />
+        <Box>
+          { orders ? <TableOrders data={orders} detailClick={detailClick} /> : <LoadingSpinner /> }
+        </Box>
+      </Box>
+    </Layout>
+  );
+};
 
 export default Orders;

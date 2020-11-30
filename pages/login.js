@@ -51,13 +51,14 @@ class Login extends React.Component {
       const { email, password } = this.state;
       const response = await api.user.authentication(email, password);
 
-      const { success, token } = response;
+      const { success, token, message } = response;
       if(success) {
         setToken(token);
         location.href = "/";
         // Router.push('/menu');
       } else {
-        this.setState({ errorsServer: 'Verifica tu correo electrónico y contraseña' });
+        console.log("Error message", response);
+        this.setState({ errorsServer: response.message });
       }
     }
 
@@ -100,7 +101,7 @@ class Login extends React.Component {
           <div className="container-login">
             <h1>Iniciar sesión</h1>
             <p>¿Todavía no tienes cuenta? <a className="lbl-principal" href="signup">Regístrate</a></p>
-            { errorsServer && <AlertBox message={this.state.errorsServer} /> }
+            { errorsServer && <AlertBox message={errorsServer} /> }
             <form className="signupForm" onSubmit={this.onSubmit}>
               { this.state.messageError && <div className="alert alert-danger">{ this.state.messageError }</div> }
               <InputText

@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Flex } from '@chakra-ui/react';
 
 import { toMoney, thousandSpace } from '../../utils/formatNumber';
 
@@ -10,12 +11,12 @@ class MenuItem extends React.Component {
   }
 
   addItem = () => {
-    const productToCart = this.props.cart.data.filter((item) => item.id === this.props.id && item.deliveryDate === this.props.deliveryDate && item.unidType.id === this.state.productPriceSelected.unidType.id,)[0];
+    const productToCart = this.props.cart.data.filter((item) => item.id === this.props.id && item.unidType.id === this.state.productPriceSelected.unidType.id,)[0];
     this.props.addCart(this.props, productToCart.quantity + 1, this.state.productPriceSelected); // Producto, cantidad, (precio de productio y tipo de unidad)
   }
 
   removeItem = () => {
-    const productToCart = this.props.cart.data.filter((item) => item.id === this.props.id && item.deliveryDate === this.props.deliveryDate && item.unidType.id === this.state.productPriceSelected.unidType.id,)[0];
+    const productToCart = this.props.cart.data.filter((item) => item.id === this.props.id && item.unidType.id === this.state.productPriceSelected.unidType.id,)[0];
     this.props.addCart(this.props, productToCart.quantity - 1, this.state.productPriceSelected);  // Producto, cantidad, (precio de productio y tipo de unidad)
   }
 
@@ -49,13 +50,10 @@ class MenuItem extends React.Component {
   render() {
     const productToCart = this.props.cart.data.filter(
       (item) => item.id === this.props.id
-      && item.deliveryDate === this.props.deliveryDate
       && item.unidType.id === this.state.productPriceSelected.unidType.id,
     )[0];
     return (
-      <div className="menu-item">
-        {/* <ReactTooltip effect="solid" className="custom-tooltip" /> */}
-        {/* <div className="menu-item-photo" style={{ backgroundImage: `url(${this.props.image})` }} /> */}
+      <Flex flex={1} w='100%' h='180px' borderWidth='1px' borderColor='rgba(217, 219, 224, 0.5)' >
         <div className="menu-item-details">
           <div className="menu-item-content" onClick={this.props.selectDetailProduct}>
             <div className="menu-item-description">
@@ -92,21 +90,6 @@ class MenuItem extends React.Component {
         </div>
 
         <style global jsx>{`
-
-          .menu-item {
-            display: flex;
-            cursor: pointer;
-            box-sizing: content-box;
-            width: 48%;
-            height: 180px;
-            /* height: 128px; */
-            margin: 8px 0px;
-            padding: 0px;
-            border-width: 1px;
-            border-style: solid;
-            border-color: rgba(217, 219, 224, 0.5);
-            border-image: initial;
-          }
 
           .menu-item-photo {
             background-color: rgba(231,228,218,0.9);
@@ -413,7 +396,7 @@ class MenuItem extends React.Component {
             }
           }
         `}</style>
-      </div>
+      </Flex>
     )
   }
 

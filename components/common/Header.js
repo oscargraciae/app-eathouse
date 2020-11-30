@@ -1,286 +1,103 @@
+import React from 'react';
 import NProgress from 'nprogress';
-import Router from 'next/router';
-import Link from 'next/link';
-import { Fragment } from 'react';
+import Router, { useRouter } from 'next/router';
 import { GrLocation } from 'react-icons/gr';
 import { useSelector } from 'react-redux';
+import {
+  Box, Button, Flex, Text, Link, Menu, MenuButton, MenuItem, MenuList,
+} from '@chakra-ui/react';
+import { FiChevronDown } from 'react-icons/fi';
 
-Router.onRouteChangeStart = () => {
-  return NProgress.start();
-};
-Router.onRouteChangeComplete = () => {
-  return NProgress.done();
-};
-Router.onRouteChangeError = () => {
-  return NProgress.done();
-};
+Router.onRouteChangeStart = () => NProgress.start();
+Router.onRouteChangeComplete = () => NProgress.done();
+Router.onRouteChangeError = () => NProgress.done();
 
 const menuGuest = () => {
+  const router = useRouter();
   return (
-    <ul className="nav navbar-nav navbar-right nav-menu-right">
-      <li>
-        <Link href="/login">
-          <a className="btn_nav">
-            <span>Iniciar sesión</span>
-          </a>
-        </Link>
-      </li>
-      <li>
-        <Link href="/signup">
-          <a className="btn_navf">
-            <span>Regístrate</span>
-          </a>
-        </Link>
-      </li>
-      <li>
-        <Link href="/signup-store">
-          <a className="btn_navf">
-            <span>Registrar tienda</span>
-          </a>
-        </Link>
-      </li>
-    </ul>
-  )
-}
+    <Flex flex={1} justify="flex-end">
+      <Button onClick={() => router.push('/login')} size="sm" variant="link" ml={4}>Iniciar sesion</Button>
+      <Button onClick={() => router.push('/signup')} size="sm" variant="link" ml={4}>Regístrate</Button>
+      {/* <Button onClick={() => router.push('http://localhost:3000/signup')} size="sm" variant="link" ml={4}>Registrar tienda</Button> */}
+    </Flex>
+  );
+};
 
 const menuAuth = (props) => {
-  const { user, userToken, setShowAddressModal, showHeaderAddress } = props;
-  const { address } = useSelector(state => state.user);
+  const {
+    user, setShowAddressModal, showHeaderAddress,
+  } = props;
+  const { address } = useSelector((state) => state.user);
+  const router = useRouter();
 
   return (
-    <Fragment>
-      { showHeaderAddress &&
-        <ul className="nav navbar-nav navbar-left navbar-location">
-          { (address) &&
-            <li onClick={() => setShowAddressModal(true)}>
-              <GrLocation size={21} />
-              <a>{address.addressMap.substr(0, 50)}...</a>
-            </li>
-          }
+    <>
+      { (user && showHeaderAddress)
+        && (
+        <Box>
+          <Button size="md" onClick={() => setShowAddressModal(true)}>
+            <GrLocation size={21} />
+            <Text pl={2}>
+              { address
+                ? address.addressMap.substr(0, 50)
+                : <Text>Busca una dirección nueva</Text>}
+            </Text>
+          </Button>
+        </Box>
+        )}
+      <Flex flex={1} justify="flex-end">
+        <Menu>
+          <MenuButton as={Button} variant="ghost" rightIcon={FiChevronDown()}>
+            Hola,
+            {' '}
+            {user.firstName}
+          </MenuButton>
+          <MenuList zIndex={3} borderColor="#DDD">
+            <MenuItem onClick={() => router.push('/account')}>Ajustes de cuenta</MenuItem>
+            <MenuItem onClick={() => router.push('/orders')}>Mis compras</MenuItem>
+            <MenuItem onClick={() => router.push('/logout')}>Salir</MenuItem>
+          </MenuList>
+        </Menu>
+      </Flex>
+    </>
+  );
+};
 
-          { (!address) &&
-            <li onClick={() => setShowAddressModal(true)}>
-              <GrLocation size={21} />
-              <a>Busca una dirección nueva</a>
-            </li>
-          }
-        </ul>
-      }
-      <ul className="nav navbar-nav navbar-right nav-menu-right">
-        <li className="dropdown">
-          <a
-            className="dropdown-toggle"
-            data-toggle="dropdown"
-            role="button"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            Hola, {user.firstName} <span className="caret" />
-          </a>
-          <ul className="dropdown-menu">
-            <li>
-              <a
-                data-toggle="collapse"
-                data-target=".navbar-collapse.in"
-                href={`/account`}
-                className="btn_nav nav-lbl-principal"
-              >
-                Ajustes de cuenta
-              </a>
-            </li>
-            <li role="separator" className="divider" />
-            <li>
-              <a
-                data-toggle="collapse"
-                data-target=".navbar-collapse.in"
-                href={`/orders`}
-                className="btn_nav nav-lbl-principal"
-              >
-                Mis compras
-              </a>
-            </li>
-            <li role="separator" className="divider" />
-            <li>
-              <a
-                data-toggle="collapse"
-                data-target=".navbar-collapse.in"
-                href={`/logout`}
-                className="btn_nav"
-              >
-                Salir
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          { user.store &&
-            <a className="btn_navf mobile-hide" href="http://manager.uorder.mx/" target="_blank">
-              <span>Administrar mi tienda</span>
-            </a>
-            }
-            { !user.store &&
-            <Link href="/signup-store">
-              <a className="btn_navf">
-                <span>Registrar tienda</span>
-              </a>
-            </Link>
-            }
-        </li>
-      </ul>
-    </Fragment>
-  )
-}
+const Header = (props) => {
+  const onSignup = () => {
+    // if (props.isAuthenticated) {
+    //   window.location.href = `http://localhost:3000/signup/${props.loggedUser}`;
+    // } else {
+    //   window.location.href = 'http://localhost:3000/signup';
+    // }
+    if (props.isAuthenticated) {
+      window.location.href = `https://as-manager-uorder-qa/signup/${props.loggedUser}`;
+    } else {
+      window.location.href = 'https://as-manager-uorder-qa/signup';
+    }
+  };
 
-export default function Header(props) {
   return (
     <header>
-        <nav className="navbar navbar-default">
-          <div className="fluid-container header-uorder">
-            <div className="navbar-header">
-              <Link href="/">
-                <a>
-                  <img
-                    src="/static/uorder-logo.png"
-                    alt="eathouse"
-                    height="40"
-                  />
-                </a>
-              </Link>
 
-            </div>
-            <div className="navbar-collapse">
-              { props.isAuthenticated ? menuAuth(props) : menuGuest() }
-            </div>
+      <Box boxShadow="md">
+        <Flex direction="row" align="center" mx="auto" maxWidth="1200px" height="70px">
+          <Box mr={4}>
+            <a href="/">
+              <img src="/static/urder-black-logo.png" alt="eathouse" width="100" height="70" />
+            </a>
+          </Box>
+          <Flex flex={1} justify="space-between" align="center">
+            { props.isAuthenticated ? menuAuth(props) : menuGuest() }
+          </Flex>
+          <Box>
+            <Button onClick={onSignup} size="sm" variant="link" ml={4}>Publica tu tienda</Button>
+          </Box>
+        </Flex>
+      </Box>
 
-          </div>
-        </nav>
-        <style jsx global>{`
-          header {
-            position: fixed;
-            width: 100%;
-            z-index: 100;
-            box-shadow: initial;
-          }
+    </header>
+  );
+};
 
-          .header-uorder {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-          }
-
-          .header-message {
-            background: var(--primary-color);
-            font-size: 14px;
-            color: #FFF;
-            text-align: center;
-            padding: 8px 0px;
-          }
-
-          .navbar-brand {
-            height: 40px;
-          }
-
-          .navbar-default {
-            background: #FFF;
-            border: 1px solid rgba(217,219,224,0.5);
-            margin-bottom: 0px;
-          }
-
-          .navbar-collapse {
-            width: 100%;
-          }
-
-          .btn-link {
-            padding: 9px !important;
-          }
-
-          #nprogress {
-            pointer-events: none;
-          }
-
-          #nprogress .bar {
-            background: #ff9300;
-            position: fixed;
-            z-index: 1031;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-          }
-
-          #nprogress .peg {
-            display: block;
-            position: absolute;
-            right: 0px;
-            width: 100px;
-            height: 100%;
-            box-shadow: 0 0 10px #ff9300, 0 0 5px #ff9300;
-            opacity: 1.0;
-            transform: rotate(3deg) translate(0px, -4px);
-          }
-
-          .nav-menu-right {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-          }
-
-          .navbar-location > li {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-          }
-
-          @media (max-width: 600px) {
-            .navbar-default {
-              box-shadow: 0 1px 10px 0 rgba(0,0,0,.1);
-            }
-
-            .navbar-default .navbar-toggle {
-              border: none;
-            }
-
-            .onlyMobile {
-              display: none;
-            }
-
-            .navbar-location {
-              position: absolute;
-              top: 48px;
-              width: 100%;
-              left: 15px;
-              background: #FFFFFF;
-              border-bottom: 1px solid #DDD;
-            }
-
-            .dropdown-menu {
-              position: absolute !important;
-              top: 100%;
-              left: 0;
-              z-index: 1000;
-              display: none;
-              float: left !important;
-              min-width: 160px !important;
-              padding: 5px 0;
-              margin: 2px 0 0;
-              font-size: 14px;
-              text-align: left;
-              list-style: none;
-              background-color: #fff !important;
-              background-clip: padding-box;
-              border: 1px solid #ccc !important;
-              border: 1px solid rgba(0,0,0,.15) !important;
-              border-radius: 4px;
-              box-shadow: 0 6px 12px rgba(0,0,0,.175) !important;
-            }
-
-            .mobile-hide {
-              display: none !important;
-            }
-
-          }
-        `}</style>
-      </header>
-  )
-}
+export default Header;

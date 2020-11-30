@@ -1,158 +1,51 @@
+import { Box, Link, Stack, Text, VStack, Flex, Spacer, HStack } from '@chakra-ui/react';
+import React from 'react';
+import { FiFacebook, FiInstagram, FiTwitter } from 'react-icons/fi';
+import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
 
-const Footer = () => {
-  return (
-    <div>
-      <footer>
-        <div className="container">
-          <div className="row">
-            <div className="footernav col-md-3">
-              <h4 className="footer-title">EMPRESA</h4>
-              <ul>
-                <li className="footernav-item"><a href="/faq">Preguntas frecuentes</a></li>
-                {/* <li className="footernav-item"><a href="https://eathouse.mx/app/ayuda-clientes">Ayuda a clientes</a></li> */}
-                {/* <li className="footernav-item">
-                  <a href="/privacy">Política de privacidad</a>
-                </li>
-                <li className="footernav-item">
-                  <a href="/terms"> Términos y condiciones</a>
-                </li> */}
-                {/* <li className="footernav-item">
-                  <a target="_blank" rel="noopener noreferrer" href="http://blog.eathouse.mx/"> Blog</a>
-                </li> */}
-              </ul>
-            </div>
+const Footer = () => (
+  <footer>
+    <Flex boxShadow="md" bg="black" color="#FFF" justify="stretch" py={8}>
+      <Stack direction="row" mx="auto" w="100%" maxWidth="1200px">
+        <VStack align="flex-start">
+          <Text fontSize="md" fontWeight="bold">MAPA DEL SITIO</Text>
+          <Link fontSize="sm" href="/">Inicio</Link>
+          <Link fontSize="sm" href="/">Iniciar Sesión</Link>
+          <Link fontSize="sm" href="/">Crear Cuenta</Link>
+          <Link fontSize="sm" href="/">Registrar Negocio</Link>
+        </VStack>
+        <Spacer />
+        <VStack align="flex-start">
+          <Text fontSize="md" fontWeight="bold">INFORMACIÓN</Text>
+          <Link fontSize="sm" href="/">Centro de Ayuda</Link>
+          <Link fontSize="sm" href="/">Preguntas Frecuentes</Link>
+          <Link fontSize="sm" href="/">Aviso de Privacidad</Link>
+          <Link fontSize="sm" href="/">Condiciones de Uso</Link>
+        </VStack>
+        <Spacer />
 
-            <div className="footernav footernav-right col-md-3">
-              <h4 className="footer-title">CONTACTANOS</h4>
-              <ul>
-                <li className="footernav-item">
-                  <a href="mailto:ayuda@eathouse.mx"> ayuda@eathouse.mx</a>
-                </li>
-                <li className="footernav-item"><a target="_blank" rel="noopener noreferrer" href="https://www.messenger.com/t/eathousemx/"> Deja tu Mensaje en Facebook</a></li>
-                {/* <li className="footernav-item">
-                  <a> (81) 8119086812</a>
-                </li> */}
-              </ul>
-            </div>
+        <VStack align="flex-start">
+          <Text fontSize="md" fontWeight="bold">ACERCA DE</Text>
+          <Link fontSize="sm" href="/">Blog</Link>
+          <Link fontSize="sm" href="/">Contacto</Link>
+          <Link fontSize="sm" href="/">Uorder es un producto de Northware</Link>
+        </VStack>
+        <Spacer />
 
-            <div className="footernav footernav-right col-md-3">
-              <h4 className="footer-title">SIGUENOS EN</h4>
-              <ul>
-                <li className="footernav-item"><a className="social-button" target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/eathousemx"><i className="fab fa-facebook-f fa-lg" /></a></li>
-                <li className="footernav-item"><a className="social-button" target="_blank" rel="noopener noreferrer" href="https://twitter.com/eathousemx"><i className="fab fa-twitter fa-lg" /></a></li>
-                <li className="footernav-item"><a className="social-button" target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/eathousemx/"> <i className="fab fa-instagram fa-lg" /></a></li>
-                {/* <li className="footernav-item"><a className="social-button" target="_blank" rel="noopener noreferrer" href="https://eathouse.mx/blog">Blog</a></li> */}
-              </ul>
-            </div>
-
-          </div>
-
-          <div className="row">
-            <div className="footernav col-md-8">
-              <hr />
-              <img alt="eathouse Footer" src="/static/logo-eathouse.png" width="100" />
-              <p>
-                Hecho con <i className="fa fa-heart lbl-danger" /> en Monterrey (Mexico)
-                {/* <br /><span>© eathouse. Todos los derechos reservados</span> */}
-              </p>
-              {/* <p>Chambita Labs S.A.P.I de C.V</p> */}
-            </div>
-          </div>
-
-        </div>
-      </footer>
-      <style jsx>{`
-        footer {
-          border-top: 1px solid rgba(217,219,224,0.5);
-          background: #FFF;
-          color: #42413E;
-          margin-top: 0px;
-        }
-
-        .footer-title {
-          font-family: "BentonSans", Helvetica, Arial, sans-serif;
-          font-weight: 600;
-          font-style: normal;
-          letter-spacing: 0.5px;
-          color: #2D3138;
-          font-size: 14px;
-          text-align: left;
-          text-transform: uppercase;
-          line-height: normal;
-          letter-spacing: 1px;
-          cursor: pointer;
-        }
-
-        .footernav {
-          padding: 20px 10px;
-        }
-
-        .footernav ul {
-          margin: 0px;
-          padding: 0px;
-        }
-
-
-
-        .footernav-item {
-          padding: 0px 0px;
-          list-style: none;
-          margin-top: 12px;
-        }
-
-        .footernav-item, .footernav a {
-          color: #79776B;
-          font-size: 14px;
-        }
-
-        .social-button {
-          border-radius: 50%;
-          border: 2px solid #42413E;
-          padding: 7px 0 0;
-          width: 40px;
-          height: 40px;
-          margin-bottom: 0;
-          text-align: center;
-          display: inline-block;
-          font-size: 14px;
-          float: left;
-          margin: 0 5px;
-        }
-
-        .footernav-item .social-button:hover {
-          color: var(--primary-color);
-          border-color: var(--primary-color);
-        }
-
-        .arrow {
-          border-bottom-color: #ddd;
-          border-color: transparent;
-          border-style: solid;
-          border-top-width: 0;
-          border-width: 11px;
-          height: 0;
-          left: 75px;
-          margin-left: -11px;
-          position: absolute;
-          top: -11px;
-          width: 0;
-        }
-
-        .footernav-ul{
-          float:left;
-          padding-right: 50px !important;
-        }
-
-        @media (max-width: 600px) {
-          .footernav-ul {
-            float:left;
-            padding-right: 0;
-            width: 100%;
-          }
-        }
-      `}</style>
-    </div>
-  )
-}
+        <VStack align="flex-start">
+          <Text fontSize="md" fontWeight="bold">SÍGUENOS</Text>
+          <Stack isInline>
+            <Link fontSize="xl" href="/"><FaFacebook /></Link>
+            <Link fontSize="xl" href="/"><FaTwitter /></Link>
+            <Link fontSize="xl" href="/"><FaInstagram /></Link>
+          </Stack>
+        </VStack>
+      </Stack>
+    </Flex>
+    <Box bg="gray.600" textAlign="center" p={2}>
+      <Text color="#FFF" fontSize="sm">© 2021 Todos los derechos reservados</Text>
+    </Box>
+  </footer>
+);
 
 export default Footer;

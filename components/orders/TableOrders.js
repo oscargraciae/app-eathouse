@@ -1,12 +1,12 @@
 import React from 'react';
-import moment from 'moment';
-// import { toMoney, thousandSpace } from '../../utils/formatNumber';
+
 import { moneyThousand } from '../../utils/formatNumber';
-import { formatDate } from '../../utils/formatDate';
+import { formatDate } from '../../utils/formatDate';
+import { Button } from '@chakra-ui/react';
 
 function TableOrders(props) {
-  const { data } = props;
-  console.log('Data Store', data);
+  const { data } = props;
+
   return (
     <table className="table">
       <thead>
@@ -14,35 +14,41 @@ function TableOrders(props) {
           <th>#Orden</th>
           <th className="mobile-hide">Tienda</th>
           <th>Fecha de compra</th>
-          {/* <th>Estatus</th> */}
           <th>Total</th>
           <th />
         </tr>
       </thead>
       <tbody>
-        { data.map((item, index) => {
-          return (
-            <tr key={item.id}>
-              <td>
-                <div className="tdServiceData">
-                  <div className="serviceDescriptionData">
-                    <div className="">#{item.id}</div>
+        { data.map((item) => (
+          <tr key={item.id}>
+            <td>
+              <div className="tdServiceData">
+                <div className="serviceDescriptionData">
+                  <div className="">
+                    #
+                    {item.id}
                   </div>
                 </div>
-              </td>
-              <td className="mobile-hide">{item.store.name}</td>
-              <td>{formatDate(item.createdAt)}</td>
-              {/* <td><div className="category">Pendiente</div></td> */}
-              <td>${moneyThousand(item.total)}MX</td>
-              <td>
-                <a onClick={() => props.detailClick(item)} className="btn btn-primary">Ver detalle</a>
-              </td>
-            </tr>
-          )
-        }) }
+              </div>
+            </td>
+            <td className="mobile-hide">{item.store.name}</td>
+            <td>{formatDate(item.createdAt)}</td>
+            <td>
+              $
+              {moneyThousand(item.total)}
+              MX
+            </td>
+            <td>
+              <Button bg="brand.400" color="#FFF" onClick={() => props.detailClick(item.id)}>
+                Ver detalle
+              </Button>
+            </td>
+          </tr>
+        )) }
 
       </tbody>
-      <style jsx>{`
+      <style jsx>
+        {`
         .tdServiceData {
           display: flex;
           align-items: center;
@@ -70,9 +76,10 @@ function TableOrders(props) {
             font-size: 10px;
           }
         }
-      `}</style>
+      `}
+      </style>
     </table>
-  )
+  );
 }
 
 export default TableOrders;
